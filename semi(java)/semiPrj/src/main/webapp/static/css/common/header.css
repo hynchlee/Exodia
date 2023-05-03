@@ -1,0 +1,424 @@
+@charset "UTF-8";
+
+* {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+}
+
+.e168_2 {
+	overflow: hidden;
+}
+
+.e168_2 {
+	background-color: rgba(255, 255, 255, 1);
+	width: 1920px;
+	height: 2782px;
+	position: absolute;
+}
+
+.e168_3 {
+	background-color: rgba(59.55312520265579, 76.79331690073013, 121.12499848008156, 1);
+	width: 1920px;
+	height: 365px;
+	position: absolute;
+	left: 0px;
+	top: 160px;
+}
+
+.e168_4 {
+	width: 1923px;
+	height: 579px;
+	position: absolute;
+	left: -2px;
+	top: 2203px;
+}
+
+.e168_5 {
+	background-color: rgba(72.80853912234306, 70.99713832139969, 83.93750354647636, 1);
+	width: 1920px;
+	height: 359px;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+.e168_6 {
+	width: 133px;
+	height: 41px;
+	position: absolute;
+	left: 206px;
+	top: 119px;
+}
+
+.e168_7 {
+	width: 41px;
+	height: 41px;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	background-image: url(/semi/static/img/header/image_42.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.e168_8 {
+	font-weight: 600;
+	color: #ffffff;
+	width: 84px;
+	height: 30px;
+	position: absolute;
+	left: 49px;
+	top: 6px;
+	font-family: Poppins, 'Source Sans Pro';
+	text-align: left;
+	font-size: 20px;
+	letter-spacing: 0;
+}
+
+.e168_9 {
+	width: 141px;
+	height: 45px;
+	position: absolute;
+	left: 722px;
+	top: 119px;
+}
+
+.e168_10 {
+	width: 83px;
+	height: 30px;
+	position: absolute;
+	left: 58px;
+	top: 6px;
+	font-family: Poppins, 'Source Sans Pro';
+	text-align: left;
+	font-size: 20px;
+	letter-spacing: 0;
+	font-weight: 600;
+	color: #ffffff;
+}
+
+.e168_11 {
+	width: 45px;
+	height: 45px;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	background-image: url(/semi/static/img/header/image_43.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.e168_12 {
+	width: 184px;
+	height: 42px;
+	position: absolute;
+	left: 1196px;
+	top: 119px;
+}
+
+.e168_13 {
+	font-weight: 600;
+	color: #ffffff;
+	width: 121px;
+	height: 30px;
+	position: absolute;
+	left: 63px;
+	top: 6px;
+	font-family: Poppins, 'Source Sans Pro';
+	text-align: left;
+	font-size: 20px;
+	letter-spacing: 0;
+}
+
+.e168_14 {
+	width: 42px;
+	height: 42px;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	background-image: url(/semi/static/img/header/image_44.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.e168_15 {
+	color: rgba(193.37499797344208, 193.37499797344208, 193.37499797344208, 1);
+	position: absolute;
+	left: 206px;
+	top: 196px;
+	font-family: Spoqa Han Sans Neo, 'Source Sans Pro';
+	text-align: left;
+	font-size: 20px;
+	letter-spacing: 0;
+}
+
+.e168_15-1 {
+	color: rgba(193.37499797344208, 193.37499797344208, 193.37499797344208, 1);
+	position: absolute;
+	left: 206px;
+	top: 226px;
+	font-family: Spoqa Han Sans Neo, 'Source Sans Pro';
+	text-align: left;
+	font-size: 20px;
+	letter-spacing: 0;
+}
+
+.e168_16 {
+	color: rgba(193.37499797344208, 193.37499797344208, 193.37499797344208, 1);
+	position: absolute;
+	left: 731px;
+	top: 196px;
+	font-family: Spoqa Han Sans Neo, 'Source Sans Pro';
+	text-align: left;
+	font-size: 20px;
+	letter-spacing: 0;
+}
+
+.e168_16-1 {
+	color: rgba(193.37499797344208, 193.37499797344208, 193.37499797344208, 1);
+	position: absolute;
+	left: 731px;
+	top: 226px;
+	font-family: Spoqa Han Sans Neo, 'Source Sans Pro';
+	text-align: left;
+	font-size: 20px;
+	letter-spacing: 0;
+}
+
+.e168_17 {
+	color: rgba(193.37499797344208, 193.37499797344208, 193.37499797344208, 1);
+	position: absolute;
+	left: 1202px;
+	top: 196px;
+	font-family: Spoqa Han Sans Neo, 'Source Sans Pro';
+	text-align: left;
+	font-size: 20px;
+	letter-spacing: 0;
+}
+
+.e168_17-1 {
+	color: rgba(193.37499797344208, 193.37499797344208, 193.37499797344208, 1);
+	position: absolute;
+	left: 1202px;
+	top: 226px;
+	font-family: Spoqa Han Sans Neo, 'Source Sans Pro';
+	text-align: left;
+	font-size: 20px;
+	letter-spacing: 0;
+}
+
+.e168_18 {
+	background-color: rgba(55.65865717828274, 54.18750151991844, 63.75, 1);
+	width: 1923px;
+	height: 222px;
+	position: absolute;
+	left: 0px;
+	top: 357px;
+}
+
+.e168_19 {
+	color: rgba(193.37499797344208, 193.37499797344208, 193.37499797344208, 1);
+	position: absolute;
+	width: 571px;
+	left: 686px;
+	top: 402px;
+	font-family: Spoqa Han Sans Neo, 'Source Sans Pro';
+	text-align: center;
+	font-size: 18px;
+	letter-spacing: 0;
+	line-height: px;
+}
+
+.e168_19-1 {
+	color: rgba(193.37499797344208, 193.37499797344208, 193.37499797344208, 1);
+	position: absolute;
+	width: 571px;
+	left: 686px;
+	top: 432px;
+	font-family: Spoqa Han Sans Neo, 'Source Sans Pro';
+	text-align: center;
+	font-size: 18px;
+	letter-spacing: 0;
+	line-height: px;
+}
+
+.e168_19-2 {
+	color: rgba(193.37499797344208, 193.37499797344208, 193.37499797344208, 1);
+	position: absolute;
+	width: 571px;
+	left: 686px;
+	top: 462px;
+	font-family: Spoqa Han Sans Neo, 'Source Sans Pro';
+	text-align: center;
+	font-size: 18px;
+	letter-spacing: 0;
+	line-height: px;
+}
+
+.e168_20 {
+	color: rgba(139.18750405311584, 139.18750405311584, 139.18750405311584, 1);
+	width: 535px;
+	height: 30px;
+	position: absolute;
+	left: 693px;
+	top: 529px;
+	font-family: Poppins;
+	text-align: center;
+	font-size: 16px;
+	letter-spacing: 0;
+	line-height: px;
+}
+
+.e168_21 {
+	color: rgba(24.43749949336052, 24.43749949336052, 24.43749949336052, 1);
+	height: 30px;
+	position: absolute;
+	left: 1180px;
+	top: 76px;
+	font-family: Spoqa Han Sans Neo, 'Source Sans Pro';
+	text-align: left;
+	font-size: 24px;
+	letter-spacing: 0;
+}
+
+.e168_22 {
+	width: 58px;
+	height: 59px;
+	position: absolute;
+	left: 1067px;
+	top: 61px;
+	border-top-left-radius: 360px;
+	border-top-right-radius: 360px;
+	border-bottom-left-radius: 360px;
+	border-bottom-right-radius: 360px;
+	background-image: url(/semi/static/img/header/___7.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.e168_23 {
+	color: rgba(24.43749949336052, 24.43749949336052, 24.43749949336052, 1);
+	height: 30px;
+	position: absolute;
+	left: 1339px;
+	top: 76px;
+	font-family: Spoqa Han Sans Neo, 'Source Sans Pro';
+	text-align: left;
+	font-size: 24px;
+	letter-spacing: 0;
+}
+
+.e168_24 {
+	color: rgba(24.43749949336052, 24.43749949336052, 24.43749949336052, 1);
+	height: 30px;
+	position: absolute;
+	left: 1603px;
+	top: 76px;
+	font-family: Spoqa Han Sans Neo, 'Source Sans Pro';
+	text-align: left;
+	font-size: 24px;
+	letter-spacing: 0;
+}
+
+.e168_25 {
+	color: rgba(24.43749949336052, 24.43749949336052, 24.43749949336052, 1);
+	height: 30px;
+	position: absolute;
+	left: 1482px;
+	top: 76px;
+	font-family: Spoqa Han Sans Neo, 'Source Sans Pro';
+	text-align: left;
+	font-size: 24px;
+	letter-spacing: 0;
+}
+
+.e168_26 {
+	width: 270px;
+	height: 58px;
+	position: absolute;
+	left: 222px;
+	top: 65px;
+	background-image: url(/semi/static/img/header/image_2.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.e168_27 {
+	color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	height: 40px;
+	position: absolute;
+	width: 1920px;
+	left: 0px;
+	top: 280px;
+	font-family: Spoqa Han Sans Neo, 'Source Sans Pro';
+	text-align: center;
+	font-size: 32px;
+	letter-spacing: 0;
+}
+
+.e168_28 {
+	color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	height: 25px;
+	width: 1920px;
+	position: absolute;
+	left: 0px;
+	top: 381px;
+	font-family: Spoqa Han Sans Neo, 'Source Sans Pro';
+	text-align: center;
+	font-size: 20px;
+	letter-spacing: 0;
+}
+
+.submenu-1, .submenu-2, .submenu-3, .submenu-4 {
+	display: none;
+}
+
+.e168_21:hover>.submenu-1 {
+	position: absolute;
+	display: block;
+}
+
+.e168_23:hover>.submenu-2 {
+	position: absolute;
+	display: block;
+}
+
+.e168_25:hover>.submenu-3 {
+	position: absolute;
+	display: block;
+}
+
+.e168_24:hover>.submenu-4 {
+	position: absolute;
+	display: block;
+}
+
+ul, li {
+	list-style-type: none;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.navi_bar {
+	height: 160px;
+	width: 1920px;
+	background-color: white;
+	position: fixed;
+}
+
+main {
+	position: absolute;
+	display: flex;
+	top: 525px;
+	width: 1920px;
+	height: 100%;
+}
