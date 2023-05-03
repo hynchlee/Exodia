@@ -9,8 +9,7 @@
 
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Spoqa+Han+Sans+Neo%3A400" />
+<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400%2C600" />
 <link rel="stylesheet"
