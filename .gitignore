@@ -16,3 +16,4 @@ log.txt
 semi(java)/**/.gitignore
 .lock
 .metadata
+semi(sql)/SEMI_더미데이터.sql

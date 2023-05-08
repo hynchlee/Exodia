@@ -117,8 +117,7 @@ main {
 }
 
 .caption1 {
-  position: absolute;
-  top: 2200px;
+  position: relative;
   width: 100%;
   background-color: #494754;
   padding: 0;
@@ -126,156 +125,9 @@ main {
   justify-content: center;
 }
 
-.container {
-  width: 1200px;
-  height: 359px;
-
-  position: relative;
-}
-
-.img1 {
-  position: absolute;
-  top: 119px;
-}
-
-.t1 {
-  position: absolute;
-  top: 125px;
-  left: 49px;
-
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 30px;
-
-  color: #FFFFFF;
-
-}
-
-.s1 {
-  position: absolute;
-  top: 196px;
-  width: 500px;
-
-  font-family: 'Spoqa Han Sans Neo';
-  font-style: normal;
-  font-weight: 300;
-  font-size: 15px;
-  line-height: 25px;
-
-  color: #C1C1C1;
-}
-
-.img2 {
-  position: absolute;
-  top: 119px;
-  left: 516px;
-}
-
-.t2 {
-  position: absolute;
-  top: 125px;
-  left: 574px;
-
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 30px;
-
-  color: #FFFFFF;
-}
-
-.s2 {
-  position: absolute;
-  top: 196px;
-  left: 516px;
-  width: 500px;
-
-  font-family: 'Spoqa Han Sans Neo';
-  font-style: normal;
-  font-weight: 300;
-  font-size: 15px;
-  line-height: 25px;
-
-  color: #C1C1C1;
-}
-
-.img3 {
-  position: absolute;
-  top: 119px;
-  left: 990px;
-}
-
-.t3 {
-  position: absolute;
-  top: 125px;
-  left: 1053px;
-
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 30px;
-
-  color: #FFFFFF;
-}
-
-.s3 {
-  position: absolute;
-  top: 196px;
-  left: 990px;
-  width: 500px;
 
 
-  font-family: 'Spoqa Han Sans Neo';
-  font-style: normal;
-  font-weight: 300;
-  font-size: 15px;
-  line-height: 25px;
 
-  color: #C1C1C1;
-}
-
-
-.caption2 {
-  position: absolute;
-  top: 2559px;
-  width: 100%;
-  background-color: #383649;
-  text-align: center;
-
-  padding: 45px 0;
-}
-
-.caption2 span {
-  height: 90px;
-  /* background-color: red; */
-  font-family: 'Spoqa Han Sans Neo';
-  font-style: normal;
-  font-weight: 300;
-  font-size: 15px;
-  line-height: 30px;
-
-
-  color: #C1C1C1;
-}
-
-footer {
-  position: absolute;
-  top: 2738px;
-  width: 100%;
-  height: 42px;
-  background-color: #383649;
-  text-align: center;
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 30px;
-  color: #8B8B8B;
-}
 
 #profile_img {
 	width: 60px;
