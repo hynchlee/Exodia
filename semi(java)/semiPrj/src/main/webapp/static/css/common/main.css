@@ -178,6 +178,9 @@ body {
   border-bottom-right-radius: 26px;
   overflow: hidden;
 }
+.v69_17:hover{
+  background-color: rgb(36, 40, 82);
+}
 .v69_19 {
   width: 208px;
   height: 45px;
@@ -228,6 +231,9 @@ body {
   opacity: 1;
   text-align: left;
 }
+.v69_22:hover{
+  text-decoration: underline;
+}
 .v69_23 {
   width: 90px;
   color: rgba(60,60,60,1);
@@ -240,6 +246,9 @@ body {
   opacity: 1;
   text-align: left;
 }
+.v69_23:hover{
+  text-decoration: underline;
+}
 .v69_24 {
   width: 110px;
   color: rgba(60,60,60,1);
@@ -251,6 +260,9 @@ body {
   font-size: 15px;
   opacity: 1;
   text-align: left;
+}
+.v69_24:hover{
+  text-decoration: underline;
 }
 .v69_26 {
   width: 23px;
