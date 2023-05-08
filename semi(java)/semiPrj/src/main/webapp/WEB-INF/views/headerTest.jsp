@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HeaderTest</title>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
+	<main>
+		여기서 작업
+	</main>
 </body>
 </html>
