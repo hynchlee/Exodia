@@ -1,4 +1,4 @@
-package com.semi.mail.controller;
+package com.semi.letter.controller;
 
 import java.io.IOException;
 
