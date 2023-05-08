@@ -1,0 +1,97 @@
+#master_img {
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    right: 10%;
+    top: 700px;
+    border-top-left-radius: 360px;
+    border-top-right-radius: 360px;
+    border-bottom-left-radius: 360px;
+    border-bottom-right-radius: 360px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 0;
+}
+
+.e112_188 {
+    color: rgba(0, 0, 0, 1);
+    height: 206px;
+    position: absolute;
+    left: 10%;
+    top: 700px;
+    font-family: Spoqa Han Sans Neo;
+    text-align: left;
+    font-size: 40px;
+    letter-spacing: 0;
+}
+
+.e112_189 {
+    color: rgba(0, 0, 0, 1);
+    height: 150px;
+    position: absolute;
+    left: 10%;
+    top: 1000px;
+    font-family: Spoqa Han Sans Neo;
+    text-align: left;
+    font-size: 24px;
+    letter-spacing: 0;
+}
+
+.wrap_1 {
+    width: 85%;
+    height: 100%;
+    margin: auto;
+}
+
+hr {
+    position: relative;
+    top: 650px;
+}
+
+.e112_192 {
+    color: rgba(0, 0, 0, 1);
+    width: 520px;
+    height: 50px;
+    position: absolute;
+    left: 10%;
+    top: 1287px;
+    font-family: Spoqa Han Sans Neo;
+    text-align: left;
+    font-size: 32px;
+    letter-spacing: 0;
+}
+
+.e112_193 {
+    color: rgba(0, 0, 0, 1);
+    width: 30%;
+    height: 358px;
+    position: absolute;
+    left: 10%;
+    top: 1383px;
+    font-family: Spoqa Han Sans Neo;
+    text-align: left;
+    font-size: 24px;
+    letter-spacing: 0;
+}
+
+.e112_194 {
+    color: rgba(0, 0, 0, 1);
+    width: 30%;
+    height: 358px;
+    position: absolute;
+    left: 50%;
+    top: 1383px;
+    font-family: Spoqa Han Sans Neo;
+    text-align: left;
+    font-size: 24px;
+    letter-spacing: 0;
+}
+
+#sign_img {
+    position: absolute;
+    width: 500px;
+    height: 100px;
+    right: 10%;
+    top: 1800px;
+    z-index: 0;
+}
