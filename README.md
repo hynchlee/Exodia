@@ -1,5 +1,5 @@
 # Exodia
-#JSP만들고 아래꺼 복붙하세요
+# JSP만들고 아래꺼 복붙하세요
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
