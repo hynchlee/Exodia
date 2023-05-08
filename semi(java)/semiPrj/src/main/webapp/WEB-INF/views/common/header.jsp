@@ -64,6 +64,7 @@
 						</ul>
 					</nav>
 				</header>
+				
 				<section class="banner">
 					<p class="title">공지사항</p>
 					<p class="caption">연중 무휴 | 전국 대표 문의 전화 1544-9970</p>
