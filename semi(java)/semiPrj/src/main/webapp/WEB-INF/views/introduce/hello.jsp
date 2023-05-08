@@ -52,6 +52,7 @@
 					<img src="${root}/static/img/introduce/sign.PNG" alt="logo" id="sign_img">
 				</div>
 			</main>
+			<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 	</body>
 
 	</html>
