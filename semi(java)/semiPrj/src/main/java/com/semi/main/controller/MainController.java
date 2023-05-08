@@ -1,4 +1,4 @@
-package com.semi.home.controller;
+package com.semi.main.controller;
 
 import java.io.IOException;
 
@@ -13,8 +13,8 @@ public class MainController extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		req.getRequestDispatcher("/WEB-INF/views/main.jsp").forward(req, resp);
+		
+		req.getRequestDispatcher("/WEB-INF/views/main/main.jsp").forward(req, resp);
 	
 	}
 	
