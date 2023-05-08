@@ -56,3 +56,8 @@
 	</body>
 
 	</html>
+
+	<script>
+		const title = document.querySelector('.title');
+		title.innerHTML = "인사말";
+	</script>
