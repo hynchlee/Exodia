@@ -23,7 +23,7 @@ header {
   justify-content: flex-end;
   flex-direction: row;
   align-items: center;
-
+  z-index: 100;
   position: fixed;
 }
 
@@ -71,7 +71,7 @@ header>nav>ul>li>a {
 }
 
 .menu4 {
-	width: 3%;
+  width: 3%;
 }
 
 
@@ -112,10 +112,6 @@ section {
 
 }
 
-main {
-  height: 2000px;
-}
-
 .caption1 {
   position: relative;
   width: 100%;
@@ -125,49 +121,51 @@ main {
   justify-content: center;
 }
 
-
-
-
-
 #profile_img {
-	width: 60px;
-	height: 60px;
-	border-top-left-radius: 360px;
-	border-top-right-radius: 360px;
-	border-bottom-left-radius: 360px;
-	border-bottom-right-radius: 360px;
-	background-image: url(/semi/static/img/header/___7.png);
-	background-repeat: no-repeat;
-	background-size: cover;
+  width: 60px;
+  height: 60px;
+  border-top-left-radius: 360px;
+  border-top-right-radius: 360px;
+  border-bottom-left-radius: 360px;
+  border-bottom-right-radius: 360px;
+  background-image: url(/semi/static/img/header/___7.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #id_img {
-	width: 300px;
-	height: 60px;
+  width: 300px;
+  height: 60px;
 }
 
-.submenu-1, .submenu-2, .submenu-3, .submenu-4 {
-	display: none;
-	list-style-type: none;
+.submenu-1,
+.submenu-2,
+.submenu-3,
+.submenu-4 {
+  display: none;
+  list-style-type: none;
 }
 
 .menu3:hover>.submenu-1 {
-	position: absolute;
-	top: 100px;
-	display: block;
+  position: absolute;
+  top: 100px;
+  display: block;
 }
+
 .menu3:hover>.submenu-2 {
-	position: absolute;
-	top: 100px;
-	display: block;
+  position: absolute;
+  top: 100px;
+  display: block;
 }
+
 .menu3:hover>.submenu-3 {
-	position: absolute;
-	top: 100px;
-	display: block;
+  position: absolute;
+  top: 100px;
+  display: block;
 }
+
 .menu3:hover>.submenu-4 {
-	position: absolute;
-	top: 100px;
-	display: block;
+  position: absolute;
+  top: 100px;
+  display: block;
 }
