@@ -1,5 +1,6 @@
 # Exodia
-# JSP만들고 아래꺼 복붙하세요
+# JSP만들고 아래꺼 복붙하세요 
+# (오른쪽 상단 수정 아이콘 클릭하면 깔끔하게 보여요)
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
