@@ -8,7 +8,9 @@
 			<title>header</title>
 
 			<c:set var="root" value="${pageContext.request.contextPath}"></c:set>
-
+			
+			<link href="https://fonts.googleapis.com/css?family=Noto+Sans KR&display=swap" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css?family=ABeeZee&display=swap" rel="stylesheet">
 			<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
 			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400%2C600" />
 			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins%3A400%2C600" />

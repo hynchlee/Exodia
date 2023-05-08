@@ -1,0 +1,58 @@
+main{
+    height: 1000px;
+    display: grid;
+    grid-template-columns: 1.3fr 5fr;
+}
+
+#side-bar{
+    border: 1px solid black;
+    background-color: #d9d9d9;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#side-bar button{
+    background-color: green;
+    margin-top: 20px;
+    width: 60%;
+    height: 100px;
+ 
+    font-family: 'Spoqa Han Sans Neo';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    text-align: center;
+}
+
+#letter-list{
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table{
+    width: 1000px;
+    
+    font-family: 'Spoqa Han Sans Neo';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    text-align: center;
+}
+
+td, th{padding: 15px;}
+
+#writer{width: 200px;}
+
+#content{width: 500px;}
+
+#date{width: 300px;}
+
+tbody tr{
+    border-bottom: 0.5px solid #B8B8B8;
+}
