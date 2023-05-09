@@ -8,10 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/letter")
-public class MailController extends HttpServlet{
+@WebServlet("/letter/receive")
+public class ReciveLetterController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/letter/letter.jsp").forward(req, resp);
+	
+		req.getRequestDispatcher("/WEB-INF/views/letter/receive-letter.jsp").forward(req, resp);
+	
 	}
+	
 }

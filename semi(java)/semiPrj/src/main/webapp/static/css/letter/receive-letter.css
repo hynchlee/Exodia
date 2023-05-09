@@ -1,0 +1,99 @@
+main {
+    height: 1000px;
+    display: grid;
+    grid-template-columns: 1.5fr 5fr;
+}
+
+#side-bar {
+    background-color: #d9d9d9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+}
+
+#side-bar div{
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+#side-bar button {
+    border: none;
+    background-color: #d9d9d9;
+    margin-top: 20px;
+    height: 80px;
+    width: 40%;
+
+    font-family: 'Spoqa Han Sans Neo';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 25px;
+    text-align: center;
+}
+
+#side-bar img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 48px;
+    height: 48px;
+    margin-right: 8px;
+  }
+  
+
+#letter-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    width: 1000px;
+
+    font-family: 'Spoqa Han Sans Neo';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 25px;
+    text-align: center;
+}
+
+table tbody tr:hover{
+    background-color: #B8B8B8;
+}
+
+
+td,
+th {
+    padding: 15px;
+}
+
+#writer {
+    width: 20%;
+}
+
+#content {
+    width: 50%;
+}
+
+#date {
+    width: 30%;
+}
+
+tbody tr {
+    border-bottom: 0.5px solid #B8B8B8;
+}
+
+tfoot td{
+    text-align: center;
+}
+
+tfoot button{
+    width: 30px;
+    height: 30px;
+
+    margin-left: 10px;
+    margin-right: 10px;
+}
