@@ -192,7 +192,7 @@
         <a href="강의링크">
           <span class="v61_22">강의</span>
         </a>
-        <a href="/메인으로~~">
+        <a href="/semi/main">
             <div class="v61_19"></div>
         </a>
         <div class="v69_16"></div>

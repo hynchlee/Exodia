@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+.table01{
+    width: 100%;
+    height: 800px;
+    opacity: 1;
+}
+.td01{
+    padding: 20px;
+}
+.board{
+    height: 100%;
+    background-color: rgba(248,248,248,1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.profile{
+    height: 100%;
+    background-color: rgba(248,248,248,1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.date{
+    height: 100%;
+    background: rgba(255,255,255,1);
+    border: 2px solid rgba(202,202,202,1);
+}
+.todo{
+    height: 100%;
+    background: rgba(255,255,255,1);
+    border: 2px solid rgba(202,202,202,1);
+}
+.team{
+    height: 100%;
+    background: rgba(255,255,255,1);
+    border: 2px solid rgba(202,202,202,1);
+}
+.table02{
+    width: 100%;
+    height: 300px;
+}
+.td02{
+    padding: 60px;
+}
+.classdate{
+    height: 100%;
+    background: rgba(217,217,217,1);
+}
+.datedetail{
+    height: 100%;
+    background: rgba(217,217,217,1);
+}
