@@ -24,7 +24,7 @@
             </div>
 
             <div class="board_bt">
-                <input type="submit" value="삭제하기" class="bt1">
+                <a href="" class="bt1">목록으로</a>
             </div>
 
             <table class="board_view">
@@ -48,13 +48,17 @@
                         <td>2023.05.01</td>
                     </tr>
                     <tr>
+                        <th>첨부파일</th>
+                        <td colspan="3"></td>
+                    </tr>
+                    <tr>
                         <th>내용</th>
                         <td colspan="3" style="height: 500px;">이곳은 내용자리</td>
                     </tr>
                 </tbody>
             </table>
             <div class="view_btn">
-                <a href="">목록으로</a>
+                <input type="button" value="삭제하기">
                 <input type="submit" value="수정하기">
             </div>
 
@@ -67,21 +71,21 @@
                 <div class="comment_col">
                     <span>작성자</span>
                     <span>댓글내용자리는이곳이다</span>
-                    <span>2023.05.01</span>
+                    <span class="time">2023.05.01 00:00:00:00</span>
                     <input type="button" value="수정">
                     <input type="button" value="삭제">
                 </div>
                 <div class="comment_col">
                     <span>작성자</span>
                     <span>댓글내용자리는이곳이다</span>
-                    <span>2023.05.01</span>
+                    <span class="time">2023.05.01 00:00:00:00</span>
                     <input type="button" value="수정">
                     <input type="button" value="삭제">
                 </div>
                 <div class="comment_col">
                     <span>작성자</span>
                     <span>댓글내용자리는이곳이다</span>
-                    <span>2023.05.01</span>
+                    <span class="time">2023.05.01 00:00:00:00</span>
                     <input type="button" value="수정">
                     <input type="button" value="삭제">
                 </div>

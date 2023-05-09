@@ -30,6 +30,8 @@
                 <select name="category" id="select_category" >
                     <option value="">우리반 게시판</option>
                     <option value="">자유게시판</option>
+                    <option value="">문의게시판</option>
+                    <option value="">후기게시판</option>
                     <option value="">공지사항</option>
                 </select>
                 <textarea name="content" class="content_input" placeholder="내용을 입력해주세요." required></textarea>

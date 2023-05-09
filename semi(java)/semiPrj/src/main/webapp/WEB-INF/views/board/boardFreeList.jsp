@@ -22,7 +22,7 @@
                     <li class="classRoom">[강남 362] 2022. 12. 30 ~ 2023. 08. 16 ｜ 15:30 ~ 22:00 (심원용 강사 ｜ 김리아 취업담임)</li>
                 </ul>
             </div>
-            
+
             <div class="board_search">
                 <form action="" method="post" name="searchBoard">
                     <select class="searchCategory" name="searchCategory">
@@ -34,7 +34,7 @@
                     <input type="button" value="검색" class="searchBtn">
                 </form>
             </div>
-            
+
             <table class="board">
                 <thead>
                     <tr>
@@ -133,5 +133,5 @@
 </html>
 <script>
 	const title = document.querySelector('.title');
-	title.innerHTML = "공지사항";
+	title.innerHTML = "자유게시판";
 </script>

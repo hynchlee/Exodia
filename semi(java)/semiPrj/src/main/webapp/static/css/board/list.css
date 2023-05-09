@@ -1,0 +1,164 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    text-decoration: none;
+    border-collapse: collapse;
+    color: #000;
+  }
+
+.selector-for-some-widget {
+  box-sizing: content-box;
+}
+
+  ul, li{
+    list-style: none;
+  }
+
+main{
+    width: 100%;
+    min-width: 1200px;
+    margin: 0 auto;
+    padding: 70px 0 100px;
+    height: auto;
+
+    
+}
+
+.myClass{
+    width: 1130px;
+    margin: 0 auto;
+}
+
+.myClass ul li{
+    margin-bottom: 5px;
+}
+
+.myClass ul li.loginName{
+    font-size: 25px;
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 400;
+    color: #414141;
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.myClass ul li.class{
+    font-size: 17px;
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 400;
+    color: #414141;
+    text-align: center;
+}
+
+.myClass ul li.classRoom{
+    font-size: 15px;
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 400;
+    color: #979797;
+    text-align: center;
+}
+
+.board{
+    width: 1130px;
+    border-top: 1px solid #414141;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+table{
+    border-spacing: 0;
+    border-collapse: initial;
+}
+
+.board th{
+    font-size: 15px;
+    height: 50px;
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: normal;
+    background-color: #f2f5f9;
+}
+
+.board td{
+    border-bottom: 1px solid #5e5e5e4b;
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 300;
+    font-size: 15px;
+    height: 45px;
+    text-align: center;
+    color: #424242;
+}
+
+.board td.board_title{
+    text-align: left;
+    padding: 5px 30px;
+    cursor: pointer;
+}
+
+.board_bt{
+    width: 1130px;
+    height: 50px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.board_bt .bt1{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.bt1{
+    background-color: #275caa;
+    color: #f2f5f9;
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: normal;
+    font-size: 13px;
+    padding: 8px 15px 6px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.board_page{
+    text-align: center;
+}
+
+.board_page a{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #97979767;
+    color: #222;
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 28px;
+    text-align: center;
+    margin-right: 8px;
+}
+
+/* 검색창 */
+.board_search{
+    width: 1130px;
+    margin: 0 auto;
+    margin-top:90px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: normal;
+}
+
+.board_search .searchInput{
+    padding: 2px 2px 2px;
+}
+
+.board_search .searchBtn{
+    background-color: #f2f5f9;
+    border-radius: 3px;
+    border: 1px solid #a3a3a3;
+    cursor: pointer;
+}
