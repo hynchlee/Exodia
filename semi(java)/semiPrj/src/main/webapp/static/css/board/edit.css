@@ -80,6 +80,8 @@ main{
     border-radius: 10px;
     cursor: pointer;
     border: 0px;
+
+    margin-left: 10px;
 }
 
 hr{
@@ -92,7 +94,7 @@ hr{
     width: 1130px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 1fr 3fr;
     grid-template-rows: 50px 500px 60px;
     gap: 10px;
 }
@@ -184,6 +186,36 @@ table{
     padding: 10px 10px 10px;
 }
 
+/* 답변 보드 */
+
+.qna_answer{
+    width: 1130px;
+    margin: 0 auto;
+    border-top: 1px solid rgb(170, 170, 170);
+    margin-top: 60px;
+}
+
+.qna_answer th{
+    font-size: 15px;
+    height: 50px;
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: normal;
+    background-color: #f2f5f9;
+    border-bottom: 1px solid #5e5e5e4b; 
+}
+
+.qna_answer td{
+    border-bottom: 1px solid #5e5e5e4b;
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 300;
+    font-size: 15px;
+    height: 45px;
+    text-align: left;
+    color: #424242;
+    padding: 10px 10px 10px;
+}
+
+
 /* 댓글 */
 
 .write_comment{
@@ -250,4 +282,13 @@ table{
     font-size: 11px;
     color: #979797;
 
+}
+
+.answer_title{
+    font-size: 25px;
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 500;
+    color: #414141;
+    text-align: center;
+    margin-top: 50px;
 }

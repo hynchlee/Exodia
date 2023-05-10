@@ -114,3 +114,18 @@ hr{
     display: block;
     padding: 10px 10px 10px;
 }
+
+/* 상단고정 */
+.checked{
+    width: 1130px;
+    margin: 0 auto;
+    margin-top: 3px;
+    margin-bottom: 8px;
+}
+
+.checked span{
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 300;
+    font-size: 15px;
+    margin-left: 5px;
+}

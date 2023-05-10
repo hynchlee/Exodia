@@ -49,7 +49,9 @@
                     </tr>
                     <tr>
                         <th>첨부파일</th>
-                        <td colspan="3"></td>
+                        <td></td>
+                        <th>수정일</th>
+                        <td>2023.05.05</td>
                     </tr>
                     <tr>
                         <th>내용</th>
@@ -57,11 +59,13 @@
                     </tr>
                 </tbody>
             </table>
+            <!-- 작성자에게만 보이기 -->
             <div class="view_btn">
                 <input type="button" value="삭제하기">
                 <input type="submit" value="수정하기">
             </div>
 
+            <!-- 큐엔에이는 답글 안받음 -->
             <div class="write_comment">
                 <span>댓글쓰기</span> 
                 <textarea name="comment" class="view_comment" style="resize: none; height: 50px;"></textarea> 
