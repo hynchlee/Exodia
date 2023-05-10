@@ -63,7 +63,7 @@ main{
     width: 1130px;
     border-top: 1px solid #414141;
     margin: 0 auto;
-    margin-top: 80px;
+    margin-top: 10px;
     margin-bottom: 30px;
 }
 
@@ -139,4 +139,55 @@ table{
     margin-right: 8px;
 }
 
+.board .state .bt_y{
+    background-color: rgb(214, 146, 20);
+    border: 1px solid #fff;
+    border-radius: 5px;
+    color: #fff;
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 300;
+}
+.board .state .bt_n{
+    background-color: rgb(161, 156, 156);
+    border: 1px solid #fff;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 300;
+}
 
+/* 검색창 */
+.board_search{
+    width: 1130px;
+    margin: 0 auto;
+    margin-top:90px;
+    /* display: flex;
+    justify-content: flex-end;
+    align-items: center; */
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 500px;
+
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: normal;
+}
+
+.board_search form{
+    justify-items: end;
+}
+
+.board_search .searchInput{
+    padding: 2px 2px 2px;
+}
+
+.board_search .searchBtn{
+    background-color: #f2f5f9;
+    border-radius: 3px;
+    border: 1px solid #a3a3a3;
+    cursor: pointer;
+}
+
+.board_search .qna_control label{
+    margin-right: 5px;
+}

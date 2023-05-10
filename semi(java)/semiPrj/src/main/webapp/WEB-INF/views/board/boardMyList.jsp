@@ -22,25 +22,26 @@
                     <li class="classRoom">[강남 362] 2022. 12. 30 ~ 2023. 08. 16 ｜ 15:30 ~ 22:00 (심원용 강사 ｜ 김리아 취업담임)</li>
                 </ul>
             </div>
-            
+
             <div class="board_search">
                 <form action="" method="post" name="searchBoard">
                     <select class="searchCategory" name="searchCategory">
                         <option value="t">제목</option>
                         <option value="c">내용</option>
                         <option value="tc">제목+내용</option>
+                        <option value="cate">카테고리</option>
                     </select>
                     <input type="text" class="searchInput" placeholder="검색어 입력" name="searchText">
                     <input type="button" value="검색" class="searchBtn">
                 </form>
             </div>
-            
+
             <table class="board">
                 <thead>
                     <tr>
                         <th style="width: 8%;">No</th>
                         <th>제목</th>
-                        <th style="width: 10%;">작성자</th>
+                        <th style="width: 10%;">카테고리</th>
                         <th style="width: 15%;">작성일</th>
                         <th style="width: 8%;">조회수</th>
                     </tr>
@@ -49,78 +50,76 @@
                     <tr>
                         <td>1</td>
                         <td class="board_title">글제목자리 <span class="badge bg-secondary">New</span></td>
-                        <td>아무개</td>
+                        <td>우리반게시판</td>
                         <td>2023.05.01</td>
                         <td>5</td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
+                        <td>우리반게시판</td>
                         <td>2023.05.01</td>
                         <td>5</td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
+                        <td>우리반게시판</td>
                         <td>2023.05.01</td>
                         <td>5</td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
+                        <td>우리반게시판</td>
                         <td>2023.05.01</td>
                         <td>5</td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
+                        <td>우리반게시판</td>
                         <td>2023.05.01</td>
                         <td>5</td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
+                        <td>우리반게시판</td>
                         <td>2023.05.01</td>
                         <td>5</td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
+                        <td>우리반게시판</td>
                         <td>2023.05.01</td>
                         <td>5</td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
+                        <td>우리반게시판</td>
                         <td>2023.05.01</td>
                         <td>5</td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
+                        <td>우리반게시판</td>
                         <td>2023.05.01</td>
                         <td>5</td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
+                        <td>우리반게시판</td>
                         <td>2023.05.01</td>
                         <td>5</td>
                     </tr>
                 </tbody>
             </table>
-            <div class="board_bt">
-                <a href="" class="bt1">글 등록</a>
-            </div>
+            
 			<div class="board_page">
                 <a href=""><<</a>
                 <a href="">1</a>
@@ -133,5 +132,5 @@
 </html>
 <script>
 	const title = document.querySelector('.title');
-	title.innerHTML = "공지사항";
+	title.innerHTML = "내가 쓴 글";
 </script>

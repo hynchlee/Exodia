@@ -163,6 +163,7 @@ table{
     border-top: 1px solid black;
 }
 
+
 .board_view th{
     font-size: 15px;
     height: 50px;
@@ -232,14 +233,21 @@ table{
 .comment_list .comment_col{
     display: grid;
     grid-template-columns: 1fr 4fr 0.5fr 0.2fr 0.2fr;
-    column-gap: 10px;
+    column-gap: 5px;
     border-top: 1px solid #cccccc79;
     justify-content: center;
     align-items: center;
     padding: 10px 10px 10px;
+    color: #424242;
 }
 
 .comment_list .comment_col input{
     border: 0px;
     cursor: pointer;
+}
+
+.comment_list .comment_col .time{
+    font-size: 11px;
+    color: #979797;
+
 }
