@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
-<link href="${root}/static/css/introduce/hello.css" rel="stylesheet">
+<link href="${root}/static/css/introduce/greet.css" rel="stylesheet">
 </head>
 
 <body>
