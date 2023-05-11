@@ -11,34 +11,39 @@
 	</head>
 	<body>
 		<%@ include file="/WEB-INF/views/common/header.jsp" %>
-
 			<main>
 				<div id="side-bar">
 					<div>
-						<div id="select-button">
-							<img src="${root}/static/img/letter/쪽지 쓰기.png">
-							<button id="write-letter">쪽지 쓰기</button>
-						</div>
+						<form action="${root}/letter/write" method="post">
+							<div id="select-button">
+								<img src="${root}/static/img/letter/쪽지 쓰기.png">
+								<input type="submit" value="쪽지 쓰기" id="write-letter">
+							</div>
+						</form>
 					</div>
 					<div>
-						<div id="select-button">
-							<img src="${root}/static/img/letter/보낸 쪽지.png">
-							<button id="sent-letter">보낸 쪽지</button>
-						</div>
-
+						<form action="${root}/letter/sent" method="post">
+							<div id="select-button">
+								<img src="${root}/static/img/letter/보낸 쪽지.png">
+								<input type="submit" value="보낸 쪽지" id="sent-letter">
+							</div>
+						</form>
 					</div>
 					<div>
-						<div id="select-button">
-							<img src="${root}/static/img/letter/받은 쪽지.png">
-							<button id="receive-letter">받은 쪽지</button>
-						</div>
-
+						<form action="${root}/letter/receive" method="post">
+							<div id="select-button">
+								<img src="${root}/static/img/letter/받은 쪽지.png">
+								<input type="submit" value="받은 쪽지" id="receive-letter" disabled>
+							</div>
+						</form>
 					</div>
 					<div>
-						<div id="select-button">
-							<img src="${root}/static/img/letter/휴지통.png">
-							<button id="trash-can">휴지통</button>
-						</div>
+						<form action="${root}/letter/trash" method="post">
+							<div id="select-button">
+								<img src="${root}/static/img/letter/휴지통.png">
+								<input type="submit" value="휴지통" id="trash-can">
+							</div>
+						</form>
 					</div>
 				</div>
 				<div id="letter-list">
@@ -158,5 +163,5 @@
 
 	<script>
 		const title = document.querySelector(".title");
-		title.innerHTML = "쪽지";
+		title.innerHTML = "받은 쪽지";
 	</script>

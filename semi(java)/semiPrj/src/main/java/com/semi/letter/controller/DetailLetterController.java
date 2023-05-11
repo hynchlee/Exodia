@@ -8,14 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/letter/write")
-public class WriteLetterController extends HttpServlet{
+@WebServlet("/letter/detail")
+public class DetailLetterController extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		req.getRequestDispatcher("/WEB-INF/views/letter/write-letter.jsp").forward(req, resp);
-		
+		req.getRequestDispatcher("/WEB-INF/views/letter/detail-letter.jsp").forward(req, resp);
 	}
 	
 }

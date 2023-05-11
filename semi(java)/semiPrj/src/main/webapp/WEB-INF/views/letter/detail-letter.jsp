@@ -7,7 +7,7 @@
 			<c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 			<meta charset="UTF-8">
 			<title>Insert title here</title>
-			<link rel="stylesheet" href="${root}/static/css/letter/write-letter.css">
+			<link rel="stylesheet" href="${root}/static/css/letter/detail-letter.css">
 
 		</head>
 
@@ -53,26 +53,31 @@
 							<table>
 								<thead>
 									<tr>
-										<th id="title">받는 사람</th>
+										<th id="title" style="width: 100px;">받는 사람</th>
 										<th><input type="text" name="receiver"></th>
+                                        <th>보낸 시간</th>
+                                        <th><input type="text" value="시간" style="width: 75%;"></th>
 									</tr>
 									<tr>
 										<th id="title">제목</th>
-										<th id="inputText"><input type="text" name="title"></th>
+										<th id="inputText" colspan="3"><input type="text" name="title"></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-										<th colspan="2">
+										<th colspan="4">
 											<textarea></textarea>
 										</th>
 									</tr>
 								</tbody>
 								<tfoot>
 									<tr>
-										<th colspan="2">
-											<button>뒤로가기</button>
-											<button>보내기</button>
+                                        <th id="deletTh">
+                                            <button id="delete">삭제하기</button>
+                                        </th>
+										<th colspan="3">
+											<button id="goBack">뒤로가기</button>
+											<button id="send">보내기</button>
 										</th>
 									</tr>
 								</tfoot>

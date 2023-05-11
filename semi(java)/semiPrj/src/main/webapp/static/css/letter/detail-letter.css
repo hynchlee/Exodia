@@ -88,7 +88,8 @@ th, td {
 }
 
 #title{
-	text-align: center;
+	padding-left: 50px;
+    width: 10%;
 }
 
 input[name=title]{
@@ -115,8 +116,11 @@ tfoot button{
 	color: white;
 }
 
+#deletTh{
+    text-align: left;
+}
+
 button:hover {
     background-color: #3c8dbc;
     opacity: 0.9;
   }
-  
