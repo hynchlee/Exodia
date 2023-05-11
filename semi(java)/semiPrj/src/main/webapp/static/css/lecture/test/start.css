@@ -1,0 +1,74 @@
+@charset "UTF-8";
+
+main {
+    position: relative;
+    left: 20%;
+    width: 60%;
+    font-size: 24px;
+    font-family:Noto Sans KR;
+}
+
+.tit {
+    height: 350px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+.tit1 {
+    font-size: 44px;
+    
+}
+
+.tit2 {
+    font-size: 32px;
+}
+
+.score {
+    color: rgb(255, 0, 0);
+}
+
+.problem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hi {
+    height: 300px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.problem textarea {
+    height: 100%;
+    margin-left: 24px;
+    width: 70%;
+}
+
+.problem input {
+    color: white;
+    background-color: rgba(72.00000330805779, 91.00000217556953, 166.00000530481339, 1);
+    font-size: 20px;
+    width: 10%;
+    height: 40px;
+    border-radius: 30px;
+}
+
+.finish {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.finish-btn {
+    color: white;
+    background-color: rgba(72.00000330805779, 91.00000217556953, 166.00000530481339, 1);
+    font-size: 24px;
+    font-weight: bold;
+    width: 50%;
+    height: 100%;
+    border-radius: 40px;
+}

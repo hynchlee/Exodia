@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+main {
+    font-size: 24px;
+    font-family:Noto Sans KR;
+    overflow: auto;
+}
+
+
+.tit {
+	font-size: 40px;
+    font-weight: bold;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.problem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.score {
+    width: 85%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.a02 {
+    height: 50px;
+    width: 150px;
+    font-weight: bold;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.b01 {
+    overflow:auto;
+    border: 5px solid rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+    box-sizing: border-box;
+    width: 85%;
+    margin-top: 25px;
+    height: 540px;
+}
+
+.bb01 {
+    height: 180px;
+    margin-left: 3%;
+    margin-right: 3%;
+    box-sizing: border-box;
+    border-bottom: 5px solid rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.bb01 > div {
+    margin-top: 10px;
+}
+
+.bbb01 {
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+.chk-box {
+    width: 32px;
+    height: 32px;
+    
+}
+
+.btn {
+    margin-top: 25px;
+    width: 85%;
+    right: 7.5%;
+    display: flex;
+    justify-content: right;
+}
+
+.btn > button {
+    margin-left: 20px;
+    width: 100px;
+}
