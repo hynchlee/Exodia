@@ -18,7 +18,11 @@ main {
     justify-content: center;
 }
 
-#side-bar button {
+#side-bar form{
+    width: 100%;
+}
+
+#side-bar input {
     border: none;
     background-color: #d9d9d9;
     margin-top: 20px;
@@ -39,8 +43,7 @@ main {
     width: 48px;
     height: 48px;
     margin-right: 8px;
-  }
-  
+}
 
 #letter-list {
     display: flex;
@@ -96,3 +99,8 @@ tfoot button{
     margin-left: 10px;
     margin-right: 10px;
 }
+
+button:hover {
+    background-color: #3c8dbc;
+    opacity: 0.9;
+  }
