@@ -13,7 +13,7 @@
 
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-	<main style="height: 1870px;">
+	<main style="height: 2000px;">
 		<form class="e98_1694">
 			<select>
 				<option>제목</option>
@@ -47,6 +47,16 @@
 				%>
 			</tbody>
 		</table>
+
+		<div class="e112_1541">
+			<button class="e112_1542"><<</button>
+			<button class="e112_1543">1</button>
+			<button class="e112_1544">2</button>
+			<button class="e112_1545">3</button>
+			<button class="e112_1546">4</button>
+			<button class="e112_1547">5</button>
+			<button class="e112_1547">>></button>
+		</div>
 	</main>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>

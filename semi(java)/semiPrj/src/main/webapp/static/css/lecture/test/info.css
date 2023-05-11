@@ -61,3 +61,22 @@
     background-color: rgba(72.00000330805779, 91.00000217556953, 166.00000530481339, 1);
     color: white;
 }
+
+.e112_1541 {
+	width: 50%;
+	height: 100px;
+	position: absolute;
+	left: 25%;
+	top: 2250px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.e112_1541 button {
+	width: 7%;
+	font-size: 32px;
+	margin: 3%;
+	color: white;
+	background-color: rgba(72.00000330805779, 91.00000217556953, 166.00000530481339, 1);
+}
