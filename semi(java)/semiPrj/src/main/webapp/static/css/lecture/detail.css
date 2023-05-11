@@ -13,7 +13,7 @@ body {
 }
 
 .wrap {
-    border: 5px solid rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+    border: 5px solid rgb(125, 201, 255);
     position: absolute;
     width: 60%;
     height: 1600px;
@@ -24,7 +24,7 @@ body {
 
 .logo_img {
     width: 240px;
-    height: 52px;
+    height: 55px;
     position: absolute;
     left: 20%;
     margin-left: -300px;
@@ -37,7 +37,7 @@ body {
     position: absolute;
     top: 100px;
     left: 10%;
-    font-size: 32px;
+    font-size: 35px;
 }
 
 .lecture-dtl {
@@ -51,7 +51,7 @@ body {
 
 .lecture-dtl td:first-child {
     width: 20%;
-    border-right: 2px solid rgb(125, 201, 255);
+    border-right: 5px solid rgb(125, 201, 255);
 }
 
 .lecture-dtl td:last-child {
@@ -68,7 +68,7 @@ body {
 
 .lecture-dtl td{
     padding-left: 20px;
-    border-bottom: 2px solid rgb(125, 201, 255);
+    border-bottom: 5px solid rgb(125, 201, 255);
 }
 
 #last-td {
@@ -79,7 +79,7 @@ body {
     position: absolute;
     top: 700px;
     left: 10%;
-    font-size: 32px;
+    font-size: 35px;
 }
 
 .lecture-curr {
@@ -93,7 +93,7 @@ body {
 }
 
 .lecture-curr td {
-    border: 2px solid rgb(125, 201, 255);
+    border: 5px solid rgb(125, 201, 255);
 } 
   
 .lecture-curr tr {
