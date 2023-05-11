@@ -27,45 +27,48 @@
 						<li class="menu2"></li>
 						<li class="menu3"><img src="/semi/static/img/header/___7.png" alt="profile" id="profile_img">
 						</li>
-						<li class="menu3"><a href="">
+						<li class="menu3"><a href="${root}/introduce/greet">
 								KH소개
-								<ul class="submenu-1">
-									<li></li>
-									<li><a href="">서브메뉴1</a></li>
-									<li><a href="">서브메뉴2</a></li>
-									<li><a href="">서브메뉴3</a></li>
-								</ul>
 							</a></li>
-						<li class="menu3"><a href="">
+						<li class="menu3"><a href="${root}/notice/list">
 								게시판
-								<ul class="submenu-2">
-									<li></li>
-									<li><a href="">서브메뉴1</a></li>
-									<li><a href="">서브메뉴2</a></li>
-									<li><a href="">서브메뉴3</a></li>
-								</ul>
 							</a></li>
 						<li class="menu3"><a href="">
 								강의
-								<ul class="submenu-3">
-									<li></li>
-									<li><a href="">서브메뉴1</a></li>
-									<li><a href="">서브메뉴2</a></li>
-									<li><a href="">서브메뉴3</a></li>
-								</ul>
 							</a></li>
 						<li class="menu3"><a href="">
-								강의 과정
-								<ul class="submenu-4">
-									<li></li>
-									<li><a href="">서브메뉴1</a></li>
-									<li><a href="">서브메뉴2</a></li>
-									<li><a href="">서브메뉴3</a></li>
-								</ul>
+								시험
 							</a></li>
 						<li class="menu4"></li>
 					</ul>
 				</nav>
+				<div class="submenu">
+					<table class="submenu-tbl">
+						<tr>
+							<td><a href="${root}/introduce/greet">인사말</a></td>
+							<td><a href="${root}/notice/list">공지사항</a></td>
+							<td><a href="">강의 소개</a></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><a href="${root}/introduce/teacher">강사진 소개</a></td>	
+							<td><a href="${root}/free/list">자유게시판</a></td>
+							<td><a href="${root}/lecture/apply">수강 신청</a></td>
+						</tr>
+						<tr>
+							<td><a href="${root}/introduce/facility">시설 소개</a></td>
+							<td><a href="">우리반게시판</a></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><a href="${root}/qna/list">Q&A</a></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><a href="${root}/review/list">수강후기</a></td>
+						</tr>
+					</table>
+				</div>
 			</header>
 			<section class="banner">
 				<p class="title">공지사항</p>
