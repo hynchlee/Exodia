@@ -25,22 +25,31 @@
 
             <hr>
 
-            <div class="write_wrap">
-                <input type="text" placeholder="제목을 입력해주세요." required>
-                <select name="category" id="select_category" >
-                    <option value="">우리반 게시판</option>
-                    <option value="">자유게시판</option>
-                    <option value="">문의게시판</option>
-                    <option value="">후기게시판</option>
-                    <option value="">공지사항</option>
-                </select>
-                <textarea name="content" class="content_input" placeholder="내용을 입력해주세요." required></textarea>
-                <input type="file" name="select_file">
-            </div>
+            <form action="" method="post">
 
-            <div class="board_bt">
-                <input type="submit" value="작성완료" class="bt1">
-            </div>
+                <!-- 관리자에게만 보이는 체크박스 -->
+                <div class="checked">
+                    <input type="checkbox" name="" id=""><span>상단고정</span>
+                </div>
+
+                <div class="write_wrap">
+                    <input type="text" placeholder="제목을 입력해주세요." required>
+                    <select name="category" id="select_category" >
+                        <option value="">우리반 게시판</option>
+                        <option value="">자유게시판</option>
+                        <option value="">문의게시판</option>
+                        <option value="">후기게시판</option>
+                        <option value="">공지사항</option>
+                    </select>
+
+                    <textarea name="content" class="content_input" placeholder="내용을 입력해주세요." required></textarea>
+                    <input type="file" name="select_file">
+                </div>
+    
+                <div class="board_bt">
+                    <input type="submit" value="작성완료" class="bt1">
+                </div>
+            </form>
 		</main>
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
