@@ -26,13 +26,13 @@
 }
 
 .e112_1076 {
-    width:85%;
-	height: 600px;
-	position:absolute;
-	left:7.5%;
-	top:1700px;
-	background-repeat:no-repeat;
-	background-size:cover;
+    width: 85%;
+    height: 600px;
+    position: absolute;
+    left: 7.5%;
+    top: 1700px;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .e112_1077 {
@@ -49,7 +49,8 @@
 .e112_1078 {
     color: rgba(0, 0, 0, 1);
     position: absolute;
-    left: 10%;
+    left: 7.5%;
+    margin-left: 50px;
     top: 1420px;
     font-family: Spoqa Han Sans Neo;
     text-align: left;
@@ -61,6 +62,7 @@
     color: rgba(0, 0, 0, 1);
     position: absolute;
     left: 40%;
+    margin-left: 50px;
     top: 1420px;
     font-family: Spoqa Han Sans Neo;
     text-align: left;
@@ -72,7 +74,8 @@
     color: rgba(0, 0, 0, 1);
     position: absolute;
     left: 40%;
-    top: 1520px;
+    top: 1480px;
+    margin-left: 50px;
     font-family: Spoqa Han Sans Neo;
     text-align: left;
     font-size: 24px;
@@ -83,7 +86,8 @@
     color: rgba(0, 0, 0, 1);
     position: absolute;
     left: 40%;
-    top: 1560px;
+    top: 1520px;
+    margin-left: 50px;
     font-family: Spoqa Han Sans Neo;
     text-align: left;
     font-size: 24px;
@@ -95,7 +99,6 @@
     height: 34px;
     position: absolute;
     left: 40%;
-    margin-left: -50px;
     top: 1420px;
 }
 
@@ -103,8 +106,7 @@
     width: 34px;
     height: 34px;
     position: absolute;
-    left: 10%;
-    margin-left: -50px;
+    left: 7.5%;
     top: 1420px;
 }
 
@@ -114,8 +116,8 @@
     height: 34.4px;
     position: absolute;
     left: 40%;
-    margin-left: -50px;
-    top: 1520px;
+
+    top: 1480px;
     border-radius: 20px;
     color: white;
     display: flex;
@@ -131,8 +133,8 @@
     height: 34.4px;
     position: absolute;
     left: 40%;
-    margin-left: -50px;
-    top: 1560px;
+
+    top: 1520px;
     border-radius: 20px;
     color: white;
     display: flex;
@@ -148,8 +150,8 @@
     width: 70px;
     height: 34.4px;
     position: absolute;
-    left: 10%;
-    margin-left: -50px;
+    left: 7.5%;
+
     top: 1520px;
     border-radius: 20px;
     display: flex;
@@ -160,13 +162,13 @@
 }
 
 .e112_1090 {
-    background-color:rgba(255, 61.62500202655792, 61.62500202655792, 1);
+    background-color: rgba(255, 61.62500202655792, 61.62500202655792, 1);
     color: rgba(255, 255, 255, 1);
     width: 70px;
     height: 34.4px;
     position: absolute;
-    left: 10%;
-    margin-left: -50px;
+    left: 7.5%;
+
     top: 1560px;
     border-radius: 20px;
     display: flex;
@@ -179,25 +181,26 @@
 .e112_1091 {
     color: rgba(0, 0, 0, 1);
     position: absolute;
-    margin-left: 30px;
-    left: 10%;
-    top: 1520px;
+    margin-left: 80px;
+    left: 7.5%;
+    top: 1525px;
     font-family: Spoqa Han Sans Neo;
     text-align: left;
     height: 34.4px;
     font-size: 24px;
     font-family: Spoqa Han Sans Neo;
     font-size: 20px;
+    max-width: 24%;
     letter-spacing: 0;
 }
 
 .e112_1092 {
     color: rgba(0, 0, 0, 1);
     position: absolute;
-    margin-left: 30px;
-    left: 10%;
-    top: 1560px;
-    max-width: 20%;
+    margin-left: 80px;
+    left: 7.5%;
+    top: 1565px;
+    max-width: 24%;
     font-family: Spoqa Han Sans Neo;
     text-align: left;
     height: 34.4px;
@@ -210,14 +213,13 @@
 .e112_1093 {
     color: rgba(0, 0, 0, 1);
     position: absolute;
-    left: 10%;
-    margin-left: -50px;
+    left: 7.5%;
     top: 1480px;
     border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
+    font-size: 28px;
     font-family: Spoqa Han Sans Neo;
 }
 
