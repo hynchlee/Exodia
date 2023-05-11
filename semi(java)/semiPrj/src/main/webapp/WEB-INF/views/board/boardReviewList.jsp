@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <link href="${root}/static/css/board/list.css" rel="stylesheet">
-<style type="text/css">
+<style>
 </style>
 </head>
 <body>
@@ -40,88 +40,68 @@
             <table class="board">
                 <thead>
                     <tr>
-                        <th style="width: 8%;">No</th>
+                        <th style="width: 5%;">No</th>
                         <th>제목</th>
-                        <th style="width: 10%;">작성자</th>
-                        <th style="width: 15%;">작성일</th>
-                        <th style="width: 8%;">조회수</th>
+                        <th style="width: 25%;">강좌명</th>
+                        <th style="width: 8%;">작성자</th>
+                        <th style="width: 10%;">작성일</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td class="board_title">글제목자리 <span class="badge bg-secondary">New</span></td>
+                        <td class="board_title">글제목자리 <span class="new_btn">New</span></td>
+                        <td>반응형 UI/UX 웹콘텐츠 개발자 양성과정</td>
                         <td>아무개</td>
                         <td>2023.05.01</td>
-                        <td>5</td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td class="board_title">글제목자리</td>
+                        <td>반응형 UI/UX 웹콘텐츠 개발자 양성과정</td>
                         <td>아무개</td>
                         <td>2023.05.01</td>
-                        <td>5</td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td class="board_title">글제목자리</td>
+                        <td>반응형 UI/UX 웹콘텐츠 개발자 양성과정</td>
                         <td>아무개</td>
                         <td>2023.05.01</td>
-                        <td>5</td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td class="board_title">글제목자리</td>
+                        <td>반응형 UI/UX 웹콘텐츠 개발자 양성과정</td>
                         <td>아무개</td>
                         <td>2023.05.01</td>
-                        <td>5</td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td class="board_title">글제목자리</td>
+                        <td>반응형 UI/UX 웹콘텐츠 개발자 양성과정</td>
                         <td>아무개</td>
                         <td>2023.05.01</td>
-                        <td>5</td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td class="board_title">글제목자리</td>
+                        <td>반응형 UI/UX 웹콘텐츠 개발자 양성과정</td>
                         <td>아무개</td>
                         <td>2023.05.01</td>
-                        <td>5</td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td class="board_title">글제목자리</td>
+                        <td>반응형 UI/UX 웹콘텐츠 개발자 양성과정</td>
                         <td>아무개</td>
                         <td>2023.05.01</td>
-                        <td>5</td>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
+                    
                 </tbody>
             </table>
             <div class="board_bt">
-                <a href="" class="bt1">글 등록</a>
+                <a href="" class="bt1">후기 등록</a>
             </div>
 			<div class="board_page">
                 <a href=""><<</a>

@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <link href="${root}/static/css/board/qnalist.css" rel="stylesheet">
-<style type="text/css">
+<style>
 </style>
 </head>
 <body>
@@ -63,7 +63,7 @@
                     <tr>
                         <td>1</td>
                         <td>아무개</td>
-                        <td class="board_title">글제목자리 <span class="badge bg-secondary">New</span></td>
+                        <td class="board_title">글제목자리 <span class="new_btn">New</span></td>
                         <td>2023.05.01</td>
                         <td class="state">
                             <button class="bt_y">완료</button>
@@ -72,7 +72,7 @@
                     <tr>
                         <td>1</td>
                         <td>아무개</td>
-                        <td class="board_title">글제목자리 <span class="badge bg-secondary">New</span></td>
+                        <td class="board_title">글제목자리 <span class="new_btn">New</span></td>
                         <td>2023.05.01</td>
                         <td class="state">
                             <button class="bt_n">대기</button>
@@ -81,49 +81,49 @@
                     <tr>
                         <td>1</td>
                         <td>아무개</td>
-                        <td class="board_title">글제목자리 <span class="badge bg-secondary">New</span></td>
+                        <td class="board_title">글제목자리 <span class="new_btn">New</span></td>
                         <td>2023.05.01</td>
                         <td class="state">완료</td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td>아무개</td>
-                        <td class="board_title">글제목자리 <span class="badge bg-secondary">New</span></td>
+                        <td class="board_title">글제목자리 <span class="new_btn">New</span></td>
                         <td>2023.05.01</td>
                         <td class="state">완료</td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td>아무개</td>
-                        <td class="board_title">글제목자리 <span class="badge bg-secondary">New</span></td>
+                        <td class="board_title">글제목자리 <span class="new_btn">New</span></td>
                         <td>2023.05.01</td>
                         <td class="state">완료</td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td>아무개</td>
-                        <td class="board_title">글제목자리 <span class="badge bg-secondary">New</span></td>
+                        <td class="board_title">글제목자리 <span class="new_btn">New</span></td>
                         <td>2023.05.01</td>
                         <td class="state">완료</td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td>아무개</td>
-                        <td class="board_title">글제목자리 <span class="badge bg-secondary">New</span></td>
+                        <td class="board_title">글제목자리 <span class="new_btn">New</span></td>
                         <td>2023.05.01</td>
                         <td class="state">완료</td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td>아무개</td>
-                        <td class="board_title">글제목자리 <span class="badge bg-secondary">New</span></td>
+                        <td class="board_title">글제목자리 <span class="new_btn">New</span></td>
                         <td>2023.05.01</td>
                         <td class="state">완료</td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td>아무개</td>
-                        <td class="board_title">글제목자리 <span class="badge bg-secondary">New</span></td>
+                        <td class="board_title">글제목자리 <span class="new_btn">New</span></td>
                         <td>2023.05.01</td>
                         <td class="state">완료</td>
                     </tr>
@@ -131,7 +131,7 @@
                 </tbody>
             </table>
             <div class="board_bt">
-                <a href="" class="bt1">글 등록</a>
+                <a href="" class="bt1">질문하기</a>
             </div>
 			<div class="board_page">
                 <a href=""><<</a>
