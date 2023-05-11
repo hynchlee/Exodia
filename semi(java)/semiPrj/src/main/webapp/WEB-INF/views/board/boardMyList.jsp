@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <link href="${root}/static/css/board/list.css" rel="stylesheet">
-<style type="text/css">
+<style>
 </style>
 </head>
 <body>
@@ -49,7 +49,7 @@
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td class="board_title">글제목자리 <span class="badge bg-secondary">New</span></td>
+                        <td class="board_title">글제목자리 <span class="new_btn">New</span></td>
                         <td>우리반게시판</td>
                         <td>2023.05.01</td>
                         <td>5</td>
