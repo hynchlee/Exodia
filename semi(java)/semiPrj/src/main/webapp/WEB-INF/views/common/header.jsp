@@ -21,8 +21,8 @@
 			<header>
 				<nav>
 					<ul>
-						<li class="menu1"><a href=""><img src="/semi/static/img/header/image_2.png" alt="logo"
-									id="logo_img"></a>
+						<li class="menu1"><a href="${root}/main"><img src="/semi/static/img/header/image_2.png" alt="logo"
+							id="logo_img"></a>
 						</li>
 						<li class="menu2"></li>
 						<li class="menu3"><img src="/semi/static/img/header/___7.png" alt="profile" id="profile_img">
