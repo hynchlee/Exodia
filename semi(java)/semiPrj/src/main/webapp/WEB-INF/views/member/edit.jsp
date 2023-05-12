@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title>회원정보수정</title>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <link href="${root}/static/css/member/edit.css" rel="stylesheet">
 </head>
@@ -19,7 +19,7 @@
                 <img src="${root}/static/img/header/image_2.png" alt="LOGO">
             </div>
 
-            <table >
+            <table>
                 <tr>
                     <th>아이디</th>
                     <td><input type="text" placeholder="변경불가" disabled></td>
@@ -69,9 +69,6 @@
 
     </div>
 
-</body>
-</html>
-
 <script>
 
     function quit(){
@@ -83,4 +80,8 @@
     }
 
 </script>
+
+</body>
+</html>
+
 

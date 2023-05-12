@@ -32,7 +32,7 @@
                 </div>
             </div>
 
-            <table >
+            <table>
                 <tr>
                     <th>아이디</th>
                     <td><input type="text"></td>
@@ -66,7 +66,7 @@
                     <th>프로필 사진</th>
                     <td><input type="text" disabled></td>
                     <td>
-                        <div id="dup-check">
+                        <div id="file-attachment">
                             <label for="profile-file">파일첨부</label>
                             <input id="profile-file" type="file">
                         </div>
