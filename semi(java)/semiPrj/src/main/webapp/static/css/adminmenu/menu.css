@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+.wrap{
+	width: 900px;
+	height: 1100px;
+	background: rgba(255,255,255,1);
+	border-radius: 64px;
+	margin: auto;
+	text-align: center;
+	border: 5px solid rgba(234,234,234,1);
+	
+}
+.logo{
+	position: relative;
+	width: 299px;
+	height: 70px;
+	background: url("/semi/static/img/main/v61_19.png");
+	left: 285px;
+	top: 100px;
+}
+.t01{
+	 font-family: Spoqa Han Sans Neo;
+ 	 font-weight: Medium;
+ 	 font-size: 24px;
+	 color: rgba(103,103,103,1);
+	 position: relative;
+	 top: 150px
+}
