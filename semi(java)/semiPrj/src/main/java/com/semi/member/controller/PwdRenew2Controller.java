@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/member/pwdrenew")
-public class PwdRenewController extends HttpServlet{
+@WebServlet("/member/pwdrenew2")
+public class PwdRenew2Controller extends HttpServlet{
 	
-	//비밀번호 재발급 화면
+	//새 비밀번호 입력 화면
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/member/pwdRenew.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/member/pwdRenew2.jsp").forward(req, resp);
 	}
 	
-	//비밀번호 재발급
+	//새 비밀번호 입력
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
