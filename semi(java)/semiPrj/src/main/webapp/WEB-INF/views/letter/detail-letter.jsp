@@ -55,7 +55,7 @@
 									<tr>
 										<th id="title" style="width: 100px;">받는 사람</th>
 										<th><input type="text" name="receiver"></th>
-                                        <th>보낸 시간</th>
+                                        <th id="title">보낸 시간</th>
                                         <th><input type="text" value="시간" style="width: 75%;"></th>
 									</tr>
 									<tr>
@@ -72,7 +72,7 @@
 								</tbody>
 								<tfoot>
 									<tr>
-                                        <th id="deletTh">
+                                        <th id="deleteTh">
                                             <button id="delete">삭제하기</button>
                                         </th>
 										<th colspan="3">
