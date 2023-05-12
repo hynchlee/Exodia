@@ -8,13 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/calender/write")
-public class WriteCalenderController extends HttpServlet{
+@WebServlet("/calender/detail")
+public class DetailCalenderController extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/calender/write-calender.jsp").forward(req, resp);
-		
+		req.getRequestDispatcher("/WEB-INF/views/calender/detail-calender.jsp").forward(req, resp);
 	}
 	
 }

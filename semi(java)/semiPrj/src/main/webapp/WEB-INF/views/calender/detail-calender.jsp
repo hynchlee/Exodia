@@ -7,7 +7,7 @@
   <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
   <meta charset="UTF-8">
   <title>Insert title here</title>
-  <link rel="stylesheet" href="${root}/static/css/calender/write-calender.css">
+  <link rel="stylesheet" href="${root}/static/css/calender/detail-calender.css">
 </head>
 
 <body>
@@ -25,7 +25,10 @@
       <div id="footer">
         <div></div>
         <div id="buttonDiv"><button><</button> 날짜 이동 <button>></button></div>
-        <div id="backButton"><button onclick="location.href='calendarPage.jsp';">뒤로가기</button></div>
+        <div id="backButton">
+            <button>수정하기</button>
+            <button>뒤로가기</button>
+        </div>
       </div>
     </div>
   </main>
