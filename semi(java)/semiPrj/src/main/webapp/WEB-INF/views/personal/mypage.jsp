@@ -143,19 +143,27 @@
 								<td colspan="4" class="td030">출결 내역</td>
 							</tr>
 							<tr class="tr03">
-								<td class="line02 late">지각</td>
+								<td class="line02">
+								<div class="late">지각</div>
+								</td>
 								<td class="line02">2023-00-00 00:00:00:00</td>
-								<td class="line02 run">퇴실</td>
+								<td class="line02">
+								<div class="done">퇴실</div>
+								</td>
 								<td class="line02">2023-00-00 00:00:00:00</td>
 							</tr>
 							<tr class="tr03">
-								<td class="line02 run">결석</td>
+								<td class="line02">
+								<div class="run">결석</div>
+								</td>
 								<td class="line02">2023-00-00</td>
 								<td class="line02"></td>
 								<td class="line02"></td>
 							</tr>
 							<tr class="tr03">
-								<td class="line02 vac">휴가</td>
+								<td class="line02">
+								<div class="vac">휴가</div>
+								</td>
 								<td class="line02">2023-00-00</td>
 								<td class="line02"></td>
 								<td class="line02"></td>
@@ -170,17 +178,23 @@
 								<td colspan="3" class="td030">휴가 내역</td>
 							</tr>
 							<tr class="tr03">
-								<td class="line02 vac">휴가</td>
+								<td class="line02">
+								<div class="vac">휴가</div>
+								</td>
 								<td class="line02">2023-00-00</td>
 								<td class="line02">휴가 사유</td>
 							</tr>
 							<tr class="tr03">
-								<td class="line02 vac">휴가</td>
+								<td class="line02">
+								<div class="vac">휴가</div>
+								</td>
 								<td class="line02">2023-00-00</td>
 								<td class="line02">휴가 사유</td>
 							</tr>
 							<tr class="tr03">
-								<td class="line02 vac">휴가</td>
+								<td class="line02">
+								<div class="vac">휴가</div>
+								</td>
 								<td class="line02">2023-00-00</td>
 								<td class="line02">휴가 사유</td>
 							</tr>

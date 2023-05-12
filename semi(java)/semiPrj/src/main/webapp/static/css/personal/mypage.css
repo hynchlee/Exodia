@@ -280,3 +280,9 @@
 	background: rgba(172,65,72,1);
 	border-radius: 5px;
 }
+.done{
+	padding: 10px;
+	color: rgba(255,255,255,1);
+	background: rgba(136,136,136,1);
+	border-radius: 5px;
+}
