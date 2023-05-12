@@ -4,7 +4,7 @@ body {
 }
 
 main {
-    height: 1000px;
+    height: 1600px;
     width: 80%;
     margin: auto;
 }
@@ -17,8 +17,14 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 20px;
     padding: 10px;
     border-bottom: 1px solid #ddd;
+}
+
+input[type=checkbox]{
+    width: 15px;
+    height: 15px;
 }
 
 #content>div {
@@ -91,4 +97,8 @@ main {
 
 #pageDiv button:hover{
     background-color: #ddd;
+}
+
+div{
+    font-size: 18px;
 }
