@@ -64,7 +64,7 @@ table input, textarea{
     font-family: 'Spoqa Han Sans Neo';
     font-style: normal;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 25px;
     text-align: center;
 }
@@ -116,7 +116,7 @@ tfoot button{
 	color: white;
 }
 
-#deletTh{
+#deleteTh{
     text-align: left;
 }
 

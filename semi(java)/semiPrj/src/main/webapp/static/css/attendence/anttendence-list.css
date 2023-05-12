@@ -1,0 +1,61 @@
+body {
+    font-size: 16px;
+    font-family: 'Spoqa Han Sans Neo';
+}
+
+main {
+    height: 1200px;
+    width: 80%;
+    margin: auto;
+}
+
+#target {
+    margin-top: 30px;
+}
+
+#content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#content:first-child{
+    border: none;
+    background-color: #ddd;
+    height: 40px;
+}
+
+#content:nth-child(2){
+    margin-top: 30px;
+}
+
+#content>div {
+    flex-basis: 14%;
+    text-align: center;
+}
+
+#content>div>input[type="checkbox"] {
+    margin: auto;
+}
+
+#pageDiv{
+    margin-top: 40px;
+    text-align: center;
+}
+
+#pageDiv button{
+    display: inline-block;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#pageDiv button:hover{
+    background-color: #ddd;
+}

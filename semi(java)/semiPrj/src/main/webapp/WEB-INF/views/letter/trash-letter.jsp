@@ -6,7 +6,7 @@
 		<c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
-		<link href="${root}/static/css/letter/receive-letter.css" rel="stylesheet">
+		<link href="${root}/static/css/letter/trash-letter.css" rel="stylesheet">
 		
 	</head>
 	<body>
@@ -33,7 +33,7 @@
 						<form action="${root}/letter/receive" method="post">
 							<div id="select-button">
 								<img src="${root}/static/img/letter/받은 쪽지.png">
-								<input type="submit" value="받은 쪽지" id="receive-letter" disabled>
+								<input type="submit" value="받은 쪽지" id="receive-letter">
 							</div>
 						</form>
 					</div>
@@ -41,7 +41,7 @@
 						<form action="${root}/letter/trash" method="post">
 							<div id="select-button">
 								<img src="${root}/static/img/letter/휴지통.png">
-								<input type="submit" value="휴지통" id="trash-can">
+								<input type="submit" value="휴지통" id="trash-can" disabled>
 							</div>
 						</form>
 					</div>
@@ -165,5 +165,5 @@
 
 	<script>
 		const title = document.querySelector(".title");
-		title.innerHTML = "받은 쪽지";
+		title.innerHTML = "휴지통";
 	</script>

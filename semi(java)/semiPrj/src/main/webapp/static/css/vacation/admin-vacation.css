@@ -1,0 +1,94 @@
+body {
+    font-size: 16px;
+    font-family: 'Spoqa Han Sans Neo';
+}
+
+main {
+    height: 1000px;
+    width: 80%;
+    margin: auto;
+}
+
+#target {
+    margin-top: 30px;
+}
+
+#content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#content>div {
+    flex-basis: 14%;
+    text-align: center;
+}
+
+#content>div:first-child {
+    flex-basis: 5%;
+    text-align: center;
+}
+
+#content>div>input[type="checkbox"] {
+    margin: auto;
+}
+
+#content:last-child {
+    border-bottom: none;
+}
+
+#buttonDiv{
+    text-align: right;
+}
+
+#buttonDiv button{
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+#approval{
+    background-color: #2E4686;
+    border-radius: 29.5px;
+    color: #FFFFFF;
+    width: 80px;
+    height: 40px;
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+}
+
+#refuse{
+    background-color: #B53232;
+    border: none;
+    border-radius: 29.5px;
+    color: #FFFFFF;
+    width: 80px;
+    height: 40px;
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+}
+
+#pageDiv{
+    text-align: center;
+}
+
+#pageDiv button{
+    display: inline-block;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#pageDiv button:hover{
+    background-color: #ddd;
+}
