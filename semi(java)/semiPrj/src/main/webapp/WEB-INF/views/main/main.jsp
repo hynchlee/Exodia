@@ -21,6 +21,9 @@
 </head>
 
 <body>
+
+	<%@ include file="/WEB-INF/views/common/header.jsp" %>
+
     <div class="v54_2">
         
           <div class="interview">
