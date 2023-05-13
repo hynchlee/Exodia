@@ -5,9 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아이디 찾기</title>
+<title>비밀번호 재발급</title>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
-<link href="${root}/static/css/member/idFind.css" rel="stylesheet">
+<link href="${root}/static/css/member/pwdFind.css" rel="stylesheet">
 </head>
 <body>
 
@@ -23,7 +23,15 @@
 
             <table>
                 <tr>
+                    <th>아이디</th>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
                     <th>이름</th>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <th>주민등록번호</th>
                     <td><input type="text"></td>
                 </tr>
                 <tr>
@@ -33,7 +41,7 @@
             </table>
 
             <div id="submit-box">
-                <input type="submit" value="아이디 찾기">
+                <input type="submit" value="비밀번호 찾기">
             </div>
 
         </form>

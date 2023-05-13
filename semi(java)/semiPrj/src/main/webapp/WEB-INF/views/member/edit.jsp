@@ -16,7 +16,9 @@
         <form action="">
             
             <div id="logo">
-                <img src="${root}/static/img/header/image_2.png" alt="LOGO">
+                <a href="${root}/main">
+                    <img src="${root}/static/img/header/image_2.png" alt="LOGO">
+                </a>
             </div>
 
             <table>

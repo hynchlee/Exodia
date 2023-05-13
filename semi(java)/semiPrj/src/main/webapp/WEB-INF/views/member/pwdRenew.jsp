@@ -16,30 +16,24 @@
         <form action="">
             
             <div id="logo">
-                <img src="${root}/static/img/header/image_2.png" alt="LOGO">
+                <a href="${root}/main">
+                    <img src="${root}/static/img/header/image_2.png" alt="LOGO">
+                </a>
             </div>
 
             <table>
                 <tr>
-                    <th>아이디</th>
-                    <td><input type="text"></td>
+                    <th>새 비밀번호</th>
+                    <td><input type="password"></td>
                 </tr>
                 <tr>
-                    <th>이름</th>
-                    <td><input type="text"></td>
-                </tr>
-                <tr>
-                    <th>주민등록번호</th>
-                    <td><input type="text"></td>
-                </tr>
-                <tr>
-                    <th>휴대폰 번호</th>
-                    <td><input type="text"></td>
+                    <th>비밀번호 확인</th>
+                    <td><input type="password"></td>
                 </tr>
             </table>
 
             <div id="submit-box">
-                <input type="submit" value="확인">
+                <input type="submit" value="비밀번호 재발급">
             </div>
 
         </form>
