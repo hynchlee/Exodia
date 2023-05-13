@@ -264,7 +264,7 @@ table{
 
 .comment_list .comment_col{
     display: grid;
-    grid-template-columns: 100px 700px 50px 50px 50px 150px;
+    grid-template-columns: 70px 700px 50px 50px 50px 150px;
     column-gap: 5px;
     border-top: 1px solid #cccccc79;
     justify-content: center;
@@ -273,7 +273,7 @@ table{
     color: #424242;
 }
 
-.comment_list .comment_col input{
+.comment_list .comment_col input, .comment_list .recomment input{
     border: 0px;
     cursor: pointer;
     border-radius: 5px;
@@ -284,7 +284,7 @@ table{
     color: #3d3d3d;
 }
 
-.comment_list .comment_col .time{
+.comment_list .comment_col .time, .comment_list .recomment .time{
     font-size: 11px;
     color: #979797;
     font-size: 12px;
@@ -293,6 +293,43 @@ table{
     margin-left: 5px;
 }
 
+.comment_list .recomment{
+    display: grid;
+    grid-template-columns: 50px 70px 500px 50px 50px 150px;
+    column-gap: 5px;
+    justify-content: center;
+    align-items: first baseline;
+    padding: 10px 10px 10px;
+    color: #424242;
+    margin-left: 50px;
+}
+
+.comment_list .recomment input{
+    border: 0px;
+    cursor: pointer;
+    border-radius: 5px;
+
+    font-size: 12px;
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 400;
+    color: #3d3d3d;
+}
+
+.comment_list .recomment_write{
+    margin-top: 5px;
+    width: 1005px;
+    display: grid;
+    grid-template-columns: 0.5fr 8fr 0.5fr 0.5fr;
+    column-gap: 5px;
+
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px 10px;
+    color: #424242;
+    margin-left: 80px;
+}
+
+
 .answer_title{
     font-size: 25px;
     font-family: 'Spoqa Han Sans Neo';
@@ -300,4 +337,19 @@ table{
     color: #414141;
     text-align: center;
     margin-top: 50px;
+}
+
+/* 상단고정 */
+.checked{
+    width: 1130px;
+    margin: 0 auto;
+    margin-top: 3px;
+    margin-bottom: 8px;
+}
+
+.checked span{
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 300;
+    font-size: 15px;
+    margin-left: 5px;
 }
