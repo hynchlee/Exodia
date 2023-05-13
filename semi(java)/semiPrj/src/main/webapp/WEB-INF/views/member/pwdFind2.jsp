@@ -7,7 +7,8 @@
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
-<link href="${root}/static/css/member/pwdFind.css" rel="stylesheet">
+<link href="${root}/static/css/member/pwdFind2.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -23,26 +24,25 @@
 
             <table>
                 <tr>
-                    <th>아이디</th>
+                    <th id="ment1">회원님의 비밀번호는</th>
+                </tr>
+                <tr>
                     <td><input type="text"></td>
                 </tr>
                 <tr>
-                    <th>이름</th>
-                    <td><input type="text"></td>
-                </tr>
-                <tr>
-                    <th>주민등록번호</th>
-                    <td><input type="text"></td>
-                </tr>
-                <tr>
-                    <th>휴대폰 번호</th>
-                    <td><input type="text"></td>
+                    <th id="ment2">입니다</th>
                 </tr>
             </table>
 
-            <div id="submit-box">
-                <input type="submit" value="비밀번호 찾기">
-                <!-- <a href="${root}/member/pwd/find2"><button>비밀번호 찾기</button></a> -->
+            <br>
+            <br>
+
+            <div>
+                <a href="${root}/main"><b>홈으로</b></a>
+                |
+                <a href="${root}/member/login"><b>로그인</b></a>
+                |
+                <a href="${root}/member/pwd/find"><b>비밀번호 재설정</b></a>
             </div>
 
         </form>

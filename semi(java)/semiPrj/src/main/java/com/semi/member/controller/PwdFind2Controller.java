@@ -1,4 +1,4 @@
-package com.semi.admin.controller;
+package com.semi.member.controller;
 
 import java.io.IOException;
 
@@ -8,22 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/admin/login")
-public class AdminLoginController extends HttpServlet{
+@WebServlet("/member/pwd/find2")
+public class PwdFind2Controller extends HttpServlet{
 	
-	//관리자 로그인 화면
+	//비밀번호 찾기2 화면
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/admin/adminLogin.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/member/pwdFind2.jsp").forward(req, resp);
 	}
 	
-	//관리자 로그인
+	//비밀번호 찾기2
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 	
 	}
 	
-	
 }
-
