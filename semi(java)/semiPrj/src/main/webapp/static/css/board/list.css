@@ -176,3 +176,10 @@ table{
     margin-left: 10px;
 }
 
+.comment_num{
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 300;
+    font-size: 13px;
+    color: #424242;
+    margin-left: 3px;
+}

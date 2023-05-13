@@ -27,6 +27,11 @@
                 <a href="" class="bt1">목록으로</a>
             </div>
 
+            <!-- 관리자에게만 보이는 체크박스 -->
+            <div class="checked">
+                <input type="checkbox" name="" id=""><span>상단고정</span>
+            </div>
+
             <table class="board_view">
                 <colgroup>
                     <col width="15%">
@@ -100,6 +105,32 @@
                     <input type="button" value="삭제">
                     <input type="button" value="답글">
                     <span class="time">2023.05.01 - 00:00:00:00</span>
+                </div>
+                <div class="recomment">
+                    <i class="bi bi-arrow-return-right"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>
+                      </svg></i>
+                    <span>작성자</span>
+                    <span>답글내용자리는이곳이다</span>
+                    <input type="button" value="수정">
+                    <input type="button" value="삭제">
+                    <span class="time">2023.05.01 - 00:00:00:00</span>
+                </div>
+                <div class="recomment">
+                    <i class="bi bi-arrow-return-right"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>
+                      </svg></i>
+                    <span>작성자</span>
+                    <span>답글내용자리는이곳이다</span>
+                    <input type="button" value="수정">
+                    <input type="button" value="삭제">
+                    <span class="time">2023.05.01 - 00:00:00:00</span>
+                </div>
+                <div class="recomment_write">
+                    <span>답글</span>
+                    <input type="text">
+                    <input type="button" value="작성">
+                    <input type="button" value="취소">
                 </div>
                 <div class="comment_col">
                     <span>작성자</span>

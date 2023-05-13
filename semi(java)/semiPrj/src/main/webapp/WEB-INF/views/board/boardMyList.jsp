@@ -49,7 +49,7 @@
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td class="board_title">글제목자리 <span class="new_btn">New</span></td>
+                        <td class="board_title">글제목자리 <span class="comment_num">[21]</span> <span class="new_btn">New</span></td>
                         <td>우리반게시판</td>
                         <td>2023.05.01</td>
                         <td>5</td>
