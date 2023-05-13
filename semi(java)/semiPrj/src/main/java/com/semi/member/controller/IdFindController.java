@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/member/idfind")
+@WebServlet("/member/id/find")
 public class IdFindController extends HttpServlet{
 	
 	//아이디 찾기 화면

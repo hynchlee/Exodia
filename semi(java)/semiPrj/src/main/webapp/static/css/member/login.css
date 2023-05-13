@@ -74,5 +74,9 @@ input[type="submit"] {
     margin-top: 50px;
 }
 
+a {
+    text-decoration: none;
+}
+
 
 
