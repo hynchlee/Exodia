@@ -25,7 +25,7 @@
 						<form action="${root}/letter/sent" method="post">
 							<div id="select-button">
 								<img src="${root}/static/img/letter/보낸 쪽지.png">
-								<input type="submit" value="보낸 쪽지" id="sent-letter">
+								<input type="submit" value="보낸 쪽지" id="sent-letter" disabled="disabled">
 							</div>
 						</form>
 					</div>
@@ -33,7 +33,7 @@
 						<form action="${root}/letter/receive" method="post">
 							<div id="select-button">
 								<img src="${root}/static/img/letter/받은 쪽지.png">
-								<input type="submit" value="받은 쪽지" id="receive-letter" disabled>
+								<input type="submit" value="받은 쪽지" id="receive-letter">
 							</div>
 						</form>
 					</div>
@@ -50,93 +50,91 @@
 					<table>
 						<thead>
 							<tr>
-								<td colspan="4" style="text-align: right;">
-									<button id="deleteButton">삭제하기</button>
-								</td>
+							
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td style="width: 50px;"><input type="checkbox"></td>
-								<td style="width: 150px;">작성자</td>
+								<td style="width: 200px;">받은 사람</td>
 								<td>타이틀</td>
 								<td>날짜</td>
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
-								<td>작성자</td>
+								<td>받은 사람</td>
 								<td>타이틀</td>
 								<td>날짜</td>
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
-								<td>작성자</td>
+								<td>받은 사람</td>
 								<td>타이틀</td>
 								<td>날짜</td>
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
-								<td>작성자</td>
+								<td>받은 사람</td>
 								<td>타이틀</td>
 								<td>날짜</td>
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
-								<td>작성자</td>
+								<td>받은 사람</td>
 								<td>타이틀</td>
 								<td>날짜</td>
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
-								<td>작성자</td>
+								<td>받은 사람</td>
 								<td>타이틀</td>
 								<td>날짜</td>
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
-								<td>작성자</td>
+								<td>받은 사람</td>
 								<td>타이틀</td>
 								<td>날짜</td>
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
-								<td>작성자</td>
+								<td>받은 사람</td>
 								<td>타이틀</td>
 								<td>날짜</td>
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
-								<td>작성자</td>
+								<td>받은 사람</td>
 								<td>타이틀</td>
 								<td>날짜</td>
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
-								<td>작성자</td>
+								<td>받은 사람</td>
 								<td>타이틀</td>
 								<td>날짜</td>
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
-								<td>작성자</td>
+								<td>받은 사람</td>
 								<td>타이틀</td>
 								<td>날짜</td>
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
-								<td>작성자</td>
+								<td>받은 사람</td>
 								<td>타이틀</td>
 								<td>날짜</td>
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
-								<td>작성자</td>
+								<td>받은 사람</td>
 								<td>타이틀</td>
 								<td>날짜</td>
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
-								<td>작성자</td>
+								<td>받은 사람</td>
 								<td>타이틀</td>
 								<td>날짜</td>
 							</tr>
@@ -165,5 +163,5 @@
 
 	<script>
 		const title = document.querySelector(".title");
-		title.innerHTML = "받은 쪽지";
+		title.innerHTML = "보낸 쪽지";
 	</script>

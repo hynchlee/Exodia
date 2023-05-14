@@ -1,0 +1,78 @@
+body {
+    font-size: 16px;
+    font-family: 'Spoqa Han Sans Neo';
+}
+
+main {
+    width: 80%;
+    margin: auto;
+}
+
+#target {
+    margin-top: 30px;
+}
+
+#selectDiv{
+    text-align: right;
+}
+
+select{
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+    font-family: 'Spoqa Han Sans Neo';
+    text-align: center;
+}
+
+#content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#content:nth-child(2){
+    border: none;
+    background-color: #ddd;
+    height: 40px;
+}
+
+#content:nth-child(2){
+    margin-top: 30px;
+}
+
+#content>div {
+    flex-basis: 14%;
+    font-size: 20px;
+    text-align: center;
+}
+
+#content>div>input[type="checkbox"] {
+    margin: auto;
+}
+
+#pageDiv{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+#pageDiv button{
+    display: inline-block;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#pageDiv button:hover{
+    background-color: #ddd;
+}
+
+div{
+    font-size: 18px;
+}
