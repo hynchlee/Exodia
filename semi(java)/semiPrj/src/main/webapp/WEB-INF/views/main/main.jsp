@@ -43,12 +43,12 @@
                     <div class="v75_54">
                       <img
                         src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png"
-                        class="d-block w-100" alt="...">" alt="">
+                        class="d-block w-100" alt="...">
                     </div>
                     <div class="v75_55">
                       <img
                         src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png"
-                        class="d-block w-100" alt="...">" alt="">
+                        class="d-block w-100" alt="...">
                     </div>
 
                   </div>
@@ -57,12 +57,12 @@
                     <div class="v75_54">
                       <img
                         src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png"
-                        class="d-block w-100" alt="...">" alt="">
+                        class="d-block w-100" alt="...">
                     </div>
                     <div class="v75_55">
                       <img
                         src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png"
-                        class="d-block w-100" alt="...">" alt="">
+                        class="d-block w-100" alt="...">
                     </div>
                   </div>
                   <div class="carousel-item">
@@ -70,12 +70,12 @@
                     <div class="v75_54">
                       <img
                         src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png"
-                        class="d-block w-100" alt="...">" alt="">
+                        class="d-block w-100" alt="...">
                     </div>
                     <div class="v75_55">
                       <img
                         src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png"
-                        class="d-block w-100" alt="...">" alt="">
+                        class="d-block w-100" alt="...">
                     </div>
                   </div>
                 </div>
@@ -199,14 +199,88 @@
           </a>
           <div class="v69_26"></div>
           <div class="name"></div><span class="v69_29">간편하게 로그인하세요</span>
-          <div class="v75_31"></div>
-          <div class="v75_32"></div><span class="v75_33">정보 보안 개강 일정</span><span class="v75_34">자바 개발자 개강 일정</span>
-          <div class="v75_41"></div>
-          <div class="v75_35"></div>
-          <div class="v75_36"></div><span class="v75_37">06 / 17</span><span class="v75_42">05 / 07</span>
-          <div class="v75_39"></div><span class="v75_43">(디지털컨버전스)
-            공공데이터 융합 자바개발자 양성과정A3</span><span class="v75_44">(정보시스템구축)
-            보안엔지니어링 기반 정보보안 전문가 양성과정B1</span>
+          <div class="v75_31">
+          	<div id="carouselExample02" class="carousel slide carousel-fade" data-bs-ride="carousel">
+			  <div class="carousel-inner">
+			    <div class="carousel-item active">
+			       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Solid_white.svg/2048px-Solid_white.svg.png" class="d-block w-100" alt="...">
+			    	<div class="carousel-caption" id="innerinfo01">
+              		    <span class="v75_33">정보 보안 개강 일정</span>
+						<div class="v75_39"></div>
+						<span class="v75_44">(정보시스템구축) 보안엔지니어링 기반 정보보안 전문가 양성과정B1</span>
+						<div class="v75_35">06 / 17</div>
+            		</div>
+			    </div>
+			    <div class="carousel-item">
+			      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Solid_white.svg/2048px-Solid_white.svg.png" class="d-block w-100" alt="...">
+			    	<div class="carousel-caption" id="innerinfo01">
+              		    <span class="v75_33">정보 보안 개강 일정</span>
+						<div class="v75_39"></div>
+						<span class="v75_44">(정보시스템구축) 보안엔지니어링 기반 정보보안 전문가 양성과정B1</span>
+						<div class="v75_35">08 / 26</div>
+            		</div>
+			    </div>
+			    <div class="carousel-item">
+			      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Solid_white.svg/2048px-Solid_white.svg.png" class="d-block w-100" alt="...">
+			    	<div class="carousel-caption" id="innerinfo01">
+              		    <span class="v75_33">정보 보안 개강 일정</span>
+						<div class="v75_39"></div>
+						<span class="v75_44">(정보시스템구축) 보안엔지니어링 기반 정보보안 전문가 양성과정B1</span>
+						<div class="v75_35">10 / 07</div>
+            		</div>
+			    </div>
+			  </div>
+			  <button class="carousel-control-prev" id="secu01" type="button" data-bs-target="#carouselExample02" data-bs-slide="prev">
+			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			    <span class="visually-hidden">Previous</span>
+			  </button>
+			  <button class="carousel-control-next" id="secu02" type="button" data-bs-target="#carouselExample02" data-bs-slide="next">
+			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			    <span class="visually-hidden">Next</span>
+			  </button>
+			</div>
+          </div>
+          <div class="v75_32">
+          	<div id="carouselExample01" class="carousel slide carousel-fade" data-bs-ride="carousel">
+			  <div class="carousel-inner">
+			    <div class="carousel-item active">
+			      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Solid_white.svg/2048px-Solid_white.svg.png" class="d-block w-100" alt="...">
+			    	<div class="carousel-caption" id="innerinfo02">
+              		    <span class="v75_34">자바 개발자 개강 일정</span>
+						<div class="v75_41"></div>
+						<span class="v75_43">(디지털컨버전스) 공공데이터 융합 자바개발자 양성과정A3</span>
+						<div class="v75_36">05 / 07</div>
+            		</div>
+			    </div>
+			    <div class="carousel-item">
+			      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Solid_white.svg/2048px-Solid_white.svg.png" class="d-block w-100" alt="...">
+			    	<div class="carousel-caption" id="innerinfo02">
+              		    <span class="v75_34">자바 개발자 개강 일정</span>
+						<div class="v75_41"></div>
+						<span class="v75_43">(디지털컨버전스) 공공데이터 융합 자바개발자 양성과정A3</span>
+						<div class="v75_36">05 / 26</div>
+            		</div>
+			    </div>
+			    <div class="carousel-item">
+			      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Solid_white.svg/2048px-Solid_white.svg.png" class="d-block w-100" alt="...">
+			    	<div class="carousel-caption" id="innerinfo02">
+              		    <span class="v75_34">자바 개발자 개강 일정</span>
+						<div class="v75_41"></div>
+						<span class="v75_43">(디지털컨버전스) 공공데이터 융합 자바개발자 양성과정A3</span>
+						<div class="v75_36">06 / 17</div>
+            		</div>
+			    </div>
+			  </div>
+			  <button class="carousel-control-prev" id="javabtn01" type="button" data-bs-target="#carouselExample01" data-bs-slide="prev">
+			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			    <span class="visually-hidden">Previous</span>
+			  </button>
+			  <button class="carousel-control-next" id="javabtn02" type="button" data-bs-target="#carouselExample01" data-bs-slide="next">
+			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			    <span class="visually-hidden">Next</span>
+			  </button>
+			</div>
+          </div>
           <div class="v75_50"></div>
           <span class="v75_51">KH interview</span>
           <div class="v75_56"></div>

@@ -24,7 +24,10 @@
 					<div class="board">
 						<table class="innertable01">
 							<tr>
-								<td colspan="3" class="line00">공지사항</td>
+								<td colspan="2" class="line00">공지사항</td>
+								<td class="plus01">
+								<a href="공지사항으로" class="plus02">더보기</a>
+								</td>
 							</tr>
 							<tr>
 								<td class="line01">작성자</td>
@@ -144,7 +147,7 @@
 							</tr>
 							<tr class="tr03">
 								<td class="line02">
-								<div class="late">지각</div>
+								<div class="enter">입실</div>
 								</td>
 								<td class="line02">2023-00-00 00:00:00:00</td>
 								<td class="line02">
@@ -154,7 +157,7 @@
 							</tr>
 							<tr class="tr03">
 								<td class="line02">
-								<div class="run">결석</div>
+								<div class="enter">입실</div>
 								</td>
 								<td class="line02">2023-00-00</td>
 								<td class="line02"></td>
@@ -162,7 +165,7 @@
 							</tr>
 							<tr class="tr03">
 								<td class="line02">
-								<div class="vac">휴가</div>
+								<div class="enter">입실</div>
 								</td>
 								<td class="line02">2023-00-00</td>
 								<td class="line02"></td>
@@ -212,3 +215,7 @@
 
 </body>
 </html>
+<script>
+	const title = document.querySelector(".title");
+	title.innerHTML = "마이페이지";
+</script>
