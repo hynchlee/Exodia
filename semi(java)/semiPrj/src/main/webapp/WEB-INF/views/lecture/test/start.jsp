@@ -24,7 +24,7 @@
 							<textarea style="resize: none;" name="answer"></textarea>
 							<br><br>
 						</div>
-						<% } %>
+					<% } %>
 
 						<br>
 						<div class="finish">

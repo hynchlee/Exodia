@@ -7,14 +7,17 @@
 			<meta charset="UTF-8">
 			<title>Insert title here</title>
 			<c:set var="root" value="${pageContext.request.contextPath}"></c:set>
-			<link href="${root}/static/css/lecture/test/list.css" rel="stylesheet">
+			<link href="${root}/static/css/lecture/test/list2.css" rel="stylesheet">
 		</head>
 
 		<body>
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
 				<main style="height: 2000px;">
-					<div class="e98_1694">
-						반응형 UX/UI 웹컨텐츠 개발자 양성과정 A9
+					<div class="menubar">
+						<select class="e98_1694">
+							<option value="">반응형 UX/UI 웹컨텐츠 개발자 양성과정 A8</option>
+							<option value="">반응형 UX/UI 웹컨텐츠 개발자 양성과정 A9</option>
+						</select>
 					</div>
 					<table class="list-tbl">
 						<thead>
@@ -24,7 +27,6 @@
 								<th>능력단위명</th>
 								<th>구분</th>
 								<th>평가일</th>
-								<th>점수</th>
 								<th>평가 현황</th>
 							</tr>
 						</thead>
@@ -36,11 +38,10 @@
 									<td>SQL 활용</td>
 									<td>서술형(신)</td>
 									<td>2023.02.20</td>
-									<td>94.00</td>
 									<td>
-										<button>평가완료</button>
-										<button>결과확인</button>
-										<button>확인완료</button>
+										<a>시험시작</a>
+										<a>시험종료</a>
+										<a href="${root}/lecture/test/scoreList">시험채점</a>
 									</td>
 								</tr>
 							<% } %>
