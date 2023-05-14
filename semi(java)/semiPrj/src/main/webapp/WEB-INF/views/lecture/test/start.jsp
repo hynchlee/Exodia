@@ -21,10 +21,7 @@
 						<div class="problem">
 							<div>1. 다음과 같은 요구사항에 맞춰 구성하여 보고서 작성 후 제출하시오 (20점)</div>
 							<br>
-							<div class="hi">
-								<textarea style="resize: none;" name="answer"></textarea>
-								<input type="submit" value="저장">
-							</div>
+							<textarea style="resize: none;" name="answer"></textarea>
 							<br><br>
 						</div>
 						<% } %>
