@@ -25,7 +25,7 @@
 							id="logo_img"></a>
 						</li>
 						<li class="menu2"></li>
-						<li class="menu3"><img src="/semi/static/img/header/___7.png" alt="profile" id="profile_img">
+						<li class="menu3"><a href="${root}/mypage"><img src="/semi/static/img/header/___7.png" alt="profile" id="profile_img"></a>
 						</li>
 						<li class="menu3"><a href="${root}/introduce/greet">
 								KH소개
@@ -33,11 +33,11 @@
 						<li class="menu3"><a href="${root}/notice/list">
 								게시판
 							</a></li>
-						<li class="menu3"><a href="">
+						<li class="menu3"><a href="미구현(강의소개페이지)">
 								강의
 							</a></li>
 						<li class="menu3"><a href="">
-								시험
+								???
 							</a></li>
 						<li class="menu4"></li>
 					</ul>
@@ -56,7 +56,7 @@
 							<td><a href="${root}/lecture/apply">수강 신청</a></td>
 						</tr>
 						<tr>
-							<td><a href="${root}/introduce/facility">시설 소개</a></td>
+							<td><a href="${root}/introduce/facility?building=1">시설 소개</a></td>
 							<td><a href="">우리반게시판</a></td>
 						</tr>
 						<tr>
