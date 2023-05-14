@@ -35,7 +35,10 @@
     align-items: center;
 }
 
-.list-tbl td button {
+.list-tbl td a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 30%;
     height: 50px;
     font-size: 20px;
@@ -63,12 +66,18 @@
 	background-color: rgba(72.00000330805779, 91.00000217556953, 166.00000530481339, 1);
 }
 
-.e98_1694 {
+
+.menubar {
     position: absolute;
     top: 625px;
-    font-size: 44px;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.e98_1694 {
+    font-size: 44px;
+    width: 50%;
+    height: 100%;
 }

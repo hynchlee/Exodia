@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
-<link href="${root}/static/css/lecture/apply.css" rel="stylesheet">
+<link href="${root}/static/css/lecture/manage.css" rel="stylesheet">
 </head>
 
 
@@ -30,6 +30,7 @@
 		<table class="e112_923">
 			<thead>
 				<tr>
+                    <th></th>
 					<th>개강일</th>
 					<th>지점</th>
 					<th>진출분야</th>
@@ -45,6 +46,7 @@
 			<tbody>
 				<% for(int i = 0; i < 10; i++)  {%>
 					<tr>
+                        <td><input type="checkbox"></td>
 						<td>YYYY-MM-DD</td>
 						<td>강남</td>
 						<td>자바개발자</td>
@@ -59,6 +61,12 @@
 				<% } %>
 			</tbody>
 		</table>
+
+        <div class="btn">
+            <button>수정</button>
+            <button>삭제</button>
+            <button>추가</button>
+        </div>
 
 		<div class="e112_1541">
 			<button class="e112_1542"><<</button>
@@ -77,5 +85,5 @@
 
 <script>
 	const title = document.querySelector('.title');
-	title.innerHTML = "수강신청";
+	title.innerHTML = "강의 관리";
 </script>

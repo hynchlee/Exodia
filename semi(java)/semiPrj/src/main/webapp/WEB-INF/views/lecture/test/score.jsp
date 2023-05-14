@@ -7,7 +7,7 @@
 			<meta charset="UTF-8">
 			<title>Insert title here</title>
 			<c:set var="root" value="${pageContext.request.contextPath}"></c:set>
-			<link href="${root}/static/css/lecture/test/examination.css" rel="stylesheet">
+			<link href="${root}/static/css/lecture/test/score.css" rel="stylesheet">
 		</head>
 
 		<body>
@@ -27,7 +27,7 @@
 							<br>
 							<div class="hi">
 								<textarea style="resize: none;" name="answer"></textarea>
-								<input type="submit" value="점수입력">
+								<input class="scoreInput" type="text" placeholder="점수입력">
 							</div>
 							<br><br>
 						</div>
@@ -35,7 +35,7 @@
 
 						<br>
 						<div class="finish">
-							<button class="finish-btn">채점 완료</button>
+							<a href="${root}/lecture/test/scoreList" class="finish-btn">채점 완료</a>
 						</div>
 				</main>
 				<%@ include file="/WEB-INF/views/common/footer.jsp" %>
