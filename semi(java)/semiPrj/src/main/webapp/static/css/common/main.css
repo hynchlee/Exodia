@@ -715,25 +715,25 @@ body {
 #secu01{
   width: 50px;
   height: 50px;	
-  background-color: gray;
+  background: rgba(91,126,217,1);
   top: 140px;
 }
 #secu02{
   width: 50px;
   height: 50px;
-  background-color: gray;
+  background: rgba(91,126,217,1);
   top: 140px;
 }
 #javabtn01{
   width: 50px;
   height: 50px;
-  background-color: gray;
+  background: rgba(91,126,217,1);
   top: 140px;
 }
 #javabtn02{
   width: 50px;
   height: 50px;
-  background-color: gray;
+  background: rgba(91,126,217,1);
   top: 140px;
 }
 #innerinfo01{

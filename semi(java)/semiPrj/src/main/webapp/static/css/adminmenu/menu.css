@@ -24,5 +24,119 @@
  	 font-size: 24px;
 	 color: rgba(103,103,103,1);
 	 position: relative;
-	 top: 150px
+	 top: 150px;
+}
+.a01{
+  width: 300px;
+  height: 100px;
+  background: rgba(91,126,217,1);
+  color: white;
+  opacity: 1;
+  font-size:50px;
+  border-top-left-radius: 29px;
+  border-top-right-radius: 29px;
+  border-bottom-left-radius: 29px;
+  border-bottom-right-radius: 29px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 300px;
+  left: 90px;
+  text-decoration: none;
+}
+.a03{
+  width: 300px;
+  height: 100px;
+  background: rgba(91,126,217,1);
+  color: white;
+  opacity: 1;
+  font-size:50px;
+  border-top-left-radius: 29px;
+  border-top-right-radius: 29px;
+  border-bottom-left-radius: 29px;
+  border-bottom-right-radius: 29px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 300px;
+  left: 90px;
+  text-decoration: none;
+}
+.a05{
+  width: 300px;
+  height: 100px;
+  background: rgba(91,126,217,1);
+  color: white;
+  opacity: 1;
+  font-size:50px;
+  border-top-left-radius: 29px;
+  border-top-right-radius: 29px;
+  border-bottom-left-radius: 29px;
+  border-bottom-right-radius: 29px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 300px;
+  left: 90px;
+  text-decoration: none;
+}
+.a02{
+  width: 300px;
+  height: 100px;
+  background: rgba(91,126,217,1);
+  color: white;
+  opacity: 1;
+  font-size:50px;
+  border-top-left-radius: 29px;
+  border-top-right-radius: 29px;
+  border-bottom-left-radius: 29px;
+  border-bottom-right-radius: 29px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 200px;
+  left: 500px;
+  text-decoration: none;
+}
+.a04{
+  width: 300px;
+  height: 100px;
+  background: rgba(91,126,217,1);
+  color: white;
+  opacity: 1;
+  font-size:50px;
+  border-top-left-radius: 29px;
+  border-top-right-radius: 29px;
+  border-bottom-left-radius: 29px;
+  border-bottom-right-radius: 29px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 200px;
+  left: 500px;
+  text-decoration: none;
+}
+.a06{
+  width: 300px;
+  height: 100px;
+  background: rgba(91,126,217,1);
+  color: white;
+  opacity: 1;
+  font-size:50px;
+  border-top-left-radius: 29px;
+  border-top-right-radius: 29px;
+  border-bottom-left-radius: 29px;
+  border-bottom-right-radius: 29px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 200px;
+  left: 500px;
+  text-decoration: none;
 }
