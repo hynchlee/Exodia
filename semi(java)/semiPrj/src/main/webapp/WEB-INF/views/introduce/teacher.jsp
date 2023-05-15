@@ -10,65 +10,45 @@
 			<link href="${root}/static/css/introduce/teacher.css" rel="stylesheet">
 		</head>
 
-
 		<body>
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
 				<main>
-					<div class="wrap_1">
-						<img src="${root}/static/img/introduce/___7.png" alt="logo" id="profile_img_1"
-							class="profile_img"> <img src="${root}/static/img/introduce/___7.png" alt="logo"
-							id="profile_img_2" class="profile_img"> <img src="${root}/static/img/introduce/___7.png"
-							alt="logo" id="profile_img_3" class="profile_img"> <img
-							src="${root}/static/img/introduce/___7.png" alt="logo" id="profile_img_4"
-							class="profile_img"> <img src="${root}/static/img/introduce/___7.png" alt="logo"
-							id="profile_img_5" class="profile_img"> <img src="${root}/static/img/introduce/___7.png"
-							alt="logo" id="profile_img_6" class="profile_img"> <img
-							src="${root}/static/img/introduce/___7.png" alt="logo" id="profile_img_7"
-							class="profile_img"> <img src="${root}/static/img/introduce/___7.png" alt="logo"
-							id="profile_img_8" class="profile_img">
+					<% for (int i=0; i < 5; i++) { %>
+						<div class="wrap_1">
+							<div class="bigMenu">
+								<% for (int j=0; j < 2; j++) { %>
+									<div class="menu_1">
+										<div class="pfl">
+											<img src="${root}/static/img/introduce/___7.png" alt="logo"
+												id="profile_img_1" class="profile_img">
+											<div id="e98_1481" class="profile_name">심1용 강사</div>
+										</div>
 
-						<div id="e98_1481" class="profile_name">심1용 강사</div>
-						<div id="e98_1482" class="profile_name">심2용 강사</div>
-						<div id="e98_1483" class="profile_name">심3용 강사</div>
-						<div id="e98_1484" class="profile_name">심4용 강사</div>
-						<div id="e98_1485" class="profile_name">심5용 강사</div>
-						<div id="e98_1486" class="profile_name">심6용 강사</div>
-						<div id="e98_1487" class="profile_name">심7용 강사</div>
-						<div id="e98_1488" class="profile_name">심8용 강사</div>
+										<div id="e98_1" class="intro_div">
+											現) KH정보교육원 강사 <br> 일단 해보자! <br> 할까 말까 고민이시라면 일단 해보세요. <br>
+											시도하지 않으면 무조건 0, 일단 시작하면 1~99 입니다!
+										</div>
+									</div>
+									<% } %>
+							</div>
+						</div>
+						<br>
+						<% } %>
 
-						<div id="e98_1" class="intro_div">
-							現) KH정보교육원 강사 <br> 일단 해보자! <br> 할까 말까 고민이시라면 일단 해보세요. <br>
-							시도하지 않으면 무조건 0, 일단 시작하면 1~99 입니다!
+						<br><br>
+						<div class="wrap_1">
+							<div class="bigMenu2">
+								<div id="pageDiv">
+									<button><<</button>
+									<button>1</button>
+									<button>2</button>
+									<button>3</button>
+									<button>4</button>
+									<button>5</button>
+									<button>>></button>
+								</div>
+							</div>
 						</div>
-						<div id="e98_2" class="intro_div">
-							現) KH정보교육원 강사 <br> 일단 해보자! <br> 할까 말까 고민이시라면 일단 해보세요. <br>
-							시도하지 않으면 무조건 0, 일단 시작하면 1~99 입니다!
-						</div>
-						<div id="e98_3" class="intro_div">
-							現) KH정보교육원 강사 <br> 일단 해보자! <br> 할까 말까 고민이시라면 일단 해보세요. <br>
-							시도하지 않으면 무조건 0, 일단 시작하면 1~99 입니다!
-						</div>
-						<div id="e98_4" class="intro_div">
-							現) KH정보교육원 강사 <br> 일단 해보자! <br> 할까 말까 고민이시라면 일단 해보세요. <br>
-							시도하지 않으면 무조건 0, 일단 시작하면 1~99 입니다!
-						</div>
-						<div id="e98_5" class="intro_div">
-							現) KH정보교육원 강사 <br> 일단 해보자! <br> 할까 말까 고민이시라면 일단 해보세요. <br>
-							시도하지 않으면 무조건 0, 일단 시작하면 1~99 입니다!
-						</div>
-						<div id="e98_6" class="intro_div">
-							現) KH정보교육원 강사 <br> 일단 해보자! <br> 할까 말까 고민이시라면 일단 해보세요. <br>
-							시도하지 않으면 무조건 0, 일단 시작하면 1~99 입니다!
-						</div>
-						<div id="e98_7" class="intro_div">
-							現) KH정보교육원 강사 <br> 일단 해보자! <br> 할까 말까 고민이시라면 일단 해보세요. <br>
-							시도하지 않으면 무조건 0, 일단 시작하면 1~99 입니다!
-						</div>
-						<div id="e98_8" class="intro_div">
-							現) KH정보교육원 강사 <br> 일단 해보자! <br> 할까 말까 고민이시라면 일단 해보세요. <br>
-							시도하지 않으면 무조건 0, 일단 시작하면 1~99 입니다!
-						</div>
-					</div>
 				</main>
 				<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 		</body>

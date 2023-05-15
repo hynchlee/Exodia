@@ -14,28 +14,34 @@
 		<body>
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
 				<main>
-					<br><br><br><br><br><br>
-					<div class="lecture-menu">
-						<a href="${root}/introduce/lecture?subject=1" class="e112">개발자 양성과정
-						</a>
-						<a href="${root}/introduce/lecture?subject=2" class="e112">정보보안 전문가
-						</a>
+
+					<div class="wrap_1">
+						<div class="menu_1">
+							<a href="${root}/introduce/lecture?subject=1" class="e112">개발자 양성과정
+							</a>
+							<a href="${root}/introduce/lecture?subject=2" class="e112">정보보안 전문가
+							</a>
+						</div>
 					</div>
 
-					<br><br><br><br>
-					<div class="curr">
-						<div class="curr1">
-							<img src="${root}/static/img/introduce/currmenu1.png" alt="logo">
-							<br><br><br>
-							<img src="${root}/static/img/introduce/curr1.png" alt="logo">
-							<br><br><br>
-							<img src="${root}/static/img/introduce/curr2.png" alt="logo">
-						</div>
-						<div class="curr2">
-							<img src="${root}/static/img/introduce/curr3.png" alt="logo">
+					<div class="wrap_1">
+						<div class="menu_2">
+							<div class="curr1">
+								<br><br><br>
+								<img src="${root}/static/img/introduce/currmenu1.png" alt="logo">
+								<br><br><br>
+								<img src="${root}/static/img/introduce/curr1.png" alt="logo">
+								<br><br><br>
+								<img src="${root}/static/img/introduce/curr2.png" alt="logo">
+							</div>
+							<div class="curr2">
+								<br><br><br>
+								<img src="${root}/static/img/introduce/curr3.png" alt="logo">
+							</div>
 						</div>
 					</div>
-					<br><br><br><br><br><br><br><br><br>
+					</div>
+					<br><br><br><br>
 				</main>
 				<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 		</body>
@@ -46,7 +52,7 @@
 			const title = document.querySelector('.title');
 			const curr1 = document.querySelector('.curr1');
 			const curr2 = document.querySelector('.curr2');
-			
+
 			title.innerHTML = "강의 소개";
 
 			const e112_List = document.querySelectorAll('.e112');

@@ -1,148 +1,60 @@
 @charset "UTF-8";
 
-main {
-	height: 1500px;
+* {
+    font-family: Spoqa Han Sans Neo;
+    font-size: 16px;
 }
 
 .wrap_1 {
-	position: relative;
-	width: 85%;
-	height: 100%;
-	margin: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bigMenu {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+}
+.bigMenu2 {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+}
+
+.menu_1 {
+    width: 45%;
+    display: flex;
+    justify-content: space-between;
+	align-items: center;
 }
 
 .profile_img {
-	position: absolute;
-	width: 130px;
-	height: 130px;
-	border-top-left-radius: 360px;
-	border-top-right-radius: 360px;
-	border-bottom-left-radius: 360px;
-	border-bottom-right-radius: 360px;
+	width: 100%;
+	border-radius: 90%;
 	background-repeat: no-repeat;
 	background-size: cover;
 }
 
-#profile_img_1, #e98_1481 {
-	top: 20%;
+.pfl {
+	width: 20%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
-#profile_img_2, #e98_1482 {
-	top: 35%;
+#pageDiv button{
+    display: inline-block;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #F0F0F0;
 }
 
-#profile_img_3, #e98_1483 {
-	top: 50%;
-}
-
-#profile_img_4, #e98_1484 {
-	top: 65%;
-}
-
-#profile_img_5 {
-	top: 20%;
-	left: 50%;
-}
-
-#profile_img_6 {
-	top: 35%;
-	left: 50%;
-}
-
-#profile_img_7 {
-	top: 50%;
-	left: 50%;
-}
-
-#profile_img_8 {
-	top: 65%;
-	left: 50%;
-}
-
-.profile_name {
-	width: 130px;
-	color: rgba(0, 0, 0, 1);
-	position: absolute;
-	margin-top: 136px;
-	font-family: Noto Sans KR;
-	text-align: center;
-	font-size: 20px;
-	letter-spacing: 0;
-}
-
-#e98_1485 {
-	top: 20%;
-	left: 50%;
-}
-
-#e98_1486 {
-	top: 35%;
-	left: 50%;
-}
-
-#e98_1487 {
-	top: 50%;
-	left: 50%;
-}
-
-#e98_1488 {
-	top: 65%;
-	left: 50%;
-}
-
-.intro_div {
-	color: rgba(0, 0, 0, 1);
-	height: 130px;
-	width: 30%;
-	position: absolute;
-	font-family: Noto Sans KR;
-	text-align: left;
-	font-size: 20px;
-	letter-spacing: 0;
-	margin-left: 100px;
-	margin-top: 10px;
-}
-
-#e98_1 {
-	top: 20%;
-	padding-left: 130px;
-}
-
-#e98_2 {
-	top: 35%;
-	padding-left: 130px;
-}
-
-#e98_3 {
-	top: 50%;
-	padding-left: 130px;
-}
-
-#e98_4 {
-	top: 65%;
-	padding-left: 130px;
-}
-
-#e98_5 {
-	top: 20%;
-	left: 50%;
-	padding-left: 130px;
-}
-
-#e98_6 {
-	top: 35%;
-	left: 50%;
-	padding-left: 130px;
-}
-
-#e98_7 {
-	top: 50%;
-	left: 50%;
-	padding-left: 130px;
-}
-
-#e98_8 {
-	top: 65%;
-	left: 50%;
-	padding-left: 130px;
+#pageDiv button:hover{
+    background-color: #ddd;
 }
