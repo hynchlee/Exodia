@@ -1,107 +1,80 @@
 @charset "UTF-8";
 
-.e-menu {
-	color: white;
-	background-color: rgba(72.00000330805779, 91.00000217556953, 166.00000530481339, 1);
-	width: 17%;
-	height: 70px;
-	position: absolute;
-	left: 5%;
+* {
+	font-family: Spoqa Han Sans Neo;
+	font-size: 16px;
+}
+
+.wrap_1 {
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-family: Spoqa Han Sans Neo;
-	font-size: 24px;
 }
 
-.searchBar {
+.menu_1 {
 	width: 70%;
-	height: 80px;
-	position: absolute;
-	right: 15%;
-	top: 620px;
-	font-family: Spoqa Han Sans Neo;
-	text-align: center;
-	font-size: 20px;
+	height: 35px;
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
 }
 
-
-.e112_901 {
-	width: 15%;
-	height: 100%;
-	font-family: Spoqa Han Sans Neo;
-	font-size: 20px;
-}
-
-.e112_902 {
-	width: 60%;
-	height: 100%;
-	background-color: rgba(255, 255, 255, 1);
-	font-family: Spoqa Han Sans Neo;
-	font-size: 20px;
-	text-align: center;
-}
-
-.e112_909 {
-	width: 15%;
-	height: 100%;
-	background-color: rgba(255, 255, 255, 1);
-	font-family: Spoqa Han Sans Neo;
-	font-size: 20px;
-	text-align: center;
-	border-radius: 35px;
-	color: white;
-	background-color: rgba(72.00000330805779, 91.00000217556953, 166.00000530481339, 1);
+.menu_2 {
+	width: 70%;
+	display: flex;
+	justify-content: center;
 }
 
 .e112_923 {
 	width: 70%;
-	height: 53px;
-	position: absolute;
-	right: 15%;
-	top: 780px;
-	font-family: Spoqa Han Sans Neo;
 	text-align: center;
-	font-size: 20px;
+}
+
+.menu_1 * {
+	width: 10%;
+}
+
+.e112_902 {
+	width: 60%;
+	background-color: rgba(255, 255, 255, 1);
+	text-align: center;
+}
+
+#pageDiv button {
+	display: inline-block;
+	font-weight: bold;
+	font-size: 18px;
+	border-radius: 5px;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	background-color: #F0F0F0;
+}
+
+#pageDiv button:hover {
+	background-color: #ddd;
 }
 
 .e112_923 thead {
-	background-color: rgba(227.37499594688416, 227.37499594688416, 227.37499594688416, 1);
+	background-color: #F0F0F0;
 }
 
 .e112_923 tbody tr {
 	height: 80px;
-	border-bottom: 1px solid
-		rgba(72.00000330805779, 91.00000217556953, 166.00000530481339, 1);
+	border-bottom: 1px solid black;
 }
 
-.e112_923 tbody button {
-	width: 100px;
+table button {
+	width: 80px;
 	height: 40px;
-	margin: 5px;
-	border-radius: 20px;
-	color: white;
-	background-color: rgba(72.00000330805779, 91.00000217556953, 166.00000530481339, 1);
+	background-color: #F0F0F0;
+	color: black;
+	border-radius: 10px;
+	border: none;
+	text-align: center;
 }
 
-.e112_1541 {
-	width: 50%;
-	height: 100px;
-	position: absolute;
-	left: 25%;
-	top: 1700px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.e112_1541 button {
-	width: 7%;
-	font-size: 32px;
-	margin: 3%;
+table button:hover {
+    background-color: #4998D1;
 	color: white;
-	background-color: rgba(72.00000330805779, 91.00000217556953, 166.00000530481339, 1);
 }

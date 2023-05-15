@@ -1,11 +1,16 @@
 @charset "UTF-8";
 
+
+.head {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .facility-menu {
-    position: absolute;
-    top: 580px;
-    left: 7.5%;
-    width: 85%;
-    height: 80px;
+    width: 70%;
+    height: 60px;
     display: flex;
     justify-content: space-between;
 }
@@ -18,7 +23,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
+    font-size: 18px;
 }
 
 .e112:hover {
@@ -27,209 +32,25 @@
 }
 
 .e112_1076 {
-    width: 85%;
-    height: 600px;
-    position: absolute;
-    left: 7.5%;
-    top: 1700px;
+    width: 70%;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
+
 .e112_1077 {
     color: rgba(0, 0, 0, 1);
-    position: absolute;
-    left: 7.5%;
-    top: 1350px;
     font-family: Spoqa Han Sans Neo;
+    width: 70%;
     text-align: left;
-    font-size: 24px;
+    font-size: 16px;
     letter-spacing: 0;
 }
 
-.e112_1078 {
-    color: rgba(0, 0, 0, 1);
-    position: absolute;
-    left: 7.5%;
-    margin-left: 50px;
-    top: 1420px;
-    font-family: Spoqa Han Sans Neo;
-    text-align: left;
-    font-size: 24px;
-    letter-spacing: 0;
-}
-
-.e112_1079 {
-    color: rgba(0, 0, 0, 1);
-    position: absolute;
-    left: 40%;
-    margin-left: 50px;
-    top: 1420px;
-    font-family: Spoqa Han Sans Neo;
-    text-align: left;
-    font-size: 24px;
-    letter-spacing: 0;
-}
-
-.e112_1080 {
-    color: rgba(0, 0, 0, 1);
-    position: absolute;
-    left: 40%;
-    top: 1480px;
-    margin-left: 50px;
-    font-family: Spoqa Han Sans Neo;
-    text-align: left;
-    font-size: 24px;
-    letter-spacing: 0;
-}
-
-.e112_1081 {
-    color: rgba(0, 0, 0, 1);
-    position: absolute;
-    left: 40%;
-    top: 1520px;
-    margin-left: 50px;
-    font-family: Spoqa Han Sans Neo;
-    text-align: left;
-    font-size: 24px;
-    letter-spacing: 0;
-}
-
-.e112_1083 {
-    width: 34px;
-    height: 34px;
-    position: absolute;
-    left: 40%;
-    top: 1420px;
-}
-
-.e112_1084 {
-    width: 34px;
-    height: 34px;
-    position: absolute;
-    left: 7.5%;
-    top: 1420px;
-}
-
-.e112_1085 {
-    background-color: rgba(4.079996393993497, 204.00000303983688, 0, 1);
-    width: 34.4px;
-    height: 34.4px;
-    position: absolute;
-    left: 40%;
-
-    top: 1480px;
-    border-radius: 20px;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    font-family: Spoqa Han Sans Neo;
-}
-
-.e112_1086 {
-    background-color: rgba(4.079996393993497, 204.00000303983688, 0, 1);
-    width: 34.4px;
-    height: 34.4px;
-    position: absolute;
-    left: 40%;
-
-    top: 1520px;
-    border-radius: 20px;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    font-family: Spoqa Han Sans Neo;
-}
-
-.e112_1089 {
-    background-color: rgba(61.62500202655792, 80.96252918243408, 255, 1);
-    color: rgba(255, 255, 255, 1);
-    width: 70px;
-    height: 34.4px;
-    position: absolute;
-    left: 7.5%;
-
-    top: 1520px;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    font-family: Spoqa Han Sans Neo;
-}
-
-.e112_1090 {
-    background-color: rgba(255, 61.62500202655792, 61.62500202655792, 1);
-    color: rgba(255, 255, 255, 1);
-    width: 70px;
-    height: 34.4px;
-    position: absolute;
-    left: 7.5%;
-
-    top: 1560px;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    font-family: Spoqa Han Sans Neo;
-}
-
-.e112_1091 {
-    color: rgba(0, 0, 0, 1);
-    position: absolute;
-    margin-left: 80px;
-    left: 7.5%;
-    top: 1525px;
-    font-family: Spoqa Han Sans Neo;
-    text-align: left;
-    height: 34.4px;
-    font-size: 24px;
-    font-family: Spoqa Han Sans Neo;
-    font-size: 20px;
-    max-width: 24%;
-    letter-spacing: 0;
-}
-
-.e112_1092 {
-    color: rgba(0, 0, 0, 1);
-    position: absolute;
-    margin-left: 80px;
-    left: 7.5%;
-    top: 1565px;
-    max-width: 24%;
-    font-family: Spoqa Han Sans Neo;
-    text-align: left;
-    height: 34.4px;
-    font-size: 24px;
-    font-family: Spoqa Han Sans Neo;
-    font-size: 20px;
-    letter-spacing: 0;
-}
-
-.e112_1093 {
-    color: rgba(0, 0, 0, 1);
-    position: absolute;
-    left: 7.5%;
-    top: 1480px;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 28px;
-    font-family: Spoqa Han Sans Neo;
-}
 
 .facility-tbl {
-    position: absolute;
-    left: 7.5%;
-    width: 85%;
-    top: 2400px;
-    font-size: 28px;
+    width: 70%;
+    font-size: 16px;
     font-family: Spoqa Han Sans Neo;
 }
 
