@@ -36,9 +36,6 @@
 						<li class="menu3"><a href="${root}/introduce/lecture?subject=1">
 								강의
 							</a></li>
-						<li class="menu3"><a href="">
-								???
-							</a></li>
 						<li class="menu4"></li>
 					</ul>
 				</nav>
