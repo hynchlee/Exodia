@@ -1,5 +1,4 @@
 main {
-    height: 1000px;
     display: grid;
     grid-template-columns: 1.5fr 5fr;
 
@@ -16,6 +15,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;    
+    width: 90%;
 }
 
 #side-bar div{
@@ -53,34 +53,49 @@ main {
 }
 
 #letter-list {
+    margin-top: 100px;
+    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    margin-bottom: 100px;
+}
+
+#deleteTd{
+    text-align: right;
 }
 
 #deleteButton{
-    display: inline-block;
-    font-weight: bold;
-    font-size: 18px;
-    border-radius: 5px;
+    text-align: center;
+    width: 100px;
+    height: 40px;
+    background-color: #F0F0F0;
+    padding-left: 5px;
+    color: black;
+    font-size: 16px;
+    border-radius: 10px;
     border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-
-    background-color: #3c8dbc;
-
 }
 
 #deleteButton:hover {
     background-color: #3c8dbc;
-    opacity: 0.9;
-  }
+    color: white;
+}
+
+table thead input:first-child{
+    width: 80%;
+    height: 40px;
+    font-size: 16px;
+    font-family: 'Spoqa Han Sans Neo';
+    text-align: left;
+    box-sizing: border-box;
+}
 
 table {
-    width: 1000px;
-
+    width: 100%;
+    max-width: 1000px;
+    
     font-family: 'Spoqa Han Sans Neo';
-    font-style: normal;
+    font-style: bold;
     font-weight: 500;
     font-size: 18px;
     line-height: 25px;
@@ -88,9 +103,8 @@ table {
 }
 
 table tbody tr:hover{
-    background-color: #B8B8B8;
+    background-color:  #F0F0F0;
 }
-
 
 td,
 th {
@@ -113,11 +127,15 @@ tbody tr {
     border-bottom: 0.5px solid #B8B8B8;
 }
 
+tfoot{
+    margin-bottom: 100px;
+}
+
 tfoot td{
     text-align: center;
 }
 
-tfoot button{
+tfoot #pageTd button{
     display: inline-block;
     font-weight: bold;
     font-size: 18px;

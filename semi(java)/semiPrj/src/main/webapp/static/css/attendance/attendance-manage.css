@@ -4,31 +4,42 @@ body {
 }
 
 main {
-    width: 80%;
+    width: 70%;
     margin: auto;
 }
 
-#target {
-    margin-top: 30px;
-}
-
-#selectDiv{
-    text-align: right;
-}
-
-select{
-    width: 150px;
-    height: 50px;
-    font-size: 20px;
+#selectDiv select{
+    width: 10%;
+    height: 40px;
+    font-size: 16px;
     font-family: 'Spoqa Han Sans Neo';
     text-align: center;
+    box-sizing: border-box;
+}
+
+#selectDiv input{
+    width: 80%;
+    height: 40px;
+    font-size: 16px;
+    font-family: 'Spoqa Han Sans Neo';
+    text-align: left;
+    box-sizing: border-box;
+}
+
+#selectDiv button{
+    width: 9%;
+    height: 40px;
+    font-size: 16px;
+    font-family: 'Spoqa Han Sans Neo';
+    box-sizing: border-box;
+
 }
 
 #content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 40px;
+    margin-top: 50px;
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
@@ -45,7 +56,7 @@ select{
 
 #content>div {
     flex-basis: 14%;
-    font-size: 20px;
+    font-size: 16px;
     text-align: center;
 }
 
@@ -55,7 +66,6 @@ select{
 
 #pageDiv{
     margin-top: 40px;
-    margin-bottom: 40px;
     text-align: center;
 }
 

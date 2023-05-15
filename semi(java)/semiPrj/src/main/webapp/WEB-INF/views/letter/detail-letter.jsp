@@ -8,9 +8,7 @@
 			<meta charset="UTF-8">
 			<title>Insert title here</title>
 			<link rel="stylesheet" href="${root}/static/css/letter/detail-letter.css">
-
 		</head>
-
 		<body>
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
 				<main>
@@ -73,10 +71,9 @@
 								<tfoot>
 									<tr>
                                         <th id="deleteTh">
-                                            <button id="delete">삭제하기</button>
                                         </th>
 										<th colspan="3">
-											<button id="goBack">뒤로가기</button>
+                                            <button id="delete">삭제하기</button>
 											<button id="send">보내기</button>
 										</th>
 									</tr>
@@ -95,4 +92,10 @@
 		<script>
 			const title = document.querySelector(".title");
 			title.innerHTML = "쪽지 쓰기";
+
+			const banner = document.querySelector(".banner");
+			banner.style.marginBottom = 0;
+
+			const caption = document.querySelector(".caption1");
+			caption.style.marginTop = 0;
 		</script>

@@ -7,7 +7,7 @@
             <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
             <meta charset="UTF-8">
             <title>Insert title here</title>
-            <link href="${root}/static/css/attendence/attendence-list.css" rel="stylesheet">
+            <link href="${root}/static/css/attendance/attendance-list.css" rel="stylesheet">
         </head>
         <body>
             <%@ include file="/WEB-INF/views/common/header.jsp" %>

@@ -164,4 +164,10 @@
 	<script>
 		const title = document.querySelector(".title");
 		title.innerHTML = "보낸 쪽지";
+
+		const banner = document.querySelector(".banner");
+			banner.style.marginBottom = 0;
+
+			const caption = document.querySelector(".caption1");
+			caption.style.marginTop = 0;
 	</script>

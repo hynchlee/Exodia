@@ -7,25 +7,23 @@
             <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
             <meta charset="UTF-8">
             <title>Insert title here</title>
-            <link href="${root}/static/css/attendence/attendence-manage.css" rel="stylesheet">
+            <link href="${root}/static/css/attendance/attendance-manage.css" rel="stylesheet">
         </head>
         <body>
             <%@ include file="/WEB-INF/views/common/header.jsp" %>
                 <main>
                     <div id="target">
                         <div id="selectDiv">
-                            <select>
-                                <option>학생 선택</option>
-                                <option value="학생1">학생1</option>
-                                <option value="학생2">학생2</option>
-                                <option value="학생3">학생3</option>
-                                <option value="학생4">학생4</option>
-                                <option value="학생5">학생5</option>
-                                <option value="학생6">학생6</option>
-                                <option value="학생7">학생7</option>
+                            <select name="" id="">
+                                <option value="#">수강생</option>
+                                <option value="#">일자</option>
+                                <option value="#">출결상태</option>
                             </select>
+                            <input type="text" name="attendanceInput">
+                            <button type="submit">검색</button>
                         </div>
                         <div id="content">
+                            <div>수강생</div>
                             <div>일자</div>
                             <div>입실시간</div>
                             <div>퇴실시간</div>
@@ -34,6 +32,7 @@
                             <div>출결상태</div>
                         </div>
                         <div id="content">
+                            <div>수강생</div>
                             <div>YYYY-MM-DD</div>
                             <div>AAAAAAAA</div>
                             <div>AAAAAAAA</div>
@@ -42,6 +41,7 @@
                             <div>AAAAAAAA</div>
                         </div>
                         <div id="content">
+                            <div>수강생</div>
                             <div>YYYY-MM-DD</div>
                             <div>AAAAAAAA</div>
                             <div>AAAAAAAA</div>
@@ -50,6 +50,7 @@
                             <div>AAAAAAAA</div>
                         </div>
                         <div id="content">
+                            <div>수강생</div>
                             <div>YYYY-MM-DD</div>
                             <div>AAAAAAAA</div>
                             <div>AAAAAAAA</div>
@@ -58,6 +59,7 @@
                             <div>AAAAAAAA</div>
                         </div>
                         <div id="content">
+                            <div>수강생</div>
                             <div>YYYY-MM-DD</div>
                             <div>AAAAAAAA</div>
                             <div>AAAAAAAA</div>
@@ -66,6 +68,7 @@
                             <div>AAAAAAAA</div>
                         </div>
                         <div id="content">
+                            <div>수강생</div>
                             <div>YYYY-MM-DD</div>
                             <div>AAAAAAAA</div>
                             <div>AAAAAAAA</div>
@@ -74,6 +77,7 @@
                             <div>AAAAAAAA</div>
                         </div>
                         <div id="content">
+                            <div>수강생</div>
                             <div>YYYY-MM-DD</div>
                             <div>AAAAAAAA</div>
                             <div>AAAAAAAA</div>
@@ -82,6 +86,7 @@
                             <div>AAAAAAAA</div>
                         </div>
                         <div id="content">
+                            <div>수강생</div>
                             <div>YYYY-MM-DD</div>
                             <div>AAAAAAAA</div>
                             <div>AAAAAAAA</div>
@@ -90,6 +95,7 @@
                             <div>AAAAAAAA</div>
                         </div>
                         <div id="content">
+                            <div>수강생</div>
                             <div>YYYY-MM-DD</div>
                             <div>AAAAAAAA</div>
                             <div>AAAAAAAA</div>
@@ -98,6 +104,7 @@
                             <div>AAAAAAAA</div>
                         </div>
                         <div id="content">
+                            <div>수강생</div>
                             <div>YYYY-MM-DD</div>
                             <div>AAAAAAAA</div>
                             <div>AAAAAAAA</div>
@@ -106,6 +113,7 @@
                             <div>AAAAAAAA</div>
                         </div>
                         <div id="content">
+                            <div>수강생</div>
                             <div>YYYY-MM-DD</div>
                             <div>AAAAAAAA</div>
                             <div>AAAAAAAA</div>
@@ -113,45 +121,6 @@
                             <div>AAAAAAAA</div>
                             <div>AAAAAAAA</div>
                         </div>
-                        <div id="content">
-                            <div>YYYY-MM-DD</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                        </div>
-                        <div id="content">
-                            <div>YYYY-MM-DD</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                        </div>
-                        <div id="content">
-                            <div>YYYY-MM-DD</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                        </div>
-                        <div id="content">
-                            <div>YYYY-MM-DD</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                        </div>
-                        <div id="content">
-                            <div>YYYY-MM-DD</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
                         </div>
                         <div id="pageDiv">
                             <button><</button>
