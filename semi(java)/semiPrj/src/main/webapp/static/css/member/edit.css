@@ -113,4 +113,5 @@ button {
     margin-top: 50px;
 }
 
-
+button:hover { background-color: #B53232; }
+input[type="submit"] , label , button:hover { cursor: pointer; }
