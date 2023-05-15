@@ -121,9 +121,13 @@
             </table>
             
 			<div class="board_page">
-                <a href=""><<</a>
-                <a href="">1</a>
-                <a href="">>></a>
+                <button><<</button>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+                <button>>></button>
             </div>
 		</main>
 

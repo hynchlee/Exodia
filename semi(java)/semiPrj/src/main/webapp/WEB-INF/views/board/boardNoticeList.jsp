@@ -24,7 +24,7 @@
             </div>
             
             <div class="board_search">
-                <form action="" method="post" name="searchBoard">
+                <form action="${root}/notice/list" method="post" name="searchBoard">
                     <select class="searchCategory" name="searchCategory">
                         <option value="t">제목</option>
                         <option value="c">내용</option>
@@ -119,12 +119,16 @@
                 </tbody>
             </table>
             <div class="board_bt">
-                <a href="" class="bt1">글 등록</a>
+                <a href="${root}/board/write" class="bt1">글 등록</a>
             </div>
 			<div class="board_page">
-                <a href=""><<</a>
-                <a href="">1</a>
-                <a href="">>></a>
+                <button><<</button>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+                <button>>></button>
             </div>
 		</main>
 

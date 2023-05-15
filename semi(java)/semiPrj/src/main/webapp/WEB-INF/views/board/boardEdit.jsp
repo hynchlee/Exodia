@@ -24,56 +24,60 @@
             </div>
 
             <div class="board_bt">
-                <a href="" class="bt1">목록으로</a>
+                <!-- 카테고리에 따라 목록 나누기 -->
+                <a href="${root}/class/list" class="bt1">목록으로</a>
             </div>
 
-            <!-- 관리자에게만 보이는 체크박스 -->
-            <div class="checked">
-                <input type="checkbox" name="" id=""><span>상단고정</span>
-            </div>
+            <form action="${root}/board/write" method="post" enctype="multipart/form-data">
 
-            <table class="board_view">
-                <colgroup>
-                    <col width="15%">
-                    <col width="50%">
-                    <col width="15%">
-                    <col width="*%">
-                    <col width="10">
-                </colgroup>
-                <tbody>
-                    <tr>
-                        <th>제목</th>
-                        <td>이곳은제목자리</td>
-                        <th>조회수</th>
-                        <td colspan="4/6">77</td>
-                    </tr>
-                    <tr>
-                        <th>작성자</th>
-                        <td>이곳은작성자</td>
-                        <th>작성일</th>
-                        <td>2023.05.01</td>
-                        <td class="edit_date">2023.05.06</td>
-                    </tr>
-                    <!-- 후기게시판과 큐엔에이 게시판에만 보임 -->
-                    <tr>
-                        <th>강좌명</th>
-                        <td colspan="4">(스마트웹&콘텐츠개발)반응형 UI/UX 웹콘텐츠 개발자 양성과정A</td>
-                    </tr>
-                    <tr>
-                        <th>내용</th>
-                        <td colspan="4" style="height: 500px;">이곳은 내용자리</td>
-                    </tr>
-                    <tr>
-                        <th>첨부파일</th>
-                        <td colspan="4"></td>
-                    </tr>
-                </tbody>
-            </table>
-            <!-- 작성자에게만 보이기 -->
-            <div class="view_btn">
-                <input type="button" value="삭제하기">
-                <input type="submit" value="수정하기">
-            </div>
+                <!-- 관리자에게만 보이는 체크박스 -->
+                <div class="checked">
+                    <input type="checkbox" name="" id=""><span>상단고정</span>
+                </div>
+    
+                <table class="board_view">
+                    <colgroup>
+                        <col width="15%">
+                        <col width="50%">
+                        <col width="15%">
+                        <col width="*%">
+                        <col width="10">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th>제목</th>
+                            <td>이곳은제목자리</td>
+                            <th>조회수</th>
+                            <td colspan="4/6">77</td>
+                        </tr>
+                        <tr>
+                            <th>작성자</th>
+                            <td>이곳은작성자</td>
+                            <th>작성일</th>
+                            <td>2023.05.01</td>
+                            <td class="edit_date">2023.05.06</td>
+                        </tr>
+                        <!-- 후기게시판과 큐엔에이 게시판에만 보임 -->
+                        <tr>
+                            <th>강좌명</th>
+                            <td colspan="4">(스마트웹&콘텐츠개발)반응형 UI/UX 웹콘텐츠 개발자 양성과정A</td>
+                        </tr>
+                        <tr>
+                            <th>내용</th>
+                            <td colspan="4" style="height: 500px;">이곳은 내용자리</td>
+                        </tr>
+                        <tr>
+                            <th>첨부파일</th>
+                            <td colspan="4"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- 작성자에게만 보이기 -->
+                <div class="view_btn">
+                    <input type="button" class="bt1" value="삭제하기">
+                    <input type="submit" class="bt1" value="수정하기">
+                </div>
+            </form>
 
             <!-- 큐엔에이, 후기게시판은 답글 안받음 -->
             <div class="write_comment">

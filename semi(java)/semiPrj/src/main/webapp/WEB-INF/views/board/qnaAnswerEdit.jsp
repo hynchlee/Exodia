@@ -23,9 +23,9 @@
                 </ul>
             </div>
 
-            <form action="" method="post">
+            <form action="${root}/qna/answer" method="post">
                 <div class="board_bt">
-                    <a href="" class="bt1">목록으로</a>
+                    <a href="${root}/qna/list" class="bt1">목록으로</a>
                 </div>
     
                 <table class="board_view">
@@ -96,8 +96,8 @@
                 </table>
     
                 <div class="view_btn">
-                    <input type="button" value="삭제하기">
-                    <input type="submit" value="수정하기">
+                    <input type="button" class="bt1" value="삭제하기">
+                    <input type="submit" class="bt1" value="수정하기">
                 </div>
     
                 
