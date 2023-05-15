@@ -15,10 +15,7 @@ main{
     width: 100%;
     min-width: 1200px;
     margin: 0 auto;
-    padding: 70px 0 100px;
-    height: 1000px;
-
-    
+    height: auto;
 }
 
 .myClass{
@@ -71,7 +68,7 @@ main{
 }
 
 
-.bt1{
+/* .bt1{
     background-color: #4973b3;
     color: #f2f5f9;
     font-family: 'Spoqa Han Sans Neo';
@@ -80,6 +77,26 @@ main{
     padding: 8px 15px 6px;
     border-radius: 10px;
     cursor: pointer;
+} */
+
+.bt1{
+    background-color: #F0F0F0;
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: normal;
+    font-size: 13px;
+    padding: 8px 15px 6px;
+    display: flex;
+    text-align: center;
+    border-radius: 10px;
+    border: none;
+    margin-left: 5px;
+
+    cursor: pointer;
+}
+
+.bt1:hover{
+    background-color: #4998D1;
+    color: white;
 }
 
 hr{

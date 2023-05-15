@@ -23,21 +23,23 @@
                 </ul>
             </div>
             
-            <div class="board_search">
-                <div class="qna_control">
-                    <label>
-                        <input type="radio" name="contact" value="a_all" checked />
-                        <span>전체글</span>
-                      </label>
-                    <label>
-                        <input type="radio" name="contact" value="a_n"/>
-                        <span>답변대기</span>
-                      </label>
-                      <label>
-                        <input type="radio" name="contact" value="a_y" />
-                        <span>답변완료</span>
-                      </label>
-                </div>
+            <form action="${root}/qna/list">
+                <div class="board_search">
+                    <div class="qna_control">
+                        <label>
+                            <input type="radio" name="contact" value="a_all" checked />
+                            <span>전체글</span>
+                          </label>
+                        <label>
+                            <input type="radio" name="contact" value="a_n"/>
+                            <span>답변대기</span>
+                          </label>
+                          <label>
+                            <input type="radio" name="contact" value="a_y" />
+                            <span>답변완료</span>
+                          </label>
+                    </div>
+            </form>
                 <form action="" method="post" name="searchBoard">
                     <select class="searchCategory" name="searchCategory">
                         <option value="t">제목</option>
@@ -130,13 +132,18 @@
                     
                 </tbody>
             </table>
+            <!-- 관리자나 강사가 클릭하면 다른 창 -->
             <div class="board_bt">
-                <a href="" class="bt1">질문하기</a>
+                <a href="${root}/board/write" class="bt1">질문하기</a>
             </div>
 			<div class="board_page">
-                <a href=""><<</a>
-                <a href="">1</a>
-                <a href="">>></a>
+                <button><<</button>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+                <button>>></button>
             </div>
 		</main>
 

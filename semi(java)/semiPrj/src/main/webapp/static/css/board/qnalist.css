@@ -19,10 +19,7 @@ main{
     width: 100%;
     min-width: 1200px;
     margin: 0 auto;
-    padding: 70px 0 100px;
-    height: 1000px;
-
-    
+    height: auto;
 }
 
 .myClass{
@@ -110,8 +107,7 @@ table{
 }
 
 .bt1{
-    background-color: #275caa;
-    color: #f2f5f9;
+    background-color: #F0F0F0;
     font-family: 'Spoqa Han Sans Neo';
     font-weight: normal;
     font-size: 13px;
@@ -121,22 +117,38 @@ table{
     border-radius: 10px;
 }
 
+.bt1:hover{
+    background-color: #4998D1;
+    color: white;
+}
+
 .board_page{
     text-align: center;
 }
 
-.board_page a{
-    display: inline-block;
+.board_page button{
+    /* display: inline-block;
     width: 30px;
     height: 30px;
     border: 1px solid #97979767;
     color: #222;
-    font-family: 'Spoqa Han Sans Neo';
-    font-weight: normal;
-    font-size: 13px;
     line-height: 28px;
-    text-align: center;
+     */
     margin-right: 8px;
+    text-align: center;
+    font-family: 'Spoqa Han Sans Neo';
+    display: inline-block;
+    font-weight: bold;
+    font-size: 13px;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #F0F0F0;
+}
+
+.board_page button:hover{
+    background-color: #ddd;
 }
 
 .board .state .bt_y{

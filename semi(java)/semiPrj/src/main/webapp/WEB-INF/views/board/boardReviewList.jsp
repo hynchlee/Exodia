@@ -23,19 +23,21 @@
                 </ul>
             </div>
 
-            <div class="board_search">
-                <form action="" method="post" name="searchBoard">
-                    <select class="searchCategory" name="searchCategory">
-                        <option value="cn">강좌</option>
-                    </select>
-                    <select class="selectCategory" name="selectCategory">
-                        <option value="1">sw개발자</option>
-                        <option value="1">정보보안</option>
-                        <option value="1">풀스택</option>
-                    </select>
-                    <input type="button" value="검색" class="searchBtn">
-                </form>
-            </div>
+            <form action="${root}/review/list">
+                <div class="board_search">
+                    <form action="" method="post" name="searchBoard">
+                        <select class="searchCategory" name="searchCategory">
+                            <option value="cn">강좌</option>
+                        </select>
+                        <select class="selectCategory" name="selectCategory">
+                            <option value="1">sw개발자</option>
+                            <option value="1">정보보안</option>
+                            <option value="1">풀스택</option>
+                        </select>
+                        <input type="button" value="검색" class="searchBtn">
+                    </form>
+                </div>
+            </form>
 
             <table class="board">
                 <thead>
@@ -101,12 +103,16 @@
                 </tbody>
             </table>
             <div class="board_bt">
-                <a href="" class="bt1">후기 등록</a>
+                <a href="${root}/board/write" class="bt1">후기 등록</a>
             </div>
 			<div class="board_page">
-                <a href=""><<</a>
-                <a href="">1</a>
-                <a href="">>></a>
+                <button><<</button>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+                <button>>></button>
             </div>
 		</main>
 
