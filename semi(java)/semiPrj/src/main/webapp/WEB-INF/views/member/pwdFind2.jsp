@@ -42,7 +42,7 @@
                 |
                 <a href="${root}/member/login"><b>로그인</b></a>
                 |
-                <a href="${root}/member/pwd/find"><b>비밀번호 재설정</b></a>
+                <a href="${root}/member/pwd/renew"><b>비밀번호 재설정</b></a>
             </div>
 
         </form>
