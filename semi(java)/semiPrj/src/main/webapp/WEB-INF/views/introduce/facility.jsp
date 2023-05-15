@@ -95,6 +95,7 @@
 			for (let i = 0; i < e112_List.length; i++) {
 				if ('${param.building}' == i + 1) {
 					e112_List[i].style.backgroundColor = 'rgba(104.70051661133766, 176.69292032718658, 228.4374949336052, 1)';
+					e112_List[i].style.color = 'white';
 				}
 			}
 
