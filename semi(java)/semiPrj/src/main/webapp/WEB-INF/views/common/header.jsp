@@ -33,7 +33,7 @@
 						<li class="menu3"><a href="${root}/notice/list">
 								게시판
 							</a></li>
-						<li class="menu3"><a href="미구현(강의소개페이지)">
+						<li class="menu3"><a href="${root}/introduce/lecture?subject=1">
 								강의
 							</a></li>
 						<li class="menu3"><a href="">
@@ -47,7 +47,7 @@
 						<tr>
 							<td><a href="${root}/introduce/greet">인사말</a></td>
 							<td><a href="${root}/notice/list">공지사항</a></td>
-							<td><a href="">강의 소개</a></td>
+							<td><a href="${root}/introduce/lecture?subject=1">강의 소개</a></td>
 							<td></td>
 						</tr>
 						<tr>

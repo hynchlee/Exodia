@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+.lecture-menu {
+    height: 100px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.e112 {
+    flex: 1;
+    max-width: 30%;
+    background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+    font-family: Spoqa Han Sans Neo;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+}
+
+.e112:hover {
+    color: white;
+    background-color: rgba(104.70051661133766, 176.69292032718658, 228.4374949336052, 1);
+}
+
+.curr {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.curr1 {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.curr img {
+    width: 100%;
+}
