@@ -7,7 +7,6 @@
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		<link href="${root}/static/css/letter/receive-letter.css" rel="stylesheet">
-		
 	</head>
 	<body>
 		<%@ include file="/WEB-INF/views/common/header.jsp" %>
@@ -50,8 +49,14 @@
 					<table>
 						<thead>
 							<tr>
-								<td colspan="4" style="text-align: right;">
-									<button id="deleteButton">삭제하기</button>
+								<td>
+									<select>
+										<option value="">작성자</option>
+										<option value="">타이틀</option>
+									</select>
+								</td>
+								<td colspan="2">
+									<input type="text" style="width: 100%;">
 								</td>
 							</tr>
 						</thead>
@@ -116,41 +121,22 @@
 								<td>타이틀</td>
 								<td>날짜</td>
 							</tr>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>작성자</td>
-								<td>타이틀</td>
-								<td>날짜</td>
-							</tr>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>작성자</td>
-								<td>타이틀</td>
-								<td>날짜</td>
-							</tr>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>작성자</td>
-								<td>타이틀</td>
-								<td>날짜</td>
-							</tr>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>작성자</td>
-								<td>타이틀</td>
-								<td>날짜</td>
-							</tr>
 						</tbody>
 						<tfoot>
 							<tr>
-								<td colspan="4">
-									<button><<</button>
+								<td id="deleteTd" colspan="4">
+									<button id="deleteButton">삭제하기</button>
+								</td>
+							</tr>
+							<tr>
+								<td id="pageTd" colspan="4">
+									<button><</button>
 									<button>1</button>
 									<button>2</button>
 									<button>3</button>
 									<button>4</button>
 									<button>5</button>
-									<button>>></button>
+									<button>></button>
 								</td>
 							</tr>
 						</tfoot>
@@ -166,4 +152,10 @@
 	<script>
 		const title = document.querySelector(".title");
 		title.innerHTML = "받은 쪽지";
+
+		const banner = document.querySelector(".banner");
+			banner.style.marginBottom = 0;
+
+			const caption = document.querySelector(".caption1");
+			caption.style.marginTop = 0;
 	</script>
