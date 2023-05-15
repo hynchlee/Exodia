@@ -51,7 +51,7 @@
 					<div class="profile">
 						<div class="innerprofile">
 							<div class="photo01"></div>
-							<div class="identity">~~~님 (수강생)</div>
+							<div class="identity">~~~님 (강사)</div>
 							<div class="class01">반응형 UX/UI 웹컨텐츠 개발자 양성과정 A9</div>
 							<div class="change">내 정보 수정</div>
 							<div class="letter">쪽지</div>
@@ -77,7 +77,7 @@
 				</td>
 				<td class="td01">
 					<div class="team">
-						teammate info
+						담당 강의
 					</div>
 				</td>
 			</tr>

@@ -19,7 +19,7 @@
       <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400%2C600" />
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins%3A400%2C600" />
-      <link href="${root}/static/css/main/main.css" rel="stylesheet">
+      <link href="${root}/static/css/main/mmain.css" rel="stylesheet">
 
 
       <style>
@@ -181,24 +181,14 @@
             <video src="/semi/static/img/main/main.mp4" autoplay loop></video>
           </div>
 
-          <div class="v69_16"></div>
-          <a href="/로그인링크">
-            <div class="v69_17"></div>
-            <div class="v69_19"></div>
-            <span class="v69_18">로그인</span>
-          </a>
-          <div class="v69_21"></div>
-          <a href="/회원가입링크">
-            <span class="v69_22">회원가입</span>
-          </a>
-          <a href="/아이디찾기링크">
-            <span class="v69_23">아이디 찾기</span>
-          </a>
-          <a href="/비밀번호찾기">
-            <span class="v69_24">비밀번호 찾기</span>
-          </a>
-          <div class="v69_26"></div>
-          <div class="name"></div><span class="v69_29">간편하게 로그인하세요</span>
+          <div class="v69_16">
+          	<div class="logout"><a href="/">로그아웃</a></div>
+			<div class="photo01"></div>
+			<div class="identity"><a href="/">~~~님 (관리자)</a></div>
+			<div class="class01"><a href="/">관리자 등급: A</a></div>
+			<div class="change"><a href="/">내 정보 수정</a></div>
+			<div class="managermenu"><a href="/" class="awhite">관리자 메뉴</a></div>
+          </div>
           <div class="v75_31">
           	<div id="carouselExample02" class="carousel slide carousel-fade" data-bs-ride="carousel">
 			  <div class="carousel-inner">

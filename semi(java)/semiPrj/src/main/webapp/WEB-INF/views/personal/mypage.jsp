@@ -143,7 +143,8 @@
 					<div class="detail01">
 						<table class="innertable03">
 							<tr class="tr030">
-								<td colspan="4" class="td030">출결 내역</td>
+								<td colspan="3" class="td030">출결 내역</td>
+								<td class="plus01"><a href="/" class="plus02">더보기</a></td>
 							</tr>
 							<tr class="tr03">
 								<td class="line02">
@@ -178,7 +179,8 @@
 					<div class="detail02">
 						<table class="innertable03">
 							<tr class="tr030">
-								<td colspan="3" class="td030">휴가 내역</td>
+								<td colspan="2" class="td030">휴가 내역</td>
+								<td class="plus01"><a href="/" class="plus02">더보기</a></td>
 							</tr>
 							<tr class="tr03">
 								<td class="line02">
