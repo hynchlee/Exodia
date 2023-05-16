@@ -751,8 +751,8 @@ body {
     width: 100px;
     height: 100px;
     overflow: hidden; 
-    left: 25px;
-    top: 25px;
+    left: 50px;
+    top: 50px;
 }
 .identity{
 	font-size: 25px;
@@ -760,16 +760,16 @@ body {
     position: relative;
     width: 300px;
     height: 50px;
-    left: 165px;
-    bottom: 75px;
+    left: 180px;
+    bottom: 50px;
     font-family: Noto Sans;
 }
 .class01{
     position: relative;
     width: 500px;
     height: 50px;
-    left: 165px;
-    bottom: 75px;
+    left: 180px;
+    bottom: 50px;
     font-family: Noto Sans;
 }
 .change{
@@ -781,8 +781,8 @@ body {
     position: relative;
     width: 106px;
     height: 37px;
-    left: 25px;
-    bottom: 50px;
+    left: 50px;
+    bottom: 25px;
     border:1px solid gray; 
     font-family: Noto Sans;
 }
@@ -808,9 +808,11 @@ body {
     position: relative;
     width: 220px;
     height: 70px;
-    left: 275px;
-    bottom: 65px;
-    border-radius: 35px;
+    left: 175px;
+    bottom: 30px;
+	border-top-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
     font-family: Noto Sans;
     color: rgba(255,255,255,1);
     font-size: 35px;

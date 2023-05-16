@@ -185,15 +185,11 @@
           	<div class="innerprofile">
           		<div class="logout"><a href="/">로그아웃</a></div>
 				<div class="photo01"></div>
-				<div class="identity"><a href="/">~~~님 (수강생 OR 강사)</a></div>
-				<div class="class01"><a href="/">반응형 UX/UI 웹컨텐츠 개발자 양성과정 A9</a></div>
-				<div class="change"><a href="/">내 정보 수정</a></div>
-				<div class="letter"><a href="/">쪽지</a></div>
-				<div class="mywrite"><a href="/">내가 쓴 글</a></div>
-				<div class="point"><a href="/">마일리지</a></div>
-				<div class="test"><a href="/">시험 응시</a></div>
-				<div class="vacation"><a href="/">휴가 신청</a></div>
-				<div class="exit"><a href="/">퇴실 하기</a></div>
+				<div class="identity"><a href="${root}/tmypage">~~~님 (강사)</a></div>
+				<div class="class01"><a href="${root}/lecture/apply">강의 목록 보기</a></div>
+				<div class="change"><a href="${root}/member/edit">내 정보 수정</a></div>
+				<div class="letter"><a href="${root}/letter/receive">쪽지</a></div>
+				<div class="mywrite"><a href="${root}/my/list">내가 쓴 글</a></div>
 			</div>
           </div>
           <div class="v75_31">

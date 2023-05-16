@@ -184,10 +184,9 @@
           <div class="v69_16">
           	<div class="logout"><a href="/">로그아웃</a></div>
 			<div class="photo01"></div>
-			<div class="identity"><a href="/">~~~님 (관리자)</a></div>
-			<div class="class01"><a href="/">관리자 등급: A</a></div>
-			<div class="change"><a href="/">내 정보 수정</a></div>
-			<div class="managermenu"><a href="/" class="awhite">관리자 메뉴</a></div>
+			<div class="identity">~~~님 (관리자)</div>
+			<div class="class01">관리자 등급: A</div>
+			<div class="managermenu"><a href="${root}/adminmenu" class="awhite">관리자 메뉴</a></div>
           </div>
           <div class="v75_31">
           	<div id="carouselExample02" class="carousel slide carousel-fade" data-bs-ride="carousel">

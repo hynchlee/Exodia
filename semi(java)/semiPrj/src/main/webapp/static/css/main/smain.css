@@ -169,7 +169,6 @@ body {
   top: 649px;
   left: 1276px;
   border: 2px solid rgba(184,184,184,1);
-  overflow: hidden;
 }
 .v69_17 {
   width: 478px;
@@ -183,6 +182,7 @@ body {
   border-top-right-radius: 26px;
   border-bottom-left-radius: 26px;
   border-bottom-right-radius: 26px;
+  overflow: hidden;
 }
 .v69_17:hover{
   background-color: rgb(36, 40, 82);
@@ -195,22 +195,22 @@ body {
   background-position: center center;
   background-size: cover;
   opacity: 1;
+  position: absolute;
+  top: 781px;
+  left: 1412px;
   overflow: hidden;
-  position: relative;
-  top: 35px;
-  left: 75px;
 }
 .v69_18 {
   width: 72px;
   color: rgba(255,255,255,1);
+  position: absolute;
+  top: 789px;
+  left: 1642px;
   font-family: Noto Sans;
   font-weight: Regular;
   font-size: 24px;
   opacity: 1;
   text-align: left;
-  position: relative;
-  bottom: 5px;
-  left: 300px;
 }
 .v69_21 {
   width: 18px;
@@ -742,4 +742,141 @@ body {
 #innerinfo02{
 	bottom: 325px;
 	text-align: center;
+}
+.innerprofile{
+	width: 100%;
+	height: 100%;
+    position: relative;
+    padding: 20px;
+}
+.photo01{
+	display: flex;
+    position: relative;
+    background-color: gray;
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+    overflow: hidden; 
+    left: 25px;
+}
+.identity{
+	font-size: 25px;
+	font-weight: bold;
+    position: relative;
+    width: 300px;
+    height: 50px;
+    left: 165px;
+    bottom: 100px;
+    font-family: Noto Sans;
+}
+.class01{
+    position: relative;
+    width: 500px;
+    height: 50px;
+    left: 165px;
+    bottom: 110px;
+    font-family: Noto Sans;
+}
+.change{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: white;
+	border-radius: 35px;
+    position: relative;
+    width: 106px;
+    height: 37px;
+    left: 25px;
+    bottom: 75px;
+    border:1px solid gray; 
+    font-family: Noto Sans;
+}
+.letter{
+	font-size: 20px;
+	font-family: Noto Sans;
+    position: relative;
+    width: 75px;
+    height: 50px;
+    left: 165px;
+    bottom: 155px;
+}
+.mywrite{
+	font-size: 20px;
+	font-family: Noto Sans;
+    position: relative;
+    width: 100px;
+    height: 50px;
+    left: 325px;
+    bottom: 215px;
+}
+.point{
+	font-size: 20px;
+	font-family: Noto Sans;
+    position: relative;
+    width: 100px;
+    height: 50px;
+    left: 165px;
+    bottom: 205px;
+}
+.test{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    position: relative;
+    width: 160px;
+    height: 40px;
+    left: 15px;
+    bottom: 185px;
+    border-radius: 35px;
+    background: rgba(217,217,217,1);
+    font-family: Noto Sans;
+    color: rgba(255,255,255,1);
+    font-size: 20px;
+}
+.vacation{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    position: relative;
+    width: 160px;
+    height: 40px;
+    left: 190px;
+    bottom: 225px;
+    border-radius: 35px;
+    background: rgba(245,190,107,1);
+    font-family: Noto Sans;
+    color: rgba(255,255,255,1);
+    font-size: 20px;
+}
+.exit{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    position: relative;
+    width: 160px;
+    height: 40px;
+    left: 360px;
+    bottom: 265px;
+    border-radius: 35px;
+    background: rgba(32,103,167,1);
+    font-family: Noto Sans;
+    color: rgba(255,255,255,1);
+    font-size: 20px;
+}
+.logout{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    position: relative;
+    width: 120px;
+    height: 30px;
+	left: 400px;
+    border-radius: 35px;
+    background: rgba(217,217,217,1);
+    font-family: Noto Sans;
+    color: rgba(255,255,255,1);
+    font-size: 20px;
+}
+.a01{
+	color: white;
 }

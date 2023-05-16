@@ -758,6 +758,7 @@ body {
     height: 100px;
     overflow: hidden; 
     left: 25px;
+    top: 25px;
 }
 .identity{
 	font-size: 25px;
@@ -766,7 +767,7 @@ body {
     width: 300px;
     height: 50px;
     left: 165px;
-    bottom: 100px;
+    bottom: 75px;
     font-family: Noto Sans;
 }
 .class01{
@@ -774,7 +775,7 @@ body {
     width: 500px;
     height: 50px;
     left: 165px;
-    bottom: 100px;
+    bottom: 65px;
     font-family: Noto Sans;
 }
 .change{
@@ -787,7 +788,7 @@ body {
     width: 106px;
     height: 37px;
     left: 25px;
-    bottom: 75px;
+    bottom: 40px;
     border:1px solid gray; 
     font-family: Noto Sans;
 }
@@ -798,7 +799,7 @@ body {
     width: 75px;
     height: 50px;
     left: 165px;
-    bottom: 145px;
+    bottom: 95px;
 }
 .mywrite{
 	font-size: 20px;
@@ -807,7 +808,7 @@ body {
     width: 100px;
     height: 50px;
     left: 325px;
-    bottom: 205px;
+    bottom: 145px;
 }
 .point{
 	font-size: 20px;
@@ -876,4 +877,7 @@ body {
     font-family: Noto Sans;
     color: rgba(255,255,255,1);
     font-size: 20px;
+}
+.a01{
+	color: white;
 }
