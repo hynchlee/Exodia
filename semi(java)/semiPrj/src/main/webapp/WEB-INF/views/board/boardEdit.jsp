@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <link href="${root}/static/css/board/edit.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style type="text/css">
 </style>
 </head>
@@ -107,7 +108,7 @@
                     </span>
                     <input type="button" value="수정">
                     <input type="button" value="삭제">
-                    <input type="button" value="답글">
+                    <input type="button" value="답글" id="onDisplay">
                     <span class="time">2023.05.01 - 00:00:00:00</span>
                 </div>
                 <div class="recomment">
@@ -130,11 +131,12 @@
                     <input type="button" value="삭제">
                     <span class="time">2023.05.01 - 00:00:00:00</span>
                 </div>
-                <div class="recomment_write">
+                <!-- 답글달기 -->
+                <div class="recomment_write" id="noneDiv" style="display: none;">
                     <span>답글</span>
                     <input type="text">
                     <input type="button" value="작성">
-                    <input type="button" value="취소">
+                    <input type="button" id="offDisplay" value="취소">
                 </div>
                 <div class="comment_col">
                     <span>작성자</span>
@@ -170,4 +172,40 @@
 <script>
 	const title = document.querySelector('.title');
 	title.innerHTML = "자유게시판";
+
+    // 답글 작성란 보이기 숨기기
+
+    $(function(){
+        $('#onDisplay').click(function(){
+            if($("#noneDiv").css("display") == "none"){
+                $('#noneDiv').show();
+            }
+        });
+    });
+
+    $(function(){
+        $('#offDisplay').click(function(){
+            if($("#noneDiv").css("display") != "none"){
+                $('#noneDiv').hide();
+            }
+        })
+    })
+
+    // // $('#onDisplay').click(function(){
+    // //     $('#noneDiv').show();
+    // // })
+
+    // // $('#offDisplay').click(function(){
+    // //     $('#noneDiv').hide();
+    // // })
+
+    // $(function(){
+    //     $("#onDisplay").on("click",function(){
+    //         $("#noneDiv").show();
+    //     })
+    //     $("#offDisplay").on("click",function(){
+    //         $("noneDiv").hide();
+    //     })
+    // })
+
 </script>
