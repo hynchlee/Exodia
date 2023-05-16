@@ -1,14 +1,31 @@
 @charset "UTF-8";
 
-main {
-    font-size: 24px;
+main * {
+    font-size: 18px;
     font-family:Noto Sans KR;
     overflow: auto;
+}
+.wrap_1 {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.menu_2 {
+	width: 70%;
+	display: flex;
+	justify-content: center;
+}
+.menu_3 {
+	width: 70%;
+	display: flex;
+	justify-content: flex-end;
 }
 
 
 .tit {
-	font-size: 40px;
+	font-size: 28px;
     font-weight: bold;
     height: 200px;
     display: flex;
@@ -24,7 +41,7 @@ main {
 }
 
 .score {
-    width: 85%;
+    width: 70%;
     display: flex;
     justify-content: right;
     align-items: center;
@@ -46,7 +63,7 @@ main {
     overflow:auto;
     border: 5px solid rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
     box-sizing: border-box;
-    width: 85%;
+    width: 70%;
     margin-top: 25px;
     height: 540px;
 }
@@ -78,36 +95,38 @@ main {
     
 }
 
+#pageDiv button {
+	display: inline-block;
+	font-weight: bold;
+	font-size: 18px;
+	border-radius: 5px;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	background-color: #F0F0F0;
+}
+
+#pageDiv button:hover {
+	background-color: #ddd;
+}
+
 .btn {
-    margin-top: 25px;
-    width: 85%;
-    right: 7.5%;
+	width: 25%;
     display: flex;
-    justify-content: right;
+    justify-content: space-between;
 }
 
 .btn button {
-    font-size: 24px;
-    margin-left: 20px;
-    width: 100px;
-    height: 50px;
-}
-
-.e112_1541 {
-	width: 50%;
-	height: 100px;
-	position: absolute;
-	left: 25%;
-	top: 3200px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.e112_1541 button {
-	width: 7%;
-	font-size: 32px;
-	margin: 3%;
-	color: white;
-	background-color: rgba(72.00000330805779, 91.00000217556953, 166.00000530481339, 1);
-}
+	width: 80px;
+	height: 40px;
+	background-color: #F0F0F0;
+	color: black;
+	border-radius: 10px;
+	border: none;
+	text-align: center;
+ }
+ 
+.btn button:hover {
+	 background-color: #4998D1;
+	 color: white;
+ }

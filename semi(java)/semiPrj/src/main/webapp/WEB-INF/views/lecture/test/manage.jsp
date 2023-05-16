@@ -12,7 +12,7 @@
 
 		<body>
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
-				<main style="height: 3000px;">
+				<main>
 					<div class="tit">프로그래밍 언어 응용</div>
 					<% for(int j=0; j < 3; j++) { %>
 						<div class="problem">
@@ -34,24 +34,34 @@
 									</div>
 									<% } %>
 							</div>
-							<div class="btn">
-								<button>수정</button>
-								<button>삭제</button>
-								<button>추가</button>
+							<br>
+							<div class="wrap_1">
+								<div class="menu_3">
+									<div class="btn">
+										<button>수정</button>
+										<button>삭제</button>
+										<button>추가</button>
+									</div>
+								</div>
 							</div>
 						</div>
 						<br><br><br><br>
 						<% } %>
 
-						<div class="e112_1541">
-							<button class="e112_1542"><<</button>
-							<button class="e112_1543">1</button>
-							<button class="e112_1544">2</button>
-							<button class="e112_1545">3</button>
-							<button class="e112_1546">4</button>
-							<button class="e112_1547">5</button>
-							<button class="e112_1547">>></button>
-						</div>
+							<div class="wrap_1">
+								<div class="menu_2">
+									<div id="pageDiv">
+										<button>
+											<<</button>
+												<button>1</button>
+												<button>2</button>
+												<button>3</button>
+												<button>4</button>
+												<button>5</button>
+												<button>>></button>
+									</div>
+								</div>
+							</div>
 				</main>
 				<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 		</body>

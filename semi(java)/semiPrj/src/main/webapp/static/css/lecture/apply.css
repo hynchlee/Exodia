@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-* {
+main * {
 	font-family: Spoqa Han Sans Neo;
 	font-size: 16px;
 }
@@ -75,6 +75,21 @@ table button {
 }
 
 table button:hover {
+    background-color: #4998D1;
+	color: white;
+}
+
+.e112_909 {
+	width: 150px;
+	height: 40px;
+	background-color: #F0F0F0;
+	color: black;
+	border-radius: 10px;
+	border: none;
+	text-align: center;
+}
+
+.e112_909:hover {
     background-color: #4998D1;
 	color: white;
 }
