@@ -1,0 +1,122 @@
+.select-area {
+	margin-top: 10px;
+	margin-right: 450px;
+	margin-bottom: 70px;
+	text-align: right;
+}
+
+.member-info {
+	display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: start;
+}
+
+#check-area {
+	margin-right: 20px;
+}
+
+#profile-img {
+	width: 130px;
+	height: 130px;
+	border-top-left-radius: 360px;
+	border-top-right-radius: 360px;
+	border-bottom-left-radius: 360px;
+	border-bottom-right-radius: 360px;
+}
+
+/* #name {
+	width: 130px;
+	color: rgba(0, 0, 0, 1);
+	margin-top: 136px;
+	font-family: Noto Sans KR;
+	text-align: center;
+	font-size: 20px;
+	letter-spacing: 0;
+} */
+
+#info {
+	color: rgba(0, 0, 0, 1);
+	height: 130px;
+	width: 700px;
+	font-family: Noto Sans KR;
+	text-align: left;
+	font-size: 18px;
+	margin-left: 80px;
+	margin-bottom: 50px;
+	border: 3px solid rgb(200, 198, 198);
+
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
+.btn-area {
+	margin-top: 10px;
+	margin-right: 300px;
+	text-align: right;
+}
+
+.btn-area > button {
+	width: 80px;
+	height: 40px;
+	background-color: #F0F0F0;
+	color: black;
+	border-radius: 10px;
+	border: none;
+	text-align: center;
+	margin-right: 7px;
+}
+
+.btn-area > button:first-child:hover {
+	background-color: #ced113;
+    color: white;
+}
+
+.btn-area > button:nth-child(2):hover {
+	background-color: #fd7200;
+    color: white;
+}
+
+.btn-area > button:last-child:hover {
+	background-color: #B53232;
+    color: white;
+}
+
+.page-area{
+    text-align: center;
+	margin-top: 50px;
+}
+
+.page-area button{
+    display: inline-block;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #F0F0F0;
+}
+
+/* 
+	예진양식
+
+	.page-area button{
+    margin-right: 8px;
+    text-align: center;
+    font-family: 'Spoqa Han Sans Neo';
+    display: inline-block;
+    font-weight: bold;
+    font-size: 13px;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #F0F0F0;
+} */
+
+.page-area button:hover{
+    background-color: #ddd;
+}
