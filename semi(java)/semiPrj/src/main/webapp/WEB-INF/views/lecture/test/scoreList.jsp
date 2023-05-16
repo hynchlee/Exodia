@@ -14,8 +14,9 @@
 
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-	<main style="height: 2000px;">
+	<main>
 		<div class="e98_1694">SQL 활용</div>
+		<br><br>
 		<table class="list-tbl">
 			<thead>
 				<tr>
@@ -34,7 +35,7 @@
 					<td>심원용</td>
 					<td>94.00</td>
 					<td>
-						<a href="${root}/lecture/test/score">채점하기</a>
+						<button onclick="scorePerson();">채점하기</button>
 					</td>
 				</tr>
 				<%
@@ -43,6 +44,7 @@
 			</tbody>
 		</table>
 
+		<br><br><br>
 		<div class="finish">
 			<a href="${root}/lecture/test/list2" class="finish-btn">채점 완료</a>
 		</div>
@@ -55,4 +57,8 @@
 <script>
 	const title = document.querySelector('.title');
 	title.innerHTML = "평가";
+
+	function scorePerson() {
+		location.href="${root}/lecture/test/score";
+	}
 </script>
