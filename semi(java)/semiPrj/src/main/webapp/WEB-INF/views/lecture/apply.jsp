@@ -55,7 +55,7 @@
 										<td>30</td>
 										<td>국비지원</td>
 										<td><button>접수완료</button></td>
-										<td><button>온라인상담</button></td>
+										<td><button onclick="goDetail()">상세조회</button></td>
 										<td><button>수강신청</button></td>
 									</tr>
 									<% } %>
@@ -86,4 +86,8 @@
 		<script>
 			const title = document.querySelector('.title');
 			title.innerHTML = "수강신청";
+
+			function goDetail() {
+				location.href = "${root}/lecture/detail";
+			}
 		</script>

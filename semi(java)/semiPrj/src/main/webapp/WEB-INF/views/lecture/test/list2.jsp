@@ -12,7 +12,7 @@
 
 		<body>
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
-				<main style="height: 2000px;">
+				<main>
 					<div class="menubar">
 						<select class="e98_1694">
 							<option value="">반응형 UX/UI 웹컨텐츠 개발자 양성과정 A8</option>
