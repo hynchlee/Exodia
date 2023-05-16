@@ -27,7 +27,7 @@
                     <th id="ment1">회원님의 비밀번호는</th>
                 </tr>
                 <tr>
-                    <td><input type="text"></td>
+                    <td><input type="text" disabled></td>
                 </tr>
                 <tr>
                     <th id="ment2">입니다</th>
