@@ -37,12 +37,12 @@
             <table>
                 <tr>
                     <th>아이디</th>
-                    <td><input type="text"></td>
+                    <td><input type="text" placeholder="영어/숫자 조합 n자리 이상"></td>
                     <td><button id="dup-check">중복검사</button></td>
                 </tr>
                 <tr>
                     <th>비밀번호</th>
-                    <td><input type="password"></td>
+                    <td><input type="password" placeholder="영어/숫자 조합 n자리 이상"></td>
                 </tr>
                 <tr>
                     <th>비밀번호 확인</th>

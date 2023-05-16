@@ -1,3 +1,8 @@
+/* body {
+    justify-content: center;
+    align-items: center;
+} */
+
 #wrap {
     width: 900px;
     height: 1050px;
@@ -33,6 +38,7 @@ table input {
     border-top-right-radius: 13px;
     border-bottom-left-radius: 13px;
     border-bottom-right-radius: 13px;
+    font-size: 16px;
 }
 
 th {

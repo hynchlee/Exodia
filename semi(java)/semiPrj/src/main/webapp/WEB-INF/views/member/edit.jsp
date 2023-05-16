@@ -73,12 +73,11 @@
 
 <script>
 
-    function quit(){
+    function quit() {
         const result = confirm('정말로 탈퇴하실 건가요?');
         if(result) {
             location.href='${root}/member/quit';
         }
-        
     }
 
 </script>
