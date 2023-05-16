@@ -50,100 +50,102 @@
 					<table>
 						<thead>
 							<tr>
-								<td colspan="4" style="text-align: right;">
-									<button id="deleteButton">삭제하기</button>
+								<td colspan="5">
+									<select name="" id="">
+										<option value="받은메세지">받은메세지</option>
+										<option value="보낸메세지">보낸메세지</option>
+										<option value="작성자">작성자</option>
+									</select>
+									<input type="text">
+									<button>검색하기</button>
 								</td>
+							</tr>
+							<tr id="trHead">
+								<td id="shortTd" style="width: 10%;"></td>
+								<td>송수진</td>
+								<td>작성자</td>
+								<td>내용내용내용</td>
+								<td>날짜</td>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td><input type="checkbox"></td>
+								<td>받은 편지</td>
 								<td>작성자</td>
 								<td>내용내용내용</td>
 								<td>날짜</td>
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
+								<td>보낸 편지</td>
 								<td>작성자</td>
 								<td>내용내용내용</td>
 								<td>날짜</td>
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
+								<td>받은 편지</td>
 								<td>작성자</td>
 								<td>내용내용내용</td>
 								<td>날짜</td>
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
+								<td>보낸 편지</td>
 								<td>작성자</td>
 								<td>내용내용내용</td>
 								<td>날짜</td>
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
+								<td>받은 편지</td>
 								<td>작성자</td>
 								<td>내용내용내용</td>
 								<td>날짜</td>
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
+								<td>보낸 편지</td>
 								<td>작성자</td>
 								<td>내용내용내용</td>
 								<td>날짜</td>
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
+								<td>받은 편지</td>
 								<td>작성자</td>
 								<td>내용내용내용</td>
 								<td>날짜</td>
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
+								<td>보낸 편지</td>
 								<td>작성자</td>
 								<td>내용내용내용</td>
 								<td>날짜</td>
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
+								<td>받은 편지</td>
 								<td>작성자</td>
 								<td>내용내용내용</td>
 								<td>날짜</td>
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
-								<td>작성자</td>
-								<td>내용내용내용</td>
-								<td>날짜</td>
-							</tr>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>작성자</td>
-								<td>내용내용내용</td>
-								<td>날짜</td>
-							</tr>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>작성자</td>
-								<td>내용내용내용</td>
-								<td>날짜</td>
-							</tr>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>작성자</td>
-								<td>내용내용내용</td>
-								<td>날짜</td>
-							</tr>
-							<tr>
-								<td><input type="checkbox"></td>
+								<td>보낸 편지</td>
 								<td>작성자</td>
 								<td>내용내용내용</td>
 								<td>날짜</td>
 							</tr>
 						</tbody>
 						<tfoot>
+							<td colspan="5" style="text-align: right;">
+								<button id="deleteButton">삭제</button>
+							</td>
 							<tr>
-								<td colspan="4">
+								<td colspan="5">
 									<button><<</button>
 									<button>1</button>
 									<button>2</button>
