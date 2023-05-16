@@ -182,7 +182,7 @@
           </div>
 
           <div class="v69_16"></div>
-          <a href="/로그인링크">
+          <a href="${root}/member/login">
             <div class="v69_17">
 	            <div class="v69_19"></div>
 	            <span class="v69_18">로그인</span>
@@ -190,13 +190,13 @@
           </a>
           <div class="v69_21"></div>
           <a href="/회원가입링크">
-            <span class="v69_22">회원가입</span>
+            <span class="v69_22"><a href="${root}/member/join" class="v69_22">회원가입</a></span>
           </a>
           <a href="/아이디찾기링크">
-            <span class="v69_23">아이디 찾기</span>
+            <span class="v69_23"><a href="${root}/member/id/find" class="v69_23">아이디 찾기</a></span>
           </a>
           <a href="/비밀번호찾기">
-            <span class="v69_24">비밀번호 찾기</span>
+            <span class="v69_24"><a href="${root}/member/pwd/find" class="v69_24">비밀번호 찾기</a></span>
           </a>
           <div class="v69_26"></div>
           <div class="name"></div><span class="v69_29">간편하게 로그인하세요</span>
