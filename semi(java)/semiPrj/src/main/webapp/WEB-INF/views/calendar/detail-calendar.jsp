@@ -7,7 +7,7 @@
   <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
   <meta charset="UTF-8">
   <title>Insert title here</title>
-  <link rel="stylesheet" href="${root}/static/css/calendar/write-calendar.css">
+  <link rel="stylesheet" href="${root}/static/css/calendar/detail-calendar.css">
 </head>
 
 <body>
@@ -24,14 +24,12 @@
         </div>
         <div>
           <input type="date" name="date">
-
         </div>
       </div>
-      <textarea></textarea>
       <div id="footer">
-        <div></div>
-        <div id="buttonDiv"><button><</button> 날짜 이동 <button>></button></div>
-        <div id="saveButton"><button>저장하기</button>
+        <div id="calendarDiv">
+          <%@ include file="/WEB-INF/views/common/calendar.jsp"%>
+        </div>
         </div>
       </div>
     </div>
@@ -40,7 +38,7 @@
 
   <script>
     const title = document.querySelector(".title");
-    title.innerHTML = "캘린더 작성";
+    title.innerHTML = "캘린더";
   </script>
 </body>
 </html>

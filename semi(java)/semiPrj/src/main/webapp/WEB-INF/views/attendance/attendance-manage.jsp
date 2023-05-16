@@ -15,9 +15,9 @@
                     <div id="target">
                         <div id="selectDiv">
                             <select name="" id="">
-                                <option value="#">수강생</option>
-                                <option value="#">일자</option>
-                                <option value="#">출결상태</option>
+                                <option value="student">수강생</option>
+                                <option value="date">일자</option>
+                                <option value="">출결상태</option>
                             </select>
                             <input type="text" name="attendanceInput">
                             <button type="submit">검색</button>
