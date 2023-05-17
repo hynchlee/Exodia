@@ -17,9 +17,9 @@
 		
 		<div class="t01">관리 메뉴</div>
 	
-		<div><a href="/" class="a01">회원 관리</a></div>
+		<div><a href="${root}/admin/member/manage" class="a01">회원 관리</a></div>
 		<div><a href="${root}/vacation/admin" class="a02">휴가 관리</a></div>
-		<div><a href="${root}" class="a03">시험 관리</a></div>
+		<div><a href="${root}/lecture/test/manage" class="a03">시험 관리</a></div>
 		<div><a href="${root}/lecture/manage" class="a04">강의 관리</a></div>
 		<div><a href="${root}" class="a05">게시판 관리</a></div>
 		<div><a href="${root}" class="a06">배너 관리</a></div>
