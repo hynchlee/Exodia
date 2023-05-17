@@ -295,5 +295,21 @@
 	background: rgba(136,136,136,1);
 	border-radius: 5px;
 }
-
-
+.logout{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    position: relative;
+    width: 120px;
+    height: 30px;
+	left: 575px;
+	top: 50px;
+    border-radius: 35px;
+    background: rgba(217,217,217,1);
+    font-family: Noto Sans;
+    color: rgba(255,255,255,1);
+    font-size: 20px;
+}
+.a01{
+	color: white;
+}

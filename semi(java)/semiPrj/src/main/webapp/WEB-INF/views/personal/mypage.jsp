@@ -50,16 +50,17 @@
 				<td class="td01">
 					<div class="profile">
 						<div class="innerprofile">
+							<div class="logout"><a href="/">로그아웃</a></div>
 							<div class="photo01"></div>
-							<div class="identity">~~~님 (수강생)</div>
-							<div class="class01">반응형 UX/UI 웹컨텐츠 개발자 양성과정 A9</div>
-							<div class="change">내 정보 수정</div>
-							<div class="letter">쪽지</div>
-							<div class="mywrite">내가 쓴 글</div>
-							<div class="point">마일리지</div>
-							<div class="test">시험 응시</div>
-							<div class="vacation">휴가 신청</div>
-							<div class="exit">퇴실 하기</div>
+							<div class="identity"><a href="${root}/mypage">~~~님 (수강생)</a></div>
+							<div class="class01"><a href="${root}/lecture/apply">반응형 UX/UI 웹컨텐츠 개발자 양성과정 A9</a></div>
+							<div class="change"><a href="${root}/member/edit">내 정보 수정</a></div>
+							<div class="letter"><a href="${root}/letter/receive">쪽지</a></div>
+							<div class="mywrite"><a href="${root}/my/list">내가 쓴 글</a></div>
+							<div class="point"><a href="/">마일리지</a></div>
+							<div class="test"><a href="${root}/lecture/test/list" class="a01">시험 응시</a></div>
+							<div class="vacation"><a href="${root}/member/vacation/form" class="a01">휴가 신청</a></div>
+							<div class="exit"><a href="/" class="a01">퇴실 하기</a></div>
 						</div>
 					</div>
 				</td>
