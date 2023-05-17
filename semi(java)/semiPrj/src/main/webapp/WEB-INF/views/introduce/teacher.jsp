@@ -64,7 +64,7 @@
 					<button onclick="pageMove('${pageVo.startPage}');"><<</button>
 					<c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}"
 						var="i">
-						<button onclick="pageMove('${i}');">${i}</button>
+						<button class="pageBtn" onclick="pageMove('${i}');">${i}</button>
 					</c:forEach>
 					<button onclick="pageMove('${pageVo.endPage}');">>></button>
 				</div>
@@ -78,9 +78,17 @@
 
 <script>
 	const title = document.querySelector('.title');
+	const pageBtn = document.querySelectorAll('.pageBtn');
 	title.innerHTML = "강사진 소개";
 
 	function pageMove(i) {
 		location.href = "${root}/introduce/teacher?page=" + i;
+	}
+
+	for (let btn of pageBtn) {
+		if(btn.innerHTML == '${pageVo.currentPage}') {
+			btn.style.backgroundColor = '#4998D1';
+			btn.style.color = 'white';
+		}
 	}
 </script>

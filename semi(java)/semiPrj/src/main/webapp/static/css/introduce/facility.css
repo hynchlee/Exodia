@@ -1,6 +1,4 @@
 @charset "UTF-8";
-
-
 .head {
     width: 100%;
     display: flex;
@@ -18,7 +16,7 @@
 .e112 {
     flex: 1;
     max-width: 15%;
-    background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+    background-color: #F0F0F0;
     font-family: Spoqa Han Sans Neo;
     display: flex;
     justify-content: center;
@@ -27,8 +25,8 @@
 }
 
 .e112:hover {
-    color: white;
-    background-color: rgba(104.70051661133766, 176.69292032718658, 228.4374949336052, 1);
+    background-color: #4998D1;
+	color: white;
 }
 
 .e112_1076 {
