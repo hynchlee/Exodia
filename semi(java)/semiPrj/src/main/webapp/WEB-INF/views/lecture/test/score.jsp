@@ -12,7 +12,7 @@
 
 		<body>
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
-				<main style="height: 2000px;">
+				<main>
 					<div class="tit">
 						<div class="tit1">요구사항 확인</div>
 						<div class="tit2">
@@ -21,6 +21,7 @@
 							<span>점</span>
 						</div>
 					</div>
+					<br><br><br><br><br>
 					<% for(int i=0; i < 3; i++) { %>
 						<div class="problem">
 							<div>1. 다음과 같은 요구사항에 맞춰 구성하여 보고서 작성 후 제출하시오 (20점)</div>
@@ -29,7 +30,7 @@
 								<textarea style="resize: none;" name="answer"></textarea>
 								<input class="scoreInput" type="text" placeholder="점수입력">
 							</div>
-							<br><br>
+							<br><br><br>
 						</div>
 						<% } %>
 

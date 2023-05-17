@@ -14,6 +14,7 @@
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
 				<main>
 					<div class="tit">프로그래밍 언어 응용</div>
+					<br><br><br><br>
 					<% for(int j=0; j < 3; j++) { %>
 						<div class="problem">
 							<div class="score">

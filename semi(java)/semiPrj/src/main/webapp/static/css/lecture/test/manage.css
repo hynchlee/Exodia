@@ -27,7 +27,6 @@ main * {
 .tit {
 	font-size: 28px;
     font-weight: bold;
-    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,7 +52,7 @@ main * {
     font-weight: bold;
     padding-left: 20px;
     padding-right: 20px;
-    background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);;
+    background-color: #F0F0F0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,7 +60,7 @@ main * {
 
 .b01 {
     overflow:auto;
-    border: 5px solid rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+    border: 2px solid black;
     box-sizing: border-box;
     width: 70%;
     margin-top: 25px;
@@ -73,7 +72,7 @@ main * {
     margin-left: 3%;
     margin-right: 3%;
     box-sizing: border-box;
-    border-bottom: 5px solid rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+    border-bottom: 2px solid black;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -111,7 +110,7 @@ main * {
 }
 
 .btn {
-	width: 25%;
+	width: 280px;
     display: flex;
     justify-content: space-between;
 }

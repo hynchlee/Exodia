@@ -15,8 +15,8 @@
 				<main>
 					<div class="menubar">
 						<select class="e98_1694">
-							<option value="">반응형 UX/UI 웹컨텐츠 개발자 양성과정 A8</option>
-							<option value="">반응형 UX/UI 웹컨텐츠 개발자 양성과정 A9</option>
+							<option value="">반응형 UX/UI 웹컨텐츠 개발자 양성과정 A8&nbsp;&nbsp;&nbsp;</option>
+							<option value="">반응형 UX/UI 웹컨텐츠 개발자 양성과정 A9&nbsp;&nbsp;&nbsp;</option>
 						</select>
 					</div>
 
@@ -30,7 +30,7 @@
 								<th>능력단위명</th>
 								<th>구분</th>
 								<th>평가일</th>
-								<th>평가 현황</th>
+								<th class="last-th">평가 현황</th>
 							</tr>
 						</thead>
 						<tbody>

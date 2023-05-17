@@ -2,14 +2,16 @@
 
 main {
     position: relative;
-    left: 20%;
-    width: 60%;
-    font-size: 24px;
+    left: 15%;
+    width: 70%;
+}
+
+main * {
+    font-size: 18px;
     font-family:Noto Sans KR;
 }
 
 .tit {
-    height: 350px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,12 +19,12 @@ main {
 }
 
 .tit1 {
-    font-size: 44px;
+    font-size: 28px;
     
 }
 
 .tit2 {
-    font-size: 32px;
+    font-size: 18px;
 }
 
 .score {
@@ -35,34 +37,53 @@ main {
     justify-content: center;
 }
 
-.problem textarea {
+.hi {
     height: 300px;
-    margin-left: 24px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.problem textarea {
+    height: 100%;
+    margin-left: 20px;
     width: 100%;
 }
 
-.problem input {
-    color: white;
-    background-color: rgba(72.00000330805779, 91.00000217556953, 166.00000530481339, 1);
-    font-size: 20px;
-    width: 10%;
-    height: 40px;
-    border-radius: 30px;
-}
-
 .finish {
-    height: 120px;
+    width: 100%;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .finish-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: white;
     background-color: rgba(72.00000330805779, 91.00000217556953, 166.00000530481339, 1);
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
-    width: 45%;
+    width: 30%;
     height: 100%;
     border-radius: 40px;
+}
+
+.scoreInput {
+	width: 10%;
+	height: 40px;
+	background-color: #F0F0F0;
+	color: black;
+	border-radius: 10px;
+	border: none;
+	text-align: center;
+}
+
+.scoreInput:hover {
+    background-color: #4998D1;
+    color: white;
+}
+.scoreInput:hover::placeholder {
+    color: white;
 }
