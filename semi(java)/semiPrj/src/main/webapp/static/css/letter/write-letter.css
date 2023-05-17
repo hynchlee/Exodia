@@ -9,6 +9,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;    
+    width: 90%;
 }
 
 #side-bar div{
@@ -24,7 +25,7 @@ main {
 
 #side-bar input {
     border: none;
-    background-color: #d9d9d9;
+    background-color: #F0F0F0;
     margin-top: 20px;
     height: 80px;
     width: 40%;
@@ -67,6 +68,8 @@ table input, textarea{
     font-size: 18px;
     line-height: 25px;
     text-align: center;
+    border: 1px solid #ccc;
+
 }
 
 textarea{
@@ -84,11 +87,15 @@ table {
 
 th, td {
     padding: 10px;
+}
+
+thead th:not(#title){
     text-align: left;
 }
 
-#title{
-	text-align: center;
+thead #title{
+	text-align: left;
+    width: 10%;
 }
 
 input[name=title]{
@@ -103,7 +110,7 @@ input[type=text], textarea{
 	width: 80%;
 }
 
-tfoot th{
+tfoot td{
 	text-align: right;
 }
 
