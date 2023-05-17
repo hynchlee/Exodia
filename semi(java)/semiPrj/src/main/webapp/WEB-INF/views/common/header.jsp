@@ -21,7 +21,7 @@
 			<header>
 				<nav>
 					<ul>
-						<li class="menu1"><a href="${root}/main"><img src="/semi/static/img/header/image_2.png" alt="logo"
+						<li class="menu1"><a href="${root}/main"><img src="/semi/static/img/header/4.png" alt="logo"
 							id="logo_img"></a>
 						</li>
 						<li class="menu2"></li>
