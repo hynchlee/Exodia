@@ -15,7 +15,7 @@
 
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-	<main style="height: 1220px">
+	<main>
 		<%
 		List<MemberVo> teacherList = (List<MemberVo>) request.getAttribute("teacherList");
 		%>
