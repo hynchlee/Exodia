@@ -50,7 +50,7 @@
 					</div>
 					<div id="writeDiv">
 						<div id="writeTable">
-							<table>
+							<table border="1">
 								<thead>
 									<tr>
 										<th id="title">받는 사람</th>
@@ -70,10 +70,10 @@
 								</tbody>
 								<tfoot>
 									<tr>
-										<th colspan="2">
+										<td colspan="2">
 											<button>뒤로가기</button>
 											<button>보내기</button>
-										</th>
+										</td>
 									</tr>
 								</tfoot>
 							</table>

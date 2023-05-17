@@ -28,7 +28,9 @@
       </div>
       <div id="footer">
         <div id="calendarDiv">
-          <%@ include file="/WEB-INF/views/common/calendar.jsp"%>
+
+
+
         </div>
         </div>
       </div>
