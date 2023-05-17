@@ -1,4 +1,4 @@
-package com.semi.board.controller;
+package com.semi.qna.controller;
 
 import java.io.IOException;
 

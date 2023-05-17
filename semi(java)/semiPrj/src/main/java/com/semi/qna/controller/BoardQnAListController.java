@@ -1,4 +1,4 @@
-package com.semi.board.controller;
+package com.semi.qna.controller;
 
 import java.io.IOException;
 
@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/notice/list")
-public class BoardNoticeListController extends HttpServlet{
+@WebServlet("/qna/list")
+public class BoardQnAListController extends HttpServlet{
 
 	//목록
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/board/boardNoticeList.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/board/boardQnaList.jsp").forward(req, resp);
 	}
 
 }
