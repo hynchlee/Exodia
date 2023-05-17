@@ -217,7 +217,7 @@
 			    	<div class="carousel-caption" id="innerinfo01">
               		    <span class="v75_33"><a href="/">정보 보안 개강 일정</a></span>
 						<div class="v75_39"></div>
-						<span class="v75_44">(정보시스템구축) 보안엔지니어링 기반 정보보안 전문가 양성과정B1</span>
+						<span class="v75_44">(정보시스템구축) 보안엔지니어링 기반 정보보안 전문가 양성과정B2</span>
 						<div class="v75_35">08 / 26</div>
             		</div>
 			    </div>
@@ -226,7 +226,7 @@
 			    	<div class="carousel-caption" id="innerinfo01">
               		    <span class="v75_33"><a href="/">정보 보안 개강 일정</a></span>
 						<div class="v75_39"></div>
-						<span class="v75_44">(정보시스템구축) 보안엔지니어링 기반 정보보안 전문가 양성과정B1</span>
+						<span class="v75_44">(정보시스템구축) 보안엔지니어링 기반 서버 보안 전문가 양성과정C1</span>
 						<div class="v75_35">10 / 07</div>
             		</div>
 			    </div>
@@ -258,7 +258,7 @@
 			    	<div class="carousel-caption" id="innerinfo02">
               		    <span class="v75_34"><a href="/">자바 개발자 개강 일정</a></span>
 						<div class="v75_41"></div>
-						<span class="v75_43">(디지털컨버전스) 공공데이터 융합 자바개발자 양성과정A3</span>
+						<span class="v75_43">(디지털컨버전스) 공공데이터 융합 웹 어플리케이션 개발자 양성과정4</span>
 						<div class="v75_36">05 / 26</div>
             		</div>
 			    </div>
