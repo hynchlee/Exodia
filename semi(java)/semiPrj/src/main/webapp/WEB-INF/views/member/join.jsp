@@ -37,32 +37,32 @@
             <table>
                 <tr>
                     <th>아이디</th>
-                    <td><input type="text" placeholder="영어/숫자 조합 n자리 이상"></td>
+                    <td><input type="text" name="memberId" placeholder="영어/숫자 조합 n자리 이상"></td>
                     <td><button id="dup-check">중복검사</button></td>
                 </tr>
                 <tr>
                     <th>비밀번호</th>
-                    <td><input type="password" placeholder="영어/숫자 조합 n자리 이상"></td>
+                    <td><input type="password" name="memberPwd" placeholder="영어/숫자 조합 n자리 이상"></td>
                 </tr>
                 <tr>
                     <th>비밀번호 확인</th>
-                    <td><input type="password"></td>
+                    <td><input type="password" name="memberPwd2"></td>
                 </tr>
                 <tr>
                     <th>이름</th>
-                    <td><input type="text"></td>
+                    <td><input type="text" name="memberName"></td>
                 </tr>
                 <tr>
                     <th>주민등록번호</th>
-                    <td><input type="text"></td>
+                    <td><input type="text" name="birthNum"></td>
                 </tr>
                 <tr>
                     <th>휴대폰 번호</th>
-                    <td><input type="text"></td>
+                    <td><input type="phone" name="phoneNo"></td>
                 </tr>
                 <tr>
                     <th>닉네임</th>
-                    <td><input type="text"></td>
+                    <td><input type="text" name="memberNick"></td>
                 </tr>
                 <tr>
                     <th>프로필 사진</th>
@@ -70,7 +70,7 @@
                     <td>
                         <div id="file-attachment">
                             <label for="profile-file">파일첨부</label>
-                            <input id="profile-file" type="file">
+                            <input id="profile-file" type="file" name="profile">
                         </div>
                     </td>
                 </tr>
