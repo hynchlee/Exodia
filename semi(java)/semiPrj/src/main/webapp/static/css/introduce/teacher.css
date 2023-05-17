@@ -32,6 +32,7 @@ main * {
 
 .profile_img {
 	width: 100%;
+    margin-bottom: 10px;
 	border-radius: 90%;
 	background-repeat: no-repeat;
 	background-size: cover;
