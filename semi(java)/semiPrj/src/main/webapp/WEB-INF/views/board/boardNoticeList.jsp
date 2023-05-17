@@ -47,74 +47,13 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리 <span class="comment_num">[21]</span> <button class="new_btn">New</button></td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
+                    	<c:forEach items="${list}" var="notice">
+	                        <td>${notice.noticeNo }</td>
+	                        <td class="board_title">${notice.noticeTitle}<span class="comment_num">[21]</span> <button class="new_btn">New</button></td>
+	                        <td>${notice.memberNick }</td>
+	                        <td>${notice.enrollDate }</td>
+	                        <td>${notice.hit }</td>
+                    	</c:forEach>
                     </tr>
                 </tbody>
             </table>
