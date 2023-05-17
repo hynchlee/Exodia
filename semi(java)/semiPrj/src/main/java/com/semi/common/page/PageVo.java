@@ -100,4 +100,12 @@ public class PageVo {
 		this.lastRow = lastRow;
 	}
 
+	@Override
+	public String toString() {
+		return "PageVo [listCount=" + listCount + ", currentPage=" + currentPage + ", pageLimit=" + pageLimit
+				+ ", boardLimit=" + boardLimit + ", maxPage=" + maxPage + ", startPage=" + startPage + ", endPage="
+				+ endPage + ", beginRow=" + beginRow + ", lastRow=" + lastRow + "]";
+	}
+
+	
 }
