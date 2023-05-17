@@ -1,27 +1,33 @@
 @charset "UTF-8";
 
-.list-tbl {
-    font-size: 24px;
+main * {
+    font-size: 16px;
     font-family:Noto Sans KR;
-    position: absolute;
-    width: 85%;
-    top: 800px;
-    left: 7.5%;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.list-tbl {
+    width: 70%;
 }
 
 .list-tbl thead {
-    background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
-    height: 70px;
+    background-color: #F0F0F0;
+    height: 50px;
     width: 100%;
 }
 
 .list-tbl tbody {
     width: 100%;
-    height: 1200px;
+    height: 700px;
 }
 
 .list-tbl tbody tr {
-    border-bottom: 5px solid rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+    border-bottom: 1px solid black;
 }
 
 .list-tbl td {
@@ -29,46 +35,68 @@
 }
 
 .list-tbl td:last-child {
-    height: 120px;
+    height: 60px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
 }
 
-.list-tbl td button {
-    width: 30%;
-    height: 50px;
-    font-size: 20px;
-    border-radius: 25px;
-    background-color: rgba(72.00000330805779, 91.00000217556953, 166.00000530481339, 1);
-    color: white;
+.menubar {
+    width: 70%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
 }
 
-.e112_1541 {
-	width: 50%;
-	height: 100px;
-	position: absolute;
-	left: 25%;
-	top: 2200px;
+.e98_1694 {
+    font-size: 24px;
+    height: 100%;
+}
+
+table button {
+	width: 80px;
+	height: 40px;
+	background-color: #F0F0F0;
+	color: black;
+	border-radius: 10px;
+	border: none;
+	text-align: center;
+}
+
+table button:hover {
+    background-color: #4998D1;
+	color: white;
+}
+
+.wrap_1 {
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-.e112_1541 button {
-	width: 7%;
-	font-size: 32px;
-	margin: 3%;
-	color: white;
-	background-color: rgba(72.00000330805779, 91.00000217556953, 166.00000530481339, 1);
+.menu_1 {
+	width: 70%;
+	height: 35px;
+	display: flex;
+	justify-content: space-between;
 }
 
-.e98_1694 {
-    position: absolute;
-    top: 625px;
-    font-size: 44px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#pageDiv button {
+	display: inline-block;
+	font-weight: bold;
+	font-size: 18px;
+	border-radius: 5px;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	background-color: #F0F0F0;
+}
+
+#pageDiv button:hover {
+	background-color: #ddd;
+}
+
+.last-th {
+    width: 280px;
 }

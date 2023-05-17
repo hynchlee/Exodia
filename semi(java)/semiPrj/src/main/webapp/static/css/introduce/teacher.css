@@ -44,6 +44,10 @@ main * {
 	align-items: center;
 }
 
+.intro_div {
+    width: 70%;
+}
+
 #pageDiv button{
     display: inline-block;
     font-weight: bold;
