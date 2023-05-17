@@ -1,6 +1,7 @@
 package com.semi.letter.service;
 
 import java.sql.Connection;
+import java.util.List;
 
 import com.semi.common.db.JDBCTemplate;
 import com.semi.letter.dao.MemberDao;
@@ -18,6 +19,18 @@ public class LetterService {
 		JDBCTemplate.close(conn);
 
 		return result;
+	}
+
+	public List<LetterVo> letterList() throws Exception {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MemberDao dao = new MemberDao();
+		List<LetterVo> voList = dao.letterList(conn);
+		
+		JDBCTemplate.close(conn);		
+		
+		return voList;
 	}
 
 }

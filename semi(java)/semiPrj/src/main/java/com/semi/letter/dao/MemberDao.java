@@ -2,6 +2,11 @@ package com.semi.letter.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import com.semi.common.db.JDBCTemplate;
 import com.semi.letter.vo.LetterVo;
@@ -31,4 +36,57 @@ public class MemberDao {
 		return result;
 	}
 
+	public List<LetterVo> letterList(Connection conn) throws Exception {
+		
+		String sql = "SELECT * FROM LETTER L JOIN MEMBER M ON L.SEND_MEMBER_NO = M.MEMBER_NO ORDER BY LETTER_NO";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		
+		List<LetterVo> voList = new ArrayList<>();
+		while(rs.next()) {
+			String id = rs.getString("MEMBER_ID");
+			String title = rs.getString("LETTER_TITLE");
+			String content = rs.getString("LETTER_CONTENT");
+			String enrollDate = rs.getString("ENROLL_DATE");
+			
+			LetterVo vo = new LetterVo();
+			
+			vo.setSendMemberName(id);
+			vo.setLetterTitle(title);
+			vo.setLetterContent(content);
+			vo.setEnrollDate(enrollDate);
+			
+			voList.add(vo);
+			
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return voList;
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
