@@ -11,6 +11,7 @@ public class LetterVo {
 	private String letterContent;
 	private String enrollDate;
 	private String status;
+	
 	public String getLetterNo() {
 		return letterNo;
 	}

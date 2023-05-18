@@ -52,12 +52,11 @@
 							<thead>
 								<tr>
 									<td colspan="5">
-										<select name="" id="">
-											<option value="받은메세지">받은메세지</option>
-											<option value="보낸메세지">보낸메세지</option>
-											<option value="작성자">작성자</option>
+										<select name="searchType" id="">
+											<option value="writer">작성자</option>
+											<option value="title">제목</option>
 										</select>
-										<input type="text">
+										<input type="text" name="searchValue">
 										<button>검색하기</button>
 									</td>
 								</tr>
@@ -71,7 +70,7 @@
 							<tbody>
 								<tr>
 									<td style="width: 50px;"><input type="checkbox"></td>
-									<td style="width: 150px;">작성자</td>
+									<td style="width: 150px;">${loginMember.memberNick}</td>
 									<td>타이틀</td>
 									<td>날짜</td>
 								</tr>
@@ -138,14 +137,13 @@
 								</tr>
 								<tr>
 									<td id="pageTd" colspan="4">
-										<button>
-											<</button>
-												<button>1</button>
-												<button>2</button>
-												<button>3</button>
-												<button>4</button>
-												<button>5</button>
-												<button>></button>
+										<button><<</button>
+										<button>1</button>
+										<button>2</button>
+										<button>3</button>
+										<button>4</button>
+										<button>5</button>
+										<button>>></button>
 									</td>
 								</tr>
 							</tfoot>
