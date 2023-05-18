@@ -52,14 +52,14 @@ public class ReceiveLetterController extends HttpServlet {
 			//화면
 			req.setAttribute("searchVo", map);
 			req.setAttribute("voList", voList);
-			req.setAttribute("pv", pv);
-			req.getRequestDispatcher("/WEB-INF/views/Letter/receive-letter.jsp").forward(req, resp);
+			req.setAttribute("pageVo", pv);
+			req.getRequestDispatcher("/WEB-INF/views/letter/receive-letter.jsp").forward(req, resp);
 		} catch (Exception e) {
-			System.out.println("[ERROR] 게시글 목록 조회 에러");
+			System.out.println("[ERROR] 받은편지 오류 에러");
 			e.printStackTrace();
 			
-			req.setAttribute("errorMsg", "목록 조회 실패");
-			req.getRequestDispatcher("/WEB-INF/views/common/error-page.jsp").forward(req, resp);
+			req.setAttribute("errorMsg", "받은 편지 목록 조회 실패");
+			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
 		}
 
 	}
