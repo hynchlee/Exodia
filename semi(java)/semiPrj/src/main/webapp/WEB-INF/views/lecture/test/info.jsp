@@ -16,50 +16,50 @@
 					<div class="wrap_1">
 						<div class="menu_1">
 							<select class="e112_901">
-								<option value="">제목</option>
+								<option value="">강의</option>
+								<option value="">단원</option>
 								<option value="">작성자</option>
 								<option value="">작성일자</option>
-							</select>
-							<input type="text" class="e112_902" placeholder="검색어">
+							</select> <input type="text" class="e112_902" placeholder="검색어">
 							<button class="e112_909">검색</button>
 						</div>
 					</div>
-					<br><br>
+					<br> <br>
 
 					<div class="wrap_1">
 						<table class="e112_923">
 							<thead>
 								<tr>
 									<th>번호</th>
-									<th>제목</th>
+									<th>강의</th>
+									<th>단원</th>
 									<th>작성자</th>
 									<th>작성일자</th>
 								</tr>
 							</thead>
 							<tbody>
-								<% for (int i=0; i < 10; i++) { %>
+								<c:forEach items="${testInfoList}" var="vo">
 									<tr>
-										<td>1</td>
-										<td>프로그래밍 언어 응용</td>
+										<td>${vo.examCategoryNo}</td>
+										<td>${vo.lectureCategoryName}</td>
+										<td>${vo.examSubject}</td>
 										<td>ADMIN01</td>
 										<td>YYYY-MM-DD 24:00</td>
 									</tr>
-									<% } %>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
-					<br><br>
+					<br> <br>
 					<div class="wrap_1">
 						<div class="menu_2">
 							<div id="pageDiv">
-								<button>
+								<button onclick="pageMove('${pageVo.startPage}');">
 									<<</button>
-										<button>1</button>
-										<button>2</button>
-										<button>3</button>
-										<button>4</button>
-										<button>5</button>
-										<button>>></button>
+										<c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" var="i">
+											<button class="pageBtn" onclick="pageMove('${i}');">${i}</button>
+										</c:forEach>
+										<button onclick="pageMove('${pageVo.endPage}');">>></button>
 							</div>
 						</div>
 					</div>
@@ -74,10 +74,23 @@
 			const trArr = document.querySelectorAll('tr');
 
 			for (const tr of trArr) {
-				tr.addEventListener("click", function() {
+				tr.addEventListener("click", function () {
 					location.href = "${root}/lecture/test/manage";
 				});
 			}
 
 			title.innerHTML = "시험 정보";
+
+			const pageBtn = document.querySelectorAll('.pageBtn');
+
+			function pageMove(i) {
+				location.href = "${root}/lecture/test/info?page=" + i;
+			}
+
+			for (let btn of pageBtn) {
+				if (btn.innerHTML == '${pageVo.currentPage}') {
+					btn.style.backgroundColor = '#4998D1';
+					btn.style.color = 'white';
+				}
+			}
 		</script>
