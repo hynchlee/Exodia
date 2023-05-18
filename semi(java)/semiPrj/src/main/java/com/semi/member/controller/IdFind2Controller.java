@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/member/pwd/find2")
-public class PwdFind2Controller extends HttpServlet{
+@WebServlet("/member/id/find2")
+public class IdFind2Controller extends HttpServlet{
 	
-	//비밀번호 찾기2 화면
+	//아이디 찾기2 화면
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/member/pwdFind2.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/member/idFind2.jsp").forward(req, resp);
 	}
-	
+		
 }

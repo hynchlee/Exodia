@@ -8,27 +8,32 @@
 <title>아이디 찾기</title>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <link href="${root}/static/css/member/idFind.css" rel="stylesheet">
+<style>
+    #logo-img {
+        width: 300px;
+    }
+</style>
 </head>
 <body>
 
 	<div id="wrap">
 
-        <form action="">
+        <form action="${root}/member/id/find" method="POST">
             
             <div id="logo">
                 <a href="${root}/main">
-                    <img src="${root}/static/img/header/image_2.png" alt="LOGO">
+                    <img src="${root}/static/img/header/4.png" alt="LOGO" id="logo-img">
                 </a>
             </div>
 
             <table>
                 <tr>
                     <th>이름</th>
-                    <td><input type="text"></td>
+                    <td><input type="text" name="memberName"></td>
                 </tr>
                 <tr>
                     <th>휴대폰 번호</th>
-                    <td><input type="text"></td>
+                    <td><input type="text" name="phoneNo"></td>
                 </tr>
             </table>
 

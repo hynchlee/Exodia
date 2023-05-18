@@ -1,6 +1,13 @@
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #wrap {
     width: 900px;
-    height: 725px;
+    height: 800px;
     background: rgba(255, 255, 255, 1);
     top: 100px;
     bottom: 100px;

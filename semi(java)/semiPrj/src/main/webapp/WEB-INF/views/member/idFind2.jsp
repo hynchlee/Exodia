@@ -5,9 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>비밀번호 재발급</title>
+<title>아이디 찾기</title>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
-<link href="${root}/static/css/member/pwdRenew.css" rel="stylesheet">
+<link href="${root}/static/css/member/idFind2.css" rel="stylesheet">
 <style>
     #logo-img {
         width: 300px;
@@ -28,17 +28,23 @@
 
             <table>
                 <tr>
-                    <th>새 비밀번호</th>
-                    <td><input type="password"></td>
+                    <th id="ment1">회원님의 아이디는</th>
                 </tr>
                 <tr>
-                    <th>비밀번호 확인</th>
-                    <td><input type="password"></td>
+                    <td><input type="text" disabled></td>
+                </tr>
+                <tr>
+                    <th id="ment2">입니다</th>
                 </tr>
             </table>
 
-            <div id="submit-box">
-                <input type="submit" value="비밀번호 재발급">
+            <br>
+            <br>
+
+            <div>
+                <a href="${root}/main"><b>홈으로</b></a>
+                |
+                <a href="${root}/member/login"><b>로그인</b></a>
             </div>
 
         </form>
