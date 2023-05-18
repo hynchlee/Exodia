@@ -1,0 +1,38 @@
+--받은 메세지에서 OPT 검색하기
+SELECT * 
+FROM 
+(
+    SELECT ROWNUM RNUM, T.* FROM
+        (
+            SELECT * 
+            FROM MEMBER M
+            JOIN LETTER L ON (M.MEMBER_NO = L.SEND_MEMBER_NO)
+            WHERE L.STATUS = 'O' AND M.MEMBER_ID LIKE '%'||?||'%' ORDER BY M.MEMBER_NO DESC
+        ) T
+)
+WHERE RNUM BETWEEN ? AND ?;
+
+--그냥 검색
+SELECT * 
+FROM 
+    ( 
+        SELECT ROWNUM RNUM , T.* 
+        FROM
+        ( 
+            SELECT L.LETTER_NO , L.LETTER_TITLE , L.LETTER_CONTENT , L.SEND_MEMBER_NO , L.ENROLL_DATE , L.STATUS , M.MEMBER_NICK
+            FROM LETTER L
+            JOIN MEMBER M ON(L.SEND_MEMBER_NO = M.MEMBER_NO)
+            WHERE L.STATUS = 'O' ORDER BY MEMBER_NO DESC
+        )T 
+    )
+    WHERE RNUM BETWEEN ? AND ?;
+
+
+--메세지 총 개수
+SELECT COUNT(*)
+FROM ( 
+        SELECT L.LETTER_NO , L.LETTER_TITLE , L.LETTER_CONTENT , L.SEND_MEMBER_NO , L.ENROLL_DATE , L.STATUS , M.MEMBER_NICK
+        FROM LETTER L
+        JOIN MEMBER M ON(L.SEND_MEMBER_NO = M.MEMBER_NO)
+    )
+WHERE STATUS = 'O';

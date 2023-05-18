@@ -4,33 +4,71 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.semi.common.db.JDBCTemplate;
+import com.semi.common.page.PageVo;
 import com.semi.letter.dao.LetterDao;
 import com.semi.letter.vo.LetterVo;
 import com.semi.member.vo.MemberVo;
 
 public class LetterService {
 
-   public int writeLetter(LetterVo vo, MemberVo loginMember) throws Exception {
-      Connection conn = JDBCTemplate.getConnection();
+	private static LetterDao dao = new LetterDao();
 
-      LetterDao dao = new LetterDao();
-      int result = dao.writeLetter(vo, conn, loginMember);
+	public int writeLetter(LetterVo vo, MemberVo loginMember) throws Exception {
+		Connection conn = JDBCTemplate.getConnection();
 
-      JDBCTemplate.close(conn);
+		int result = dao.writeLetter(vo, conn, loginMember);
 
-      return result;
-   }
+		JDBCTemplate.close(conn);
 
-   public List<LetterVo> letterList() throws Exception {
+		return result;
+	}
 
-      Connection conn = JDBCTemplate.getConnection();
-      
-      LetterDao dao = new LetterDao();
-      List<LetterVo> voList = dao.letterList(conn);
-      
-      JDBCTemplate.close(conn);      
-      
-      return voList;
-   }
+	public List<LetterVo> getLetterList(PageVo pv) throws Exception {
 
+		// conn
+		Connection conn = JDBCTemplate.getConnection();
+
+		List<LetterVo> voList = dao.getLetterList(conn, pv);
+
+		// close
+		JDBCTemplate.close(conn);
+
+		return voList;
+	}
+
+	public List<LetterVo> getLetterList(PageVo pv, String searchType, String searchValue) throws Exception {
+
+		// conn
+		Connection conn = JDBCTemplate.getConnection();
+
+		List<LetterVo> voList = dao.getLetterList(conn, pv, searchType, searchValue);
+
+		// close
+		JDBCTemplate.close(conn);
+
+		return voList;
+
+	}
+
+	public int getLetterListCnt(String searchType, String searchValue) throws Exception {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int cnt = dao.getLetterListCnt(conn, searchType, searchValue);
+		
+		JDBCTemplate.close(conn);
+		
+		return cnt;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
