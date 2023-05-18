@@ -10,6 +10,7 @@ import java.util.List;
 import com.semi.common.db.JDBCTemplate;
 import com.semi.common.page.PageVo;
 import com.semi.lecture.vo.LectureVo;
+import com.semi.lecture.vo.TestInfoVo;
 
 public class LectureDao {
 
@@ -42,9 +43,49 @@ public class LectureDao {
 		
 		return lectureList;
 	}
+	
+	public List<TestInfoVo> getTestInfoList(Connection conn, PageVo pageVo) throws SQLException {
+		String sql = "SELECT * FROM (SELECT ROWNUM AS RNUM, A.* FROM ( SELECT * FROM EXAM_CATEGORY EC JOIN LECTURE_CATEGORY LC ON EC.LECTURE_CATEGORY_NO = LC.LECTURE_CATEGORY_NO ) A ) WHERE RNUM BETWEEN ? AND ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, pageVo.getBeginRow());
+		pstmt.setInt(2, pageVo.getLastRow());
+		ResultSet rs = pstmt.executeQuery();
+		
+		List<TestInfoVo> testInfoList = new ArrayList();
+		
+		while(rs.next()) {
+			TestInfoVo vo = new TestInfoVo();
+			vo.setExamCategoryNo(rs.getString("EXAM_CATEGORY_NO"));
+			vo.setLectureCategoryName(rs.getString("LECTURE_CATEGORY_NO"));
+			vo.setExamSubject(rs.getString("EXAM_SUBJECT"));
+			vo.setLectureCategoryName(rs.getString("LECTURE_NAME"));
+			testInfoList.add(vo);
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return testInfoList;
+	}
 
 	public int getLectureListCnt(Connection conn) throws SQLException {
 		String sql = "SELECT COUNT(*) FROM LECTURE WHERE STATUS = 'O'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+
+		int cnt = 0;
+		if (rs.next()) {
+			cnt = rs.getInt(1);
+		}
+
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+
+		return cnt;
+	}
+
+	public int getTestInfoListCnt(Connection conn) throws SQLException {
+		String sql = "SELECT COUNT(*) FROM EXAM_CATEGORY";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
 

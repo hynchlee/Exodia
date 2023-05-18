@@ -15,7 +15,7 @@
 
 		<body>
 			<div class="menu_1">
-				<img src="${root}/static/img/header/image_2.png" alt="logo" class="logo_img">
+				<img src="${root}/static/img/header/4.png" alt="logo" class="logo_img">
 				<div class="wrap">
 					<div class="cate1">강의 정보</div>
 					<div class="wrap_1">
@@ -45,14 +45,21 @@
 
 					<div class="cate2">커리큘럼</div>
 					<div class="wrap_1">
-						<img src="${root}/static/img/introduce/curr1.png" alt="logo" class="currImg">
+						<img src="${root}/static/img/introduce/curr1.png" alt="logo" class="currImg" onclick="showImageInNewWindow(this)">
 					</div>
 					<div class="hi"></div>
 				</div>
 			</div>
-
-
-
 		</body>
 
 		</html>
+
+		<script>
+			function showImageInNewWindow(imageElement) {
+				var imageUrl = imageElement.getAttribute('src');
+				var leftPosition = (window.screen.width - imageElement.naturalWidth) / 2;
+				var topPosition = (window.screen.height - imageElement.naturalHeight) / 2;
+				var windowFeatures = 'width=' + imageElement.naturalWidth + ',height=' + imageElement.naturalHeight + ',left=' + leftPosition + ',top=' + topPosition;
+				window.open(imageUrl, '_blank', windowFeatures);
+			}
+		</script>

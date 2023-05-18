@@ -26,8 +26,7 @@
 				<button class="e112_909">검색</button>
 			</div>
 		</div>
-		<br>
-		<br>
+		<br> <br>
 
 		<div class="wrap_1">
 			<table class="e112_923">
@@ -54,7 +53,7 @@
 							<td>${vo.lectureCloseDate}</td>
 							<td>${vo.teacherMemberName}</td>
 							<td>${vo.lectureCategoryName}</td>
-							<td>${vo.lectureStartTime}~ ${vo.lectureFinishTime}</td>
+							<td>${vo.lectureStartTime}~${vo.lectureFinishTime}</td>
 							<td>30</td>
 							<td>국비지원</td>
 							<td><button>접수완료</button></td>
@@ -66,8 +65,7 @@
 			</table>
 		</div>
 
-		<br>
-		<br>
+		<br> <br>
 		<div class="wrap_1">
 			<div class="menu_2">
 				<div id="pageDiv">
@@ -91,7 +89,10 @@
 	title.innerHTML = "수강신청";
 
 	function goDetail() {
-		location.href = "${root}/lecture/detail";
+		var leftPosition = (window.screen.width - 1200) / 2;
+		var topPosition = (window.screen.height - 800) / 2;
+		var windowFeatures = 'width=1200,height=800,left=' + leftPosition + ',top=' + topPosition;
+		window.open("${root}/lecture/detail", '_blank', windowFeatures);
 	}
 	
 	const pageBtn = document.querySelectorAll('.pageBtn');

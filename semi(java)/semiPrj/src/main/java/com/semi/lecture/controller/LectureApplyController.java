@@ -16,6 +16,7 @@ import com.semi.lecture.vo.LectureVo;
 @WebServlet("/lecture/apply")
 public class LectureApplyController extends HttpServlet{
 	private final LectureService ls = new LectureService();
+	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {

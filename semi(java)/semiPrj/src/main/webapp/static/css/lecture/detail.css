@@ -23,7 +23,7 @@ body {
 .wrap {
     margin-top: 10vh;
     margin-bottom: 10vh;
-    width: 50%;
+    width: 60%;
     height: 80%;
     border: 2px solid rgb(125, 201, 255);
     border-radius: 50px;
@@ -73,7 +73,7 @@ body {
 .logo_img {
     position: absolute;
     width: 15%;
-    left: 8%;
+    left: 2%;
     top: 10vh;
     background-repeat: no-repeat;
     background-size: cover;
