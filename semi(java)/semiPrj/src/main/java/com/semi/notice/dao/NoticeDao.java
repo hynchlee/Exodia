@@ -13,7 +13,8 @@ import com.semi.notice.vo.NoticeVo;
 
 public class NoticeDao {
 
-	public int selectCnt(Connection conn) throws Exception {
+	//목록 페이징
+	public int getNoticeListCnt(Connection conn) throws Exception {
 		
 		//쿼리작성
 		String sql = "SELECT COUNT(*) FROM NOTICE WHERE STATUS='O'";
@@ -33,18 +34,17 @@ public class NoticeDao {
 		return cnt;
 	}
 
-	public List<NoticeVo> selectNoticeList(Connection conn, PageVo pv) throws Exception {
+	//목록 조회
+	public List<NoticeVo> getNoticeList(Connection conn, PageVo pv) throws Exception {
 		
-		String sql = "SELECT RNUM, T.BOARD_NO, T.BOARD_CATEGORY_NO, T.MEMBER_NO, T.BOARD_TITLE, T.BOARD_CONTENT, TO_CHAR(T.ENROLL_DATE, 'YYYY.MM.DD') AS ENROLL_DATE, T.MODIFY_DATE, T.STATUS, T.HIT, T.MEMBER_NICK FROM ( SELECT ROWNUM RNUM, B.*, M.MEMBER_NICK FROM BOARD B INNER JOIN MEMBER M ON B.MEMBER_NO = M.MEMBER_NO WHERE B.STATUS = 'O' ORDER BY B.BOARD_NO DESC ) T WHERE RNUM BETWEEN ? AND ?";
+		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT N.NOTICE_NO ,N.ADMIN_NO ,N.NOTICE_TITLE ,N.NOTICE_CONTENT ,TO_CHAR(N.ENROLL_DATE, 'YYYY.MM.DD') AS ENROLL_DATE ,TO_CHAR(N.MODIFY_DATE, 'YYYY.MM.DD') AS MODIFY_DATE ,N.HIT ,N.STATUS ,A.ADMIN_NICK FROM NOTICE N JOIN ADMIN A ON(N.ADMIN_NO = A.ADMIN_NO) WHERE N.STATUS='O' ORDER BY NOTICE_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, pv.getBeginRow());
 		pstmt.setInt(2, pv.getLastRow());
 		ResultSet rs = pstmt.executeQuery();
 		
-		List<NoticeVo> list = new ArrayList<>();
-		while(rs.next()) {
-			
-			//데이터 꺼내기
+		List<NoticeVo> nvoList = new ArrayList<>();
+		while (rs.next()) {
 			String noticeNo = rs.getString("NOTICE_NO");
 			String adminNo = rs.getString("ADMIN_NO");
 			String noticeTitle = rs.getString("NOTICE_TITLE");
@@ -53,9 +53,8 @@ public class NoticeDao {
 			String modifyDate = rs.getString("MODIFY_DATE");
 			String hit = rs.getString("HIT");
 			String status = rs.getString("STATUS");
-			String memberNick = rs.getString("MEMBER_NICK");
+			String adminNick = rs.getString("ADMIN_NICK");
 			
-			// 데이터 뭉치기
 			NoticeVo vo = new NoticeVo();
 			vo.setNoticeNo(noticeNo);
 			vo.setAdminNo(adminNo);
@@ -65,15 +64,70 @@ public class NoticeDao {
 			vo.setModifyDate(modifyDate);
 			vo.setHit(hit);
 			vo.setStatus(status);
-			vo.setMemberNick(memberNick);
+			vo.setAdminNick(adminNick);
 			
-			list.add(vo);
+			nvoList.add(vo);
 		}
 		
 		JDBCTemplate.close(rs);
 		JDBCTemplate.close(pstmt);
 		
-		return list;
+		return nvoList;
+		
+	}
+	
+	//검색해서 목록 조회
+	public List<NoticeVo> getNoticeList(Connection conn, PageVo pv, String SearchType, String searchValue) throws Exception {
+		
+		String sql ="";
+		
+		if (SearchType.equals("noticeTitle")) {
+			//제목 검색
+			sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT N.NOTICE_NO ,N.ADMIN_NO ,N.NOTICE_TITLE ,N.NOTICE_CONTENT ,TO_CHAR(N.ENROLL_DATE, 'YYYY.MM.DD') AS ENROLL_DATE ,TO_CHAR(N.MODIFY_DATE, 'YYYY.MM.DD') AS MODIFY_DATE ,N.HIT ,N.STATUS ,A.ADMIN_NICK FROM NOTICE N JOIN ADMIN A ON(N.ADMIN_NO = A.ADMIN_NO) WHERE N.STATUS='O' AND N.NOTICE_TITLE LIKE ('%' || ? || '%') ORDER BY NOTICE_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
+		}else if (SearchType.equals("noticeContent")) {
+			//내용 검색
+			sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT N.NOTICE_NO ,N.ADMIN_NO ,N.NOTICE_TITLE ,N.NOTICE_CONTENT ,TO_CHAR(N.ENROLL_DATE, 'YYYY.MM.DD') AS ENROLL_DATE ,TO_CHAR(N.MODIFY_DATE, 'YYYY.MM.DD') AS MODIFY_DATE ,N.HIT ,N.STATUS ,A.ADMIN_NICK FROM NOTICE N JOIN ADMIN A ON(N.ADMIN_NO = A.ADMIN_NO) WHERE N.STATUS='O' AND N.NOTICE_CONTENT LIKE ('%' || ? || '%') ORDER BY NOTICE_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
+		}else {
+			return getNoticeList(conn, pv);
+		}
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, searchValue);
+		pstmt.setInt(2, pv.getBeginRow());
+		pstmt.setInt(3, pv.getLastRow());
+		ResultSet rs = pstmt.executeQuery();
+		
+		List<NoticeVo> nvoList = new ArrayList<>();
+		while (rs.next()) {
+			String noticeNo = rs.getString("NOTICE_NO");
+			String adminNo = rs.getString("ADMIN_NO");
+			String noticeTitle = rs.getString("NOTICE_TITLE");
+			String noticeContent = rs.getString("NOTICE_CONTENT");
+			String enrollDate = rs.getString("ENROLL_DATE");
+			String modifyDate = rs.getString("MODIFY_DATE");
+			String hit = rs.getString("HIT");
+			String status = rs.getString("STATUS");
+			String adminNick = rs.getString("ADMIN_NICK");
+			
+			NoticeVo vo = new NoticeVo();
+			vo.setNoticeNo(noticeNo);
+			vo.setAdminNo(adminNo);
+			vo.setNoticeTitle(noticeTitle);
+			vo.setNoticeContent(noticeContent);
+			vo.setEnrollDate(enrollDate);
+			vo.setModifyDate(modifyDate);
+			vo.setHit(hit);
+			vo.setStatus(status);
+			vo.setAdminNick(adminNick);
+			
+			nvoList.add(vo);
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return nvoList;
+		
 	}
 
 }

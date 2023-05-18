@@ -24,14 +24,14 @@
             </div>
             
             <div class="board_search">
-                <form action="${root}/notice/list" method="post" name="searchBoard">
-                    <select class="searchCategory" name="searchCategory">
-                        <option value="t">제목</option>
-                        <option value="c">내용</option>
-                        <option value="tc">제목+내용</option>
+                <form action="${root}/notice/list" method="get" name="searchBoard">
+                	<input type="hidden" name="page" value="1">
+                    <select class="searchCategory" name="searchType">
+                        <option value="noticeTitle">제목</option>
+                        <option value="noticeContent">내용</option>
                     </select>
-                    <input type="text" class="searchInput" placeholder="검색어 입력" name="searchText">
-                    <input type="button" value="검색" class="searchBtn">
+                    <input type="text" class="searchInput" placeholder="검색어 입력" value="${searchVo.searchValue}" name="searchValue">
+                    <input type="submit" value="검색" class="searchBtn">
                 </form>
             </div>
             
@@ -46,28 +46,40 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    	<c:forEach items="${list}" var="notice">
-	                        <td>${notice.noticeNo }</td>
-	                        <td class="board_title">${notice.noticeTitle}<span class="comment_num">[21]</span> <button class="new_btn">New</button></td>
-	                        <td>${notice.memberNick }</td>
-	                        <td>${notice.enrollDate }</td>
-	                        <td>${notice.hit }</td>
-                    	</c:forEach>
-                    </tr>
+                   	<c:forEach items="${nvoList}" var="nvo">
+                    	<tr>
+	                        <td>${nvo.noticeNo}</td>
+	                        <td class="board_title">${nvo.noticeTitle}
+	                        	<c:if test="${not empty nvo.hit}">
+		                        	<span class="comment_num">[21]</span> 
+	                        	</c:if>
+	                        	<button class="new_btn">New</button>
+	                        </td>
+	                        <td>${nvo.adminNick}</td>
+	                        <td>${nvo.enrollDate}</td>
+	                        <td>${nvo.hit}</td>
+                    	</tr>
+                   	</c:forEach>
                 </tbody>
             </table>
             <div class="board_bt">
                 <a href="${root}/board/write" class="bt1">글 등록</a>
             </div>
 			<div class="board_page">
-                <button><<</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-                <button>>></button>
+				<c:if test="${pv.currentPage > 1}">
+					<a href="${root}/notice/list?page=${pv.currentPage-1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button><<</button></a>
+				</c:if>
+				<c:forEach begin="${pv.startPage}" end="${pv.endPage}" var="i">
+					<c:if test="${pv.currentPage ne i}">
+						<a href="${root}/notice/list?page=${i}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>${i}</button></a>
+					</c:if>
+					<c:if test="${pv.currentPage eq i}">
+						<a><button>${i}</button></a>
+					</c:if>
+				</c:forEach>
+				<c:if test="${pv.currentPage < pv.maxPage}">
+					<a href="${root}/notice/list?page=${pv.currentPage+1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>>></button></a>
+				</c:if>
             </div>
 		</main>
 
@@ -77,4 +89,11 @@
 <script>
 	const title = document.querySelector('.title');
 	title.innerHTML = "공지사항";
+</script>
+<script>
+
+    //검색 타입
+    const nc = document.querySelector('select > option[value="${searchVo.searchType}"]');
+    nc.selected = true;
+
 </script>

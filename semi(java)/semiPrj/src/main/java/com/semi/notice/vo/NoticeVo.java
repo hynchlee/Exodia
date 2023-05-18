@@ -10,7 +10,7 @@ public class NoticeVo {
 	private String modifyDate;
 	private String hit;
 	private String status;
-	private String memberNick;
+	private String adminNick;
 	public String getNoticeNo() {
 		return noticeNo;
 	}
@@ -59,20 +59,20 @@ public class NoticeVo {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getMemberNick() {
-		return memberNick;
+	public String getAdminNick() {
+		return adminNick;
 	}
-	public void setMemberNick(String memberNick) {
-		this.memberNick = memberNick;
+	public void setAdminNick(String adminNick) {
+		this.adminNick = adminNick;
 	}
 	@Override
 	public String toString() {
 		return "NoticeVo [noticeNo=" + noticeNo + ", adminNo=" + adminNo + ", noticeTitle=" + noticeTitle
 				+ ", noticeContent=" + noticeContent + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate
-				+ ", hit=" + hit + ", status=" + status + ", memberNick=" + memberNick + "]";
+				+ ", hit=" + hit + ", status=" + status + ", adminNick=" + adminNick + "]";
 	}
 	public NoticeVo(String noticeNo, String adminNo, String noticeTitle, String noticeContent, String enrollDate,
-			String modifyDate, String hit, String status, String memberNick) {
+			String modifyDate, String hit, String status, String adminNick) {
 		super();
 		this.noticeNo = noticeNo;
 		this.adminNo = adminNo;
@@ -82,12 +82,14 @@ public class NoticeVo {
 		this.modifyDate = modifyDate;
 		this.hit = hit;
 		this.status = status;
-		this.memberNick = memberNick;
+		this.adminNick = adminNick;
 	}
 	public NoticeVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 	
 	
 	

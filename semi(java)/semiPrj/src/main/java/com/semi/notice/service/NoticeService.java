@@ -16,26 +16,40 @@ public class NoticeService {
 	
 	private final NoticeDao dao = new NoticeDao();
 
-	public int selectCnt() throws Exception {
+	//목록 조회
+	public List<NoticeVo> getNoticeList(PageVo pv) throws Exception {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		
-		int cnt = dao.selectCnt(conn);
+		List<NoticeVo> nvoList = dao.getNoticeList(conn, pv);
+		
+		JDBCTemplate.close(conn);
+		
+		return nvoList;
+	}
+
+	//검색해서 목록 조회
+	public List<NoticeVo> getNoticeList(PageVo pv, String searchType, String searchValue) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		List<NoticeVo> nvoList = dao.getNoticeList(conn, pv, searchType, searchValue);
+		
+		JDBCTemplate.close(conn);
+		
+		return nvoList;
+	}
+
+	//목록 페이징
+	public int getNoticeListCnt() throws Exception {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int cnt = dao.getNoticeListCnt(conn);
 		
 		JDBCTemplate.close(conn);
 		
 		return cnt;
-	}
-
-	public List<NoticeVo> selectNoticeList(PageVo pv) throws Exception {
-		
-		Connection conn = JDBCTemplate.getConnection();
-		
-		List<NoticeVo> list = dao.selectNoticeList(conn, pv);
-		
-		JDBCTemplate.close(conn);
-		
-		return list;
 	}
 
 }
