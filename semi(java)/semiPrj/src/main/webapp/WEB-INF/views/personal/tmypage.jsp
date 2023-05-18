@@ -119,14 +119,10 @@
 							<br>
 							<hr>
 							<ul>
-								<li class="list01">심one용</li>			
-								<li class="list01">심2용</li>			
-								<li class="list01">심3용</li>			
-								<li class="list01">심4용</li>			
-								<li class="list01">심5용</li>			
-								<li class="list01">심6용</li>			
-								<li class="list01">심7용</li>			
-								<li class="list01">심8용</li>			
+								<c:forEach items="${list}" var="list">
+									<li class="list01">${list.memberNick}</li>				
+									<li>${list.lectureName}</li>				
+								</c:forEach>
 							</ul>							
 							</div>
 						</div>
