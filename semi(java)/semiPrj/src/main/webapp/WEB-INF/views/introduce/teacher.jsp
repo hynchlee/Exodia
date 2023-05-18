@@ -77,9 +77,10 @@
 </html>
 
 <script>
-	const pageBtn = document.querySelectorAll('.pageBtn');
 	const title = document.querySelector('.title');
 	title.innerHTML = "강사진 소개";
+
+	const pageBtn = document.querySelectorAll('.pageBtn');
 
 	function pageMove(i) {
 		location.href = "${root}/introduce/teacher?page=" + i;
