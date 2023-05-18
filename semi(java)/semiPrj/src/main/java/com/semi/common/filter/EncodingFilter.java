@@ -18,7 +18,7 @@ public class EncodingFilter implements Filter {
 			System.out.println("[ERROR] filter error ...");
 			e.printStackTrace();
 			try {
-				request.getRequestDispatcher("/WEB-INF/views/common/error-page.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(request, response);
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
