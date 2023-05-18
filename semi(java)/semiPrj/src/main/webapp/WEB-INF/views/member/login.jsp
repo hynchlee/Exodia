@@ -8,7 +8,11 @@
 <title>로그인</title>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <link href="${root}/static/css/member/login.css" rel="stylesheet">
-
+<style>
+    #logo-img {
+        width: 300px;
+    }
+</style>
 </head>
 <body>
 
@@ -18,7 +22,7 @@
             
             <div id="logo">
                 <a href="${root}/main">
-                    <img src="${root}/static/img/header/image_2.png" alt="LOGO">
+                    <img src="${root}/static/img/header/4.png" alt="LOGO" id="logo-img">
                 </a>
             </div>
 
