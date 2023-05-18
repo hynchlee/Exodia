@@ -26,7 +26,7 @@
 							<tr>
 								<td colspan="2" class="line00">공지사항</td>
 								<td class="plus01">
-								<a href="공지사항으로" class="plus02">더보기</a>
+								<a href="${root}/notice/list" class="plus02">더보기</a>
 								</td>
 							</tr>
 							<tr>

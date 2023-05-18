@@ -27,6 +27,10 @@
           text-decoration: none;
           color: black;
         }
+        
+        #logoImg {
+		width: 180px;
+		}
       </style>
     </head>
 
@@ -296,30 +300,34 @@
     </html>
 
     <script>
-      const header = document.querySelector('header');
-      const a1 = document.querySelectorAll('.menu3 a');
-      const a2 = document.querySelectorAll('.submenu-tbl a');
+    const logoImg = document.querySelector('#logo_img');    
+    const header = document.querySelector('header');
+    const a1 = document.querySelectorAll('.menu3 a');
+    const a2 = document.querySelectorAll('.submenu-tbl a');
 
-      function scrolling() {
+    function scrolling() {
         if (header.matches(':hover')) {
+          logoImg.src = "/semi/static/img/header/4.png";
           header.style.backgroundColor = 'white';
           for (let a of a1) {
             a.style.color = 'black';
           }
         } else {
           if (window.scrollY > 0) {
+        	logoImg.src = "/semi/static/img/header/4.png";
             header.style.backgroundColor = 'white';
             for (let a of a1) {
               a.style.color = 'black';
             }
           } else {
+       	    logoImg.src = "/semi/static/img/header/5.png";
             header.style.background = 'transparent'
             for (let a of a1) {
               a.style.color = 'white';
-            }
           }
         }
-      };
+      }
+    };
 
-      setInterval(scrolling, 20);
+    setInterval(scrolling, 20);
     </script>
