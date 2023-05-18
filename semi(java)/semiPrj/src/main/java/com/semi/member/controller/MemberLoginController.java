@@ -41,12 +41,17 @@ public class MemberLoginController extends HttpServlet{
 			
 			//화면
 			if(loginMember != null) {
+				
 				req.getSession().setAttribute("loginMember", loginMember);
 				String root = req.getContextPath();
-				resp.sendRedirect(root + "/main");
-			}else {
-				throw new Exception();
-			}
+				
+				if ( "S".equals(loginMember.getIdentity()) ) {
+					resp.sendRedirect(root + "/smain");
+				}else if( "T".equals(loginMember.getIdentity()) ) {
+					resp.sendRedirect(root + "/tmain");
+				}//ifif
+				
+			}//if
 			
 		}catch(Exception e) {
 			System.out.println("[ERROR] login fail ...");
@@ -57,6 +62,5 @@ public class MemberLoginController extends HttpServlet{
 		}
 	
 	}
-	
 	
 }
