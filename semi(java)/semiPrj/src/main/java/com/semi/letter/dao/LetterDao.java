@@ -16,7 +16,7 @@ public class LetterDao {
 
 	public int writeLetter(LetterVo vo, Connection conn, MemberVo loginMember) throws Exception {
 
-		String sql = "INSERT INTO LETTER (LETTER_NO, SEND_MEMBER_NO, RECEIVE_MEMBER_NO, LETTER_TITLE, LETTER_CONTENT, STATUS) VALUES (SEQ_LETTER_NO.NEXTVAL,?, (SELECT MEMBER_NO FROM MEMBER WHERE ID = ?),?, ?, 'O');";
+		String sql = "INSERT INTO LETTER (LETTER_NO, SEND_MEMBER_NO, RECEIVE_MEMBER_NO, LETTER_TITLE, LETTER_CONTENT, STATUS) VALUES (SEQ_LETTER_NO.NEXTVAL,?, (SELECT MEMBER_NO FROM MEMBER WHERE ID = ?),?, ?, 'O')";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, loginMember.getMemberNo());
 		pstmt.setString(2, vo.getReceiveMemberNo());
