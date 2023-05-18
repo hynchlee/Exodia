@@ -187,7 +187,7 @@
 
           <div class="v69_16">
           	<div class="innerprofile">
-          		<div class="logout"><a href="/">로그아웃</a></div>
+          		<div class="logout"><a href="${root}/member/logout">로그아웃</a></div>
 				<div class="photo01"></div>
 				<div class="identity"><a href="${root}/tmypage">~~~님 (강사)</a></div>
 				<div class="class01"><a href="${root}/lecture/apply">강의 목록 보기</a></div>
