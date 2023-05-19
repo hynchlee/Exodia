@@ -105,6 +105,9 @@
 			title.innerHTML = "강의 관리";
 
 			function goDetail() {
-				location.href = "${root}/lecture/detail";
+				var leftPosition = (window.screen.width - 1200) / 2;
+				var topPosition = (window.screen.height - 800) / 2;
+				var windowFeatures = 'width=1200,height=800,left=' + leftPosition + ',top=' + topPosition;
+				window.open("${root}/lecture/detail", '_blank', windowFeatures);
 			}
 		</script>
