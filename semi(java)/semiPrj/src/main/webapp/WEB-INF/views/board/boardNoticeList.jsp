@@ -74,7 +74,7 @@
 						<a href="${root}/notice/list?page=${i}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>${i}</button></a>
 					</c:if>
 					<c:if test="${pv.currentPage eq i}">
-						<a><button>${i}</button></a>
+						<a><button class="active">${i}</button></a>
 					</c:if>
 				</c:forEach>
 				<c:if test="${pv.currentPage < pv.maxPage}">
