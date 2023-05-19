@@ -137,13 +137,20 @@
                 <a href="${root}/board/write" class="bt1">질문하기</a>
             </div>
 			<div class="board_page">
-                <button><<</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-                <button>>></button>
+				<c:if test="${pv.currentPage > 1}">
+					<a href="${root}/notice/list?page=${pv.currentPage-1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button><<</button></a>
+				</c:if>
+				<c:forEach begin="${pv.startPage}" end="${pv.endPage}" var="i">
+					<c:if test="${pv.currentPage ne i}">
+						<a href="${root}/notice/list?page=${i}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>${i}</button></a>
+					</c:if>
+					<c:if test="${pv.currentPage eq i}">
+						<a><button>${i}</button></a>
+					</c:if>
+				</c:forEach>
+				<c:if test="${pv.currentPage < pv.maxPage}">
+					<a href="${root}/notice/list?page=${pv.currentPage+1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>>></button></a>
+				</c:if>
             </div>
 		</main>
 
