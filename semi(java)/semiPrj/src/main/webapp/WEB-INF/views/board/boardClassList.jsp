@@ -24,11 +24,10 @@
             </div>
 
             <div class="board_search">
-                <form action="${root}/class/list" method="post" name="searchBoard">
+                <form action="${root}/class/list" method="get" name="searchBoard">
                     <select class="searchCategory" name="searchCategory">
                         <option value="t">제목</option>
                         <option value="c">내용</option>
-                        <option value="tc">제목+내용</option>
                     </select>
                     <input type="text" class="searchInput" placeholder="검색어 입력" name="searchText">
                     <input type="button" value="검색" class="searchBtn">
@@ -46,90 +45,36 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리 <span class="comment_num">[21]</span> <span class="new_btn">New</span></td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
+                    <c:forEach items="${cvoList}" var="cvo">
+	                    <tr>
+	                        <td>${cvo.boardNo}</td>
+	                        <td class="board_title">${cvo.boardTitle}
+	                        	<span class="comment_num">[21]</span> 
+	                        	<span class="new_btn">New</span>
+	                        </td>
+	                        <td>${cvo.writerNick}</td>
+	                        <td>${cvo.erollDate}</td>
+	                        <td>${cvo.hit}</td>
+	                    </tr>
+                    </c:forEach>
                 </tbody>
             </table>
             <div class="board_bt">
                 <a href="${root}/board/write" class="bt1">글 등록</a>
             </div>
 			<div class="board_page">
-                <button><<</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-                <button>>></button>
+				<c:if test="${pv.currentPage > 1 }">
+					<a href=""><button><<</button></a>
+				</c:if>
+				<c:forEach items="" var="">
+					<a><button>${pv.currentPage}</button></a>
+				</c:forEach>
+                <c:if test="${pv.currentPage  }">
+					<a href=""><button>>></button></a>
+				</c:if>
+                
             </div>
+           
 		</main>
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
