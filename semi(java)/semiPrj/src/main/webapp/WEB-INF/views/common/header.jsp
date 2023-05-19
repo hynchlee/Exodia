@@ -54,15 +54,15 @@
 						</tr>
 						<tr>
 							<td><a href="${root}/introduce/facility?building=1">시설 소개</a></td>
-							<td><a href="">우리반게시판</a></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><a href="${root}/qna/list">Q&A</a></td>
+							<td><a href="${root}/qna/list">문의게시판</a></td>
 						</tr>
 						<tr>
 							<td></td>
 							<td><a href="${root}/review/list">수강후기</a></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><a href="${root}/class/list">우리반게시판</a></td>
 						</tr>
 					</table>
 				</div>
