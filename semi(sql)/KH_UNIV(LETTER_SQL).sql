@@ -36,3 +36,5 @@ FROM (
         JOIN MEMBER M ON(L.SEND_MEMBER_NO = M.MEMBER_NO)
     )
 WHERE STATUS = 'O';
+
+select * from letter

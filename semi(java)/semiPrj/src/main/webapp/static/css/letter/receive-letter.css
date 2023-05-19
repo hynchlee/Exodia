@@ -78,13 +78,12 @@ input[type=text]{
     box-sizing: border-box;
 }
 
-thead button{
+input[type=submit]{
     width: 9%;
     height: 40px;
     font-size: 16px;
     font-family: 'Spoqa Han Sans Neo';
     box-sizing: border-box;
-
 }
 
 #trHead{

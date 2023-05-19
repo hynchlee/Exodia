@@ -49,7 +49,6 @@ public class LetterDao {
 			String enrollDate = rs.getString("ENROLL_DATE");
 
 			LetterVo vo = new LetterVo();
-
 			vo.setSendMemberName(id);
 			vo.setLetterTitle(title);
 			vo.setLetterContent(content);
@@ -75,7 +74,8 @@ public class LetterDao {
 		
 		List<LetterVo> voList = new ArrayList<>();
 		while(rs.next()) {
-			
+
+			String no = rs.getString("LETTER_NO");
 			String memberNick = rs.getString("MEMBER_NICK");
 			String letterTitle = rs.getString("LETTER_TITLE");
 			String enrollDate = rs.getString("ENROLL_DATE");
@@ -84,7 +84,8 @@ public class LetterDao {
 			vo.setSendMemberName(memberNick);
 			vo.setLetterTitle(letterTitle);
 			vo.setEnrollDate(enrollDate);
-			
+			vo.setLetterNo(no);
+
 			voList.add(vo);
 			
 		}
@@ -162,6 +163,18 @@ public class LetterDao {
 		
 		return cnt;
 		
+	}
+
+	public int letterDelete(Connection conn, String letterNo) throws SQLException {
+	    String sql = "UPDATE LETTER SET STATUS = 'X' WHERE LETTER_NO = ?";
+	    PreparedStatement pstmt = conn.prepareStatement(sql);
+	    pstmt.setString(1, letterNo);
+	    
+	    int result = pstmt.executeUpdate();
+	    
+	    pstmt.close();
+	    
+	    return result;
 	}
 
 }
