@@ -55,19 +55,15 @@
                 </tr>
                 <tr>
                     <th>이름</th>
-                    <td><input type="text" name="memberName"></td>
+                    <td><input type="text" name="memberNick"></td>
                 </tr>
                 <tr>
                     <th>주민등록번호</th>
-                    <td><input type="text" name="birthNum"></td>
+                    <td><input type="text" name="birthNum" placeholder="숫자 13자리 입력"></td>
                 </tr>
                 <tr>
                     <th>휴대폰 번호</th>
                     <td><input type="phone" name="phoneNo"></td>
-                </tr>
-                <tr>
-                    <th>닉네임</th>
-                    <td><input type="text" name="memberNick"></td>
                 </tr>
                 <tr>
                     <th>프로필 사진</th>

@@ -27,41 +27,32 @@ public class IdFindController extends HttpServlet{
 		try {
 			
 			//데꺼
-			String memberName = req.getParameter("memberName");
+			String memberNick = req.getParameter("memberNick");
 			String phoneNo = req.getParameter("phoneNo");
 			
 			//데뭉
 			MemberVo vo = new MemberVo();
-			vo.setMemberName(memberName);
+			vo.setMemberNick(memberNick);
 			vo.setPhoneNo(phoneNo);
-			
-			
-			//////////////////여기까지 손 댐///////////////////////
-			
 			
 			//서비스
 			MemberService ms = new MemberService();
-			MemberVo loginMember = ms.login(vo);
+			MemberVo idFind = ms.findId(vo);
 			
 			//화면
-			if(loginMember != null) {
-				
-				req.getSession().setAttribute("loginMember", loginMember);
+			if(idFind != null) {
+				req.setAttribute("idFind", idFind);
 				String root = req.getContextPath();
-				
-				if ( "S".equals(loginMember.getIdentity()) ) {
-					resp.sendRedirect(root + "/smain");
-				}else if( "T".equals(loginMember.getIdentity()) ) {
-					resp.sendRedirect(root + "/tmain");
-				}//ifif
-				
-			}//if
+				req.getRequestDispatcher("/WEB-INF/views/member/idFind2.jsp").forward(req, resp);
+			}else {
+				throw new Exception();
+			}
 			
 		}catch(Exception e) {
-			System.out.println("[ERROR] login fail ...");
+			System.out.println("[ERROR] id find fail ...");
 			e.printStackTrace();
 			
-			req.setAttribute("errorMsg", "로그인 실패...");
+			req.setAttribute("errorMsg", "아이디 찾기 실패...");
 			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
 		}
 	

@@ -45,7 +45,7 @@
                 <input type="submit" value="관리자 로그인">
             </div>
             
-            <br>
+            <!-- <br>
             <br>
 
             <div>
@@ -55,7 +55,7 @@
                 <a href="${root}/member/id/find"><b>아이디 찾기</b></a>
                 |
                 <a href="${root}/member/pwd/find"><b>비밀번호 찾기</b></a>
-            </div>
+            </div> -->
 
         </form>
 
