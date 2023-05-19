@@ -194,3 +194,8 @@ table{
     color: #424242;
     margin-left: 3px;
 }
+
+button.active{
+    background-color: #4998D1;
+    color: #fff;
+}

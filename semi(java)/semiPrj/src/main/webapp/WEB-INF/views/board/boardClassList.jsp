@@ -25,12 +25,13 @@
 
             <div class="board_search">
                 <form action="${root}/class/list" method="get" name="searchBoard">
-                    <select class="searchCategory" name="searchCategory">
-                        <option value="t">제목</option>
-                        <option value="c">내용</option>
+                    <input type="hidden" name="page" value="1">
+                    <select class="searchCategory" name="searchType">
+                        <option value="classTitle">제목</option>
+                        <option value="classContent">내용</option>
                     </select>
-                    <input type="text" class="searchInput" placeholder="검색어 입력" name="searchText">
-                    <input type="button" value="검색" class="searchBtn">
+                    <input type="text" class="searchInput" placeholder="검색어 입력" value="${searchVo.searchValue}" name="searchValue">
+                    <input type="submit" value="검색" class="searchBtn">
                 </form>
             </div>
 
@@ -49,11 +50,13 @@
 	                    <tr>
 	                        <td>${cvo.boardNo}</td>
 	                        <td class="board_title">${cvo.boardTitle}
-	                        	<span class="comment_num">[21]</span> 
-	                        	<span class="new_btn">New</span>
+		                        <c:if test="${cvo.totalReplies > 0}">
+			                        <span class="comment_num">[${cvo.totalReplies}]</span>
+		                        </c:if>
+			                        <span class="new_btn">New</span>
 	                        </td>
 	                        <td>${cvo.writerNick}</td>
-	                        <td>${cvo.erollDate}</td>
+	                        <td>${cvo.enrollDate}</td>
 	                        <td>${cvo.hit}</td>
 	                    </tr>
                     </c:forEach>
@@ -63,16 +66,20 @@
                 <a href="${root}/board/write" class="bt1">글 등록</a>
             </div>
 			<div class="board_page">
-				<c:if test="${pv.currentPage > 1 }">
-					<a href=""><button><<</button></a>
+				<c:if test="${pv.currentPage > 1}">
+					<a href="${root}/class/list?page=${pv.currentPage-1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button><<</button></a>
 				</c:if>
-				<c:forEach items="" var="">
-					<a><button>${pv.currentPage}</button></a>
+				<c:forEach begin="${pv.startPage}" end="${pv.endPage}" var="i">
+					<c:if test="${pv.currentPage ne i}">
+						<a href="${root}/class/list?page=${i}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>${i}</button></a>
+					</c:if>
+					<c:if test="${pv.currentPage eq i}">
+						<a><button class="active">${i}</button></a>
+					</c:if>
 				</c:forEach>
-                <c:if test="${pv.currentPage  }">
-					<a href=""><button>>></button></a>
+				<c:if test="${pv.currentPage < pv.maxPage}">
+					<a href="${root}/class/list?page=${pv.currentPage+1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>>></button></a>
 				</c:if>
-                
             </div>
            
 		</main>
@@ -84,3 +91,11 @@
 	const title = document.querySelector('.title');
 	title.innerHTML = "우리반 게시판";
 </script>
+<script>
+
+    //검색 타입
+    const cc = document.querySelector('select > option[value="${searchVo.searchType}"]');
+    cc.selected = true;
+
+</script>
+

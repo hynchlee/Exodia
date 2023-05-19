@@ -21,10 +21,12 @@ public class BoardService {
 	public int getBoardListCnt() throws Exception {
 		
 		Connection conn = JDBCTemplate.getConnection();
-//		String sql = "";
-//		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
-		return 0;
+		int cnt = dao.getBoardListCnt(conn);
+		
+		JDBCTemplate.close(conn);
+		
+		return cnt;
 	}
 
 	//목록 조회
@@ -40,9 +42,9 @@ public class BoardService {
 	}
 
 	//검색해서 목록 조회
-	public List<BoardVo> getBoardList(PageVo pv, String searchType, String searchValue) {
+	public List<BoardVo> getBoardList(PageVo pv, String searchType, String searchValue) throws Exception {
 		
-Connection conn = JDBCTemplate.getConnection();
+		Connection conn = JDBCTemplate.getConnection();
 		
 		List<BoardVo> cvoList = dao.getBoardList(conn,pv,searchType,searchValue);
 		
