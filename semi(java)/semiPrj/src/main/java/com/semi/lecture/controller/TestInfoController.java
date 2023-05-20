@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.semi.common.page.PageVo;
 import com.semi.lecture.service.LectureService;
-import com.semi.lecture.vo.TestInfoVo;
+import com.semi.lecture.vo.ExamCategoryVo;
 
 @WebServlet("/lecture/test/info")
 public class TestInfoController extends HttpServlet{
@@ -20,7 +20,7 @@ public class TestInfoController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			int cnt = ls.getTestInfoListCnt();
+			int cnt = ls.getExamCategoryListCnt();
 
 			String page = req.getParameter("page");
 			int pageInt = 1;
@@ -29,9 +29,9 @@ public class TestInfoController extends HttpServlet{
 			}
 			
 			PageVo pageVo = new PageVo(cnt, pageInt, 5, 10);
-			List<TestInfoVo> testInfoList = ls.getTestInfoList(pageVo);
+			List<ExamCategoryVo> examCategoryList = ls.getExamCategoryList(pageVo);
 
-			req.setAttribute("testInfoList", testInfoList);
+			req.setAttribute("examCategoryList", examCategoryList);
 			req.setAttribute("pageVo", pageVo);
 			req.getRequestDispatcher("/WEB-INF/views/lecture/test/info.jsp").forward(req, resp);
 		} catch (Exception e) {

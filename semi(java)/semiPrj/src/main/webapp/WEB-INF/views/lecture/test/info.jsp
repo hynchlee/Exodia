@@ -33,16 +33,16 @@
 									<th>번호</th>
 									<th>강의</th>
 									<th>단원</th>
-									<th>작성자</th>
-									<th>작성일자</th>
+									<th>수정자</th>
+									<th>수정 일자</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${testInfoList}" var="vo">
+								<c:forEach items="${examCategoryList}" var="vo">
 									<tr>
-										<td>${vo.examCategoryNo}</td>
+										<td id="no">${vo.examCategoryNo}</td>
 										<td>${vo.lectureCategoryName}</td>
-										<td>${vo.examSubject}</td>
+										<td id="subject">${vo.examSubject}</td>
 										<td>ADMIN01</td>
 										<td>YYYY-MM-DD 24:00</td>
 									</tr>
@@ -75,7 +75,9 @@
 
 			for (const tr of trArr) {
 				tr.addEventListener("click", function () {
-					location.href = "${root}/lecture/test/manage";
+					const no = tr.querySelector('#no').innerText;
+					const subject = tr.querySelector('#subject').innerText;
+					location.href = "${root}/lecture/test/manage?no=" + no + "&subject=" + subject;
 				});
 			}
 
