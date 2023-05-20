@@ -49,37 +49,36 @@
 						</div>
 					</div>
 					<div id="writeDiv">
-						<div id="writeTable">
-							<table>
-								<thead>
-									<tr>
-										<th id="title">받는 사람</th>
-										<th><input type="text" name="receiver"></th>
-									</tr>
-									<tr>
-										<th id="title">제목</th>
-										<th id="inputText"><input type="text" name="title"></th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<th colspan="2">
-											<textarea name="content">
-
-											</textarea>
-										</th>
-									</tr>
-								</tbody>
-								<tfoot>
-									<tr>
-										<td colspan="2">
-											<button onclick="">뒤로가기</button>
-											<button>보내기</button>
-										</td>
-									</tr>
-								</tfoot>
-							</table>
-						</div>
+							<form action="/semi/letter/receive" id="writeTable" method="post">
+								<table>
+									<thead>
+										<tr>
+											<th id="title">받는 사람</th>
+											<th><input type="text" name="receiver"></th>
+										</tr>
+										<tr>
+											<th id="title">제목</th>
+											<th id="inputText"><input type="text" name="title"></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<th colspan="2">
+												<textarea name="content">
+	
+												</textarea>
+											</th>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="2">
+												<button type="submit">보내기</button>
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+							</form>
 					</div>
 				</main>
 
@@ -98,4 +97,5 @@
 
 			const caption = document.querySelector(".caption1");
 			caption.style.marginTop = 0;
+
 		</script>

@@ -89,8 +89,7 @@
 								</tr>
 								<tr>
 									<td id="pageTd" colspan="4">
-										<button onclick="pageMove('${pageVo.startPage}');">
-											<<< /button>
+										<button onclick="pageMove('${pageVo.startPage}');"><<</button>
 												<c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" var="i">
 													<button class="pageBtn" onclick="pageMove('${i}');">${i}</button>
 												</c:forEach>
