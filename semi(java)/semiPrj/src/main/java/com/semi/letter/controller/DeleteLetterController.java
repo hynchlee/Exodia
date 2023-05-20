@@ -2,6 +2,8 @@ package com.semi.letter.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,18 +23,38 @@ public class DeleteLetterController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String json = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-	    
-		System.out.println(json);
-//	    List<String> boxList = new ArrayList<>();
-//
-//		LetterService ls = new LetterService();
-//		int result = ls.letterDelete(json);
-//
-//		if (result > 0) {
-//			resp.getWriter().write("Success");
-//		} else {
-//			resp.getWriter().write("Error");
-//		}
+		
+		try {
+			String json = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+			
+			String [] strNumbers = json.replaceAll("\\s","")
+					.replace("[", "")
+					.replace("]", "")
+					.replace("\"","")
+					.split(",");
+			
+			int[] letterNo = new int[strNumbers.length];
+			
+			for (int i = 0; i < letterNo.length; i++) {
+				letterNo[i] = Integer.parseInt(strNumbers[i]);
+			}
+			
+			LetterService ls = new LetterService();
+			int result = ls.deleteLetter(letterNo);
+			
+			if(result == 1) {
+				req.getRequestDispatcher("/WEB-INF/views/letter/receive-letter.jsp").forward(req, resp);
+			}
+			else {
+				req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+			}
+
+		} catch (Exception e) {
+			System.out.println("메세지 삭제 중 오류 발생");
+			e.printStackTrace();
+		}
+		
+		
 	}
+	
 }

@@ -18,6 +18,16 @@ public class WriteLetterController extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		HttpSession session = req.getSession();
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		
+		if(loginMember == null) {
+			req.setAttribute("errorMsg", "로그인을 먼저 해주세요");
+			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+			return;
+		}
+		
 		req.getRequestDispatcher("/WEB-INF/views/letter/write-letter.jsp").forward(req, resp);
 	}
 	
@@ -40,6 +50,11 @@ public class WriteLetterController extends HttpServlet{
 			LetterService ms = new LetterService();
 			int result = ms.writeLetter(vo, loginMember);
 			
+//			System.out.println(loginMember);
+//			System.out.println(receiver);
+//			System.out.println(title);
+//			System.out.println(content);
+			
 			if(result == 1) {
 				req.getRequestDispatcher("/WEB-INF/views/letter/sent-letter.jsp").forward(req, resp);
 			}
@@ -50,7 +65,7 @@ public class WriteLetterController extends HttpServlet{
 			}
 			
 		} catch (Exception e) {
-			System.out.println("쪽지 쓰는 도중 에러 발생");
+			System.out.println("쪽지 작성 중 오류 발생");
 			e.printStackTrace();
 		}
 		

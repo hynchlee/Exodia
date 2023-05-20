@@ -61,32 +61,27 @@ public class LetterService {
 		return cnt;
 	}
 
-	public int letterDelete(List<String> boxList) {
-	    Connection conn = JDBCTemplate.getConnection();
-	    int result = 0;
-	    
-	    try {
-	        // 트랜잭션 시작
-	        conn.setAutoCommit(false);
-	        
-	        // boxList를 이용하여 삭제 작업 수행
-	        for (String letterNo : boxList) {
-	            result += dao.letterDelete(conn, letterNo);
-	        }
-	        
-	        // 트랜잭션 커밋
-	        conn.commit();
-	    } catch (Exception e) {
-	        // 트랜잭션 롤백
-	        JDBCTemplate.rollback(conn);
-	        e.printStackTrace();
-	    } finally {
-	        // 트랜잭션 종료 및 커넥션 반환
-	        JDBCTemplate.close(conn);
-	    }
-	    
-	    return result;
+	public int deleteLetter(int[] letterNo) throws Exception {
+
+		Connection conn = JDBCTemplate.getConnection();
+
+		int x = 1;
+		for(int number:letterNo) {
+			int result = dao.deleteLetter(conn, number);
+			
+			if(result != 1) { 
+				x = 0;
+				break;
+			}
+			
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return x;
 	}
+
+	
 	
 }
 
