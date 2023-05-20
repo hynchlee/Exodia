@@ -2,7 +2,9 @@ package com.semi.mypage.controller;
 
 import java.io.IOException;
 import java.nio.channels.IllegalSelectorException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,25 +13,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.semi.board.service.BoardService;
+import com.semi.board.vo.BoardVo;
+import com.semi.common.page.PageVo;
 import com.semi.lecture.vo.LectureVo;
 import com.semi.member.vo.MemberVo;
 import com.semi.mypage.service.MypageService;
 
 @WebServlet(urlPatterns = "/tmypage")
 public class tMypageController extends HttpServlet{
-
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		req.getRequestDispatcher("/WEB-INF/views/personal/tmypage.jsp").forward(req, resp);
-		
-	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		
-	}
 	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -46,18 +38,23 @@ public class tMypageController extends HttpServlet{
 			
 			MypageService ms = new MypageService();
 			List<LectureVo> volist = ms.viewStudent(memberNo);
-			
-			if (volist == null) {
-				throw new Exception("값이 존재하지 않음");
-			}
+			List<BoardVo> notList = ms.showNotice();			
+			List<BoardVo> freeList = ms.freeboard();			
 			
 			req.setAttribute("volist", volist);
+			req.setAttribute("notList", notList);
+			req.setAttribute("freeList", freeList);
 			req.getRequestDispatcher("/WEB-INF/views/personal/tmypage.jsp").forward(req, resp);
 			
-		} catch (Exception e) {
-			System.out.println("학생 리스트 조회 실패");
-			e.printStackTrace();
-		}
+			} catch (Exception e) {
+				System.out.println("tmypage 게시판 조회 중 발생");
+				e.printStackTrace();
+				
+				req.setAttribute("errorMsg", "마이페이지 조회중 에러발생");
+				req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+			}
+	
+		
 	
 	}
 	

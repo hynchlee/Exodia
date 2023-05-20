@@ -29,21 +29,13 @@
 								<a href="${root}/notice/list" class="plus02">더보기</a>
 								</td>
 							</tr>
-							<tr>
-								<td class="line01">작성자</td>
-								<td class="line01">내용내용내용내용내용내용내용</td>
-								<td class="line01">2023-xx-xx</td>
-							</tr>
-							<tr>
-								<td class="line01">작성자</td>
-								<td class="line01">내용내용내용내용내용내용내용</td>
-								<td class="line01">2023-xx-xx</td>
-							</tr>
-							<tr>
-								<td class="line01">작성자</td>
-								<td class="line01">내용내용내용내용내용내용내용</td>
-								<td class="line01">2023-xx-xx</td>
-							</tr>
+							<c:forEach items="${snotList}" var="snotList">
+								<tr>
+									<td class="line01">${snotList.writerNick}</td>
+									<td class="line01">${snotList.boardTitle}</td>
+									<td class="line01">${snotList.enrollDate}</td>
+								</tr>
+							</c:forEach>
 						</table>
 					</div>
 				</td>

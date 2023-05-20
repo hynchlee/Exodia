@@ -29,21 +29,13 @@
 								<a href="${root}/notice/list" class="plus02">더보기</a>
 								</td>
 							</tr>
-							<tr>
-								<td class="line01">작성자</td>
-								<td class="line01">내용내용내용내용내용내용내용</td>
-								<td class="line01">2023-xx-xx</td>
-							</tr>
-							<tr>
-								<td class="line01">작성자</td>
-								<td class="line01">내용내용내용내용내용내용내용</td>
-								<td class="line01">2023-xx-xx</td>
-							</tr>
-							<tr>
-								<td class="line01">작성자</td>
-								<td class="line01">내용내용내용내용내용내용내용</td>
-								<td class="line01">2023-xx-xx</td>
-							</tr>
+							<c:forEach items="${notList}" var="notList">
+								<tr>
+									<td class="line01">${notList.writerNick}</td>
+									<td class="line01">${notList.boardTitle}</td>
+									<td class="line01">${notList.enrollDate}</td>
+								</tr>
+							</c:forEach>
 						</table>
 					</div>
 				</td>
@@ -94,21 +86,13 @@
 								<a href="${root}/class/list" class="plus02">더보기</a>
 								</td>
 							</tr>
-							<tr>
-								<td class="line01">작성자</td>
-								<td class="line01">내용내용내용내용내용내용내용</td>
-								<td class="line01">2023-xx-xx</td>
-							</tr>
-							<tr>
-								<td class="line01">작성자</td>
-								<td class="line01">내용내용내용내용내용내용내용</td>
-								<td class="line01">2023-xx-xx</td>
-							</tr>
-							<tr>
-								<td class="line01">작성자</td>
-								<td class="line01">내용내용내용내용내용내용내용</td>
-								<td class="line01">2023-xx-xx</td>
-							</tr>
+							<c:forEach items="${freeList}" var="freeList">
+								<tr>
+									<td class="line01">${freeList.writerNick}</td>
+									<td class="line01">${freeList.boardTitle}</td>
+									<td class="line01">${freeList.enrollDate}</td>
+								</tr>
+							</c:forEach>
 						</table>
 						</div>
 					</td>
