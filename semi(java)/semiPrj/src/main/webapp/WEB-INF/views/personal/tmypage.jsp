@@ -121,8 +121,8 @@
 							<ul>
 								<c:forEach items="${volist}" var="volist">
 									<li class="list01">${volist.teacherMemberName}</li>				
-									<li>${volist.lectureCategoryName}</li>		
-									<hr>		
+									<li class="list02">${volist.lectureCategoryName}</li>	
+									<hr>			
 								</c:forEach>
 							</ul>							
 							</div>

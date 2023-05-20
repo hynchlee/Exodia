@@ -28,6 +28,12 @@ public class tMypageController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		
+	}
+	
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		try {
 			HttpSession session = req.getSession();
 			MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
@@ -52,9 +58,7 @@ public class tMypageController extends HttpServlet{
 			System.out.println("학생 리스트 조회 실패");
 			e.printStackTrace();
 		}
-		
-		
-		
+	
 	}
 	
 }
