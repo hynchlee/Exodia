@@ -90,7 +90,6 @@ table{
 .board td.board_title{
     text-align: left;
     padding: 5px 30px;
-    cursor: pointer;
 }
 
 .board_bt{

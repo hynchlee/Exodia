@@ -135,4 +135,42 @@ public class NoticeDao {
 		
 	}
 
+	public NoticeVo getNoticeByNo(Connection conn, String nno) throws Exception {
+		
+		String sql = "SELECT N.NOTICE_NO ,N.ADMIN_NO ,N.NOTICE_TITLE ,N.NOTICE_CONTENT ,TO_CHAR(N.ENROLL_DATE, 'YYYY.MM.DD') AS ENROLL_DATE ,TO_CHAR(N.MODIFY_DATE, 'YYYY.MM.DD') AS MODIFY_DATE ,N.HIT ,N.STATUS ,A.ADMIN_NICK FROM NOTICE N JOIN ADMIN A ON(N.ADMIN_NO = A.ADMIN_NO) WHERE N.STATUS='O' AND N.NOTICE_NO=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, nno);
+		ResultSet rs = pstmt.executeQuery();
+		
+		NoticeVo nvNo = null;
+		if (rs.next()) {
+			String noticeNo = rs.getString("NOTICE_NO");
+			String adminNo = rs.getString("ADMIN_NO");
+			String noticeTitle = rs.getString("NOTICE_TITLE");
+			String noticeContent = rs.getString("NOTICE_CONTENT");
+			String enrollDate = rs.getString("ENROLL_DATE");
+			String modifyDate = rs.getString("MODIFY_DATE");
+			String hit = rs.getString("HIT");
+			String status = rs.getString("STATUS");
+			String adminNick = rs.getString("ADMIN_NICK");
+			
+			nvNo = new NoticeVo();
+			nvNo.setNoticeNo(noticeNo);
+			nvNo.setAdminNo(adminNo);
+			nvNo.setNoticeTitle(noticeTitle);
+			nvNo.setNoticeContent(noticeContent);
+			nvNo.setEnrollDate(enrollDate);
+			nvNo.setModifyDate(modifyDate);
+			nvNo.setHit(hit);
+			nvNo.setStatus(status);
+			nvNo.setAdminNick(adminNick);
+			
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return nvNo;
+	}
+
 }

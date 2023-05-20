@@ -52,4 +52,16 @@ public class NoticeService {
 		return cnt;
 	}
 
+	//상세조회
+	public NoticeVo getNoticeByNo(String nno) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		NoticeVo nvNo = dao.getNoticeByNo(conn,nno);
+		
+		JDBCTemplate.close(conn);
+		
+		return nvNo;
+	}
+
 }
