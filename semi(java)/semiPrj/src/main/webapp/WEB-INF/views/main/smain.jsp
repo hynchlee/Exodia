@@ -184,12 +184,13 @@
           <div class="v67_3">
             <video src="/semi/static/img/main/main.mp4" autoplay loop></video>
           </div>
+          
 
           <div class="v69_16">
           	<div class="innerprofile">
           		<div class="logout"><a href="${root}/member/logout">로그아웃</a></div>
 				<div class="photo01"></div>
-				<div class="identity"><a href="${root}/mypage">~~~님 (수강생)</a></div>
+				<div class="identity"><a href="${root}/mypage">${loginMember.memberNick}님 (수강생)</a></div>
 				<div class="class01"><a href="${root}/lecture/apply">반응형 UX/UI 웹컨텐츠 개발자 양성과정 A9</a></div>
 				<div class="change"><a href="${root}/member/edit">내 정보 수정</a></div>
 				<div class="letter"><a href="${root}/letter/receive">쪽지</a></div>
