@@ -9,6 +9,26 @@ import com.semi.common.db.JDBCTemplate;
 import com.semi.member.vo.MemberVo;
 
 public class MemberDao {
+	
+	//회원가입
+	public int join(Connection conn, MemberVo vo) throws Exception {
+
+		//sql
+		String sql = "INSERT INTO MEMBER (MEMBER_NO, MEMBER_ID, MEMBER_PWD, MEMBER_NICK, BIRTH_NUM, PHONE_NO, IDENTITY) VALUES (SEQ_MEMBER_NO.NEXTVAL, ?, ?, ?, ?, ?, ?)";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, vo.getMemberId());
+		pstmt.setString(2, vo.getMemberPwd());
+		pstmt.setString(3, vo.getMemberNick());
+		pstmt.setString(4, vo.getBirthNum());
+		pstmt.setString(5, vo.getPhoneNo());
+		pstmt.setString(6, vo.getIdentity());
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+		
+	}
 
 	//로그인
 	public MemberVo login(Connection conn, MemberVo vo) throws Exception {
@@ -109,5 +129,7 @@ public class MemberDao {
 		return pwdFind;
 	
 	}
+
+
 
 }
