@@ -23,10 +23,10 @@ main {
 
 .list-tbl tbody {
     width: 100%;
-    height: 700px;
 }
 
 .list-tbl tbody tr {
+    height: 70px;
     border-bottom: 1px solid black;
 }
 

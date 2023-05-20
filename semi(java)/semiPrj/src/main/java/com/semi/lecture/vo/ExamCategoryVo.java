@@ -1,17 +1,17 @@
 package com.semi.lecture.vo;
 
-public class TestInfoVo {
+public class ExamCategoryVo {
 	private String examCategoryNo;
 	private String lectureCategoryNo;
 	private String lectureCategoryName;
 	private String examSubject;
 
-	public TestInfoVo() {
+	public ExamCategoryVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public TestInfoVo(String examCategoryNo, String lectureCategoryNo, String lectureCategoryName, String examSubject) {
+	public ExamCategoryVo(String examCategoryNo, String lectureCategoryNo, String lectureCategoryName, String examSubject) {
 		super();
 		this.examCategoryNo = examCategoryNo;
 		this.lectureCategoryNo = lectureCategoryNo;
