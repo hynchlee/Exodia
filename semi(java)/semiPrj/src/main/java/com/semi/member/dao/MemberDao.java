@@ -12,6 +12,7 @@ public class MemberDao {
 
 	//로그인
 	public MemberVo login(Connection conn, MemberVo vo) throws Exception {
+		
 		//SQL
 		String sql = "SELECT * FROM MEMBER WHERE MEMBER_ID = ? AND MEMBER_PWD = ? AND STATUS = 'O'";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
