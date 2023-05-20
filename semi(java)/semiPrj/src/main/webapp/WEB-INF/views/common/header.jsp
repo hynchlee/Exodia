@@ -37,7 +37,7 @@
 						src="/semi/static/img/header/___7.png" alt="profile"
 						id="profile_img"></a></li>
 				<li class="menu3"><a href="${root}/introduce/greet"> KH소개 </a></li>
-				<li class="menu3"><a href="${root}/notice/list"> 게시판 </a></li>
+				<li class="menu3"><a href="${root}/my/list"> 게시판 </a></li>
 				<li class="menu3"><a href="${root}/introduce/lecture?subject=1">
 						강의 </a></li>
 				<li class="menu4"></li>
@@ -47,26 +47,26 @@
 			<table class="submenu-tbl">
 				<tr>
 					<td><a href="${root}/introduce/greet">인사말</a></td>
-					<td><a href="${root}/notice/list">공지사항</a></td>
+					<td><a href="${root}/notice/list?page=1">공지사항</a></td>
 					<td><a href="${root}/introduce/lecture?subject=1">강의 소개</a></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td><a href="${root}/introduce/teacher">강사진 소개</a></td>
-					<td><a href="${root}/free/list">자유게시판</a></td>
+					<td><a href="${root}/free/list?page=1">자유게시판</a></td>
 					<td><a href="${root}/lecture/apply">수강 신청</a></td>
 				</tr>
 				<tr>
 					<td><a href="${root}/introduce/facility?building=1">시설 소개</a></td>
-					<td><a href="${root}/qna/list">문의게시판</a></td>
+					<td><a href="${root}/qna/list?page=1">문의게시판</a></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td><a href="${root}/review/list">수강후기</a></td>
+					<td><a href="${root}/review/list?page=1">수강후기</a></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td><a href="${root}/class/list">우리반게시판</a></td>
+					<td><a href="${root}/class/list?page=1">우리반게시판</a></td>
 				</tr>
 			</table>
 		</div>
