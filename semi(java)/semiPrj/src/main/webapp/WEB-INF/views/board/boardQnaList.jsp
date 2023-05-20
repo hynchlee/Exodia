@@ -40,14 +40,14 @@
                           </label>
                     </div>
             </form>
-                <form action="" method="post" name="searchBoard">
-                    <select class="searchCategory" name="searchCategory">
-                        <option value="t">제목</option>
-                        <option value="c">내용</option>
-                        <option value="tc">제목+내용</option>
+                <form action="${root}/qna/list" method="get" name="searchBoard">
+                	<input type="hidden" name="page" value="1">
+                    <select class="searchCategory" name="searchType">
+                        <option value="qnaTitle">제목</option>
+                        <option value="qnaContent">내용</option>
                     </select>
-                    <input type="text" class="searchInput" placeholder="검색어 입력" name="searchText">
-                    <input type="button" value="검색" class="searchBtn">
+                    <input type="text" class="searchInput" placeholder="검색어 입력" value="${searchVo.searchValue}" name="searchValue">
+                    <input type="submit" value="검색" class="searchBtn">
                 </form>
             </div>
             
@@ -58,98 +58,54 @@
                         <th style="width: 10%;">작성자</th>
                         <th>제목</th>
                         <th style="width: 15%;">작성일</th>
-                        <th style="width: 8%;">상태</th>
+                        <th style="width: 8%;">답변상태</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>아무개</td>
-                        <td class="board_title">글제목자리 <span class="new_btn">New</span></td>
-                        <td>2023.05.01</td>
-                        <td class="state">
-                            <button class="bt_y">완료</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>아무개</td>
-                        <td class="board_title">글제목자리 <span class="new_btn">New</span></td>
-                        <td>2023.05.01</td>
-                        <td class="state">
-                            <button class="bt_n">대기</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>아무개</td>
-                        <td class="board_title">글제목자리 <span class="new_btn">New</span></td>
-                        <td>2023.05.01</td>
-                        <td class="state">완료</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>아무개</td>
-                        <td class="board_title">글제목자리 <span class="new_btn">New</span></td>
-                        <td>2023.05.01</td>
-                        <td class="state">완료</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>아무개</td>
-                        <td class="board_title">글제목자리 <span class="new_btn">New</span></td>
-                        <td>2023.05.01</td>
-                        <td class="state">완료</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>아무개</td>
-                        <td class="board_title">글제목자리 <span class="new_btn">New</span></td>
-                        <td>2023.05.01</td>
-                        <td class="state">완료</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>아무개</td>
-                        <td class="board_title">글제목자리 <span class="new_btn">New</span></td>
-                        <td>2023.05.01</td>
-                        <td class="state">완료</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>아무개</td>
-                        <td class="board_title">글제목자리 <span class="new_btn">New</span></td>
-                        <td>2023.05.01</td>
-                        <td class="state">완료</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>아무개</td>
-                        <td class="board_title">글제목자리 <span class="new_btn">New</span></td>
-                        <td>2023.05.01</td>
-                        <td class="state">완료</td>
-                    </tr>
-                    
+                	<c:forEach items="${qvoList}" var="qvo">
+	                    <tr>
+	                        <td>${qvo.qnaNo}</td>
+	                        <td>${qvo.writerNick}</td>
+	                        <td class="board_title">${qvo.qnaTitle}</td>
+	                        <td>${qvo.enrollDate}</td>
+	                        <td class="state">
+	                        	<c:if test="${not empty qvo.qnaAnswer}">
+		                            <button class="bt_y">완료</button>
+	                        	</c:if>
+	                        	<c:if test="${empty qvo.qnaAnswer}">
+		                            <button class="bt_n">대기</button>
+	                        	</c:if>
+	                        </td>
+	                    </tr>
+                	</c:forEach>
                 </tbody>
             </table>
             <!-- 관리자나 강사가 클릭하면 다른 창 -->
-            <div class="board_bt">
-                <a href="${root}/board/write" class="bt1">질문하기</a>
-            </div>
+            <c:if test="${not empty loginMember}">
+	            <div class="board_bt">
+	                <a href="${root}/board/write" class="bt1">질문하기</a>
+	            </div>
+            </c:if>
+            <c:if test="${not empty loginAdmin}">
+	            <div class="board_bt">
+	                <a href="${root}/qna/answer/write" class="bt1">답변하기</a>
+	            </div>
+            </c:if>
+            
 			<div class="board_page">
 				<c:if test="${pv.currentPage > 1}">
-					<a href="${root}/notice/list?page=${pv.currentPage-1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button><<</button></a>
+					<a href="${root}/qna/list?page=${pv.currentPage-1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button><<</button></a>
 				</c:if>
 				<c:forEach begin="${pv.startPage}" end="${pv.endPage}" var="i">
 					<c:if test="${pv.currentPage ne i}">
-						<a href="${root}/notice/list?page=${i}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>${i}</button></a>
+						<a href="${root}/qna/list?page=${i}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>${i}</button></a>
 					</c:if>
 					<c:if test="${pv.currentPage eq i}">
-						<a><button>${i}</button></a>
+						<a><button class="active">${i}</button></a>
 					</c:if>
 				</c:forEach>
 				<c:if test="${pv.currentPage < pv.maxPage}">
-					<a href="${root}/notice/list?page=${pv.currentPage+1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>>></button></a>
+					<a href="${root}/qna/list?page=${pv.currentPage+1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>>></button></a>
 				</c:if>
             </div>
 		</main>
@@ -160,4 +116,11 @@
 <script>
 	const title = document.querySelector('.title');
 	title.innerHTML = "문의게시판";
+</script>
+<script>
+
+    //검색 타입
+    const nc = document.querySelector('select > option[value="${searchVo.searchType}"]');
+    nc.selected = true;
+
 </script>

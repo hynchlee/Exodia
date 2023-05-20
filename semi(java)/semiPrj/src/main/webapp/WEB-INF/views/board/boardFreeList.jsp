@@ -15,23 +15,25 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 
 		<main>
-			<div class="myClass">
-                <ul>
-                    <li class="loginName">유저님 환영합니다</li>
-                    <li class="class">(스마트웹&콘텐츠개발)반응형 UI/UX 웹콘텐츠 개발자 양성과정A</li>
-                    <li class="classRoom">[강남 362] 2022. 12. 30 ~ 2023. 08. 16 ｜ 15:30 ~ 22:00 (심원용 강사 ｜ 김리아 취업담임)</li>
-                </ul>
-            </div>
+			<c:if test="${not empty loginMember}">
+				<div class="myClass">
+	                <ul>
+	                    <li class="loginName">${loginMember.memberNick} 님 환영합니다</li>
+	                    <li class="class">(스마트웹&콘텐츠개발)반응형 UI/UX 웹콘텐츠 개발자 양성과정A</li>
+	                    <li class="classRoom">[강남 362] 2022. 12. 30 ~ 2023. 08. 16 ｜ 15:30 ~ 22:00 (심원용 강사 ｜ 김리아 취업담임)</li>
+	                </ul>
+	            </div>
+			</c:if>
 
             <div class="board_search">
-                <form action="${root}/free/list" method="post" name="searchBoard">
-                    <select class="searchCategory" name="searchCategory">
-                        <option value="t">제목</option>
-                        <option value="c">내용</option>
-                        <option value="tc">제목+내용</option>
+                <form action="${root}/free/list" method="get" name="searchBoard">
+                    <input type="hidden" name="page" value="1">
+                    <select class="searchCategory" name="searchType">
+                        <option value="classTitle">제목</option>
+                        <option value="classContent">내용</option>
                     </select>
-                    <input type="text" class="searchInput" placeholder="검색어 입력" name="searchText">
-                    <input type="button" value="검색" class="searchBtn">
+                    <input type="text" class="searchInput" placeholder="검색어 입력" value="${searchVo.searchValue}" name="searchValue">
+                    <input type="submit" value="검색" class="searchBtn">
                 </form>
             </div>
 
@@ -46,89 +48,43 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리 <span class="comment_num">[21]</span> <span class="new_btn">New</span></td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                        <td>5</td>
-                    </tr>
+                	<c:forEach items="${fvoList}" var="fvo">
+	                    <tr>
+	                        <td>${fvo.boardNo}</td>
+	                        <td class="board_title">${fvo.boardTitle}
+	                        	<c:if test="${fvo.totalReplies > 0}">
+		                        	<span class="comment_num">[${fvo.totalReplies}]</span> 
+	                        	</c:if>
+	                        </td>
+	                        <td>${fvo.writerNick}</td>
+	                        <td>${fvo.enrollDate}</td>
+	                        <td>${fvo.hit}</td>
+	                    </tr>
+                	</c:forEach>
                 </tbody>
             </table>
-            <div class="board_bt">
-                <a href="${root}/board/write" class="bt1">글 등록</a>
-            </div>
+            
+            <c:if test="${not empty loginMember}">
+	            <div class="board_bt">
+	                <a href="${root}/board/write" class="bt1">글 등록</a>
+	            </div>
+            </c:if>
+            
 			<div class="board_page">
-                <button><<</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-                <button>>></button>
+				<c:if test="${pv.currentPage > 1}">
+					<a href="${root}/class/list?page=${pv.currentPage-1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button><<</button></a>
+				</c:if>
+				<c:forEach begin="${pv.startPage}" end="${pv.endPage}" var="i">
+					<c:if test="${pv.currentPage ne i}">
+						<a href="${root}/class/list?page=${i}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>${i}</button></a>
+					</c:if>
+					<c:if test="${pv.currentPage eq i}">
+						<a><button class="active">${i}</button></a>
+					</c:if>
+				</c:forEach>
+				<c:if test="${pv.currentPage < pv.maxPage}">
+					<a href="${root}/class/list?page=${pv.currentPage+1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>>></button></a>
+				</c:if>
             </div>
 		</main>
 
@@ -138,4 +94,11 @@
 <script>
 	const title = document.querySelector('.title');
 	title.innerHTML = "자유게시판";
+</script>
+<script>
+
+    //검색 타입
+    const cc = document.querySelector('select > option[value="${searchVo.searchType}"]');
+    cc.selected = true;
+
 </script>

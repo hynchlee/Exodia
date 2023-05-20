@@ -50,10 +50,7 @@
                     	<tr>
 	                        <td>${nvo.noticeNo}</td>
 	                        <td class="board_title">${nvo.noticeTitle}
-	                        	<c:if test="${not empty nvo.hit}">
-		                        	<span class="comment_num">[21]</span> 
-	                        	</c:if>
-	                        	<button class="new_btn">New</button>
+                                <span class="new_btn">New</span>
 	                        </td>
 	                        <td>${nvo.adminNick}</td>
 	                        <td>${nvo.enrollDate}</td>
@@ -62,9 +59,13 @@
                    	</c:forEach>
                 </tbody>
             </table>
-            <div class="board_bt">
-                <a href="${root}/board/write" class="bt1">글 등록</a>
-            </div>
+            
+            <c:if test="${not empty loginAdmin}">
+	            <div class="board_bt">
+	                <a href="${root}/board/write" class="bt1">글 등록</a>
+	            </div>
+            </c:if>
+            
 			<div class="board_page">
 				<c:if test="${pv.currentPage > 1}">
 					<a href="${root}/notice/list?page=${pv.currentPage-1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button><<</button></a>
@@ -97,3 +98,4 @@
     nc.selected = true;
 
 </script>
+

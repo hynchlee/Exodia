@@ -23,21 +23,20 @@
                 </ul>
             </div>
 
-            <form action="${root}/review/list">
-                <div class="board_search">
-                    <form action="" method="post" name="searchBoard">
-                        <select class="searchCategory" name="searchCategory">
-                            <option value="cn">강좌</option>
-                        </select>
-                        <select class="selectCategory" name="selectCategory">
-                            <option value="1">sw개발자</option>
-                            <option value="1">정보보안</option>
-                            <option value="1">풀스택</option>
-                        </select>
-                        <input type="button" value="검색" class="searchBtn">
-                    </form>
-                </div>
-            </form>
+            <div class="board_search">
+                <form action="${root}/review/list" method="get" name="searchBoard">
+                    <input type="hidden" name="page" value="1">
+                    <select class="searchCategory" name="searchCategory">
+                        <option value="cn">강좌</option>
+                    </select>
+                    <select class="selectCategory" name="selectCategory">
+                        <option value="1">sw개발자</option>
+                        <option value="1">정보보안</option>
+                        <option value="1">풀스택</option>
+                    </select>
+                    <input type="button" value="검색" class="searchBtn">
+                </form>
+            </div>
 
             <table class="board">
                 <thead>
@@ -50,69 +49,39 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리 <span class="new_btn">New</span></td>
-                        <td>반응형 UI/UX 웹콘텐츠 개발자 양성과정</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>반응형 UI/UX 웹콘텐츠 개발자 양성과정</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>반응형 UI/UX 웹콘텐츠 개발자 양성과정</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>반응형 UI/UX 웹콘텐츠 개발자 양성과정</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>반응형 UI/UX 웹콘텐츠 개발자 양성과정</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>반응형 UI/UX 웹콘텐츠 개발자 양성과정</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="board_title">글제목자리</td>
-                        <td>반응형 UI/UX 웹콘텐츠 개발자 양성과정</td>
-                        <td>아무개</td>
-                        <td>2023.05.01</td>
-                    </tr>
-                    
+                	<c:forEach items="${rvoList}" var="rvo">
+	                    <tr>
+	                        <td>${rvo.reviewNo}</td>
+	                        <td class="board_title">${rvo.reviewTitle}</td>
+	                        <td>${rvo.lectureName}</td>
+	                        <td>${rvo.writerNick}</td>
+	                        <td>${rvo.enrollDate}</td>
+	                    </tr>
+                	</c:forEach>
                 </tbody>
             </table>
-            <div class="board_bt">
-                <a href="${root}/board/write" class="bt1">후기 등록</a>
-            </div>
+            
+            <c:if test="${not empty loginMember}">
+	            <div class="board_bt">
+	                <a href="${root}/board/write" class="bt1">후기 등록</a>
+	            </div>
+            </c:if>
+            
 			<div class="board_page">
-                <button><<</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-                <button>>></button>
+				<c:if test="${pv.currentPage > 1}">
+					<a href="${root}/review/list?page=${pv.currentPage-1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button><<</button></a>
+				</c:if>
+				<c:forEach begin="${pv.startPage}" end="${pv.endPage}" var="i">
+					<c:if test="${pv.currentPage ne i}">
+						<a href="${root}/review/list?page=${i}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>${i}</button></a>
+					</c:if>
+					<c:if test="${pv.currentPage eq i}">
+						<a><button class="active">${i}</button></a>
+					</c:if>
+				</c:forEach>
+				<c:if test="${pv.currentPage < pv.maxPage}">
+					<a href="${root}/review/list?page=${pv.currentPage+1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>>></button></a>
+				</c:if>
             </div>
 		</main>
 

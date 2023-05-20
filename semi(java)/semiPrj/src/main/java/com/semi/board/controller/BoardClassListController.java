@@ -29,15 +29,15 @@ try {
 			String searchType = req.getParameter("searchType");
 			String searchValue = req.getParameter("searchValue");
 
-			int cnt = bs.getBoardListCnt();
+			int cnt = bs.getBoardClassListCnt(searchType, searchValue);
 			int page = Integer.parseInt(req.getParameter("page")); //현재 페이지 받아오기
 			PageVo pv = new PageVo(cnt, page, 5, 10);
 			
 			List<BoardVo> cvoList = null;
 			if (searchType == null || searchType.equals("")) {
-				cvoList = bs.getBoardList(pv);
+				cvoList = bs.getBoardClassList(pv);
 			}else {
-				cvoList = bs.getBoardList(pv, searchType, searchValue);
+				cvoList = bs.getBoardClassList(pv, searchType, searchValue);
 			}
 			
 			Map<String, String> map = new HashMap<>();
