@@ -14,7 +14,7 @@
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
 				<main>
 					<div class="menubar">
-						<div class="e98_1694">반응형 UX/UI 웹컨텐츠 개발자 양성과정 A8</div>
+						<div class="e98_1694">${examCategoryList[0].lectureCategoryName}</div>
 					</div>
 					<br><br>
 
@@ -29,19 +29,19 @@
 							</tr>
 						</thead>
 						<tbody>
-							<% for(int i=0; i < 10; i++) { %>
+							<c:forEach items="${examCategoryList}" var="vo">
 								<tr>
-									<td>1</td>
-									<td>SQL 활용</td>
+									<td id="no">${vo.examCategoryNo}</td>
+									<td id="subject">${vo.examSubject}</td>
 									<td>서술형(신)</td>
 									<td></td>
 									<td>
 										<button>시작</button>
 										<button>종료</button>
-										<button onclick="score();">채점</button>
+										<button onclick="score('${vo.examCategoryNo}', '${vo.examSubject}');">채점</button>
 									</td>
 								</tr>
-								<% } %>
+							</c:forEach>
 						</tbody>
 					</table>
 					<br><br>
@@ -49,14 +49,12 @@
 					<div class="wrap_1">
 						<div class="menu_2">
 							<div id="pageDiv">
-								<button>
+								<button onclick="pageMove('${pageVo.startPage}');">
 									<<</button>
-										<button>1</button>
-										<button>2</button>
-										<button>3</button>
-										<button>4</button>
-										<button>5</button>
-										<button>>></button>
+										<c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" var="i">
+											<button class="pageBtn" onclick="pageMove('${i}');">${i}</button>
+										</c:forEach>
+										<button onclick="pageMove('${pageVo.endPage}');">>></button>
 							</div>
 						</div>
 					</div>
@@ -70,7 +68,20 @@
 			const title = document.querySelector('.title');
 			title.innerHTML = "평가";
 
-			function score() {
-				location.href = "${root}/lecture/test/scoreList";
+			function score(no, subject) {
+				location.href = "${root}/lecture/test/scoreList?no=" + no + "&subject=" + subject;
+			}
+
+			const pageBtn = document.querySelectorAll('.pageBtn');
+
+			function pageMove(i) {
+				location.href = "${root}/lecture/test/list2?page=" + i;
+			}
+
+			for (let btn of pageBtn) {
+				if (btn.innerHTML == '${pageVo.currentPage}') {
+					btn.style.backgroundColor = '#4998D1';
+					btn.style.color = 'white';
+				}
 			}
 		</script>

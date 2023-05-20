@@ -38,6 +38,14 @@ public class LectureService {
 		JDBCTemplate.close(conn);
 		return examCategoryList;
 	}
+	
+	public List<ExamCategoryVo> getExamCategoryList2(PageVo pageVo, MemberVo loginMember) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		List<ExamCategoryVo> examCategoryList = dao.getExamCategoryList2(conn, pageVo, loginMember);
+
+		JDBCTemplate.close(conn);
+		return examCategoryList;
+	}
 
 	public List<List<ProblemBankVo>> getProblemList(ProblemBankVo pbv) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
@@ -75,6 +83,15 @@ public class LectureService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+	
+	public int getExamCategoryListCnt2(MemberVo loginMember) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+
+		int result = dao.getExamCategoryListCnt2(conn, loginMember);
+
+		JDBCTemplate.close(conn);
+		return result;
+	}
 
 	public int getProblemListCnt(ProblemBankVo pbv) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
@@ -84,4 +101,25 @@ public class LectureService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+
+	public LectureVo getLectureOne(String lectureCategoryNo, String memberNo) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+
+		LectureVo vo = dao.getLectureOne(conn, lectureCategoryNo, memberNo);
+
+		JDBCTemplate.close(conn);
+		
+		return vo;
+	}
+
+	public List<MemberVo> getMemberList(LectureVo lectureVo) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+
+		List<MemberVo> memberList = dao.getMemberList(conn, lectureVo);
+
+		JDBCTemplate.close(conn);
+		
+		return memberList;
+	}
+	
 }
