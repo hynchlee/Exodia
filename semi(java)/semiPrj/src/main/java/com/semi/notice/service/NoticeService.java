@@ -41,11 +41,11 @@ public class NoticeService {
 	}
 
 	//목록 페이징
-	public int getNoticeListCnt() throws Exception {
+	public int getNoticeListCnt(String searchType, String searchValue) throws Exception {
 
 		Connection conn = JDBCTemplate.getConnection();
 		
-		int cnt = dao.getNoticeListCnt(conn);
+		int cnt = dao.getNoticeListCnt(conn, searchType, searchValue);
 		
 		JDBCTemplate.close(conn);
 		

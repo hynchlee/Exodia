@@ -1,6 +1,8 @@
 package com.semi.notice.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +31,7 @@ public class BoardNoticeListController extends HttpServlet{
 			String searchType = req.getParameter("searchType");
 			String searchValue = req.getParameter("searchValue");
 
-			int cnt = ns.getNoticeListCnt();
+			int cnt = ns.getNoticeListCnt(searchType, searchValue);
 			int page = Integer.parseInt(req.getParameter("page")); //현재 페이지 받아오기
 			PageVo pv = new PageVo(cnt, page, 5, 10);
 			

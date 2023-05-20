@@ -53,7 +53,6 @@
 		                        <c:if test="${cvo.totalReplies > 0}">
 			                        <span class="comment_num">[${cvo.totalReplies}]</span>
 		                        </c:if>
-			                        <span class="new_btn">New</span>
 	                        </td>
 	                        <td>${cvo.writerNick}</td>
 	                        <td>${cvo.enrollDate}</td>
@@ -62,9 +61,13 @@
                     </c:forEach>
                 </tbody>
             </table>
-            <div class="board_bt">
-                <a href="${root}/board/write" class="bt1">글 등록</a>
-            </div>
+            
+            <<c:if test="${not empty loginMember}">
+	            <div class="board_bt">
+	                <a href="${root}/board/write" class="bt1">글 등록</a>
+	            </div>
+            </c:if>
+            
 			<div class="board_page">
 				<c:if test="${pv.currentPage > 1}">
 					<a href="${root}/class/list?page=${pv.currentPage-1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button><<</button></a>

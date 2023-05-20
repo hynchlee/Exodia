@@ -14,10 +14,15 @@ import com.semi.notice.vo.NoticeVo;
 public class NoticeDao {
 
 	//목록 페이징
-	public int getNoticeListCnt(Connection conn) throws Exception {
+	public int getNoticeListCnt(Connection conn, String searchType, String searchValue) throws Exception {
 		
 		//쿼리작성
 		String sql = "SELECT COUNT(*) FROM NOTICE WHERE STATUS='O'";
+		if ("noticeTitle".equals(searchType)) {
+			sql += "AND NOTICE_TITLE LIKE '%" + searchValue + "%'";
+		}else if ("noticeContent".equals(searchType)) {
+			sql += "AND NOTICE_CONTENT LIKE '%" + searchValue + "%'";
+		}
 		//쿼리 저장 - pstmt에 위의 쿼리 저장 후 DB에 연결 준비
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		//쿼리 실행

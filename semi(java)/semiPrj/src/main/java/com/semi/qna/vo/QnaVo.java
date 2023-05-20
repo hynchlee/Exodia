@@ -12,6 +12,7 @@ public class QnaVo {
 	private String modifyDate;
 	private String photo;
 	private String status;
+	private String writerNick;
 	public String getQnaNo() {
 		return qnaNo;
 	}
@@ -72,14 +73,21 @@ public class QnaVo {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public String getWriterNick() {
+		return writerNick;
+	}
+	public void setWriterNick(String writerNick) {
+		this.writerNick = writerNick;
+	}
 	@Override
 	public String toString() {
 		return "QnaVo [qnaNo=" + qnaNo + ", adminNo=" + adminNo + ", studentMemberNo=" + studentMemberNo + ", qnaTitle="
 				+ qnaTitle + ", qnaContent=" + qnaContent + ", qnaAnswer=" + qnaAnswer + ", enrollDate=" + enrollDate
-				+ ", modifyDate=" + modifyDate + ", photo=" + photo + ", status=" + status + "]";
+				+ ", modifyDate=" + modifyDate + ", photo=" + photo + ", status=" + status + ", writerNick="
+				+ writerNick + "]";
 	}
 	public QnaVo(String qnaNo, String adminNo, String studentMemberNo, String qnaTitle, String qnaContent,
-			String qnaAnswer, String enrollDate, String modifyDate, String photo, String status) {
+			String qnaAnswer, String enrollDate, String modifyDate, String photo, String status, String writerNick) {
 		super();
 		this.qnaNo = qnaNo;
 		this.adminNo = adminNo;
@@ -91,11 +99,14 @@ public class QnaVo {
 		this.modifyDate = modifyDate;
 		this.photo = photo;
 		this.status = status;
+		this.writerNick = writerNick;
 	}
 	public QnaVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 	
 	
 
