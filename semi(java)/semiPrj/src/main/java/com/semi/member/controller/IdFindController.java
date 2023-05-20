@@ -42,7 +42,6 @@ public class IdFindController extends HttpServlet{
 			//화면
 			if(idFind != null) {
 				req.setAttribute("idFind", idFind);
-				String root = req.getContextPath();
 				req.getRequestDispatcher("/WEB-INF/views/member/idFind2.jsp").forward(req, resp);
 			}else {
 				throw new Exception();

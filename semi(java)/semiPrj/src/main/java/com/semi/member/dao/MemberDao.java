@@ -67,18 +67,13 @@ public class MemberDao {
 		ResultSet rs = pstmt.executeQuery();
 		
 		//tx || rs 
-//		MemberVo findMember = null;
 		MemberVo idFind = null;
 		
 		if(rs.next()) {
 			idFind = new MemberVo();
 			String memberId = rs.getString("MEMBER_ID");
-//			String memberNick = rs.getString("MEMBER_NICK");
-//			String phoneNo = rs.getString("PHONE_NO");
 			
 			idFind.setMemberId(memberId);
-//			findMember.setMemberNick(memberNick);
-//			findMember.setPhoneNo(phoneNo);
 			
 		}
 
