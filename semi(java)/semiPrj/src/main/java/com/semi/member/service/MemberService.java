@@ -30,4 +30,20 @@ public class MemberService {
 	
 	}
 
+	//아이디 찾기
+	public MemberVo findId(MemberVo vo) throws Exception {
+		
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		
+		//sql
+		MemberVo idFind = dao.findId(conn, vo);
+		
+		//close
+		JDBCTemplate.close(conn);
+
+		return idFind;
+	
+	}
+
 }

@@ -29,7 +29,7 @@
             <table>
                 <tr>
                     <th>이름</th>
-                    <td><input type="text" name="memberName"></td>
+                    <td><input type="text" name="memberNick"></td>
                 </tr>
                 <tr>
                     <th>휴대폰 번호</th>

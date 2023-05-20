@@ -3,6 +3,7 @@ package com.semi.member.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import com.semi.common.db.JDBCTemplate;
 import com.semi.member.vo.MemberVo;
@@ -14,7 +15,6 @@ public class MemberDao {
 		//SQL
 		String sql = "SELECT * FROM MEMBER WHERE MEMBER_ID = ? AND MEMBER_PWD = ? AND STATUS = 'O'";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		
 		pstmt.setString(1, vo.getMemberId());
 		pstmt.setString(2, vo.getMemberPwd());
 		ResultSet rs = pstmt.executeQuery();
@@ -54,6 +54,39 @@ public class MemberDao {
 		
 		return loginMember;
 		
+	}
+
+	//아이디 찾기
+	public MemberVo findId(Connection conn, MemberVo vo) throws Exception {
+
+		//SQL
+		String sql = "SELECT MEMBER_ID FROM MEMBER WHERE MEMBER_NICK = ? AND PHONE_NO = ? AND STATUS = 'O'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, vo.getMemberNick());
+		pstmt.setString(2, vo.getPhoneNo());
+		ResultSet rs = pstmt.executeQuery();
+		
+		//tx || rs 
+//		MemberVo findMember = null;
+		MemberVo idFind = null;
+		
+		if(rs.next()) {
+			idFind = new MemberVo();
+			String memberId = rs.getString("MEMBER_ID");
+//			String memberNick = rs.getString("MEMBER_NICK");
+//			String phoneNo = rs.getString("PHONE_NO");
+			
+			idFind.setMemberId(memberId);
+//			findMember.setMemberNick(memberNick);
+//			findMember.setPhoneNo(phoneNo);
+			
+		}
+
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return idFind;
+	
 	}
 
 }

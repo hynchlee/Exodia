@@ -29,31 +29,27 @@
             <table>
                 <tr>
                     <th>아이디</th>
-                    <td><input type="text" placeholder="변경불가" disabled></td>
+                    <td><input type="text" name="memberId" placeholder="변경불가" disabled></td>
                 </tr>
                 <tr>
                     <th>비밀번호</th>
-                    <td><input type="password"></td>
+                    <td><input type="password" name="memberPwd"></td>
                 </tr>
                 <tr>
                     <th>비밀번호 확인</th>
-                    <td><input type="password"></td>
+                    <td><input type="password" name="memberPwd2"></td>
                 </tr>
                 <tr>
                     <th>이름</th>
-                    <td><input type="text" placeholder="변경불가" disabled></td>
+                    <td><input type="text" name="memberNick" placeholder="변경불가" disabled></td>
                 </tr>
                 <tr>
                     <th>주민등록번호</th>
-                    <td><input type="text" placeholder="변경불가" disabled></td>
+                    <td><input type="text" name="birthNum" placeholder="변경불가" disabled></td>
                 </tr>
                 <tr>
                     <th>휴대폰 번호</th>
-                    <td><input type="text" placeholder="010-0000-0000"></td>
-                </tr>
-                <tr>
-                    <th>닉네임</th>
-                    <td><input type="text" placeholder="닉네임"></td>
+                    <td><input type="text" name="phoneNo" placeholder="010-0000-0000"></td>
                 </tr>
                 <tr>
                     <th>프로필 사진</th>
