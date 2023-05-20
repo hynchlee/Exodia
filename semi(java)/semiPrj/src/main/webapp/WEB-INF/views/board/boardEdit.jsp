@@ -26,10 +26,10 @@
 
             <div class="board_bt">
                 <!-- 카테고리에 따라 목록 나누기 -->
-                <a href="${root}/class/list" class="bt1">목록으로</a>
+                <a href="${root}/notice/list?page=1" class="bt1">목록으로</a>
             </div>
 
-            <form action="${root}/board/write" method="post" enctype="multipart/form-data">
+            <form action="${root}/board/edit" method="post" enctype="multipart/form-data">
 
                 <!-- 관리자에게만 보이는 체크박스 -->
                 <div class="checked">
@@ -47,16 +47,16 @@
                     <tbody>
                         <tr>
                             <th>제목</th>
-                            <td>이곳은제목자리</td>
+                            <td>${nvNo.noticeTitle}</td>
                             <th>조회수</th>
-                            <td colspan="4/6">77</td>
+                            <td colspan="4/6">${nvNo.hit}</td>
                         </tr>
                         <tr>
                             <th>작성자</th>
-                            <td>이곳은작성자</td>
+                            <td>${nvNo.writerNick}</td>
                             <th>작성일</th>
-                            <td>2023.05.01</td>
-                            <td class="edit_date">2023.05.06</td>
+                            <td>${nvNo.enrollDate}</td>
+                            <td class="edit_date">${nvNo.modifyDate}</td>
                         </tr>
                         <!-- 후기게시판과 큐엔에이 게시판에만 보임 -->
                         <tr>

@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <link href="${root}/static/css/board/qnalist.css" rel="stylesheet">
+<!-- 제이쿼리 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <style>
 </style>
 </head>
@@ -119,8 +121,19 @@
 </script>
 <script>
 
-    //검색 타입
-    const nc = document.querySelector('select > option[value="${searchVo.searchType}"]');
+    // 서버에서 searchType 값을 JavaScript 변수로 설정
+    const searchType = "${searchVo.searchType}";
+
+    // 검색 타입
+    const nc = document.querySelector(`select > option[value="${searchType}"]`);
+    if (nc) {
     nc.selected = true;
+    }
+
+    $(".board tbody tr").click(function(){
+        alert(123);
+    });
+
+
 
 </script>

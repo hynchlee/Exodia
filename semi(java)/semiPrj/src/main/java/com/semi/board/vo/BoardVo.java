@@ -15,6 +15,7 @@ public class BoardVo {
 	private String writerNick;
 	private String boardCategoryType;
 	private String totalReplies;
+	private String lectureName;
 	public String getBoardNo() {
 		return boardNo;
 	}
@@ -87,16 +88,23 @@ public class BoardVo {
 	public void setTotalReplies(String totalReplies) {
 		this.totalReplies = totalReplies;
 	}
+	public String getLectureName() {
+		return lectureName;
+	}
+	public void setLectureName(String lectureName) {
+		this.lectureName = lectureName;
+	}
 	@Override
 	public String toString() {
 		return "BoardVo [boardNo=" + boardNo + ", boardCategoryNo=" + boardCategoryNo + ", memberNo=" + memberNo
 				+ ", boardTitle=" + boardTitle + ", boardContent=" + boardContent + ", enrollDate=" + enrollDate
 				+ ", modifyDate=" + modifyDate + ", status=" + status + ", hit=" + hit + ", writerNick=" + writerNick
-				+ ", boardCategoryType=" + boardCategoryType + ", totalReplies=" + totalReplies + "]";
+				+ ", boardCategoryType=" + boardCategoryType + ", totalReplies=" + totalReplies + ", lectureName="
+				+ lectureName + "]";
 	}
 	public BoardVo(String boardNo, String boardCategoryNo, String memberNo, String boardTitle, String boardContent,
 			String enrollDate, String modifyDate, String status, String hit, String writerNick,
-			String boardCategoryType, String totalReplies) {
+			String boardCategoryType, String totalReplies, String lectureName) {
 		super();
 		this.boardNo = boardNo;
 		this.boardCategoryNo = boardCategoryNo;
@@ -110,11 +118,14 @@ public class BoardVo {
 		this.writerNick = writerNick;
 		this.boardCategoryType = boardCategoryType;
 		this.totalReplies = totalReplies;
+		this.lectureName = lectureName;
 	}
 	public BoardVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 	
 	
 

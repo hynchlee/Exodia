@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <link href="${root}/static/css/board/list.css" rel="stylesheet">
+<!-- 제이쿼리 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <style>
 </style>
 </head>
@@ -29,8 +31,8 @@
                 <form action="${root}/free/list" method="get" name="searchBoard">
                     <input type="hidden" name="page" value="1">
                     <select class="searchCategory" name="searchType">
-                        <option value="classTitle">제목</option>
-                        <option value="classContent">내용</option>
+                        <option value="freeTitle">제목</option>
+                        <option value="freeContent">내용</option>
                     </select>
                     <input type="text" class="searchInput" placeholder="검색어 입력" value="${searchVo.searchValue}" name="searchValue">
                     <input type="submit" value="검색" class="searchBtn">
@@ -72,18 +74,18 @@
             
 			<div class="board_page">
 				<c:if test="${pv.currentPage > 1}">
-					<a href="${root}/class/list?page=${pv.currentPage-1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button><<</button></a>
+					<a href="${root}/free/list?page=${pv.currentPage-1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button><<</button></a>
 				</c:if>
 				<c:forEach begin="${pv.startPage}" end="${pv.endPage}" var="i">
 					<c:if test="${pv.currentPage ne i}">
-						<a href="${root}/class/list?page=${i}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>${i}</button></a>
+						<a href="${root}/free/list?page=${i}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>${i}</button></a>
 					</c:if>
 					<c:if test="${pv.currentPage eq i}">
 						<a><button class="active">${i}</button></a>
 					</c:if>
 				</c:forEach>
 				<c:if test="${pv.currentPage < pv.maxPage}">
-					<a href="${root}/class/list?page=${pv.currentPage+1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>>></button></a>
+					<a href="${root}/free/list?page=${pv.currentPage+1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>>></button></a>
 				</c:if>
             </div>
 		</main>
@@ -97,8 +99,17 @@
 </script>
 <script>
 
-    //검색 타입
-    const cc = document.querySelector('select > option[value="${searchVo.searchType}"]');
-    cc.selected = true;
+    // 서버에서 searchType 값을 JavaScript 변수로 설정
+    const searchType = "${searchVo.searchType}";
+
+    // 검색 타입
+    const nc = document.querySelector(`select > option[value="${searchType}"]`);
+    if (nc) {
+    nc.selected = true;
+    }
+
+    $(".board tbody tr").click(function(){
+        alert(123);
+    });
 
 </script>

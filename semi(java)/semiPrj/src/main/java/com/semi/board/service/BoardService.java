@@ -107,4 +107,15 @@ public class BoardService {
 		return result;
 	}
 
+	public BoardVo getBoardByNo(String bno) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		BoardVo bv = dao.getBoardByNo(conn,bno);
+		
+		JDBCTemplate.close(conn);
+		
+		return bv;
+	}
+
 }
