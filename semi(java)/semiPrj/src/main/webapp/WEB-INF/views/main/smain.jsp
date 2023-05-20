@@ -182,7 +182,7 @@
             </div>
           </div>
           <div class="v67_3">
-            <video src="/semi/static/img/main/main.mp4" autoplay loop></video>
+            <video src="/semi/static/img/main/main.mp4" autoplay loop muted></video>
           </div>
           
 
