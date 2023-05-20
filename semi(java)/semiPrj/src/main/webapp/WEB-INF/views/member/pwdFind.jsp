@@ -18,7 +18,7 @@
 
 	<div id="wrap">
 
-        <form action="">
+        <form action="${root}/member/pwd/find" method="post">
             
             <div id="logo">
                 <a href="${root}/main">
@@ -29,19 +29,19 @@
             <table>
                 <tr>
                     <th>아이디</th>
-                    <td><input type="text"></td>
+                    <td><input type="text" name="memberId"></td>
                 </tr>
                 <tr>
                     <th>이름</th>
-                    <td><input type="text"></td>
+                    <td><input type="text" name="memberNick"></td>
                 </tr>
                 <tr>
                     <th>주민등록번호</th>
-                    <td><input type="text"></td>
+                    <td><input type="text" name="birthNum"></td>
                 </tr>
                 <tr>
                     <th>휴대폰 번호</th>
-                    <td><input type="text"></td>
+                    <td><input type="text" name="phoneNo"></td>
                 </tr>
             </table>
 
