@@ -23,12 +23,18 @@ public class MemberLoginController extends HttpServlet{
 	//로그인
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
 		try {
 			
 			//데꺼
 			String memberId = req.getParameter("memberId");
 			String memberPwd = req.getParameter("memberPwd");
+			
+			//관리자 로그인 창 이동
+			if("admin".equals(memberId) && "admin".equals(memberPwd)) {
+				req.getRequestDispatcher("/WEB-INF/views/admin/adminLogin.jsp").forward(req, resp);
+				return;
+			}
 			
 			//데뭉
 			MemberVo vo = new MemberVo();

@@ -18,7 +18,7 @@
 
 	<div id="wrap">
 
-        <form action="">
+        <form action="${root}/admin/login" method="post">
             
             <div id="logo">
                 <a href="${root}/main">
@@ -31,13 +31,13 @@
                     <th id="id">관리자 아이디</th>
                 </tr>
                 <tr>
-                    <td><input type="text"></td>
+                    <td><input type="text" name="adminId"></td>
                 </tr>
                 <tr>
                     <th id="pwd">비밀번호</th>
                 </tr>
                 <tr>
-                    <td><input type="password"></td>
+                    <td><input type="password" name="adminPwd"></td>
                 </tr>
             </table>
 

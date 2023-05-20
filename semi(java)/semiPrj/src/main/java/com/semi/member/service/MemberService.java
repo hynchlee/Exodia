@@ -11,60 +11,48 @@ import com.semi.member.vo.MemberVo;
 
 public class MemberService {
 	
+	//dao 객체 생성
 	private final MemberDao dao;
-	
 	public MemberService() {
 		dao = new MemberDao();
 	}
 
 	//로그인
 	public MemberVo login(MemberVo vo) throws Exception {
-
 		//conn
 		Connection conn = JDBCTemplate.getConnection();
-		
 		//sql
 		MemberVo loginMember = dao.login(conn, vo);
-		
 		//close
 		JDBCTemplate.close(conn);
 		
 		return loginMember;
-	
 	}
 
 	
 	//아이디 찾기
 	public MemberVo findId(MemberVo vo) throws Exception {
-		
 		//conn
 		Connection conn = JDBCTemplate.getConnection();
-		
 		//sql
 		MemberVo idFind = dao.findId(conn, vo);
-		
 		//close
 		JDBCTemplate.close(conn);
 
 		return idFind;
-	
 	}
 
 	
 	//비번 찾기
 	public MemberVo findPwd(MemberVo vo) throws Exception {
-
 		//conn
 		Connection conn = JDBCTemplate.getConnection();
-		
 		//sql
 		MemberVo pwdFind = dao.findPwd(conn, vo);
-
 		//close
 		JDBCTemplate.close(conn);
 		
 		return pwdFind;
-	
 	}
 
 }
