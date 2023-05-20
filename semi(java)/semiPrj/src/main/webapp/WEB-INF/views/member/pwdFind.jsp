@@ -18,14 +18,14 @@
 
 	<div id="wrap">
 
+        <div id="logo">
+            <a href="${root}/main">
+                <img src="${root}/static/img/header/4.png" alt="LOGO" id="logo-img">
+            </a>
+        </div>
+
         <form action="${root}/member/pwd/find" method="post">
             
-            <div id="logo">
-                <a href="${root}/main">
-                    <img src="${root}/static/img/header/4.png" alt="LOGO" id="logo-img">
-                </a>
-            </div>
-
             <table>
                 <tr>
                     <th>아이디</th>

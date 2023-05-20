@@ -18,36 +18,31 @@
 
 	<div id="wrap">
 
-        <form action="">
-            
-            <div id="logo">
-                <a href="${root}/main">
-                    <img src="${root}/static/img/header/4.png" alt="LOGO" id="logo-img">
-                </a>
-            </div>
+        <div id="logo">
+            <a href="${root}/main">
+                <img src="${root}/static/img/header/4.png" alt="LOGO" id="logo-img">
+            </a>
+        </div>
 
-            <table>
-                <tr>
-                    <th id="ment1">회원님의 아이디는</th>
-                </tr>
-                <tr>
-                    <td><input type="text" value="${idFind.memberId}" disabled></td>
-                </tr>
-                <tr>
-                    <th id="ment2">입니다</th>
-                </tr>
-            </table>
+        <table>
+            <tr>
+                <th id="ment1">회원님의 아이디는</th>
+            </tr>
+            <tr>
+                <td><input type="text" value="${idFind.memberId}" disabled></td>
+            </tr>
+            <tr>
+                <th id="ment2">입니다</th>
+            </tr>
+        </table>
 
-            <br>
-            <br>
+        <br><br>
 
-            <div>
-                <a href="${root}/main"><b>홈으로</b></a>
-                |
-                <a href="${root}/member/login"><b>로그인</b></a>
-            </div>
-
-        </form>
+        <div>
+            <a href="${root}/main"><b>홈으로</b></a>
+            |
+            <a href="${root}/member/login"><b>로그인</b></a>
+        </div>
 
     </div>
 
