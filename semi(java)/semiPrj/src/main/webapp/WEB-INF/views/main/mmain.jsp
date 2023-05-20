@@ -190,7 +190,7 @@
 			<div class="photo01"></div>
 			<div class="identity">${loginMember.memberNick}님 (관리자)</div>
 			<div class="class01">관리자 등급: A</div>
-			<div class="managermenu"><a href="${root}/adminmenu" class="awhite">관리자 메뉴</a></div>
+			<div class="managermenu"><a href="${root}/admin/menu" class="awhite">관리자 메뉴</a></div>
           </div>
           <div class="v75_31">
           	<div id="carouselExample02" class="carousel slide carousel-fade" data-bs-ride="carousel">
