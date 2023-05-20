@@ -18,22 +18,22 @@
 
 	<div id="wrap">
 
-        <form action="">
-            
-            <div id="logo">
-                <a href="${root}/main">
-                    <img src="${root}/static/img/header/4.png" alt="LOGO" id="logo-img">
-                </a>
-            </div>
+        <div id="logo">
+            <a href="${root}/main">
+                <img src="${root}/static/img/header/4.png" alt="LOGO" id="logo-img">
+            </a>
+        </div>
 
+        <form action="${root}/member/join" method="post">
+            
             <div class="radio-area">
                 <div class="identity-box">
                     <div id="radio-student">
-                        <input type="radio" name="identity" value="student">
+                        <input type="radio" name="identity" value="S">
                         <label for="student">학생</label>
                     </div>
                     <div id="radio-teacher">
-                        <input type="radio" name="identity" value="teacher">
+                        <input type="radio" name="identity" value="T">
                         <label for="teacher">강사</label>
                     </div>
                 </div>

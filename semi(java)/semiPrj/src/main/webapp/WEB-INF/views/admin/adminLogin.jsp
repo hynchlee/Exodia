@@ -18,14 +18,14 @@
 
 	<div id="wrap">
 
+        <div id="logo">
+            <a href="${root}/main">
+                <img src="${root}/static/img/header/4.png" alt="LOGO" id="logo-img">
+            </a>
+        </div>
+
         <form action="${root}/admin/login" method="post">
             
-            <div id="logo">
-                <a href="${root}/main">
-                    <img src="${root}/static/img/header/4.png" alt="LOGO" id="logo-img">
-                </a>
-            </div>
-
             <table>
                 <tr>
                     <th id="id">관리자 아이디</th>
@@ -45,8 +45,9 @@
                 <input type="submit" value="관리자 로그인">
             </div>
             
-            <!-- <br>
-            <br>
+        </form>
+
+            <!-- <br><br>
 
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
@@ -56,8 +57,6 @@
                 |
                 <a href="${root}/member/pwd/find"><b>비밀번호 찾기</b></a>
             </div> -->
-
-        </form>
 
     </div>
 

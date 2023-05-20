@@ -18,13 +18,13 @@
 
 	<div id="wrap">
 
+        <div id="logo">
+            <a href="${root}/main">
+                <img src="${root}/static/img/header/4.png" alt="LOGO" id="logo-img">
+            </a>
+        </div>
+
         <form action="${root}/member/id/find" method="POST">
-            
-            <div id="logo">
-                <a href="${root}/main">
-                    <img src="${root}/static/img/header/4.png" alt="LOGO" id="logo-img">
-                </a>
-            </div>
 
             <table>
                 <tr>
