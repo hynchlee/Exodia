@@ -13,6 +13,7 @@ import javax.servlet.http.Part;
 import com.semi.common.file.AttachmentVo;
 import com.semi.common.file.FileUploader;
 import com.semi.member.vo.MemberVo;
+import com.semi.member.service.MemberService;
 
 @MultipartConfig(
 		maxFileSize = 1024 * 1024 * 50 ,
@@ -31,22 +32,51 @@ public class MemberJoinController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		//파일 처리
-		Part f = req.getPart("memberProfile");
-		String path = req.getServletContext().getRealPath("/static/img/member/profile/");
-		AttachmentVo attachmentVo = FileUploader.saveFile(path, f);
-		
-		//데꺼
-		String memberId = req.getParameter("memberId");
-		String memberPwd = req.getParameter("memberPwd");
-		String memberName = req.getParameter("memberName");
-		String birthNum = req.getParameter("birthNum");
-		String phoneNo = req.getParameter("phoneNo");
-		String memberNick = req.getParameter("memberNick");
-		//String profile = req.getParameter("profile");
-		
-		//데뭉
-		MemberVo vo = new MemberVo();
+		try {
+			
+//			//파일 처리
+//			Part f = req.getPart("memberProfile");
+//			String path = req.getServletContext().getRealPath("/static/img/profile/");
+//			AttachmentVo attachmentVo = FileUploader.saveFile(path, f);
+			
+			//데꺼
+			String identity = req.getParameter("identity");
+			String memberId = req.getParameter("memberId");
+			String memberPwd = req.getParameter("memberPwd");
+			String memberNick = req.getParameter("memberNick");
+			String birthNum = req.getParameter("birthNum");
+			String phoneNo = req.getParameter("phoneNo");
+			//String profile = req.getParameter("profile");
+			
+			//데뭉
+			MemberVo vo = new MemberVo();
+			vo.setIdentity(identity);
+			vo.setMemberId(memberId);
+			vo.setMemberPwd(memberPwd);
+			vo.setMemberNick(memberNick);
+			vo.setBirthNum(birthNum);
+			vo.setPhoneNo(phoneNo);
+			
+			//서비스
+			MemberService ms = new MemberService();
+			int result = ms.join(vo);
+			
+			//화면
+			if(result == 1) {
+				String root = req.getContextPath();
+				req.getSession().setAttribute("alertMsg", "회원가입 성공!");
+				resp.sendRedirect(root + "/main");
+			}else {
+				throw new Exception();
+			}
+			
+		}catch(Exception e) {
+			System.out.println("[ERROR] join fail ...");
+			e.printStackTrace();
+			
+			req.setAttribute("errorMsg", "회원가입 실패 ...");
+			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+		}
 	
 	}
 

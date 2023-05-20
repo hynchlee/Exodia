@@ -16,7 +16,27 @@ public class MemberService {
 	public MemberService() {
 		dao = new MemberDao();
 	}
-
+	
+	//회원가입
+	public int join(MemberVo vo) throws Exception {
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		//sql
+		int result = dao.join(conn, vo);
+		
+		//tx||rs
+		if(result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		//close
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+	
 	//로그인
 	public MemberVo login(MemberVo vo) throws Exception {
 		//conn
@@ -28,7 +48,6 @@ public class MemberService {
 		
 		return loginMember;
 	}
-
 	
 	//아이디 찾기
 	public MemberVo findId(MemberVo vo) throws Exception {
@@ -41,7 +60,6 @@ public class MemberService {
 
 		return idFind;
 	}
-
 	
 	//비번 찾기
 	public MemberVo findPwd(MemberVo vo) throws Exception {
@@ -54,5 +72,7 @@ public class MemberService {
 		
 		return pwdFind;
 	}
+
+	
 
 }
