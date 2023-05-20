@@ -46,7 +46,6 @@ public class MemberDao {
 			loginMember.setProfile(profile);
 			loginMember.setIdentity(identity);
 			loginMember.setLeftVacation(leftVacation);
-			
 		}
 		
 		JDBCTemplate.close(rs);
@@ -72,15 +71,41 @@ public class MemberDao {
 		if(rs.next()) {
 			idFind = new MemberVo();
 			String memberId = rs.getString("MEMBER_ID");
-			
 			idFind.setMemberId(memberId);
-			
 		}
 
 		JDBCTemplate.close(rs);
 		JDBCTemplate.close(pstmt);
 		
 		return idFind;
+	
+	}
+
+	//비번찾기
+	public MemberVo findPwd(Connection conn, MemberVo vo) throws Exception {
+
+		//SQL
+		String sql = "SELECT MEMBER_PWD FROM MEMBER WHERE MEMBER_ID = ? AND MEMBER_NICK = ? AND BIRTH_NUM = ? AND PHONE_NO = ? AND STATUS = 'O'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, vo.getMemberId());
+		pstmt.setString(2, vo.getMemberNick());
+		pstmt.setString(3, vo.getBirthNum());
+		pstmt.setString(4, vo.getPhoneNo());
+		ResultSet rs = pstmt.executeQuery();
+		
+		//tx||rs
+		MemberVo pwdFind = null;
+		
+		if(rs.next()) {
+			pwdFind = new MemberVo();
+			String memberPwd = rs.getString("MEMBER_PWD");
+			pwdFind.setMemberPwd(memberPwd);
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return pwdFind;
 	
 	}
 

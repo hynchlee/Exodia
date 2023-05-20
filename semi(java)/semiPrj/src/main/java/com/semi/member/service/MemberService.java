@@ -1,6 +1,9 @@
 package com.semi.member.service;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import com.semi.common.db.JDBCTemplate;
 import com.semi.member.dao.MemberDao;
@@ -30,6 +33,7 @@ public class MemberService {
 	
 	}
 
+	
 	//아이디 찾기
 	public MemberVo findId(MemberVo vo) throws Exception {
 		
@@ -43,6 +47,23 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 
 		return idFind;
+	
+	}
+
+	
+	//비번 찾기
+	public MemberVo findPwd(MemberVo vo) throws Exception {
+
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		
+		//sql
+		MemberVo pwdFind = dao.findPwd(conn, vo);
+
+		//close
+		JDBCTemplate.close(conn);
+		
+		return pwdFind;
 	
 	}
 

@@ -51,7 +51,9 @@ public class MemberLoginController extends HttpServlet{
 					resp.sendRedirect(root + "/tmain");
 				}//ifif
 				
-			}//if
+			}else {
+				throw new Exception();
+			}
 			
 		}catch(Exception e) {
 			System.out.println("[ERROR] login fail ...");
