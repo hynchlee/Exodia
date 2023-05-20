@@ -33,7 +33,7 @@
 						src="/semi/static/img/header/4.png" alt="logo" id="logo_img"></a>
 				</li>
 				<li class="menu2"></li>
-				<li class="menu3"><a href="${root}/mypage"><img
+				<li class="menu3"><a class="profileImg" href="${root}/mypage"><img
 						src="/semi/static/img/header/___7.png" alt="profile"
 						id="profile_img"></a></li>
 				<li class="menu3"><a href="${root}/introduce/greet"> KH소개 </a></li>
@@ -81,10 +81,19 @@
 
 <script>
 	const logo = document.querySelector('.logo');
-	
+	const profileImg = document.querySelector('.profileImg');
+
 	if ('${loginMember}' != '' && '${loginMember}' != null) {
 		console.log("회원 : ${loginMember.memberNick}");
-		console.log("학생/강사 : ${loginMember.identity}")
+		
+		if("S" == "${loginMember.identity}") {
+			console.log("[수강생]");
+		} else if("T" == "${loginMember.identity}") {
+			console.log("[강사]");
+			if('${lectureVo}' != '' && '${lectureVo}' != null) {
+				console.log("lectureVo : ${lectureVo}")
+			}
+		}
 	} else if ('${loginAdmin}' != '' && '${loginAdmin}' != null) {
 		console.log("loginAdmin : ${loginAdmin.adminId}");
 	} else {
@@ -93,11 +102,15 @@
 
 	if ('${loginMember.identity}' == 'S') {
 		logo.href = "${root}/smain";
+		profileImg.href = "${root}/mypage";
 	} else if ('${loginMember.identity}' == 'T') {
 		logo.href = "${root}/tmain";
+		profileImg.href = "${root}/tmypage";
 	} else if ('${loginAdmin}' != '' && '${loginAdmin}' != null) {
 		logo.href = "${root}/mmain";
+		profileImg.hidden = true;
 	} else {
 		logo.href = "${root}/main";
+		profileImg.hidden = true;
 	}
 </script>

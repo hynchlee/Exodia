@@ -39,7 +39,7 @@ public class TestListController extends HttpServlet {
 			req.setAttribute("pageVo", pageVo);
 			req.getRequestDispatcher("/WEB-INF/views/lecture/test/list.jsp").forward(req, resp);
 		} catch (Exception e) {
-			System.out.println("error(시험 정보)");
+			System.out.println("error(시험 목록 (학생))");
 		}
 
 	}

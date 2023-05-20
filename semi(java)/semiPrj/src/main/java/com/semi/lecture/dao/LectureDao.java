@@ -95,6 +95,31 @@ public class LectureDao {
 		return ExamCategoryList;
 	}
 	
+	public List<ExamCategoryVo> getExamCategoryList2(Connection conn, PageVo pageVo, MemberVo loginMember) throws SQLException {
+		String sql = "SELECT * FROM (SELECT ROWNUM AS RNUM, A.* FROM ( SELECT * FROM EXAM_CATEGORY EC JOIN LECTURE_CATEGORY LC ON EC.LECTURE_CATEGORY_NO = LC.LECTURE_CATEGORY_NO WHERE EC.LECTURE_CATEGORY_NO = (SELECT LECTURE_CATEGORY_NO FROM LECTURE WHERE TEACHER_MEMBER_NO = ?) )A )WHERE RNUM BETWEEN ? AND ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, loginMember.getMemberNo());
+		pstmt.setInt(2, pageVo.getBeginRow());
+		pstmt.setInt(3, pageVo.getLastRow());
+		ResultSet rs = pstmt.executeQuery();
+		
+		List<ExamCategoryVo> ExamCategoryList = new ArrayList();
+		
+		while(rs.next()) {
+			ExamCategoryVo vo = new ExamCategoryVo();
+			vo.setExamCategoryNo(rs.getString("EXAM_CATEGORY_NO"));
+			vo.setLectureCategoryNo(rs.getString("LECTURE_CATEGORY_NO"));
+			vo.setExamSubject(rs.getString("EXAM_SUBJECT"));
+			vo.setLectureCategoryName(rs.getString("LECTURE_NAME"));
+			ExamCategoryList.add(vo);
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return ExamCategoryList;
+	}
+	
 	public List<String> getProblemPointList(Connection conn, ProblemBankVo pbv) throws SQLException {
 		String sql = "SELECT DISTINCT PROBLEM_POINT FROM PROBLEM_BANK WHERE EXAM_CATEGORY_NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -189,6 +214,23 @@ public class LectureDao {
 		return cnt;
 	}
 
+	public int getExamCategoryListCnt2(Connection conn, MemberVo loginMember) throws SQLException {
+		String sql = "SELECT COUNT(*) FROM EXAM_CATEGORY WHERE LECTURE_CATEGORY_NO = (SELECT LECTURE_CATEGORY_NO FROM LECTURE WHERE TEACHER_MEMBER_NO = ?)";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, loginMember.getMemberNo());
+		ResultSet rs = pstmt.executeQuery();
+
+		int cnt = 0;
+		if (rs.next()) {
+			cnt = rs.getInt(1);
+		}
+
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+
+		return cnt;
+	}
+	
 	public int getProblemListCnt(Connection conn, ProblemBankVo pbv) throws SQLException {
 		String sql = "SELECT COUNT(DISTINCT PROBLEM_POINT) AS DISTINCT_COUNT FROM PROBLEM_BANK WHERE EXAM_CATEGORY_NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -204,6 +246,47 @@ public class LectureDao {
 		JDBCTemplate.close(pstmt);
 
 		return cnt;
+	}
+
+	public LectureVo getLectureOne(Connection conn, String lectureCategoryNo, String memberNo) throws SQLException {
+		String sql = "SELECT * FROM LECTURE L JOIN MEMBER M ON M.MEMBER_NO = L.TEACHER_MEMBER_NO JOIN LECTURE_CATEGORY LC ON LC.LECTURE_CATEGORY_NO = L.LECTURE_CATEGORY_NO WHERE L.TEACHER_MEMBER_NO = ? AND L.LECTURE_CATEGORY_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		pstmt.setString(2, lectureCategoryNo);
+		ResultSet rs = pstmt.executeQuery();
+
+		LectureVo vo = null;
+		if(rs.next()) {
+			vo = new LectureVo();
+			vo.setLectureNo(rs.getString("LECTURE_NO"));
+			vo.setTeacherMemberNo(rs.getString("TEACHER_MEMBER_NO"));
+			vo.setLectureCategoryName(rs.getString("LECTURE_CATEGORY_NO"));
+			vo.setLectureStartTime(rs.getString("LECTURE_START_TIME"));
+			vo.setLectureFinishTime(rs.getString("LECTURE_FINISH_TIME"));
+			vo.setLectureOpenDate(rs.getString("LECTURE_OPEN_DATE"));
+			vo.setLectureCloseDate(rs.getString("LECTURE_CLOSE_DATE"));
+			vo.setStatus(rs.getString("STATUS"));
+			vo.setTeacherMemberName(rs.getString("MEMBER_NICK"));
+			vo.setLectureCategoryName(rs.getString("LECTURE_NAME"));
+		}
+		
+		return vo;
+	}
+
+	public List<MemberVo> getMemberList(Connection conn, LectureVo lectureVo) throws SQLException {
+		String sql = "SELECT * FROM MEMBER M JOIN STUDENT S ON M.MEMBER_NO = S.STUDENT_MEMBER_NO WHERE LECTURE_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, lectureVo.getLectureNo());
+		ResultSet rs = pstmt.executeQuery();
+
+		List<MemberVo> memberList = new ArrayList<>();
+		while(rs.next()) {
+			MemberVo vo = new MemberVo();
+			vo.setMemberNick(rs.getString("MEMBER_NICK"));
+			memberList.add(vo);
+		}
+		
+		return memberList;
 	}
 
 }

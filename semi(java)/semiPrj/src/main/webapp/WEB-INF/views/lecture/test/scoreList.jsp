@@ -15,7 +15,7 @@
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<main>
-		<div class="e98_1694">SQL 활용</div>
+		<div class="e98_1694">${problemBankVo.examSubject}</div>
 		<br><br>
 		<table class="list-tbl">
 			<thead>
@@ -27,21 +27,16 @@
 				</tr>
 			</thead>
 			<tbody>
-				<%
-				for (int i = 0; i < 10; i++) {
-				%>
+				<c:forEach items="${memberList}" var="vo">
 				<tr>
 					<td>1</td>
-					<td>심원용</td>
-					<td>94.00</td>
+					<td>${vo.memberNick}</td>
+					<td></td>
 					<td>
 						<button onclick="scorePerson();">채점하기</button>
 					</td>
 				</tr>
-				<%
-				}
-				%>
-			</tbody>
+				</c:forEach>
 		</table>
 
 		<br><br><br>
@@ -56,7 +51,7 @@
 
 <script>
 	const title = document.querySelector('.title');
-	title.innerHTML = "평가";
+	title.innerHTML = "채점";
 
 	function scorePerson() {
 		location.href="${root}/lecture/test/score";
