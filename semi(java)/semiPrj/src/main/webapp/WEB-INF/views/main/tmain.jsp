@@ -189,7 +189,7 @@
           	<div class="innerprofile">
           		<div class="logout"><a href="${root}/member/logout">로그아웃</a></div>
 				<div class="photo01"></div>
-				<div class="identity"><a href="${root}/tmypage">~~~님 (강사)</a></div>
+				<div class="identity"><a href="${root}/tmypage">${loginMember.memberNick}님(강사)</a></div>
 				<div class="class01"><a href="${root}/lecture/apply">강의 목록 보기</a></div>
 				<div class="change"><a href="${root}/member/edit">내 정보 수정</a></div>
 				<div class="letter"><a href="${root}/letter/receive">쪽지</a></div>

@@ -31,7 +31,7 @@ public class tMypageController extends HttpServlet{
 		try {
 			HttpSession session = req.getSession();
 			MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
-				
+			
 			if (loginMember == null) {
 				throw new IllegalSelectorException();
 			}
@@ -39,9 +39,13 @@ public class tMypageController extends HttpServlet{
 			String memberNo = loginMember.getMemberNo();
 			
 			MypageService ms = new MypageService();
-			List<LectureVo> list = ms.viewStudent(memberNo);
+			List<LectureVo> volist = ms.viewStudent(memberNo);
 			
-			req.setAttribute("list", list);
+			if (volist == null) {
+				throw new Exception("값이 존재하지 않음");
+			}
+			
+			req.setAttribute("volist", volist);
 			req.getRequestDispatcher("/WEB-INF/views/personal/tmypage.jsp").forward(req, resp);
 			
 		} catch (Exception e) {
