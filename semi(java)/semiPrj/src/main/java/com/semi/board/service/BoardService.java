@@ -111,11 +111,11 @@ public class BoardService {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		
-		BoardVo bv = dao.getBoardByNo(conn,bno);
+		BoardVo cvNo = dao.getBoardByNo(conn,bno);
 		
 		JDBCTemplate.close(conn);
 		
-		return bv;
+		return cvNo;
 	}
 
 }

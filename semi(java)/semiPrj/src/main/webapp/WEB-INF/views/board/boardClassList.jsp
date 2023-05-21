@@ -110,7 +110,7 @@
     $(".board tbody tr").click(function(){
         //글번호 가져오기
         const boardNo = $(this).find('td:first-child').text();
-        const boardTitle = $(this).find('.board_title').text();
+        //const boardTitle = $(this).find('.board_title').text();
       
         // 페이지 이동을 위한 URL 구성
         const url = '${root}/board/detail?boardNo=' + boardNo;

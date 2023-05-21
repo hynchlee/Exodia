@@ -53,4 +53,15 @@ public class QnaService {
 		
 	}
 
+	public QnaVo getQnaByNo(String qno) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		QnaVo qvNo = dao.getQnaByNo(conn,qno);
+		
+		JDBCTemplate.close(conn);
+		
+		return qvNo;
+	}
+
 }

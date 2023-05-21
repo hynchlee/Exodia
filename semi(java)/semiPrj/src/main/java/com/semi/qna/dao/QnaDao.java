@@ -141,4 +141,53 @@ public class QnaDao {
 		
 	}
 
+	public QnaVo getQnaByNo(Connection conn, String qno) throws Exception {
+		
+		String sql = "SELECT Q.QNA_NO ,Q.ADMIN_NO ,Q.STUDENT_MEMBER_NO ,Q.QNA_TITLE ,Q.QNA_CONTENT ,Q.QNA_ANSWER ,TO_CHAR(Q.ENROLL_DATE,'YYYY.MM.DD') AS ENROLL_DATE ,TO_CHAR(Q.MODIFY_DATE,'YYYY.MM.DD') AS MODIFY_DATE ,Q.PHOTO ,Q.STATUS ,M.MEMBER_NICK ,LC.LECTURE_NAME,A.ADMIN_NICK,M.MEMBER_NO FROM QNA Q JOIN STUDENT S ON(S.STUDENT_MEMBER_NO = Q.STUDENT_MEMBER_NO) JOIN LECTURE L ON(L.LECTURE_NO = S.LECTURE_NO) JOIN LECTURE_CATEGORY LC ON(LC.LECTURE_CATEGORY_NO=L.LECTURE_CATEGORY_NO) JOIN MEMBER M ON(S.STUDENT_MEMBER_NO = M.MEMBER_NO) JOIN ADMIN A ON(A.ADMIN_NO = Q.ADMIN_NO) WHERE Q.STATUS='O' AND Q.QNA_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, qno);
+		ResultSet rs = pstmt.executeQuery();
+		
+		QnaVo qvNo = new QnaVo();
+		if (rs.next()) {
+			
+			String qnaNo = rs.getString("QNA_NO");
+			String adminNo = rs.getString("ADMIN_NO");
+			String studentMemberNo = rs.getString("STUDENT_MEMBER_NO");
+			String qnaTitle = rs.getString("QNA_TITLE");
+			String qnaContent = rs.getString("QNA_CONTENT");
+			String qnaAnswer = rs.getString("QNA_ANSWER");
+			String enrollDate = rs.getString("ENROLL_DATE");
+			String modifyDate = rs.getString("MODIFY_DATE");
+			String photo = rs.getString("PHOTO");
+			String status = rs.getString("STATUS");
+			String writerNick = rs.getString("MEMBER_NICK");
+			String lectureName = rs.getString("LECTURE_NAME");
+			String adminNick = rs.getString("ADMIN_NICK");
+			String memberNo = rs.getString("MEMBER_NO");
+			
+			qvNo = new QnaVo();
+			qvNo.setQnaNo(qnaNo);
+			qvNo.setAdminNo(adminNo);
+			qvNo.setStudentMemberNo(studentMemberNo);
+			qvNo.setQnaTitle(qnaTitle);
+			qvNo.setQnaContent(qnaContent);
+			qvNo.setQnaAnswer(qnaAnswer);
+			qvNo.setEnrollDate(enrollDate);
+			qvNo.setModifyDate(modifyDate);
+			qvNo.setPhoto(photo);
+			qvNo.setStatus(status);
+			qvNo.setWriterNick(writerNick);
+			qvNo.setLectureName(lectureName);
+			qvNo.setAdminNick(adminNick);
+			qvNo.setMemberNo(memberNo);
+			
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return qvNo;
+	}
+
 }

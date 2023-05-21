@@ -47,16 +47,16 @@
                     <tbody>
                         <tr>
                             <th>제목</th>
-                            <td>${nvNo.noticeTitle}</td>
+                            <td>${cvNo.boardTitle}</td>
                             <th>조회수</th>
-                            <td colspan="4/6">${nvNo.hit}</td>
+                            <td colspan="4/6">${cvNo.hit}</td>
                         </tr>
                         <tr>
                             <th>작성자</th>
-                            <td>${nvNo.writerNick}</td>
+                            <td>${cvNo.writerNick}</td>
                             <th>작성일</th>
-                            <td>${nvNo.enrollDate}</td>
-                            <td class="edit_date">${nvNo.modifyDate}</td>
+                            <td>${cvNo.enrollDate}</td>
+                            <td class="edit_date">${cvNo.modifyDate}</td>
                         </tr>
                         <!-- 후기게시판과 큐엔에이 게시판에만 보임 -->
                         <tr>
@@ -65,7 +65,7 @@
                         </tr>
                         <tr>
                             <th>내용</th>
-                            <td colspan="4" style="height: 500px;">이곳은 내용자리</td>
+                            <td colspan="4" style="height: 500px;">${cvNo.boardContent}</td>
                         </tr>
                         <tr>
                             <th>첨부파일</th>
