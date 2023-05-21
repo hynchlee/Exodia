@@ -179,33 +179,21 @@
 					</div>
 				</td>
 				<td class="td03">
-					<div class="detail02">
+					<div class="detail02" style="overflow: auto;">
 						<table class="innertable03">
 							<tr class="tr030">
 								<td colspan="2" class="td030">휴가 내역</td>
 								<td class="plus01"><a href="/" class="plus02">더보기</a></td>
 							</tr>
-							<tr class="tr03">
-								<td class="line02">
-								<div class="vac">휴가</div>
-								</td>
-								<td class="line02">2023-00-00</td>
-								<td class="line02">휴가 사유</td>
-							</tr>
-							<tr class="tr03">
-								<td class="line02">
-								<div class="vac">휴가</div>
-								</td>
-								<td class="line02">2023-00-00</td>
-								<td class="line02">휴가 사유</td>
-							</tr>
-							<tr class="tr03">
-								<td class="line02">
-								<div class="vac">휴가</div>
-								</td>
-								<td class="line02">2023-00-00</td>
-								<td class="line02">휴가 사유</td>
-							</tr>
+							<c:forEach items="${restList}" var="restList">
+								<tr class="tr03">
+									<td class="line02">
+									<div class="vac">휴가</div>
+									</td>
+									<td class="vaclist">${restList.vacationStart}</td>
+									<td class="vaclist">${restList.vacationEnd}</td>
+								</tr>
+							</c:forEach>
 						</table>
 					</div>
 				</td>

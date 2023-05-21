@@ -16,6 +16,7 @@ import com.semi.lecture.vo.LectureVo;
 import com.semi.member.vo.MemberVo;
 import com.semi.mypage.service.MypageService;
 import com.semi.mypage.vo.TeamVo;
+import com.semi.vacation.vo.VacationVo;
 
 @WebServlet(urlPatterns = "/mypage")
 public class MypageController extends HttpServlet{
@@ -38,11 +39,13 @@ public class MypageController extends HttpServlet{
 			String letterCount = ms.countLetter01(memberNo);
 			String countMyWrite = ms.countMyWrite(memberNo);
 			List<TeamVo> teamList = ms.teamList();
+			List<VacationVo> restList= ms.restList(memberNo);
 			
 			req.setAttribute("snotList", snotList);
 			req.setAttribute("letterCount", letterCount);
 			req.setAttribute("countMyWrite", countMyWrite);
 			req.setAttribute("teamList", teamList);
+			req.setAttribute("restList", restList);
 			req.getRequestDispatcher("/WEB-INF/views/personal/mypage.jsp").forward(req, resp);
 			
 			} catch (Exception e) {
