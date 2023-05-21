@@ -54,7 +54,7 @@
                     	<tr>
 	                        <td>${nvo.noticeNo}</td>
 	                        <td class="board_title">${nvo.noticeTitle}
-                                <span class="new_btn">New</span>
+                                <!-- <span class="new_btn">New</span> -->
 	                        </td>
 	                        <td>${nvo.adminNick}</td>
 	                        <td>${nvo.enrollDate}</td>
@@ -106,11 +106,11 @@
 
     $(".board tbody tr").click(function(){
         //글번호 가져오기
-        const noticeNo = $(this).find('td:first-child').text();
+        const nno = $(this).find('td:first-child').text();
         // const boardTitle = $(this).find('.board_title').text();
       
         // 페이지 이동을 위한 URL 구성
-        const url = '${root}/notice/detail?noticeNo=' + noticeNo;
+        const url = '${root}/notice/detail?nno=' + nno;
         
         // 페이지 이동
         window.location.href = url;

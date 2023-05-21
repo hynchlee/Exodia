@@ -144,4 +144,18 @@ public class ReviewDao {
 		return result;
 	}
 
+	public int editBoard(Connection conn, ReviewVo rvo) throws Exception {
+		
+		String sql = "UPDATE REVIEW SET REVIEW_TITLE=?, REVIEW_CONTENT=?, MODIFY_DATE=SYSDATE WHERE REVIEW_NO=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, rvo.getReviewTitle());
+		pstmt.setString(2, rvo.getReviewContent());
+		pstmt.setString(3, rvo.getReviewNo());
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	}
+
 }

@@ -100,4 +100,21 @@ public class NoticeService {
 		return result;
 	}
 
+	public int editNotice(NoticeVo nvo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.editNotice(conn, nvo);
+		
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
 }

@@ -1,4 +1,4 @@
-package com.semi.board.controller;
+package com.semi.review.controller;
 
 import java.io.IOException;
 
@@ -12,9 +12,11 @@ import javax.servlet.http.HttpSession;
 import com.semi.board.service.BoardService;
 import com.semi.board.vo.BoardVo;
 import com.semi.member.vo.MemberVo;
+import com.semi.review.service.ReviewService;
+import com.semi.review.vo.ReviewVo;
 
-@WebServlet("/board/edit")
-public class BoardEditController extends HttpServlet{
+@WebServlet("/review/edit")
+public class ReviewEditController extends HttpServlet{
 	
 	//화면
 	@Override
@@ -30,13 +32,13 @@ public class BoardEditController extends HttpServlet{
 		}
 		
 		try {
-			String bno = req.getParameter("bno");
+			String rno = req.getParameter("rno");
 			
-			BoardService bs = new BoardService();
-			BoardVo cvNo = bs.getBoardByNo(bno);
+			ReviewService rs = new ReviewService();
+			ReviewVo rvNo = rs.getReviewNo(rno);
 			
-			req.setAttribute("cvNo", cvNo);
-			req.getRequestDispatcher("/WEB-INF/views/board/boardEdit.jsp").forward(req, resp);
+			req.setAttribute("rvNo", rvNo);
+			req.getRequestDispatcher("/WEB-INF/views/review/reviewEdit.jsp").forward(req, resp);
 		} catch (Exception e) {
 			System.out.println("[ERROR] board edit error");
 			e.printStackTrace();
@@ -52,23 +54,23 @@ public class BoardEditController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		try {
-			String bno = req.getParameter("bno");
+			String rno = req.getParameter("rno");
 			String boardTitle = req.getParameter("boardTitle");
 	        String boardContent = req.getParameter("boardContent");
 	        
-	        BoardVo bvo = new BoardVo();
-	        bvo.setBoardNo(bno);
-	        bvo.setBoardTitle(boardTitle);
-	        bvo.setBoardContent(boardContent);
+	        ReviewVo rvo = new ReviewVo();
+	        rvo.setReviewNo(rno);
+	        rvo.setReviewTitle(boardTitle);
+	        rvo.setReviewContent(boardContent);
 	        
-	        BoardService bs = new BoardService();
-	        int result = bs.editBoard(bvo);
+	        ReviewService rs = new ReviewService();
+	        int result = rs.editReview(rvo);
 	        
 	        if (result != 1) {
 				throw new Exception();
 			}
 	        
-	        resp.sendRedirect(req.getContextPath() + "/board/detail?bno=" + bno);
+	        resp.sendRedirect(req.getContextPath() + "/review/detail?rno=" + rno);
 	        
 		} catch (Exception e) {
 			System.out.println("[ERROR] board edit error");

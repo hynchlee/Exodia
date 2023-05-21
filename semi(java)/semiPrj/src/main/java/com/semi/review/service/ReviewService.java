@@ -81,4 +81,22 @@ public class ReviewService {
 		return result;
 	}
 
+	public int editReview(ReviewVo rvo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.editBoard(conn, rvo);
+		
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+		
+	}
+
 }

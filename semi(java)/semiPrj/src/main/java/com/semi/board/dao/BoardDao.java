@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.semi.board.vo.BoardVo;
+import com.semi.board.vo.ReplyVo;
 import com.semi.common.db.JDBCTemplate;
 import com.semi.common.page.PageVo;
 
@@ -126,10 +127,10 @@ public class BoardDao {
 	//우리반 페이징
 	public int getBoardClassListCnt(Connection conn, String searchType, String searchValue) throws Exception {
 		
-		String sql = "SELECT COUNT(*) FROM BOARD WHERE STATUS='O' AND BOARD_CATEGORY_NO=3";
+		String sql = "SELECT COUNT(*) FROM BOARD WHERE STATUS='O' AND BOARD_CATEGORY_NO=3 ";
 		if ("classTitle".equals(searchType)) {
 			sql += "AND BOARD_TITLE LIKE '%" + searchValue + "%'";
-		}else if ("classContent".equals(searchType)) {
+		} else if ("classContent".equals(searchType)) {
 			sql += "AND BOARD_CONTENT LIKE '%" + searchValue + "%'";
 		}
 		PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -149,10 +150,10 @@ public class BoardDao {
 	//자유 페이징
 	public int getBoardFreeListCnt(Connection conn, String searchType, String searchValue) throws Exception {
 		
-		String sql = "SELECT COUNT(*) FROM BOARD WHERE STATUS='O' AND BOARD_CATEGORY_NO=1";
+		String sql = "SELECT COUNT(*) FROM BOARD WHERE STATUS='O' AND BOARD_CATEGORY_NO=1 ";
 		if ("freeTitle".equals(searchType)) {
 			sql += "AND BOARD_TITLE LIKE '%" + searchValue + "%'";
-		}else if ("freeContent".equals(searchType)) {
+		} else if ("freeContent".equals(searchType)) {
 			sql += "AND BOARD_CONTENT LIKE '%" + searchValue + "%'";
 		}
 		PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -351,13 +352,11 @@ public class BoardDao {
 
 		public int editBoard(Connection conn, BoardVo bvo) throws Exception {
 			
-			String sql = "UPDATE BOARD SET BOARD_TITLE=?, BOARD_CONTENT=?, MODIFY_DATE=SYSDATE, BOARD_CATEGORY_NO =? WHERE BOARD_NO=? AND MEMBER_NO=?";
+			String sql = "UPDATE BOARD SET BOARD_TITLE=?, BOARD_CONTENT=?, MODIFY_DATE=SYSDATE WHERE BOARD_NO=?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, bvo.getBoardTitle());
 			pstmt.setString(2, bvo.getBoardContent());
-			pstmt.setString(3, bvo.getBoardCategoryNo());
-			pstmt.setString(4, bvo.getBoardNo());
-			pstmt.setString(5, bvo.getMemberNo());
+			pstmt.setString(3, bvo.getBoardNo());
 			int result = pstmt.executeUpdate();
 			
 			JDBCTemplate.close(pstmt);
@@ -378,5 +377,45 @@ public class BoardDao {
 			return result;
 			
 		}
+
+		//댓글 리스트
+		public List<ReplyVo> getBoardReplyList(Connection conn, String bno) throws Exception {
+			
+			String sql = "SELECT R.REPLY_NO ,R.WRITER_NO ,R.BOARD_NO ,R.REPLY_CONTENT ,TO_CHAR(R.ENROLL_DATE,'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DATE ,TO_CHAR(R.MODIFY_DATE,'YYYY-MM-DD HH24:MI:SS') AS MODIFY_DATE ,R.STATUS ,M.MEMBER_NICK AS WRITER_NICK FROM REPLY R JOIN MEMBER M ON(M.MEMBER_NO = R.WRITER_NO) WHERE R.STATUS='O' AND R.BOARD_NO=? ORDER BY R.REPLY_NO DESC";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bno);
+			ResultSet rs = pstmt.executeQuery();
+			
+			List<ReplyVo> reList = new ArrayList<>();
+			while (rs.next()) {
+				String replyNo = rs.getString("REPLY_NO");
+				String writerNo = rs.getString("WRITER_NO");
+				String boardNo = rs.getString("BOARD_NO");
+				String replyContent = rs.getString("REPLY_CONTENT");
+				String enrollDate = rs.getString("ENROLL_DATE");
+				String modifyDate = rs.getString("MODIFY_DATE");
+				String status = rs.getString("STATUS");
+				String writerNick = rs.getString("WRITER_NICK");
+				
+				ReplyVo rv = new ReplyVo();
+				rv.setReplyNo(replyNo);
+				rv.setWriterNo(writerNo);
+				rv.setBoardNo(boardNo);
+				rv.setReplyContent(replyContent);
+				rv.setEnrollDate(enrollDate);
+				rv.setModifyDate(modifyDate);
+				rv.setStatus(status);
+				rv.setWriterNick(writerNick);
+				
+				reList.add(rv);
+				
+			}
+			
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+			
+			return reList;
+		}
+		
 
 }
