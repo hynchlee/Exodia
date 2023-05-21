@@ -45,6 +45,8 @@ public class MemberLoginController extends HttpServlet{
 			MemberService ms = new MemberService();
 			MemberVo loginMember = ms.login(vo);
 			
+//			List<LectureVo> memberLecture = new ArrayList();
+			
 			//화면
 			if(loginMember != null) {
 				
@@ -52,9 +54,17 @@ public class MemberLoginController extends HttpServlet{
 				String root = req.getContextPath();
 				
 				if ( "S".equals(loginMember.getIdentity()) ) {
+					
+//					memberLecture = ms.getSlecture(loginMember.getMemberNo());
+//					req.getSession().setAttribute("memberLecture", memberLecture);
 					resp.sendRedirect(root + "/smain");
+					
 				}else if( "T".equals(loginMember.getIdentity()) ) {
+					
+//					memberLecture = ms.getTlecture(loginMember.getMemberNo());
+//					req.getSession().setAttribute("memberLecture", memberLecture);
 					resp.sendRedirect(root + "/tmain");
+					
 				}//ifif
 				
 			}else {
