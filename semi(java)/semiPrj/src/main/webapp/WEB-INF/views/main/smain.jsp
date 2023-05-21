@@ -193,8 +193,8 @@
 				<div class="identity"><a href="${root}/mypage">${loginMember.memberNick}님 (수강생)</a></div>
 				<div class="class01"><a href="${root}/lecture/apply">반응형 UX/UI 웹컨텐츠 개발자 양성과정 A9</a></div>
 				<div class="change"><a href="${root}/member/edit">내 정보 수정</a></div>
-				<div class="letter"><a href="${root}/letter/receive">쪽지</a></div>
-				<div class="mywrite"><a href="${root}/my/list">내가 쓴 글</a></div>
+				<div class="letter"><a href="${root}/letter/receive">쪽지 ${letterCount}</a></div>
+				<div class="mywrite"><a href="${root}/my/list">내가 쓴 글${countMyWrite}</a></div>
 				<div class="point"><a href="/">마일리지</a></div>
 				<div class="test"><a href="${root}/lecture/test/list" class="a01">시험 응시</a></div>
 				<div class="vacation"><a href="${root}/member/vacation/form" class="a01">휴가 신청</a></div>

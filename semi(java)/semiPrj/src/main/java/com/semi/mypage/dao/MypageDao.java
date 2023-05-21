@@ -177,6 +177,42 @@ public class MypageDao {
 		
 	}
 
+	public String countLetter01(Connection conn, String memberNo) throws Exception {
+		
+		String sql = "SELECT COUNT(*) FROM LETTER WHERE RECEIVE_MEMBER_NO = ? AND STATUS = 'O'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		String letterCount01 = null;
+		while(rs.next()) {
+			letterCount01 = rs.getString("Count(*)");			
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return letterCount01;
+	}
+
+	public String countMyWrite(Connection conn, String memberNo) throws Exception {
+		
+		String sql = "SELECT COUNT(*) FROM BOARD WHERE MEMBER_NO = ? AND STATUS = 'O'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		String countMyWrite = null;
+		while(rs.next()) {
+			countMyWrite = rs.getString("Count(*)");			
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return countMyWrite;
+	}
+
 	
 	
 }
