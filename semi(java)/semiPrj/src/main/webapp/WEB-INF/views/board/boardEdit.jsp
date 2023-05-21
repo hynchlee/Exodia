@@ -19,22 +19,27 @@
 			 <div class="myClass">
                 <ul>
                     <li class="boardCategoryName">상세조회</li>
-                    <li class="class">(스마트웹&콘텐츠개발)반응형 UI/UX 웹콘텐츠 개발자 양성과정A</li>
-                    <li class="classRoom">[강남 362] 2022. 12. 30 ~ 2023. 08. 16 ｜ 15:30 ~ 22:00 (심원용 강사 ｜ 김리아 취업담임)</li>
                 </ul>
             </div>
 
             <div class="board_bt">
                 <!-- 카테고리에 따라 목록 나누기 -->
-                <a href="${root}/notice/list?page=1" class="bt1">목록으로</a>
+                <c:if test="${cvNo.boardCategoryType eq '우리반게시판'}">
+	                <a href="${root}/class/list?page=1" class="bt1">목록으로</a>
+                </c:if>
+                <c:if test="${cvNo.boardCategoryType eq '자유게시판'}">
+	                <a href="${root}/free/list?page=1" class="bt1">목록으로</a>
+                </c:if>
             </div>
 
             <form action="${root}/board/edit" method="post" enctype="multipart/form-data">
 
                 <!-- 관리자에게만 보이는 체크박스 -->
-                <div class="checked">
-                    <input type="checkbox" name="" id=""><span>상단고정</span>
-                </div>
+				<c:if test="${not empty loginAdmin }">
+	                <div class="checked">
+	                    <input type="checkbox" name="" id=""><span>상단고정</span>
+	                </div>
+				</c:if>
     
                 <table class="board_view">
                     <colgroup>
@@ -60,10 +65,6 @@
                         </tr>
                         <!-- 후기게시판과 큐엔에이 게시판에만 보임 -->
                         <tr>
-                            <th>강좌명</th>
-                            <td colspan="4">(스마트웹&콘텐츠개발)반응형 UI/UX 웹콘텐츠 개발자 양성과정A</td>
-                        </tr>
-                        <tr>
                             <th>내용</th>
                             <td colspan="4" style="height: 500px;">${cvNo.boardContent}</td>
                         </tr>
@@ -74,10 +75,12 @@
                     </tbody>
                 </table>
                 <!-- 작성자에게만 보이기 -->
-                <div class="view_btn">
-                    <input type="button" class="bt1" value="삭제하기">
-                    <input type="submit" class="bt1" value="수정하기">
-                </div>
+                <c:if test="${loginMember.memberNo eq cvNo.memberNo }">
+	                <div class="view_btn">
+	                	<a href="${root}/board/delete?bno=${cvNo.boardNo}" class="bt1" id="del">삭제하기</a>
+	                    <a href="${root}/board/edit?bno=${cvNo.boardNo}" class="bt1">수정하기</a>
+	                </div>
+                </c:if>
             </form>
 
             <!-- 큐엔에이, 후기게시판은 답글 안받음 -->
@@ -171,7 +174,7 @@
 </html>
 <script>
 	const title = document.querySelector('.title');
-	title.innerHTML = "자유게시판";
+	title.innerHTML = "${cvNo.boardCategoryType}";
 
     // 답글 작성란 보이기 숨기기
 

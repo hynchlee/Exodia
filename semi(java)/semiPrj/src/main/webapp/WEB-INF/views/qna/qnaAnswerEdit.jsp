@@ -18,8 +18,6 @@
 			 <div class="myClass">
                 <ul>
                     <li class="boardCategoryName">상세조회</li>
-                    <li class="class">(스마트웹&콘텐츠개발)반응형 UI/UX 웹콘텐츠 개발자 양성과정A</li>
-                    <li class="classRoom">[강남 362] 2022. 12. 30 ~ 2023. 08. 16 ｜ 15:30 ~ 22:00 (심원용 강사 ｜ 김리아 취업담임)</li>
                 </ul>
             </div>
             
@@ -49,10 +47,12 @@
                             <td class="edit_date">${qvNo.modifyDate}</td>
                         </tr>
                         <!-- 후기게시판과 큐엔에이 게시판에만 보임 -->
-                        <tr>
-                            <th>강좌명</th>
-                            <td colspan="4">${qvNo.lectureName}</td>
-                        </tr>
+                        <c:if test="${qvNo.identity eq 'S'}">
+	                        <tr>
+	                            <th>강좌명</th>
+	                            <td colspan="4">${qvNo.lectureName}</td>
+	                        </tr>
+                        </c:if>
                         <tr>
                             <th>내용</th>
                             <td colspan="4" style="height: 500px;">${qvNo.qnaContent}</td>
@@ -64,11 +64,29 @@
                     </tbody>
                 </table>
 
-                <c:if test="${(loginMember.memberNo == qvNo.memberNo) && (empty qvNo.qnaAnswer)}">
+                <c:if test="${loginMember.memberNo eq qvNo.memberNo && empty qvNo.qnaAnswer}">
 					<div class="view_btn">
-	                    <input type="button" class="bt1" value="삭제하기">
-	                    <input type="submit" class="bt1" value="수정하기">
+	                    <a href="${root}/qna/delete?qno=${qvNo.qnaNo}" class="bt1" id="del">삭제하기</a>
+	                    <a href="${root}/qna/edit?qno=${qvNo.qnaNo}" class="bt1">수정하기</a>
                 	</div>
+                </c:if>
+                
+                <c:if test="${not empty loginAdmin && empty qvNo.qnaAnswer}">
+                	<p class="answer_title">답변하기</p>
+
+	                <form action="" method="post">
+	
+	                    <div class="write_wrap">
+	                        <div></div>
+	                        <textarea name="qnaAswerContent" class="content_input" placeholder="내용을 입력해주세요." required></textarea>
+	                        <input type="file" name="select_file">
+	                    </div>
+	        
+	                    <div class="board_bt">
+	                        <input type="button" value="작성취소" class="bt1">
+	                        <input type="submit" value="답변완료" class="bt1">
+	                    </div>
+	                </form>
                 </c:if>
 
                 <c:if test="${not empty qvNo.qnaAnswer}">

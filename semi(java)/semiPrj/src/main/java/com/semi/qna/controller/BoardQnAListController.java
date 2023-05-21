@@ -50,7 +50,7 @@ public class BoardQnAListController extends HttpServlet{
 			req.setAttribute("searchVo", map);
 			req.setAttribute("pv", pv);
 			req.setAttribute("qvoList", qvoList);
-			req.getRequestDispatcher("/WEB-INF/views/board/boardQnaList.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/qna/boardQnaList.jsp").forward(req, resp);
 			
 		} catch (Exception e) {
 			System.out.println("[Error] qna list error");

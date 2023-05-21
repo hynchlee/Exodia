@@ -7,37 +7,25 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.semi.board.service.BoardService;
-import com.semi.board.vo.BoardVo;
+import com.semi.member.vo.MemberVo;
 
-@WebServlet("/board/detail")
+@WebServlet("/board/edit")
 public class BoardEditController extends HttpServlet{
 	
+	//화면
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		try {
-			String bno = req.getParameter("boardNo");
-			
-			BoardService bs = new BoardService();
-			BoardVo cvNo = bs.getBoardByNo(bno);
-			
-			if (cvNo == null) {
-				
-				throw new Exception();
-				
-			}
-			req.setAttribute("cvNo", cvNo);
-			req.getRequestDispatcher("/WEB-INF/views/board/boardEdit.jsp").forward(req, resp);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			
-			req.setAttribute("errorMsg", "잘못된 접근");
+		//로그인유저 회원번호 가져오기
+		HttpSession session = req.getSession();
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		if(loginMember == null) {
+			req.setAttribute("errorMsg", "로그인 해주세요");
 			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+			return;
 		}
-		
 		
 	}
 

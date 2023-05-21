@@ -21,15 +21,13 @@
 		<main>
 			<div class="myClass">
                 <ul>
-                    <li class="loginName">${loginMember.memberNick} 님 환영합니다</li>
-                    <li class="class">(스마트웹&콘텐츠개발)반응형 UI/UX 웹콘텐츠 개발자 양성과정A</li>
-                    <li class="classRoom">[강남 362] 2022. 12. 30 ~ 2023. 08. 16 ｜ 15:30 ~ 22:00 (심원용 강사 ｜ 김리아 취업담임)</li>
+                    <li class="loginName">${loginAdmin.adminNick} 님 환영합니다</li>
                 </ul>
             </div>
 
             <hr>
 
-            <form action="${root}/board/write" method="post">
+            <form action="${root}/notice/write" method="post">
 
                 <!-- 관리자에게만 보이는 체크박스 -->
                 <div class="checked">
@@ -39,8 +37,7 @@
                 <div class="write_wrap">
                     <input type="text" name="boardTitle" placeholder="제목을 입력해주세요." required>
                     <select name="boardCategoryNo" id="select_category" >
-                        <option value="1">자유게시판</option>
-                        <option value="3">우리반게시판</option>
+                        <option>공지사항</option>
                     </select>
 
                     <textarea name="boardContent" id="summernote"></textarea>

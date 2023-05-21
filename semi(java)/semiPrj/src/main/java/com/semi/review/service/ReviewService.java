@@ -39,4 +39,46 @@ public class ReviewService {
 		return rvoList;
 	}
 
+	//상세 조회
+	public ReviewVo getReviewNo(String rno) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ReviewVo rvNo = dao.getReviewNo(conn, rno);
+		
+		JDBCTemplate.close(conn);
+		
+		return rvNo;
+	}
+
+	//리뷰 작성
+	public int reviewWrite(ReviewVo rvo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.reviewWrite(conn, rvo);
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+	//리뷰 삭제
+	public int reviewDelete(String rno) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.reviewDelete(conn, rno);
+		
+		if (result==1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
 }

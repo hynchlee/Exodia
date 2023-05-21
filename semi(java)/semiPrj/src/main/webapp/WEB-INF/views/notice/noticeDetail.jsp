@@ -19,8 +19,6 @@
 			 <div class="myClass">
                 <ul>
                     <li class="boardCategoryName">상세조회</li>
-                    <li class="class">(스마트웹&콘텐츠개발)반응형 UI/UX 웹콘텐츠 개발자 양성과정A</li>
-                    <li class="classRoom">[강남 362] 2022. 12. 30 ~ 2023. 08. 16 ｜ 15:30 ~ 22:00 (심원용 강사 ｜ 김리아 취업담임)</li>
                 </ul>
             </div>
 
@@ -73,8 +71,8 @@
                 <!-- 작성자에게만 보이기 -->
                 <c:if test="${not empty loginAdmin}">
 	                <div class="view_btn">
-	                    <input type="button" class="bt1" value="삭제하기">
-	                    <input type="submit" class="bt1" value="수정하기">
+	                    <a href="${root}/notice/delete?nno=${nvNo.noticeNo}" class="bt1" id="del">삭제하기</a>
+	                    <a href="${root}/notice/edit?nno=${nvNo.noticeNo}" class="bt1">수정하기</a>
 	                </div>
                 </c:if>
             </form>

@@ -17,13 +17,15 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 
 		<main>
-			<div class="myClass">
-                <ul>
-                    <li class="loginName">유저님 환영합니다</li>
-                    <li class="class">(스마트웹&콘텐츠개발)반응형 UI/UX 웹콘텐츠 개발자 양성과정A</li>
-                    <li class="classRoom">[강남 362] 2022. 12. 30 ~ 2023. 08. 16 ｜ 15:30 ~ 22:00 (심원용 강사 ｜ 김리아 취업담임)</li>
-                </ul>
-            </div>
+			<c:if test="${not empty loginMember}">
+				<div class="myClass">
+	                <ul>
+	                    <li class="loginName">${loginMember.memberNick} 님 환영합니다</li>
+	                    <li class="class">(스마트웹&콘텐츠개발)반응형 UI/UX 웹콘텐츠 개발자 양성과정A</li>
+	                    <li class="classRoom">[강남 362] 2022. 12. 30 ~ 2023. 08. 16 ｜ 15:30 ~ 22:00 (심원용 강사 ｜ 김리아 취업담임)</li>
+	                </ul>
+	            </div>
+			</c:if>
             
             <form action="${root}/qna/list">
                 <div class="board_search">
@@ -85,12 +87,7 @@
             <!-- 관리자나 강사가 클릭하면 다른 창 -->
             <c:if test="${not empty loginMember}">
 	            <div class="board_bt">
-	                <a href="${root}/board/write" class="bt1">질문하기</a>
-	            </div>
-            </c:if>
-            <c:if test="${not empty loginAdmin}">
-	            <div class="board_bt">
-	                <a href="${root}/qna/answer/write" class="bt1">답변하기</a>
+	                <a href="${root}/qna/write" class="bt1">질문하기</a>
 	            </div>
             </c:if>
             

@@ -18,14 +18,12 @@
 			 <div class="myClass">
                 <ul>
                     <li class="boardCategoryName">상세조회</li>
-                    <li class="class">(스마트웹&콘텐츠개발)반응형 UI/UX 웹콘텐츠 개발자 양성과정A</li>
-                    <li class="classRoom">[강남 362] 2022. 12. 30 ~ 2023. 08. 16 ｜ 15:30 ~ 22:00 (심원용 강사 ｜ 김리아 취업담임)</li>
                 </ul>
             </div>
 
-            <form action="" method="post">
+            <form action="${root}/qna/answer/write" method="post">
                 <div class="board_bt">
-                    <a href="" class="bt1">목록으로</a>
+                    <a href="${root}/qna/list?page=1" class="bt1">목록으로</a>
                 </div>
     
                 <table class="board_view">

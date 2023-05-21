@@ -295,7 +295,7 @@ public class BoardDao {
 
 		public BoardVo getBoardByNo(Connection conn, String bno) throws Exception {
 			
-			String sql = "SELECT B.BOARD_NO ,B.BOARD_CATEGORY_NO ,B.MEMBER_NO ,B.BOARD_TITLE ,B.BOARD_CONTENT ,TO_CHAR(B.ENROLL_DATE,'YYYY.MM.DD') AS ENROLL_DATE ,TO_CHAR(B.MODIFY_DATE,'YYYY.MM.DD') AS MODIFY_DATE ,B.STATUS ,B.HIT ,M.MEMBER_NICK ,LC.LECTURE_NAME ,BC.BOARD_CATEGORY_TYPE FROM BOARD B JOIN BOARD_CATEGORY BC ON(BC.BOARD_CATEGORY_NO=B.BOARD_CATEGORY_NO) JOIN MEMBER M ON(M.MEMBER_NO = B.BOARD_NO) JOIN STUDENT D ON(D.STUDENT_MEMBER_NO = M.MEMBER_NO) JOIN LECTURE L ON(L.LECTURE_NO = D.LECTURE_NO) JOIN LECTURE_CATEGORY LC ON(LC.LECTURE_CATEGORY_NO = L.LECTURE_CATEGORY_NO) WHERE B.BOARD_NO=? AND B.STATUS='O'";
+			String sql = "SELECT B.BOARD_NO, B.BOARD_CATEGORY_NO, B.MEMBER_NO, B.BOARD_TITLE, B.BOARD_CONTENT, TO_CHAR(B.ENROLL_DATE,'YYYY.MM.DD') AS ENROLL_DATE, TO_CHAR(B.MODIFY_DATE,'YYYY.MM.DD') AS MODIFY_DATE, B.STATUS, B.HIT, M.MEMBER_NICK, BC.BOARD_CATEGORY_TYPE FROM BOARD B JOIN MEMBER M ON B.MEMBER_NO = M.MEMBER_NO JOIN BOARD_CATEGORY BC ON B.BOARD_CATEGORY_NO = BC.BOARD_CATEGORY_NO WHERE B.STATUS='O' AND B.BOARD_NO = ?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, bno);
 			ResultSet rs = pstmt.executeQuery();
@@ -314,7 +314,6 @@ public class BoardDao {
 				String hit = rs.getString("HIT");
 				String writerNick = rs.getString("MEMBER_NICK");
 				String boardCategoryType = rs.getString("BOARD_CATEGORY_TYPE");
-				String lectureName = rs.getString("LECTURE_NAME");
 				
 				cvNo = new BoardVo();
 				cvNo.setBoardNo(boardNo);
@@ -328,13 +327,56 @@ public class BoardDao {
 				cvNo.setHit(hit);
 				cvNo.setWriterNick(writerNick);
 				cvNo.setBoardCategoryType(boardCategoryType);
-				cvNo.setLectureName(lectureName);
 			}
 			
 			JDBCTemplate.close(pstmt);
 			JDBCTemplate.close(rs);
 			
 			return cvNo;
+		}
+		
+		//조회수
+		public int increaseHit(Connection conn, String bno) throws Exception {
+			
+			String sql = "UPDATE BOARD SET HIT = HIT+1 WHERE BOARD_NO=? AND STATUS='O'";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bno);
+			int result = pstmt.executeUpdate();
+			
+			JDBCTemplate.close(pstmt);
+			
+			return result;
+			
+		}
+
+		public int editBoard(Connection conn, BoardVo bvo) throws Exception {
+			
+			String sql = "UPDATE BOARD SET BOARD_TITLE=?, BOARD_CONTENT=?, MODIFY_DATE=SYSDATE, BOARD_CATEGORY_NO =? WHERE BOARD_NO=? AND MEMBER_NO=?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bvo.getBoardTitle());
+			pstmt.setString(2, bvo.getBoardContent());
+			pstmt.setString(3, bvo.getBoardCategoryNo());
+			pstmt.setString(4, bvo.getBoardNo());
+			pstmt.setString(5, bvo.getMemberNo());
+			int result = pstmt.executeUpdate();
+			
+			JDBCTemplate.close(pstmt);
+			
+			return result;
+		}
+
+		//글 삭제
+		public int boardDelete(Connection conn, String bno) throws Exception {
+			
+			String sql = "UPDATE BOARD SET STATUS='X' WHERE BOARD_NO=?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bno);
+			int result = pstmt.executeUpdate();
+			
+			JDBCTemplate.close(pstmt);
+			
+			return result;
+			
 		}
 
 }

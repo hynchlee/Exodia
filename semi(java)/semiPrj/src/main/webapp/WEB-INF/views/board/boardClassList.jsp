@@ -17,13 +17,15 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 
 		<main>
-			<div class="myClass">
-                <ul>
-                    <li class="loginName">유저님 환영합니다</li>
-                    <li class="class">(스마트웹&콘텐츠개발)반응형 UI/UX 웹콘텐츠 개발자 양성과정A</li>
-                    <li class="classRoom">[강남 362] 2022. 12. 30 ~ 2023. 08. 16 ｜ 15:30 ~ 22:00 (심원용 강사 ｜ 김리아 취업담임)</li>
-                </ul>
-            </div>
+			<c:if test="${not empty loginMember}">
+				<div class="myClass">
+	                <ul>
+	                    <li class="loginName">${loginMember.memberNick} 님 환영합니다</li>
+	                    <li class="class">(스마트웹&콘텐츠개발)반응형 UI/UX 웹콘텐츠 개발자 양성과정A</li>
+	                    <li class="classRoom">[강남 362] 2022. 12. 30 ~ 2023. 08. 16 ｜ 15:30 ~ 22:00 (심원용 강사 ｜ 김리아 취업담임)</li>
+	                </ul>
+	            </div>
+			</c:if>
 
             <div class="board_search">
                 <form action="${root}/class/list" method="get" name="searchBoard">
@@ -64,7 +66,7 @@
                 </tbody>
             </table>
             
-            <c:if test="${not empty loginMember}">
+            <c:if test="${not empty loginMember || not empty loginAdmin}">
 	            <div class="board_bt">
 	                <a href="${root}/board/write" class="bt1">글 등록</a>
 	            </div>

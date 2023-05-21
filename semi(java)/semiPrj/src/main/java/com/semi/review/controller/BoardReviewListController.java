@@ -37,7 +37,7 @@ public class BoardReviewListController extends HttpServlet{
 			//화면
 			req.setAttribute("pv", pv);
 			req.setAttribute("rvoList", rvoList);
-			req.getRequestDispatcher("/WEB-INF/views/board/boardReviewList.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/review/boardReviewList.jsp").forward(req, resp);
 			
 		} catch (Exception e) {
 			System.out.println("[ERROR] review list error");
