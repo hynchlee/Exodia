@@ -11,8 +11,10 @@ import com.semi.common.db.JDBCTemplate;
 import com.semi.common.page.PageVo;
 import com.semi.lecture.vo.LectureVo;
 import com.semi.lecture.vo.ProblemBankVo;
+import com.semi.lecture.vo.SubmitAnswerVo;
 import com.semi.member.vo.MemberVo;
 import com.semi.lecture.vo.ExamCategoryVo;
+import com.semi.lecture.vo.LectureMemberVo;
 
 public class LectureDao {
 
@@ -22,10 +24,10 @@ public class LectureDao {
 		pstmt.setInt(1, pageVo.getBeginRow());
 		pstmt.setInt(2, pageVo.getLastRow());
 		ResultSet rs = pstmt.executeQuery();
-		
+
 		List<LectureVo> lectureList = new ArrayList();
-		
-		while(rs.next()) {
+
+		while (rs.next()) {
 			LectureVo vo = new LectureVo();
 			vo.setLectureNo(rs.getString("LECTURE_NO"));
 			vo.setTeacherMemberNo(rs.getString("TEACHER_MEMBER_NO"));
@@ -39,23 +41,23 @@ public class LectureDao {
 			vo.setTeacherMemberName(rs.getString("MEMBER_NICK"));
 			lectureList.add(vo);
 		}
-		
+
 		JDBCTemplate.close(rs);
 		JDBCTemplate.close(pstmt);
-		
+
 		return lectureList;
 	}
-	
+
 	public List<ExamCategoryVo> getExamCategoryList(Connection conn, PageVo pageVo) throws SQLException {
 		String sql = "SELECT * FROM (SELECT ROWNUM AS RNUM, A.* FROM ( SELECT * FROM EXAM_CATEGORY EC JOIN LECTURE_CATEGORY LC ON EC.LECTURE_CATEGORY_NO = LC.LECTURE_CATEGORY_NO ) A ) WHERE RNUM BETWEEN ? AND ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, pageVo.getBeginRow());
 		pstmt.setInt(2, pageVo.getLastRow());
 		ResultSet rs = pstmt.executeQuery();
-		
+
 		List<ExamCategoryVo> ExamCategoryList = new ArrayList();
-		
-		while(rs.next()) {
+
+		while (rs.next()) {
 			ExamCategoryVo vo = new ExamCategoryVo();
 			vo.setExamCategoryNo(rs.getString("EXAM_CATEGORY_NO"));
 			vo.setLectureCategoryNo(rs.getString("LECTURE_CATEGORY_NO"));
@@ -63,24 +65,25 @@ public class LectureDao {
 			vo.setLectureCategoryName(rs.getString("LECTURE_NAME"));
 			ExamCategoryList.add(vo);
 		}
-		
+
 		JDBCTemplate.close(rs);
 		JDBCTemplate.close(pstmt);
-		
+
 		return ExamCategoryList;
 	}
-	
-	public List<ExamCategoryVo> getExamCategoryList(Connection conn, PageVo pageVo, MemberVo loginMember) throws SQLException {
+
+	public List<ExamCategoryVo> getExamCategoryList(Connection conn, PageVo pageVo, MemberVo loginMember)
+			throws SQLException {
 		String sql = "SELECT * FROM (SELECT ROWNUM AS RNUM, A.* FROM ( SELECT * FROM EXAM_CATEGORY EC JOIN LECTURE_CATEGORY LC ON EC.LECTURE_CATEGORY_NO = LC.LECTURE_CATEGORY_NO WHERE EC.LECTURE_CATEGORY_NO = (SELECT LECTURE_CATEGORY_NO FROM LECTURE WHERE LECTURE_NO = (SELECT LECTURE_NO FROM STUDENT WHERE STUDENT_MEMBER_NO = ?) ) ORDER BY EC.EXAM_CATEGORY_NO )A ) WHERE RNUM BETWEEN ? AND ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, loginMember.getMemberNo());
 		pstmt.setInt(2, pageVo.getBeginRow());
 		pstmt.setInt(3, pageVo.getLastRow());
 		ResultSet rs = pstmt.executeQuery();
-		
+
 		List<ExamCategoryVo> ExamCategoryList = new ArrayList();
-		
-		while(rs.next()) {
+
+		while (rs.next()) {
 			ExamCategoryVo vo = new ExamCategoryVo();
 			vo.setExamCategoryNo(rs.getString("EXAM_CATEGORY_NO"));
 			vo.setLectureCategoryNo(rs.getString("LECTURE_CATEGORY_NO"));
@@ -88,24 +91,25 @@ public class LectureDao {
 			vo.setLectureCategoryName(rs.getString("LECTURE_NAME"));
 			ExamCategoryList.add(vo);
 		}
-		
+
 		JDBCTemplate.close(rs);
 		JDBCTemplate.close(pstmt);
-		
+
 		return ExamCategoryList;
 	}
-	
-	public List<ExamCategoryVo> getExamCategoryList2(Connection conn, PageVo pageVo, MemberVo loginMember) throws SQLException {
-		String sql = "SELECT * FROM (SELECT ROWNUM AS RNUM, A.* FROM ( SELECT * FROM EXAM_CATEGORY EC JOIN LECTURE_CATEGORY LC ON EC.LECTURE_CATEGORY_NO = LC.LECTURE_CATEGORY_NO WHERE EC.LECTURE_CATEGORY_NO = (SELECT LECTURE_CATEGORY_NO FROM LECTURE WHERE TEACHER_MEMBER_NO = ?) )A )WHERE RNUM BETWEEN ? AND ?";
+
+	public List<ExamCategoryVo> getExamCategoryList2(Connection conn, PageVo pageVo, MemberVo loginMember)
+			throws SQLException {
+		String sql = "SELECT * FROM (SELECT ROWNUM AS RNUM, A.* FROM ( SELECT * FROM EXAM_CATEGORY EC JOIN LECTURE_CATEGORY LC ON EC.LECTURE_CATEGORY_NO = LC.LECTURE_CATEGORY_NO WHERE EC.LECTURE_CATEGORY_NO = (SELECT LECTURE_CATEGORY_NO FROM LECTURE WHERE TEACHER_MEMBER_NO = ?) ORDER BY EC.EXAM_CATEGORY_NO )A )WHERE RNUM BETWEEN ? AND ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, loginMember.getMemberNo());
 		pstmt.setInt(2, pageVo.getBeginRow());
 		pstmt.setInt(3, pageVo.getLastRow());
 		ResultSet rs = pstmt.executeQuery();
-		
+
 		List<ExamCategoryVo> ExamCategoryList = new ArrayList();
-		
-		while(rs.next()) {
+
+		while (rs.next()) {
 			ExamCategoryVo vo = new ExamCategoryVo();
 			vo.setExamCategoryNo(rs.getString("EXAM_CATEGORY_NO"));
 			vo.setLectureCategoryNo(rs.getString("LECTURE_CATEGORY_NO"));
@@ -113,40 +117,41 @@ public class LectureDao {
 			vo.setLectureCategoryName(rs.getString("LECTURE_NAME"));
 			ExamCategoryList.add(vo);
 		}
-		
+
 		JDBCTemplate.close(rs);
 		JDBCTemplate.close(pstmt);
-		
+
 		return ExamCategoryList;
 	}
-	
+
 	public List<String> getProblemPointList(Connection conn, ProblemBankVo pbv) throws SQLException {
 		String sql = "SELECT DISTINCT PROBLEM_POINT FROM PROBLEM_BANK WHERE EXAM_CATEGORY_NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, pbv.getExamCategoryNo());
 		ResultSet rs = pstmt.executeQuery();
-		
+
 		List<String> problemPointList = new ArrayList<>();
-		while(rs.next()) {
+		while (rs.next()) {
 			String problemPoint = rs.getString(1);
 			problemPointList.add(problemPoint);
 		}
-		
+
 		return problemPointList;
 	}
 
-	public List<List<ProblemBankVo>> getProblemList(Connection conn, ProblemBankVo pbv, List<String> ProblemPointList) throws SQLException {
+	public List<List<ProblemBankVo>> getProblemList(Connection conn, ProblemBankVo pbv, List<String> ProblemPointList)
+			throws SQLException {
 		List<List<ProblemBankVo>> problemList = new ArrayList<>();
-		
+
 		for (String point : ProblemPointList) {
 			List<ProblemBankVo> problemBank = new ArrayList<>();
 			String sql = "SELECT * FROM PROBLEM_BANK WHERE PROBLEM_POINT = ?";
-			
+
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, point);
 			ResultSet rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				ProblemBankVo vo = new ProblemBankVo();
 				vo.setExamProblemNo(rs.getString("EXAM_PROBLEM_NO"));
 				vo.setExamCategoryNo(rs.getString("EXAM_CATEGORY_NO"));
@@ -159,12 +164,10 @@ public class LectureDao {
 			}
 			problemList.add(problemBank);
 		}
-		
+
 		return problemList;
 	}
-	
-	
-	
+
 	public int getLectureListCnt(Connection conn) throws SQLException {
 		String sql = "SELECT COUNT(*) FROM LECTURE WHERE STATUS = 'O'";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -196,7 +199,7 @@ public class LectureDao {
 
 		return cnt;
 	}
-	
+
 	public int getExamCategoryListCnt(Connection conn, MemberVo loginMember) throws SQLException {
 		String sql = "SELECT COUNT(*) FROM EXAM_CATEGORY WHERE LECTURE_CATEGORY_NO = (SELECT LECTURE_CATEGORY_NO FROM LECTURE WHERE LECTURE_NO = (SELECT LECTURE_NO FROM STUDENT WHERE STUDENT_MEMBER_NO = ?))";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -230,7 +233,7 @@ public class LectureDao {
 
 		return cnt;
 	}
-	
+
 	public int getProblemListCnt(Connection conn, ProblemBankVo pbv) throws SQLException {
 		String sql = "SELECT COUNT(DISTINCT PROBLEM_POINT) AS DISTINCT_COUNT FROM PROBLEM_BANK WHERE EXAM_CATEGORY_NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -256,7 +259,7 @@ public class LectureDao {
 		ResultSet rs = pstmt.executeQuery();
 
 		LectureVo vo = null;
-		if(rs.next()) {
+		if (rs.next()) {
 			vo = new LectureVo();
 			vo.setLectureNo(rs.getString("LECTURE_NO"));
 			vo.setTeacherMemberNo(rs.getString("TEACHER_MEMBER_NO"));
@@ -269,24 +272,90 @@ public class LectureDao {
 			vo.setTeacherMemberName(rs.getString("MEMBER_NICK"));
 			vo.setLectureCategoryName(rs.getString("LECTURE_NAME"));
 		}
-		
+
 		return vo;
 	}
 
-	public List<MemberVo> getMemberList(Connection conn, LectureVo lectureVo) throws SQLException {
-		String sql = "SELECT * FROM MEMBER M JOIN STUDENT S ON M.MEMBER_NO = S.STUDENT_MEMBER_NO WHERE LECTURE_NO = ?";
+	public List<LectureMemberVo> getMemberList(Connection conn, ProblemBankVo pbv,LectureVo lectureVo) throws SQLException {
+		String sql = "SELECT * FROM MEMBER M JOIN STUDENT S ON M.MEMBER_NO = S.STUDENT_MEMBER_NO JOIN EXAM_LIST EL ON EL.MEMBER_NO = M.MEMBER_NO WHERE LECTURE_NO = ? AND EXAM_CATEGORY_NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, lectureVo.getLectureNo());
+		pstmt.setString(2, pbv.getExamCategoryNo());
 		ResultSet rs = pstmt.executeQuery();
 
-		List<MemberVo> memberList = new ArrayList<>();
-		while(rs.next()) {
-			MemberVo vo = new MemberVo();
+		List<LectureMemberVo> memberList = new ArrayList<>();
+		while (rs.next()) {
+			LectureMemberVo vo = new LectureMemberVo();
+			vo.setMemberNo(rs.getString("MEMBER_NO"));
 			vo.setMemberNick(rs.getString("MEMBER_NICK"));
+			vo.setScore(rs.getString("SCORE"));
 			memberList.add(vo);
 		}
-		
+
 		return memberList;
+	}
+
+	public List<SubmitAnswerVo> getSubmitAnswerList(Connection conn, ProblemBankVo pbv) throws SQLException {
+		String sql = "SELECT * FROM EXAM_LIST EL JOIN SUBMIT_ANSWER SA ON SA.EXAM_SCORE_NO = EL.EXAM_SCORE_NO JOIN PROBLEM_BANK PB ON PB.EXAM_PROBLEM_NO = SA.EXAM_PROBLEM_NO JOIN MEMBER M ON M.MEMBER_NO = EL.MEMBER_NO WHERE EL.EXAM_CATEGORY_NO = ? ORDER BY SA.EXAM_PROBLEM_NO";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, pbv.getExamCategoryNo());
+		ResultSet rs = pstmt.executeQuery();
+
+		List<SubmitAnswerVo> submitAnswerList = new ArrayList<>();
+		while (rs.next()) {
+			SubmitAnswerVo sav = new SubmitAnswerVo();
+			sav.setExamCategoryNo(rs.getString("EXAM_CATEGORY_NO"));
+			sav.setExamSubject(pbv.getExamSubject());
+			sav.setMemberNo(rs.getString("MEMBER_NO"));
+			sav.setMemberNick(rs.getString("MEMBER_NICK"));
+			sav.setScore(rs.getString("SCORE"));
+			sav.setProblem(rs.getString("PROBLEM"));
+			sav.setSubmitAnswer(rs.getString("SUBMIT_ANSWER"));
+			sav.setAnswer(rs.getString("ANSWER"));
+			sav.setProblemPoint(rs.getString("PROBLEM_POINT"));
+
+			submitAnswerList.add(sav);
+		}
+
+		return submitAnswerList;
+	}
+
+	public List<SubmitAnswerVo> getSubmitAnswerList(Connection conn, ProblemBankVo pbv, String memberNo)
+			throws SQLException {
+		String sql = "SELECT * FROM EXAM_LIST EL JOIN SUBMIT_ANSWER SA ON SA.EXAM_SCORE_NO = EL.EXAM_SCORE_NO JOIN PROBLEM_BANK PB ON PB.EXAM_PROBLEM_NO = SA.EXAM_PROBLEM_NO JOIN MEMBER M ON M.MEMBER_NO = EL.MEMBER_NO WHERE EL.MEMBER_NO = ? AND EL.EXAM_CATEGORY_NO = ? ORDER BY SA.EXAM_PROBLEM_NO";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		pstmt.setString(2, pbv.getExamCategoryNo());
+		ResultSet rs = pstmt.executeQuery();
+
+		List<SubmitAnswerVo> submitAnswerList = new ArrayList<>();
+		while (rs.next()) {
+			SubmitAnswerVo sav = new SubmitAnswerVo();
+			sav.setExamCategoryNo(rs.getString("EXAM_CATEGORY_NO"));
+			sav.setExamSubject(pbv.getExamSubject());
+			sav.setMemberNo(rs.getString("MEMBER_NO"));
+			sav.setMemberNick(rs.getString("MEMBER_NICK"));
+			sav.setScore(rs.getString("SCORE"));
+			sav.setProblem(rs.getString("PROBLEM"));
+			sav.setSubmitAnswer(rs.getString("SUBMIT_ANSWER"));
+			sav.setAnswer(rs.getString("ANSWER"));
+			sav.setProblemPoint(rs.getString("PROBLEM_POINT"));
+
+			submitAnswerList.add(sav);
+		}
+
+		return submitAnswerList;
+	}
+
+	public int scoreOne(Connection conn, String examCategoryNo, String memberNo, String totalScore) throws SQLException {
+		String sql = "UPDATE EXAM_LIST SET SCORE = ? WHERE EXAM_CATEGORY_NO = ? AND MEMBER_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, totalScore);
+		pstmt.setString(2, examCategoryNo);
+		pstmt.setString(3, memberNo);
+		int result = pstmt.executeUpdate();
+		
+		return result;
 	}
 
 }

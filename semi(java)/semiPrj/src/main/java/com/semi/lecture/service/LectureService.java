@@ -9,8 +9,10 @@ import com.semi.common.page.PageVo;
 import com.semi.lecture.dao.LectureDao;
 import com.semi.lecture.vo.LectureVo;
 import com.semi.lecture.vo.ProblemBankVo;
+import com.semi.lecture.vo.SubmitAnswerVo;
 import com.semi.member.vo.MemberVo;
 import com.semi.lecture.vo.ExamCategoryVo;
+import com.semi.lecture.vo.LectureMemberVo;
 
 public class LectureService {
 	private LectureDao dao = new LectureDao();
@@ -112,14 +114,50 @@ public class LectureService {
 		return vo;
 	}
 
-	public List<MemberVo> getMemberList(LectureVo lectureVo) throws SQLException {
+	public List<LectureMemberVo> getMemberList(ProblemBankVo pbv, LectureVo lectureVo) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
 
-		List<MemberVo> memberList = dao.getMemberList(conn, lectureVo);
+		List<LectureMemberVo> memberList = dao.getMemberList(conn, pbv, lectureVo);
 
 		JDBCTemplate.close(conn);
 		
 		return memberList;
+	}
+	
+	public List<SubmitAnswerVo> getSubmitAnswerList(ProblemBankVo pbv) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+
+		List<SubmitAnswerVo> submitAnswerList = dao.getSubmitAnswerList(conn, pbv);
+
+		JDBCTemplate.close(conn);
+		
+		return submitAnswerList;
+	}
+
+	public List<SubmitAnswerVo> getSubmitAnswerList(ProblemBankVo pbv, String memberNo) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+
+		List<SubmitAnswerVo> submitAnswerList = dao.getSubmitAnswerList(conn, pbv, memberNo);
+
+		JDBCTemplate.close(conn);
+		
+		return submitAnswerList;
+	}
+
+	public int scoreOne(String examCategoryNo, String memberNo, String totalScore) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+
+		int result = dao.scoreOne(conn, examCategoryNo, memberNo, totalScore);
+
+		if(result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
 	}
 	
 }
