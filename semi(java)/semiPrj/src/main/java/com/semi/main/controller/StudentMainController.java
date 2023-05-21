@@ -11,22 +11,40 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.semi.member.vo.MemberVo;
+import com.semi.mypage.service.MypageService;
 
 @WebServlet(urlPatterns = "/smain")
 public class StudentMainController extends HttpServlet{
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		req.getRequestDispatcher("/WEB-INF/views/main/smain.jsp").forward(req, resp);
+		try {
+			HttpSession session = req.getSession();
+			MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+			
+			if (loginMember == null) {
+				throw new IllegalSelectorException();
+			}
+			
+			String memberNo = loginMember.getMemberNo();
+			
+			MypageService ms = new MypageService();
+			String letterCount = ms.countLetter01(memberNo);
+			String countMyWrite = ms.countMyWrite(memberNo);
+			
+			req.setAttribute("letterCount", letterCount);
+			req.setAttribute("countMyWrite", countMyWrite);
+			req.getRequestDispatcher("/WEB-INF/views/main/smain.jsp").forward(req, resp);
+			
+			} catch (Exception e) {
+				System.out.println("tmain 조회 중 에러 발생");
+				e.printStackTrace();
+				
+				req.setAttribute("errorMsg", "tmain 조회중 에러발생");
+				req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+			}
 	
 	}
 	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		
-	
-	
-	}
 }

@@ -10,6 +10,7 @@ import java.util.List;
 import com.semi.board.vo.BoardVo;
 import com.semi.common.db.JDBCTemplate;
 import com.semi.lecture.vo.LectureVo;
+import com.semi.letter.vo.LetterVo;
 import com.semi.mypage.dao.MypageDao;
 
 public class MypageService {
@@ -65,6 +66,31 @@ public class MypageService {
 		
 		return snotList;
 	
+	}
+
+	public String countLetter01(String memberNo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		String letterCount01 = mdao.countLetter01(conn, memberNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return letterCount01;
+		
+	}
+
+	public String countMyWrite(String memberNo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		String countMyWrite = mdao.countMyWrite(conn, memberNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return countMyWrite;
 	}
 
 }

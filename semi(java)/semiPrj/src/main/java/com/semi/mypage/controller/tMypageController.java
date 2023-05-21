@@ -17,6 +17,7 @@ import com.semi.board.service.BoardService;
 import com.semi.board.vo.BoardVo;
 import com.semi.common.page.PageVo;
 import com.semi.lecture.vo.LectureVo;
+import com.semi.letter.vo.LetterVo;
 import com.semi.member.vo.MemberVo;
 import com.semi.mypage.service.MypageService;
 
@@ -39,11 +40,15 @@ public class tMypageController extends HttpServlet{
 			MypageService ms = new MypageService();
 			List<LectureVo> volist = ms.viewStudent(memberNo);
 			List<BoardVo> notList = ms.showNotice();			
-			List<BoardVo> freeList = ms.freeboard();			
+			List<BoardVo> freeList = ms.freeboard();
+			String letterCount = ms.countLetter01(memberNo);
+			String countMyWrite = ms.countMyWrite(memberNo);
 			
 			req.setAttribute("volist", volist);
 			req.setAttribute("notList", notList);
 			req.setAttribute("freeList", freeList);
+			req.setAttribute("letterCount", letterCount);
+			req.setAttribute("countMyWrite", countMyWrite);
 			req.getRequestDispatcher("/WEB-INF/views/personal/tmypage.jsp").forward(req, resp);
 			
 			} catch (Exception e) {
