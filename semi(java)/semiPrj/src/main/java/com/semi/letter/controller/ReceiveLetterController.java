@@ -31,6 +31,8 @@ public class ReceiveLetterController extends HttpServlet {
 			return;
 		}
 		
+		String MemberNo = loginMember.getMemberNo();
+		
 		try {
 
 			String searchType = req.getParameter("searchType");
@@ -38,7 +40,7 @@ public class ReceiveLetterController extends HttpServlet {
 			
 			LetterService bs = new LetterService();
 			
-			int cnt = bs.getLetterListCnt(searchType, searchValue);
+			int cnt = bs.getLetterListCnt(searchType, searchValue, MemberNo);
 			String page_ = req.getParameter("page");
 			if (page_ == null) {
 				page_ = "1";
@@ -48,12 +50,12 @@ public class ReceiveLetterController extends HttpServlet {
 			
 			//서비스
 			List<LetterVo> voList = null;
-//			List<BoardVo> voList = bs.getBoardList(pv);
+			//List<BoardVo> voList = bs.getBoardList(pv);
 			if (searchType ==null || searchType.equals("")) {
-				voList = bs.getLetterList(pv);
+				voList = bs.getLetterList(pv, MemberNo);
 			}
 			else {
-				voList = bs.getLetterList(pv, searchType, searchValue);
+				voList = bs.getLetterList(pv, searchType, searchValue, MemberNo);
 			}
 			
 			Map<String, String> map = new HashMap<>();

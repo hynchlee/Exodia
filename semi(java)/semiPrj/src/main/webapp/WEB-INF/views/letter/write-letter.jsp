@@ -49,7 +49,7 @@
 						</div>
 					</div>
 					<div id="writeDiv">
-							<form action="/semi/letter/sent" id="writeTable" method="post">
+							<form action="/semi/letter/write" id="writeTable" method="post">
 								<table>
 									<thead>
 										<tr>
