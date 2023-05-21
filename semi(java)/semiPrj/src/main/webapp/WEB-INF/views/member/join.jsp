@@ -90,6 +90,7 @@
 
 <script>
 
+    //첨부파일 이름 출력
     function printName() {
         const file = document.querySelector("input[type=file]");
         const fileNameZone = document.querySelector("#fileName-zone");

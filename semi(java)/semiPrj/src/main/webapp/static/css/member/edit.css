@@ -103,6 +103,11 @@ input[type="submit"] {
     margin-top: 50px;
 }
 
+input[name=memberId], input[name=memberNick], input[name=birthNum] {
+    background-color: rgb(139, 136, 136);
+    color: rgba(255,255,255,1);
+}
+
 button {
     width: 100px;
     height: 60px;
