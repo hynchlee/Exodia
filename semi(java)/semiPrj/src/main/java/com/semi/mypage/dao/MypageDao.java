@@ -10,6 +10,7 @@ import java.util.List;
 import com.semi.board.vo.BoardVo;
 import com.semi.common.db.JDBCTemplate;
 import com.semi.lecture.vo.LectureVo;
+import com.semi.mypage.vo.TeamVo;
 
 public class MypageDao {
 
@@ -211,6 +212,64 @@ public class MypageDao {
 		JDBCTemplate.close(pstmt);
 		
 		return countMyWrite;
+	}
+
+	public List<LectureVo> teacherLecture(Connection conn, String memberNo) throws Exception {
+
+		String sql = "SELECT M.MEMBER_NICK, G.LECTURE_NAME FROM LECTURE L JOIN MEMBER M ON(L.TEACHER_MEMBER_NO = M.MEMBER_NO) JOIN LECTURE_CATEGORY G ON (G.LECTURE_CATEGORY_NO = L.LECTURE_CATEGORY_NO) WHERE TEACHER_MEMBER_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		List<LectureVo> tvolist = new ArrayList<>();
+		while(rs.next()) {
+			String memberNick = rs.getString("MEMBER_NICK");
+			String lectureName = rs.getString("LECTURE_NAME");
+			
+			LectureVo vo = new LectureVo();
+			vo.setTeacherMemberName(memberNick);
+			vo.setLectureCategoryName(lectureName);
+			
+			tvolist.add(vo);
+				
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return tvolist;
+	
+	}
+
+	public List<TeamVo> teamList(Connection conn) throws Exception {
+
+		String sql = "SELECT M.MEMBER_NICK, T.TEAM_NAME, TR.ROLE, TR.PROJECT_DIVISION FROM TEAM T JOIN STUDENT S ON(S.TEAM_NO = T.TEAM_NO) JOIN TEAM_ROLE TR ON (TR.STUDENT_MEMBER_NO = S.STUDENT_MEMBER_NO) JOIN MEMBER M ON (M.MEMBER_NO = S.STUDENT_MEMBER_NO) WHERE IDENTITY = 'S'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		
+		List<TeamVo> teamList = new ArrayList<>();
+		while (rs.next()) {
+			
+			String memberNick = rs.getString("MEMBER_NICK");
+			String teamName = rs.getString("TEAM_NAME");
+			String role = rs.getString("ROLE");
+			String projectDivision = rs.getString("PROJECT_DIVISION");
+			
+			TeamVo tv = new TeamVo();
+			tv.setMemberNick(memberNick);
+			tv.setTeamName(teamName);
+			tv.setRole(role);
+			tv.setProjectDivision(projectDivision);
+			
+			teamList.add(tv);
+		
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return teamList;
+	
 	}
 
 	

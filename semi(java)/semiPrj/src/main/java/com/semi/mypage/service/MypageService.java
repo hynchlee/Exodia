@@ -12,6 +12,7 @@ import com.semi.common.db.JDBCTemplate;
 import com.semi.lecture.vo.LectureVo;
 import com.semi.letter.vo.LetterVo;
 import com.semi.mypage.dao.MypageDao;
+import com.semi.mypage.vo.TeamVo;
 
 public class MypageService {
 
@@ -91,6 +92,32 @@ public class MypageService {
 		JDBCTemplate.close(conn);
 		
 		return countMyWrite;
+	}
+
+	public List<LectureVo> teacherLecture(String memberNo) throws Exception {
+	
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		List<LectureVo> tvolist = mdao.teacherLecture(conn, memberNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return tvolist;
+	
+	}
+
+	public List<TeamVo> teamList() throws Exception {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		List<TeamVo> teamList = mdao.teamList(conn);
+		
+		JDBCTemplate.close(conn);
+		
+		return teamList;
+	
 	}
 
 }

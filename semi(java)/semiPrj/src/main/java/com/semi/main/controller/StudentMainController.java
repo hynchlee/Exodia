@@ -38,10 +38,10 @@ public class StudentMainController extends HttpServlet{
 			req.getRequestDispatcher("/WEB-INF/views/main/smain.jsp").forward(req, resp);
 			
 			} catch (Exception e) {
-				System.out.println("tmain 조회 중 에러 발생");
+				System.out.println("smain 조회 중 에러 발생");
 				e.printStackTrace();
 				
-				req.setAttribute("errorMsg", "tmain 조회중 에러발생");
+				req.setAttribute("errorMsg", "smain 조회중 에러발생");
 				req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
 			}
 	

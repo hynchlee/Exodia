@@ -45,7 +45,7 @@
 		          		<div class="logout"><a href="${root}/member/logout">로그아웃</a></div>
 						<div class="photo01"></div>
 						<div class="identity"><a href="${root}/tmypage">${loginMember.memberNick}님 (강사)</a></div>
-						<div class="class01"><a href="${root}/lecture/apply" class="awhite">강의 목록 보기</a></div>
+						<div class="class01"><a href="${root}/lecture/test/list2" class="awhite">시험 출제 하기</a></div>
 						<div class="change"><a href="${root}/member/edit">내 정보 수정</a></div>
 						<div class="letter"><a href="${root}/letter/receive">쪽지 ${letterCount}</a></div>
 						<div class="mywrite"><a href="${root}/my/list">내가 쓴 글 ${countMyWrite}</a></div>
@@ -66,7 +66,17 @@
 				</td>
 				<td class="td01 td09">
 					<div class="team">
-						담당 강의
+						<div class="teamlist" style="overflow: auto;">
+							<span class="teamlisttitle">담당 강의</span>
+							<hr>
+							<ul>
+								<c:forEach items="${tvolist}" var="tvolist">
+									<li class="list02">${tvolist.lectureCategoryName}</li>	
+									<li class="list03">${tvolist.teacherMemberName}</li>				
+									<hr>			
+								</c:forEach>
+							</ul>	
+						</div>
 					</div>
 				</td>
 			</tr>
