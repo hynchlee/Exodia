@@ -54,7 +54,6 @@
 									<select name="" id="">
 										<option value="받은메세지">받은메세지</option>
 										<option value="보낸메세지">보낸메세지</option>
-										<option value="작성자">작성자</option>
 									</select>
 									<input type="text">
 									<button>검색하기</button>

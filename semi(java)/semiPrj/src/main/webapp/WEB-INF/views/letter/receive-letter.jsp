@@ -50,25 +50,27 @@
 					</div>
 					<div id="letter-list">
 						<table>
-							<thead>
-								<tr>
-									<td colspan="5">
-										<select name="searchType">
-											<option value="writer">작성자</option>
-											<option value="title">제목</option>
-										</select>
-										<input type="text" class="searchValueElem" name="searchValue"
-											value="${searchVo.searchValue}" placeholder="검색할내용">
-										<input type="submit" value="검색하기">
-									</td>
-								</tr>
-								<tr id="trHead">
-									<td id="shortTd" style="width: 10%;"></td>
-									<td>작성자</td>
-									<td>제목</td>
-									<td>날짜</td>
-								</tr>
-							</thead>
+							<form action="${root}/letter/receive" method="get">
+								<thead>
+									<tr>
+										<td colspan="5">
+											<select name="searchType">
+												<option value="writer">작성자</option>
+												<option value="title">제목</option>
+											</select>
+											<input type="text" class="searchValueElem" name="searchValue"
+												value="${searchVo.searchValue}" placeholder="검색할내용">
+											<input type="submit" id="searchButton" value="검색하기">
+										</td>
+									</tr>
+									<tr id="trHead">
+										<td id="shortTd" style="width: 10%;"></td>
+										<td>작성자</td>
+										<td>제목</td>
+										<td>날짜</td>
+									</tr>
+								</thead>
+							</form>
 							<tbody>
 								<c:forEach items="${voList}" var="vo">
 									<tr>
@@ -90,10 +92,10 @@
 								<tr>
 									<td id="pageTd" colspan="4">
 										<button onclick="pageMove('${pageVo.startPage}');"><<</button>
-												<c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" var="i">
-													<button class="pageBtn" onclick="pageMove('${i}');">${i}</button>
-												</c:forEach>
-												<button onclick="pageMove('${pageVo.endPage}');">>></button>
+										<c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" var="i">
+											<button class="pageBtn" onclick="pageMove('${i}');">${i}</button>
+										</c:forEach>
+										<button onclick="pageMove('${pageVo.endPage}');">>></button>
 									</td>
 								</tr>
 							</tfoot>
@@ -162,51 +164,23 @@
 				initSearchType();
 			}
 
-			// 검색 타입 초기셋팅
-			function initSearchType() {
-				const x = document.querySelector('select > option[value="' + searchType + '"]');
-				x.selected = true;
+			document.querySelector('#searchButton').addEventListener('click', function (e) {
+			e.preventDefault();
+
+			// 검색 유형 및 값 가져오기
+			const searchType = document.querySelector('select[name="searchType"]').value;
+			const searchValue = document.querySelector('input[name="searchValue"]').value;
+
+			if (!searchValue.trim()) {
+				alert('검색할 내용을 입력해주세요.');
+				return;
 			}
 
+			// 검색 URL 생성
+			const searchUrl = `http://127.0.0.1:8888/semi/letter/receive?searchType=${searchType}&searchValue=${searchValue}`;
 
-			//서치타입 변경 시 함수 실행
-			const searchTypeTag = document.querySelector('select[name="searchType"]');
-			searchTypeTag.addEventListener("change", setSearchValueTag);
-
-			function setSearchValueTag() {
-				const searchType = searchTypeTag.value;
-				if (searchType == 'category') {
-					setSearchValueTagSelect();
-				} else {
-					setSearchValueTagInput();
-				}
-			}
-
-			//검색값 영역을 셀렉트가 보이게 (타입이 카테고리일 때)
-			function setSearchValueTagSelect() {
-				searchValueSelectTag.classList.add("active");
-				searchValueSelectTag.disabled = false;
-				searchValueInputTag.classList.remove("active");
-				searchValueInputTag.disabled = true;
-
-				searchValueInputTag.value = '';
-			}
-
-			//검색값 영역을 인풋이 보이게 (타입이 카테고리가 아닐 때)
-			function setSearchValueTagInput() {
-				searchValueInputTag.classList.add("active");
-				searchValueInputTag.disabled = false;
-				searchValueSelectTag.classList.remove("active");
-				searchValueSelectTag.disabled = true;
-			}
-
-			//카테고리로 검색한 이후에 검색값이 유지되게
-			function initSearchValueSelect() {
-				if (searchType != 'category') {
-					return;
-				}
-				const optionTag = document.querySelector("option[value='" + searchValue + "']");
-				optionTag.selected = true;
-			}
+			// 검색 페이지로 이동
+			location.href = searchUrl;
+		});
 
 		</script>

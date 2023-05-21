@@ -22,15 +22,15 @@
 						</form>
 					</div>
 					<div>
-						<form action="${root}/letter/sent" method="post">
+						<form action="${root}/letter/sent" method="get">
 							<div id="select-button">
 								<img src="${root}/static/img/letter/보낸 쪽지.png">
-								<input type="submit" value="보낸 쪽지" id="sent-letter" disabled="disabled">
+								<input type="submit" value="보낸 쪽지" id="sent-letter" disabled>
 							</div>
 						</form>
 					</div>
 					<div>
-						<form action="${root}/letter/receive" method="post">
+						<form action="${root}/letter/receive" method="get">
 							<div id="select-button">
 								<img src="${root}/static/img/letter/받은 쪽지.png">
 								<input type="submit" value="받은 쪽지" id="receive-letter">
@@ -38,7 +38,7 @@
 						</form>
 					</div>
 					<div>
-						<form action="${root}/letter/trash" method="post">
+						<form action="${root}/letter/trash" method="get">
 							<div id="select-button">
 								<img src="${root}/static/img/letter/휴지통.png">
 								<input type="submit" value="휴지통" id="trash-can">
@@ -62,20 +62,22 @@
 							</tr>
 							<tr id="trHead">
 								<td id="shortTd" style="width: 10%;"></td>
-								<td>작성자</td>
+								<td>받은사람</td>
 								<td>제목</td>
 								<td>날짜</td>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td style="width: 50px;">
-									<input type="checkbox" class="checkbox" value="${vo.letterNo}">
-								</td>
-								<td style="width: 150px;"></td>
-								<td></td>
-								<td></td>
-							</tr>
+							<c:forEach items="${voList}" var="vo">
+								<tr>
+									<td style="width: 50px;">
+										<input type="checkbox" class="checkbox" value="${vo.letterNo}">
+									</td>
+									<td style="width: 150px;">${vo.sendMemberName}</td>
+									<td>${vo.letterTitle}</td>
+									<td>${vo.enrollDate}</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 						<tfoot>
 							<tr>
@@ -107,8 +109,21 @@
 		title.innerHTML = "보낸 쪽지";
 
 		const banner = document.querySelector(".banner");
-			banner.style.marginBottom = 0;
+		banner.style.marginBottom = 0;
 
-			const caption = document.querySelector(".caption1");
-			caption.style.marginTop = 0;
+		const caption = document.querySelector(".caption1");
+		caption.style.marginTop = 0;
+
+		const pageBtn = document.querySelectorAll('.pageBtn');
+
+		function pageMove(i) {
+			location.href = "${root}/letter/receive?page=" + i;
+		}
+
+		for (let btn of pageBtn) {
+			if (btn.innerHTML == '${pageVo.currentPage}') {
+				btn.style.backgroundColor = '#4998D1';
+				btn.style.color = 'white';
+			}
+		}
 	</script>
