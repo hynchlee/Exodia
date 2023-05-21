@@ -11,6 +11,7 @@ import com.semi.board.vo.BoardVo;
 import com.semi.common.db.JDBCTemplate;
 import com.semi.lecture.vo.LectureVo;
 import com.semi.mypage.vo.TeamVo;
+import com.semi.vacation.vo.VacationVo;
 
 public class MypageDao {
 
@@ -269,6 +270,38 @@ public class MypageDao {
 		JDBCTemplate.close(pstmt);
 		
 		return teamList;
+	
+	}
+
+	public List<VacationVo> restList(Connection conn, String memberNo) throws Exception {
+
+		String sql = "SELECT VACATION_REQUEST_LIST_NO, TO_CHAR(TO_DATE(VACATION_START), 'YYYY-MM-DD') VACATION_START, TO_CHAR(TO_DATE(VACATION_END), 'YYYY-MM-DD') VACATION_END, STATUS FROM VACATION_REQUEST_LIST WHERE MEMBER_NO = ? AND STATUS = 'O'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		List<VacationVo> restList = new ArrayList<>();
+		while (rs.next()) {
+			
+			String vacationRequestListNo = rs.getString("VACATION_REQUEST_LIST_NO");
+			String vacationStart = rs.getString("VACATION_START");
+			String vacationEnd = rs.getString("VACATION_END");
+			String status = rs.getString("STATUS");
+			
+			VacationVo vv = new VacationVo();
+			vv.setVacationRequestListNo(vacationRequestListNo);
+			vv.setVacationStart(vacationStart);
+			vv.setVacationEnd(vacationEnd);
+			vv.setStatus(status);
+			
+			restList.add(vv);
+		
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return restList;
 	
 	}
 

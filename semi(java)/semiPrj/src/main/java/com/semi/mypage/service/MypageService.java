@@ -13,6 +13,7 @@ import com.semi.lecture.vo.LectureVo;
 import com.semi.letter.vo.LetterVo;
 import com.semi.mypage.dao.MypageDao;
 import com.semi.mypage.vo.TeamVo;
+import com.semi.vacation.vo.VacationVo;
 
 public class MypageService {
 
@@ -118,6 +119,19 @@ public class MypageService {
 		
 		return teamList;
 	
+	}
+
+	public List<VacationVo> restList(String memberNo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		List<VacationVo> restList = mdao.restList(conn, memberNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return restList;
+		
 	}
 
 }
