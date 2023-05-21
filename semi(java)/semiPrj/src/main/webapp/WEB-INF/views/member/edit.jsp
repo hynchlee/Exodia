@@ -65,12 +65,15 @@
 
             <div id="submit-box">
                 <input type="submit" value="수정하기">
-                <button id="quit" type="button" onclick="quit();">탈퇴</button>
+                <button type="button" onclick="quit();">탈퇴</button>
             </div>
 
         </form>
 
     </div>
+
+</body>
+</html>
 
 <script>
 
@@ -98,16 +101,12 @@
 	// }
 
     //탈퇴
-    function quit() {
-        const result = confirm('정말로 탈퇴하실 건가요?');
+    function quit(){
+        result = confirm('정말로 탈퇴하실 건가요?');
         if(result) {
             location.href='${root}/member/quit';
         }
     }
 
 </script>
-
-</body>
-</html>
-
 

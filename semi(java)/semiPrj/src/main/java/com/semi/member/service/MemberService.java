@@ -102,6 +102,28 @@ public class MemberService {
 	
 	}
 
+	public int quit(String memberNo) throws Exception {
+
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		
+		//sql
+		int result = dao.quit(conn, memberNo);
+		
+		//tx||rs
+		if(result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		//close
+		JDBCTemplate.close(conn);
+		
+		return result;
+		
+	}
+
 	
 
 }
