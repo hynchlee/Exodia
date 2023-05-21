@@ -107,15 +107,61 @@ public class BoardService {
 		return result;
 	}
 
+	//조회
 	public BoardVo getBoardByNo(String bno) throws Exception {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		
+		//조회수
+		int result = dao.increaseHit(conn, bno);
+		if (result != 1) {
+			JDBCTemplate.rollback(conn);
+			throw new Exception();
+		}
+		
 		BoardVo cvNo = dao.getBoardByNo(conn,bno);
+		
+		JDBCTemplate.commit(conn);
 		
 		JDBCTemplate.close(conn);
 		
 		return cvNo;
+	}
+	
+	//수정하기
+	public int editBoard(BoardVo bvo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.editBoard(conn, bvo);
+		
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+	public int boardDelete(String bno) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.boardDelete(conn, bno);
+		
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+				
+		JDBCTemplate.close(conn);
+		
+		return result;
+		
 	}
 
 }

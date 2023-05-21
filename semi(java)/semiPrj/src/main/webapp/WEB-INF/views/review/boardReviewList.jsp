@@ -17,13 +17,15 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 
 		<main>
-			<div class="myClass">
-                <ul>
-                    <li class="loginName">유저님 환영합니다</li>
-                    <li class="class">(스마트웹&콘텐츠개발)반응형 UI/UX 웹콘텐츠 개발자 양성과정A</li>
-                    <li class="classRoom">[강남 362] 2022. 12. 30 ~ 2023. 08. 16 ｜ 15:30 ~ 22:00 (심원용 강사 ｜ 김리아 취업담임)</li>
-                </ul>
-            </div>
+			<c:if test="${not empty loginMember}">
+				<div class="myClass">
+	                <ul>
+	                    <li class="loginName">${loginMember.memberNick} 님 환영합니다</li>
+	                    <li class="class">(스마트웹&콘텐츠개발)반응형 UI/UX 웹콘텐츠 개발자 양성과정A</li>
+	                    <li class="classRoom">[강남 362] 2022. 12. 30 ~ 2023. 08. 16 ｜ 15:30 ~ 22:00 (심원용 강사 ｜ 김리아 취업담임)</li>
+	                </ul>
+	            </div>
+			</c:if>
 
             <div class="board_search">
                 <form action="${root}/review/list" method="get" name="searchBoard">
@@ -63,9 +65,9 @@
                 </tbody>
             </table>
             
-            <c:if test="${not empty loginMember}">
+            <c:if test="${not empty loginMember && loginMember.identity eq 'S'}">
 	            <div class="board_bt">
-	                <a href="${root}/board/write" class="bt1">후기 등록</a>
+	                <a href="${root}/review/write" class="bt1">후기 등록</a>
 	            </div>
             </c:if>
             
@@ -92,7 +94,7 @@
 </html>
 <script>
 	const title = document.querySelector('.title');
-	title.innerHTML = "후기게시판";
+	title.innerHTML = "수강후기";
 
     // // 서버에서 searchType 값을 JavaScript 변수로 설정
     // const searchType = "${searchVo.searchType}";
@@ -104,6 +106,15 @@
     // }
 
     $(".board tbody tr").click(function(){
-        alert(123);
+        //글번호 가져오기
+        const reviewNo = $(this).find('td:first-child').text();
+        // const boardTitle = $(this).find('.board_title').text();
+      
+        // 페이지 이동을 위한 URL 구성
+        const url = '${root}/review/detail?reviewNo=' + reviewNo;
+        
+        // 페이지 이동
+        window.location.href = url;
+
     });
 </script>

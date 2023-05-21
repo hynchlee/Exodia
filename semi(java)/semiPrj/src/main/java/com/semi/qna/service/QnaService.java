@@ -64,4 +64,34 @@ public class QnaService {
 		return qvNo;
 	}
 
+	//질문하기
+	public int qnaWrite(QnaVo qvo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.qnaWrite(conn, qvo);
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+	//삭제
+	public int qnaDelete(String qno) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.qnaDelete(conn, qno);
+		
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
 }

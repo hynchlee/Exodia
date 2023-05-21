@@ -13,6 +13,7 @@ public class ReviewVo {
 	
 	private String writerNick;
 	private String lectureName;
+	private String identity;
 	public String getReviewNo() {
 		return reviewNo;
 	}
@@ -73,15 +74,21 @@ public class ReviewVo {
 	public void setLectureName(String lectureName) {
 		this.lectureName = lectureName;
 	}
+	public String getIdentity() {
+		return identity;
+	}
+	public void setIdentity(String identity) {
+		this.identity = identity;
+	}
 	@Override
 	public String toString() {
 		return "ReviewVo [reviewNo=" + reviewNo + ", memberNo=" + memberNo + ", reviewTitle=" + reviewTitle
 				+ ", reviewContent=" + reviewContent + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate
 				+ ", photo=" + photo + ", status=" + status + ", writerNick=" + writerNick + ", lectureName="
-				+ lectureName + "]";
+				+ lectureName + ", identity=" + identity + "]";
 	}
 	public ReviewVo(String reviewNo, String memberNo, String reviewTitle, String reviewContent, String enrollDate,
-			String modifyDate, String photo, String status, String writerNick, String lectureName) {
+			String modifyDate, String photo, String status, String writerNick, String lectureName, String identity) {
 		super();
 		this.reviewNo = reviewNo;
 		this.memberNo = memberNo;
@@ -93,12 +100,12 @@ public class ReviewVo {
 		this.status = status;
 		this.writerNick = writerNick;
 		this.lectureName = lectureName;
+		this.identity = identity;
 	}
 	public ReviewVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
 	
 	
 	

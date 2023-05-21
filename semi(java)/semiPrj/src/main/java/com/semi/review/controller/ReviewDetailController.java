@@ -1,4 +1,4 @@
-package com.semi.qna.controller;
+package com.semi.review.controller;
 
 import java.io.IOException;
 
@@ -10,26 +10,28 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.semi.qna.service.QnaService;
 import com.semi.qna.vo.QnaVo;
+import com.semi.review.service.ReviewService;
+import com.semi.review.vo.ReviewVo;
 
-@WebServlet("/qna/detail")
-public class BoardQnaAnswerController extends HttpServlet{
+@WebServlet("/review/detail")
+public class ReviewDetailController extends HttpServlet{
 	
 	//관리자한테만 보이는 페이지
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		try {
-			String qno = req.getParameter("qnaNo");
+			String rno = req.getParameter("reviewNo");
 			
-			QnaService qs = new QnaService();
-			QnaVo qvNo = qs.getQnaByNo(qno);
+			ReviewService rs = new ReviewService();
+			ReviewVo rvNo = rs.getReviewNo(rno);
 			
-			if (qvNo == null) {
+			if (rvNo == null) {
 				throw new Exception();
 			}
 			
-			req.setAttribute("qvNo", qvNo);
-			req.getRequestDispatcher("/WEB-INF/views/qna/qnaAnswerEdit.jsp").forward(req, resp);
+			req.setAttribute("rvNo", rvNo);
+			req.getRequestDispatcher("/WEB-INF/views/review/reviewDetail.jsp").forward(req, resp);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -7,40 +7,38 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.semi.board.service.BoardService;
-import com.semi.board.vo.BoardVo;
+import com.semi.member.vo.MemberVo;
 import com.semi.notice.service.NoticeService;
-import com.semi.notice.vo.NoticeVo;
 
-@WebServlet("/notice/detail")
-public class NoticeDetailController extends HttpServlet{
+@WebServlet("/notice/delete")
+public class NoticeDeleteController extends HttpServlet{
 	
-	//상세조회
+	//화면
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		try {
-			
-			String nno = req.getParameter("noticeNo");
-			
+			String nno = req.getParameter("nno");
+
 			NoticeService ns = new NoticeService();
-			NoticeVo nvNo = ns.getNoticeByNo(nno);
+			int result = ns.noticeDelete(nno);
 			
-			if (nvNo == null) {
-				
+			if (result != 1) {
 				throw new Exception();
 			}
-			
-			req.setAttribute("nvNo", nvNo);
-			req.getRequestDispatcher("/WEB-INF/views/notice/noticeEdit.jsp").forward(req, resp);
+
+			resp.sendRedirect(req.getContextPath() + "/notice/list?page=1");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 			
-			req.setAttribute("errorMsg", "잘못된 접근");
+			req.setAttribute("errorMsg", "게시물 삭제 실패");
 			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
 		}
-
+			
+		
 	}
+
 }

@@ -16,6 +16,7 @@ public class QnaVo {
 	private String lectureName;
 	private String adminNick;
 	private String memberNo;
+	private String identity;
 	public String getQnaNo() {
 		return qnaNo;
 	}
@@ -100,17 +101,23 @@ public class QnaVo {
 	public void setMemberNo(String memberNo) {
 		this.memberNo = memberNo;
 	}
+	public String getIdentity() {
+		return identity;
+	}
+	public void setIdentity(String identity) {
+		this.identity = identity;
+	}
 	@Override
 	public String toString() {
 		return "QnaVo [qnaNo=" + qnaNo + ", adminNo=" + adminNo + ", studentMemberNo=" + studentMemberNo + ", qnaTitle="
 				+ qnaTitle + ", qnaContent=" + qnaContent + ", qnaAnswer=" + qnaAnswer + ", enrollDate=" + enrollDate
 				+ ", modifyDate=" + modifyDate + ", photo=" + photo + ", status=" + status + ", writerNick="
 				+ writerNick + ", lectureName=" + lectureName + ", adminNick=" + adminNick + ", memberNo=" + memberNo
-				+ "]";
+				+ ", identity=" + identity + "]";
 	}
 	public QnaVo(String qnaNo, String adminNo, String studentMemberNo, String qnaTitle, String qnaContent,
 			String qnaAnswer, String enrollDate, String modifyDate, String photo, String status, String writerNick,
-			String lectureName, String adminNick, String memberNo) {
+			String lectureName, String adminNick, String memberNo, String identity) {
 		super();
 		this.qnaNo = qnaNo;
 		this.adminNo = adminNo;
@@ -126,11 +133,14 @@ public class QnaVo {
 		this.lectureName = lectureName;
 		this.adminNick = adminNick;
 		this.memberNo = memberNo;
+		this.identity = identity;
 	}
 	public QnaVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 	
 	
 	

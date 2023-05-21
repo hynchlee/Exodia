@@ -29,18 +29,19 @@
 
             <hr>
 
-            <form action="${root}/board/write" method="post">
+            <form action="${root}/qna/write" method="post">
 
                 <!-- 관리자에게만 보이는 체크박스 -->
-                <div class="checked">
-                    <input type="checkbox" name="" id=""><span>상단고정</span>
-                </div>
+				<c:if test="${not empty loginAdmin }">
+	                <div class="checked">
+	                    <input type="checkbox" name="" id=""><span>상단고정</span>
+	                </div>
+				</c:if>
 
                 <div class="write_wrap">
                     <input type="text" name="boardTitle" placeholder="제목을 입력해주세요." required>
                     <select name="boardCategoryNo" id="select_category" >
-                        <option value="1">자유게시판</option>
-                        <option value="3">우리반게시판</option>
+                        <option>문의게시판</option>
                     </select>
 
                     <textarea name="boardContent" id="summernote"></textarea>

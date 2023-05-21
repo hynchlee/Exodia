@@ -14,7 +14,7 @@ public class BoardQnaAnswerWriteController extends HttpServlet{
 	//관리자한테만 보이는 페이지
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/board/qnaAnswerWrite.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/qna/qnaAnswerWrite.jsp").forward(req, resp);
 	}
 
 }

@@ -50,7 +50,7 @@ public class BoardNoticeListController extends HttpServlet{
 			req.setAttribute("searchVo", map);
 			req.setAttribute("pv", pv);
 			req.setAttribute("nvoList", nvoList);
-			req.getRequestDispatcher("/WEB-INF/views/board/boardNoticeList.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/notice/boardNoticeList.jsp").forward(req, resp);
 			
 		} catch (Exception e) {
 			System.out.println("[Error] notice list error");

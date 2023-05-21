@@ -173,4 +173,50 @@ public class NoticeDao {
 		return nvNo;
 	}
 
+	//조회수
+	public int increaseHit(Connection conn, String nno) throws Exception {
+		
+		String sql = "UPDATE NOTICE SET HIT = HIT+1 WHERE NOTICE_NO=? AND STATUS='O'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, nno);
+		
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	}
+
+	//글 작성하기
+	public int noticeWrite(Connection conn, NoticeVo nvo) throws Exception {
+		
+		String sql = "INSERT INTO NOTICE(NOTICE_NO,ADMIN_NO,NOTICE_TITLE,NOTICE_CONTENT) VALUES(SEQ_NOTICE_NO.NEXTVAL, ?, ?, ?)";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, nvo.getAdminNo());
+		pstmt.setString(2, nvo.getNoticeTitle());
+		pstmt.setString(3, nvo.getNoticeContent());
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+		
+	}
+
+
+	public int noticeDelete(Connection conn, String nno) throws Exception {
+		
+		String sql = "UPDATE BOARD SET STATUS='X' WHERE NOTICE_NO=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, nno);
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+		
+	}
+	
+	
+
 }

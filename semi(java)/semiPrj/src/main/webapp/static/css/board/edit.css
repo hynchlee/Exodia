@@ -103,7 +103,7 @@ main{
     color: white;
 }
 
-.view_btn input[type=button]:hover{
+#del.bt1:hover{
     background-color: #B53232;
     color: white;
 }
@@ -163,7 +163,7 @@ hr{
     margin-right: 5px;
 } */
 
-.view_btn a{
+/* .view_btn a{
     background-color: #c0c0c0;
     color: #3d3d3d;
     font-family: 'Spoqa Han Sans Neo';
@@ -174,7 +174,7 @@ hr{
     cursor: pointer;
     border: 0px;
     margin-right: 5px;
-}
+} */
 
 /* 보드 */
 

@@ -57,11 +57,47 @@ public class NoticeService {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		
+		int result = dao.increaseHit(conn,nno);
+		if (result != 1) {
+			JDBCTemplate.rollback(conn);
+			throw new Exception();
+		}
+		
 		NoticeVo nvNo = dao.getNoticeByNo(conn,nno);
+		
+		JDBCTemplate.commit(conn);
 		
 		JDBCTemplate.close(conn);
 		
 		return nvNo;
+	}
+
+	//글 작성
+	public int noticeWrite(NoticeVo nvo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.noticeWrite(conn, nvo);
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+	//게시글 삭제
+	public int noticeDelete(String nno) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.noticeDelete(conn, nno);
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+				
+		JDBCTemplate.close(conn);
+		
+		return result;
 	}
 
 }

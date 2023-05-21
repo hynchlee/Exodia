@@ -1,4 +1,4 @@
-package com.semi.notice.controller;
+package com.semi.board.controller;
 
 import java.io.IOException;
 
@@ -10,30 +10,26 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.semi.board.service.BoardService;
 import com.semi.board.vo.BoardVo;
-import com.semi.notice.service.NoticeService;
-import com.semi.notice.vo.NoticeVo;
 
-@WebServlet("/notice/detail")
-public class NoticeDetailController extends HttpServlet{
+@WebServlet("/board/detail")
+public class BoardDetailController extends HttpServlet{
 	
-	//상세조회
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		try {
+			String bno = req.getParameter("boardNo");
 			
-			String nno = req.getParameter("noticeNo");
+			BoardService bs = new BoardService();
+			BoardVo cvNo = bs.getBoardByNo(bno);
 			
-			NoticeService ns = new NoticeService();
-			NoticeVo nvNo = ns.getNoticeByNo(nno);
-			
-			if (nvNo == null) {
+			if (cvNo == null) {
 				
 				throw new Exception();
+				
 			}
-			
-			req.setAttribute("nvNo", nvNo);
-			req.getRequestDispatcher("/WEB-INF/views/notice/noticeEdit.jsp").forward(req, resp);
+			req.setAttribute("cvNo", cvNo);
+			req.getRequestDispatcher("/WEB-INF/views/board/boardEdit.jsp").forward(req, resp);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -41,6 +37,8 @@ public class NoticeDetailController extends HttpServlet{
 			req.setAttribute("errorMsg", "잘못된 접근");
 			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
 		}
-
+		
+		
 	}
+
 }
