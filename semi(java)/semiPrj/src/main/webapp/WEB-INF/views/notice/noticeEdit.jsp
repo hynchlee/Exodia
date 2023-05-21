@@ -27,7 +27,7 @@
 
             <hr>
 
-            <form action="${root}/notice/edit" method="post">
+            <form action="${root}/notice/edit?nno=${nvNo.noticeNo}" method="post">
 
                 <!-- 관리자에게만 보이는 체크박스 -->
                 <div class="checked">
@@ -35,12 +35,12 @@
                 </div>
 
                 <div class="write_wrap">
-                    <input type="text" name="boardTitle" placeholder="제목을 입력해주세요." required>
+                    <input type="text" name="boardTitle" value="${nvNo.noticeTitle}" required>
                     <select name="boardCategoryNo" id="select_category" >
                         <option>공지사항</option>
                     </select>
 
-                    <textarea name="boardContent" id="summernote"></textarea>
+                    <textarea name="boardContent" id="summernote">${nvNo.noticeContent}</textarea>
                     <input type="file" name="select_file">
                 </div>
     

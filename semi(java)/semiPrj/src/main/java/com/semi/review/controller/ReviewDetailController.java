@@ -21,7 +21,7 @@ public class ReviewDetailController extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		try {
-			String rno = req.getParameter("reviewNo");
+			String rno = req.getParameter("rno");
 			
 			ReviewService rs = new ReviewService();
 			ReviewVo rvNo = rs.getReviewNo(rno);

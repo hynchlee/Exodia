@@ -143,3 +143,34 @@
 
 
 </script>
+<script>
+    $(document).ready(function() {
+      handleRadioButtonSelection();
+  
+      $("input[name='contact']").change(function() {
+        handleRadioButtonSelection();
+      });
+  
+      function handleRadioButtonSelection() {
+        var selectedValue = $("input[name='contact']:checked").val();
+  
+        $("table.board tbody tr").hide();
+  
+        if (selectedValue === "a_all") {
+          $("table.board tbody tr").show();
+        } else if (selectedValue === "a_n") {
+          $("table.board tbody tr").each(function() {
+            if ($(this).find(".state .bt_n").length) {
+              $(this).show();
+            }
+          });
+        } else if (selectedValue === "a_y") {
+          $("table.board tbody tr").each(function() {
+            if ($(this).find(".state .bt_y").length) {
+              $(this).show();
+            }
+          });
+        }
+      }
+    });
+  </script>

@@ -1,6 +1,7 @@
 package com.semi.board.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.semi.board.service.BoardService;
 import com.semi.board.vo.BoardVo;
+import com.semi.board.vo.ReplyVo;
 
 @WebServlet("/board/detail")
 public class BoardDetailController extends HttpServlet{
@@ -18,7 +20,9 @@ public class BoardDetailController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		try {
-			String bno = req.getParameter("boardNo");
+			
+			
+			String bno = req.getParameter("bno");
 			
 			BoardService bs = new BoardService();
 			BoardVo cvNo = bs.getBoardByNo(bno);
@@ -28,8 +32,12 @@ public class BoardDetailController extends HttpServlet{
 				throw new Exception();
 				
 			}
+			
+			List<ReplyVo> reList = bs.getBoardReplyList(bno);
+			
+			
 			req.setAttribute("cvNo", cvNo);
-			req.getRequestDispatcher("/WEB-INF/views/board/boardEdit.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/board/boardDetail.jsp").forward(req, resp);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -216,6 +216,21 @@ public class NoticeDao {
 		return result;
 		
 	}
+
+	public int editNotice(Connection conn, NoticeVo nvo) throws Exception {
+		
+		String sql = "UPDATE NOTICE SET NOTICE_TITLE=?, NOTICE_CONTENT=?, MODIFY_DATE=SYSDATE WHERE NOTICE_NO=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, nvo.getNoticeTitle());
+		pstmt.setString(2, nvo.getNoticeContent());
+		pstmt.setString(3, nvo.getNoticeNo());
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+		
+	}
 	
 	
 

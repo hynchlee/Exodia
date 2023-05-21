@@ -22,7 +22,7 @@ public class NoticeDetailController extends HttpServlet{
 		
 		try {
 			
-			String nno = req.getParameter("noticeNo");
+			String nno = req.getParameter("nno");
 			
 			NoticeService ns = new NoticeService();
 			NoticeVo nvNo = ns.getNoticeByNo(nno);

@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.semi.board.dao.BoardDao;
 import com.semi.board.vo.BoardVo;
+import com.semi.board.vo.ReplyVo;
 import com.semi.common.db.JDBCTemplate;
 import com.semi.common.page.PageVo;
 import com.semi.notice.vo.NoticeVo;
@@ -110,21 +111,19 @@ public class BoardService {
 	//조회
 	public BoardVo getBoardByNo(String bno) throws Exception {
 		
-		Connection conn = JDBCTemplate.getConnection();
-		
-		//조회수
-		int result = dao.increaseHit(conn, bno);
-		if (result != 1) {
-			JDBCTemplate.rollback(conn);
-			throw new Exception();
+		BoardVo cvNo = null;
+		//conn
+		try (Connection conn = JDBCTemplate.getConnection();){
+			//update
+			int result = dao.increaseHit(conn , bno);
+			
+			if(result == 1) {
+				//select
+				cvNo = dao.getBoardByNo(conn , bno);
+			}else {
+				throw new Exception();
+			}
 		}
-		
-		BoardVo cvNo = dao.getBoardByNo(conn,bno);
-		
-		JDBCTemplate.commit(conn);
-		
-		JDBCTemplate.close(conn);
-		
 		return cvNo;
 	}
 	
@@ -162,6 +161,18 @@ public class BoardService {
 		
 		return result;
 		
+	}
+
+	//댓글
+	public List<ReplyVo> getBoardReplyList(String bno) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		List<ReplyVo> reList = dao.getBoardReplyList(conn, bno);
+		
+		JDBCTemplate.close(conn);
+		
+		return reList;
 	}
 
 }

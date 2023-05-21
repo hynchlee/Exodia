@@ -107,11 +107,11 @@
 
     $(".board tbody tr").click(function(){
         //글번호 가져오기
-        const reviewNo = $(this).find('td:first-child').text();
+        const rno = $(this).find('td:first-child').text();
         // const boardTitle = $(this).find('.board_title').text();
       
         // 페이지 이동을 위한 URL 구성
-        const url = '${root}/review/detail?reviewNo=' + reviewNo;
+        const url = '${root}/review/detail?rno=' + rno;
         
         // 페이지 이동
         window.location.href = url;
