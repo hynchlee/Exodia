@@ -29,7 +29,7 @@
             <table>
                 <tr>
                     <th>아이디</th>
-                    <td><input type="text" name="memberId" placeholder="변경불가" disabled></td>
+                    <td><input type="text" name="memberId" value="${loginMember.memberId}" disabled></td>
                 </tr>
                 <tr>
                     <th>비밀번호</th>
@@ -41,23 +41,23 @@
                 </tr>
                 <tr>
                     <th>이름</th>
-                    <td><input type="text" name="memberNick" placeholder="변경불가" disabled></td>
+                    <td><input type="text" name="memberNick" value="${loginMember.memberNick}" disabled></td>
                 </tr>
                 <tr>
                     <th>주민등록번호</th>
-                    <td><input type="text" name="birthNum" placeholder="변경불가" disabled></td>
+                    <td><input type="text" name="birthNum" value="${loginMember.birthNum}" disabled></td>
                 </tr>
                 <tr>
                     <th>휴대폰 번호</th>
-                    <td><input type="text" name="phoneNo" placeholder="010-0000-0000"></td>
+                    <td><input type="text" name="phoneNo" value="${loginMember.phoneNo}"></td>
                 </tr>
                 <tr>
                     <th>프로필 사진</th>
-                    <td><input type="text" placeholder="사진명" disabled></td>
+                    <td><input type="text" id="fileName-zone" disabled></td>
                     <td>
                         <div id="dup-check">
                             <label for="profile-file">파일첨부</label>
-                            <input id="profile-file" type="file">
+                            <input id="profile-file" type="file" name="profile" onchange="printName()">
                         </div>
                     </td>
                 </tr>
@@ -74,6 +74,30 @@
 
 <script>
 
+    //첨부파일 이름 출력
+    function printName() {
+        const file = document.querySelector("input[type=file]");
+        const fileNameZone = document.querySelector("#fileName-zone");
+        let fileName = '';
+
+        if (file.files.length > 0) {
+            fileName = file.files[0].name;
+        }
+
+        fileNameZone.value = fileName;
+        console.log(fileName);
+    };
+
+    // //비번 입력해야 수정하기 활성
+	// function checkValidation(){
+	// 	const memberPwd = document.querySelector("input[name=memberPwd]").value;
+    //     if(memberPwd.length >= 1){
+    //         return true;
+    //     }
+    //     return false;
+	// }
+
+    //탈퇴
     function quit() {
         const result = confirm('정말로 탈퇴하실 건가요?');
         if(result) {

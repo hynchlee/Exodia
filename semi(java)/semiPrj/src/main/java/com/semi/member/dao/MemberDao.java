@@ -131,6 +131,90 @@ public class MemberDao {
 	
 	}
 
+	//정보수정
+	public int edit(Connection conn, MemberVo vo) throws Exception {
+		
+		String sql = "UPDATE MEMBER SET PHONE_NO = ?, PROFILE = ?";
+		
+		if(vo.getMemberPwd() != null && vo.getMemberPwd().length() > 0) {
+			sql += ", MEMBER_PWD = ?";
+		}
+		
+		sql += " WHERE MEMBER_NO = ? AND STATUS = 'O'";
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, vo.getPhoneNo());
+		pstmt.setString(2, vo.getProfile());
+		if(vo.getMemberPwd() != null && vo.getMemberPwd().length() > 0) {
+			pstmt.setString(3, vo.getMemberPwd());
+			pstmt.setString(4, vo.getMemberNo());
+		}else {
+			pstmt.setString(3, vo.getMemberNo());
+		}
+		
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	}
+
+	//회원번호로 회원조회
+	public MemberVo selectOneByNo(Connection conn, String memberNo) throws Exception {
+
+		String sql = "SELECT * FROM MEMBER WHERE MEMBER_NO = ? AND STATUS = 'O'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		MemberVo vo = null;
+		if(rs.next()) {
+			String memberId = rs.getString("MEMBER_ID");
+			String memberPwd = rs.getString("MEMBER_PWD");
+			String phoneNo = rs.getString("PHONE_NO");
+			String profile = rs.getString("PROFILE");
+			
+			vo = new MemberVo();
+			vo.setMemberNo(memberNo);
+			vo.setMemberId(memberId);
+			vo.setMemberPwd(memberPwd);
+			vo.setPhoneNo(phoneNo);
+			vo.setProfile(profile);
+			
+//			String memberNo = rs.getString("MEMBER_NO");
+//			String memberId = rs.getString("MEMBER_ID");
+//			String memberPwd = rs.getString("MEMBER_PWD");
+//			String memberNick = rs.getString("MEMBER_NICK");
+//			String birthNum = rs.getString("BIRTH_NUM");
+//			String status = rs.getString("STATUS");
+//			String phoneNo = rs.getString("PHONE_NO");
+//			String signDate = rs.getString("SIGN_DATE");
+//			String profile = rs.getString("PROFILE");
+//			String identity = rs.getString("IDENTITY");
+//			String leftVacation = rs.getString("LEFT_VACATION");
+//			
+//			vo = new MemberVo();
+//			vo.setMemberNo(memberNo);
+//			vo.setMemberId(memberId);
+//			vo.setMemberPwd(memberPwd);
+//			vo.setMemberNick(memberNick);
+//			vo.setBirthNum(birthNum);
+//			vo.setStatus(status);
+//			vo.setPhoneNo(phoneNo);
+//			vo.setSignDate(signDate);
+//			vo.setProfile(profile);
+//			vo.setIdentity(identity);
+//			vo.setLeftVacation(leftVacation);
+			
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return vo;
+		
+	}
+
 
 
 }

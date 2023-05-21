@@ -73,6 +73,35 @@ public class MemberService {
 		return pwdFind;
 	}
 
+	//정보수정
+	public MemberVo edit(MemberVo vo) throws Exception {
+
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MemberVo updatedMember = null;
+		
+		//SQL
+		int result = dao.edit(conn, vo);
+		
+		//tx || rs
+		if(result == 1) {
+			updatedMember = dao.selectOneByNo(conn, vo.getMemberNo());
+			if(updatedMember == null) {
+				throw new Exception();
+			}
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		//close
+		JDBCTemplate.close(conn);
+		
+		return updatedMember;
+	
+	}
+
 	
 
 }
