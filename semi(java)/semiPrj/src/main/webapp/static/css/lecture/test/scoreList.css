@@ -80,7 +80,7 @@ main {
     border-radius: 40px;
 }
 
-table button {
+table input {
 	width: 80px;
 	height: 40px;
 	background-color: #F0F0F0;
@@ -90,7 +90,7 @@ table button {
 	text-align: center;
 }
 
-table button:hover {
+table input:hover {
     background-color: #4998D1;
 	color: white;
 }

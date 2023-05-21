@@ -53,17 +53,22 @@ main {
     height: 100%;
 }
 
-table button {
+.bbb * {
 	width: 80px;
 	height: 40px;
 	background-color: #F0F0F0;
 	color: black;
 	border-radius: 10px;
 	border: none;
-	text-align: center;
 }
 
-table button:hover {
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bbb *:hover {
     background-color: #4998D1;
 	color: white;
 }

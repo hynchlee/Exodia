@@ -35,10 +35,14 @@
 									<td id="subject">${vo.examSubject}</td>
 									<td>서술형(신)</td>
 									<td></td>
-									<td>
+									<td class="bbb">
 										<button>시작</button>
 										<button>종료</button>
-										<button onclick="score('${vo.examCategoryNo}', '${vo.examSubject}');">채점</button>
+										<form action="${root}/lecture/test/scoreList" method="post">
+											<input hidden type="text" name="examCategoryNo" value="${vo.examCategoryNo}">
+											<input hidden type="text" name="examSubject" value="${vo.examSubject}">
+											<input type="submit" value="채점">
+										</form>
 									</td>
 								</tr>
 							</c:forEach>
@@ -67,10 +71,6 @@
 		<script>
 			const title = document.querySelector('.title');
 			title.innerHTML = "평가";
-
-			function score(no, subject) {
-				location.href = "${root}/lecture/test/scoreList?no=" + no + "&subject=" + subject;
-			}
 
 			const pageBtn = document.querySelectorAll('.pageBtn');
 

@@ -14,30 +14,41 @@
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
 				<main>
 					<div class="tit">
-						<div class="tit1">요구사항 확인</div>
+						<div class="tit1">${submitAnswerList[0].examSubject}</div>
 						<div class="tit2">
 							<span>심삼용&nbsp;</span>
-							<span class="score">100</span>
+							<span class="score"></span>
 							<span>점</span>
 						</div>
 					</div>
 					<br><br><br><br><br>
-					<% for(int i=0; i < 3; i++) { %>
-						<div class="problem">
-							<div>1. 다음과 같은 요구사항에 맞춰 구성하여 보고서 작성 후 제출하시오 (20점)</div>
-							<br>
-							<div class="hi">
-								<textarea style="resize: none;" name="answer"></textarea>
-								<input class="scoreInput" type="text" placeholder="점수입력">
-							</div>
-							<br><br><br>
-						</div>
-						<% } %>
 
+					<% int i=1; %>
+						<c:forEach items="${submitAnswerList}" var="vo">
+							<div class="problem">
+								<div>
+									<%= i%>. ${vo.problem} (${vo.problemPoint}점)
+								</div>
+								<br>
+								<div class="hi">
+									<textarea style="resize: none;" name="answer">${vo.submitAnswer}</textarea>
+									<input class="scoreInput" type="text" value="" placeholder="점수입력">
+								</div>
+								<br><br><br>
+							</div>
+							<% i++; %>
+						</c:forEach>
 						<br>
-						<div class="finish">
-							<a href="${root}/lecture/test/scoreList" class="finish-btn">채점 완료</a>
-						</div>
+
+						<form action="${root}/lecture/test/scoreList" method="post">
+							<input hidden type="text" name="examCategoryNo" value="${submitAnswerList[0].examCategoryNo}">
+							<input hidden type="text" name="examSubject" value="${submitAnswerList[0].examSubject}">
+							<input hidden type="text" name="memberNo" value="${submitAnswerList[0].memberNo}">
+							<input hidden type="text" name="totalScore" value="0" class="ts">
+							<div class="finish">
+								<input class="finish-btn" type="submit" value="채점">
+							</div>
+						</form>
 				</main>
 				<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 		</body>
@@ -46,5 +57,29 @@
 
 		<script>
 			const title = document.querySelector('.title');
+			const score = document.querySelector('.score');
+			const ts = document.querySelector('.ts');
+
 			title.innerHTML = "채점";
+
+			var totalScore = 0;
+
+			function scoreUpdate() {
+				totalScore = 0;
+				const scoreInputList = document.querySelectorAll('.scoreInput');
+				for (const si of scoreInputList) {
+					let v = 0;
+					if (si.value == "") {
+						v = 0;
+					} else {
+						v = parseInt(si.value);
+					}
+					totalScore += v;
+				}
+				score.innerText = totalScore;
+				ts.value = totalScore;
+			}
+
+			setInterval(scoreUpdate, 100);
+
 		</script>
