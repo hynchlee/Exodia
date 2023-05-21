@@ -14,7 +14,7 @@
 			<main>
 				<div id="side-bar">
 					<div>
-						<form action="${root}/letter/write" method="post">
+						<form action="${root}/letter/write" method="get">
 							<div id="select-button">
 								<img src="${root}/static/img/letter/쪽지 쓰기.png">
 								<input type="submit" value="쪽지 쓰기" id="write-letter">
@@ -50,106 +50,47 @@
 					<table>
 						<thead>
 							<tr>
-							
+								<td colspan="5">
+									<select name="searchType">
+										<option value="writer">작성자</option>
+										<option value="title">제목</option>
+									</select>
+									<input type="text" class="searchValueElem" name="searchValue"
+										value="${searchVo.searchValue}" placeholder="검색할내용">
+									<input type="submit" value="검색하기">
+								</td>
+							</tr>
+							<tr id="trHead">
+								<td id="shortTd" style="width: 10%;"></td>
+								<td>작성자</td>
+								<td>제목</td>
+								<td>날짜</td>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td style="width: 50px;"><input type="checkbox"></td>
-								<td style="width: 200px;">받은 사람</td>
-								<td>타이틀</td>
-								<td>날짜</td>
-							</tr>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>받은 사람</td>
-								<td>타이틀</td>
-								<td>날짜</td>
-							</tr>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>받은 사람</td>
-								<td>타이틀</td>
-								<td>날짜</td>
-							</tr>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>받은 사람</td>
-								<td>타이틀</td>
-								<td>날짜</td>
-							</tr>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>받은 사람</td>
-								<td>타이틀</td>
-								<td>날짜</td>
-							</tr>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>받은 사람</td>
-								<td>타이틀</td>
-								<td>날짜</td>
-							</tr>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>받은 사람</td>
-								<td>타이틀</td>
-								<td>날짜</td>
-							</tr>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>받은 사람</td>
-								<td>타이틀</td>
-								<td>날짜</td>
-							</tr>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>받은 사람</td>
-								<td>타이틀</td>
-								<td>날짜</td>
-							</tr>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>받은 사람</td>
-								<td>타이틀</td>
-								<td>날짜</td>
-							</tr>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>받은 사람</td>
-								<td>타이틀</td>
-								<td>날짜</td>
-							</tr>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>받은 사람</td>
-								<td>타이틀</td>
-								<td>날짜</td>
-							</tr>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>받은 사람</td>
-								<td>타이틀</td>
-								<td>날짜</td>
-							</tr>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>받은 사람</td>
-								<td>타이틀</td>
-								<td>날짜</td>
+								<td style="width: 50px;">
+									<input type="checkbox" class="checkbox" value="${vo.letterNo}">
+								</td>
+								<td style="width: 150px;"></td>
+								<td></td>
+								<td></td>
 							</tr>
 						</tbody>
 						<tfoot>
 							<tr>
-								<td colspan="4">
-									<button><<</button>
-									<button>1</button>
-									<button>2</button>
-									<button>3</button>
-									<button>4</button>
-									<button>5</button>
-									<button>>></button>
+								<td id="deleteTd" colspan="4">
+									<button id="deleteButton" onclick="delButton();">삭제하기</button>
 								</td>
+							</tr>
+							<tr>
+								<td id="pageTd" colspan="4">
+									<button onclick="pageMove('${pageVo.startPage}');"><<</button>
+									<c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" var="i">
+										<button class="pageBtn" onclick="pageMove('${i}');">${i}</button>
+									</c:forEach>
+									<button onclick="pageMove('${pageVo.endPage}');">>></button>
+								</td> 
 							</tr>
 						</tfoot>
 					</table>

@@ -13,10 +13,11 @@ public class LetterService {
 
 	private static LetterDao dao = new LetterDao();
 
-	public int writeLetter(LetterVo vo, MemberVo loginMember) throws Exception {
+	public int writeLetter(LetterVo vo, String sendMemberName) throws Exception {
+		
 		Connection conn = JDBCTemplate.getConnection();
 
-		int result = dao.writeLetter(vo, conn, loginMember);
+		int result = dao.writeLetter(vo, conn, sendMemberName);
 
 		JDBCTemplate.close(conn);
 

@@ -13,14 +13,14 @@ import com.semi.member.vo.MemberVo;
 
 public class LetterDao {
 
-	public int writeLetter(LetterVo vo, Connection conn, MemberVo loginMember) throws Exception {
+	public int writeLetter(LetterVo vo, Connection conn, String sendMemberName) throws Exception {
 
-		String sql = "INSERT INTO LETTER (LETTER_NO, SEND_MEMBER_NO, RECEIVE_MEMBER_NO, LETTER_TITLE, LETTER_CONTENT, STATUS) VALUES (SEQ_LETTER_NO.NEXTVAL,?, (SELECT MEMBER_NO FROM MEMBER WHERE ID = ?),?, ?, 'O')";
+		String sql = "INSERT INTO LETTER (LETTER_NO, SEND_MEMBER_NO, RECEIVE_MEMBER_NO, LETTER_TITLE, LETTER_CONTENT, STATUS) VALUES (SEQ_LETTER_NO.NEXTVAL,(SELECT MEMBER_NO FROM MEMBER WHERE MEMBER_NICK = ?), (SELECT MEMBER_NO FROM MEMBER WHERE MEMBER_NICK = ?),?, ?, 'O')";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, loginMember.getMemberNo());
-		pstmt.setString(2, vo.getReceiveMemberNo());
+		pstmt.setString(1, sendMemberName);
+		pstmt.setString(2, vo.getReceiveMemberName());
 		pstmt.setString(3, vo.getLetterTitle());
-		pstmt.setString(4, vo.getLetterContent());
+		pstmt.setString(3, vo.getLetterContent());
 		int result = pstmt.executeUpdate();
 
 		if (result == 1) {
