@@ -39,12 +39,14 @@ public class tMypageController extends HttpServlet{
 			
 			MypageService ms = new MypageService();
 			List<LectureVo> volist = ms.viewStudent(memberNo);
+			List<LectureVo> tvolist = ms.teacherLecture(memberNo);
 			List<BoardVo> notList = ms.showNotice();			
 			List<BoardVo> freeList = ms.freeboard();
 			String letterCount = ms.countLetter01(memberNo);
 			String countMyWrite = ms.countMyWrite(memberNo);
 			
 			req.setAttribute("volist", volist);
+			req.setAttribute("tvolist", tvolist);			
 			req.setAttribute("notList", notList);
 			req.setAttribute("freeList", freeList);
 			req.setAttribute("letterCount", letterCount);

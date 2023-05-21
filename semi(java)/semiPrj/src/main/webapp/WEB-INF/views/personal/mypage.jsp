@@ -69,8 +69,18 @@
 					</div>
 				</td>
 				<td class="td01">
-					<div class="team">
-						teammate info
+					<div class="teamlist">
+						<div class="teamdiv" style="overflow: auto">
+							<span class="teamlisttitle">팀 목록</span>
+							<hr>
+							<ul>
+								<c:forEach items="${teamList}" var="teamList">
+									<li class="list03">${teamList.memberNick} (${teamList.role})</li>	
+									<li class="list02">${teamList.teamName}_${teamList.projectDivision}</li>				
+									<hr>			
+								</c:forEach>
+							</ul>	
+						</div>
 					</div>
 				</td>
 			</tr>

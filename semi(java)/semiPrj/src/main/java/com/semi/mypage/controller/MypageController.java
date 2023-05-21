@@ -15,6 +15,7 @@ import com.semi.board.vo.BoardVo;
 import com.semi.lecture.vo.LectureVo;
 import com.semi.member.vo.MemberVo;
 import com.semi.mypage.service.MypageService;
+import com.semi.mypage.vo.TeamVo;
 
 @WebServlet(urlPatterns = "/mypage")
 public class MypageController extends HttpServlet{
@@ -36,10 +37,12 @@ public class MypageController extends HttpServlet{
 			List<BoardVo> snotList = ms.showNotice02();
 			String letterCount = ms.countLetter01(memberNo);
 			String countMyWrite = ms.countMyWrite(memberNo);
+			List<TeamVo> teamList = ms.teamList();
 			
 			req.setAttribute("snotList", snotList);
 			req.setAttribute("letterCount", letterCount);
 			req.setAttribute("countMyWrite", countMyWrite);
+			req.setAttribute("teamList", teamList);
 			req.getRequestDispatcher("/WEB-INF/views/personal/mypage.jsp").forward(req, resp);
 			
 			} catch (Exception e) {
