@@ -34,10 +34,10 @@ public class MemberJoinController extends HttpServlet{
 		
 		try {
 			
-//			//파일 처리
-//			Part f = req.getPart("memberProfile");
-//			String path = req.getServletContext().getRealPath("/static/img/profile/");
-//			AttachmentVo attachmentVo = FileUploader.saveFile(path, f);
+			//파일 처리
+			Part f = req.getPart("profile");
+			String path = req.getServletContext().getRealPath("/static/img/profile/");
+			AttachmentVo attachmentVo = FileUploader.saveFile(path, f);
 			
 			//데꺼
 			String identity = req.getParameter("identity");
@@ -46,7 +46,7 @@ public class MemberJoinController extends HttpServlet{
 			String memberNick = req.getParameter("memberNick");
 			String birthNum = req.getParameter("birthNum");
 			String phoneNo = req.getParameter("phoneNo");
-			//String profile = req.getParameter("profile");
+//			String profile = req.getParameter("profile");
 			
 			//데뭉
 			MemberVo vo = new MemberVo();

@@ -24,7 +24,7 @@
             </a>
         </div>
 
-        <form action="${root}/member/join" method="post">
+        <form action="${root}/member/join" method="post"  enctype="multipart/form-data">
             
             <div class="radio-area">
                 <div class="identity-box">
@@ -42,12 +42,12 @@
             <table>
                 <tr>
                     <th>아이디</th>
-                    <td><input type="text" name="memberId" placeholder="영어/숫자 조합 n자리 이상"></td>
+                    <td><input type="text" name="memberId" placeholder="영어/숫자 조합 n자리"></td>
                     <td><button id="dup-check">중복검사</button></td>
                 </tr>
                 <tr>
                     <th>비밀번호</th>
-                    <td><input type="password" name="memberPwd" placeholder="영어/숫자 조합 n자리 이상"></td>
+                    <td><input type="password" name="memberPwd" placeholder="영어/숫자 조합 n자리"></td>
                 </tr>
                 <tr>
                     <th>비밀번호 확인</th>
@@ -67,11 +67,11 @@
                 </tr>
                 <tr>
                     <th>프로필 사진</th>
-                    <td><input type="text" disabled></td>
+                    <td><input type="text" id="fileName-zone" disabled></td>
                     <td>
                         <div id="file-attachment">
                             <label for="profile-file">파일첨부</label>
-                            <input id="profile-file" type="file" name="profile">
+                            <input id="profile-file" type="file" name="profile" onchange="printName()">
                         </div>
                     </td>
                 </tr>
@@ -87,3 +87,20 @@
 
 </body>
 </html>
+
+<script>
+
+    function printName() {
+        const file = document.querySelector("input[type=file]");
+        const fileNameZone = document.querySelector("#fileName-zone");
+        let fileName = '';
+
+        if (file.files.length > 0) {
+            fileName = file.files[0].name;
+        }
+
+        fileNameZone.value = fileName;
+        console.log(fileName);
+    };
+
+</script>

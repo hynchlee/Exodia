@@ -22,6 +22,7 @@ public class MemberDao {
 		pstmt.setString(4, vo.getBirthNum());
 		pstmt.setString(5, vo.getPhoneNo());
 		pstmt.setString(6, vo.getIdentity());
+//		pstmt.setString(7, vo.getProfile());
 		int result = pstmt.executeUpdate();
 		
 		JDBCTemplate.close(pstmt);
