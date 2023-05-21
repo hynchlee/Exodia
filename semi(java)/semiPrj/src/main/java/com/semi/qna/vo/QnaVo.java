@@ -13,6 +13,9 @@ public class QnaVo {
 	private String photo;
 	private String status;
 	private String writerNick;
+	private String lectureName;
+	private String adminNick;
+	private String memberNo;
 	public String getQnaNo() {
 		return qnaNo;
 	}
@@ -79,15 +82,35 @@ public class QnaVo {
 	public void setWriterNick(String writerNick) {
 		this.writerNick = writerNick;
 	}
+	public String getLectureName() {
+		return lectureName;
+	}
+	public void setLectureName(String lectureName) {
+		this.lectureName = lectureName;
+	}
+	public String getAdminNick() {
+		return adminNick;
+	}
+	public void setAdminNick(String adminNick) {
+		this.adminNick = adminNick;
+	}
+	public String getMemberNo() {
+		return memberNo;
+	}
+	public void setMemberNo(String memberNo) {
+		this.memberNo = memberNo;
+	}
 	@Override
 	public String toString() {
 		return "QnaVo [qnaNo=" + qnaNo + ", adminNo=" + adminNo + ", studentMemberNo=" + studentMemberNo + ", qnaTitle="
 				+ qnaTitle + ", qnaContent=" + qnaContent + ", qnaAnswer=" + qnaAnswer + ", enrollDate=" + enrollDate
 				+ ", modifyDate=" + modifyDate + ", photo=" + photo + ", status=" + status + ", writerNick="
-				+ writerNick + "]";
+				+ writerNick + ", lectureName=" + lectureName + ", adminNick=" + adminNick + ", memberNo=" + memberNo
+				+ "]";
 	}
 	public QnaVo(String qnaNo, String adminNo, String studentMemberNo, String qnaTitle, String qnaContent,
-			String qnaAnswer, String enrollDate, String modifyDate, String photo, String status, String writerNick) {
+			String qnaAnswer, String enrollDate, String modifyDate, String photo, String status, String writerNick,
+			String lectureName, String adminNick, String memberNo) {
 		super();
 		this.qnaNo = qnaNo;
 		this.adminNo = adminNo;
@@ -100,11 +123,16 @@ public class QnaVo {
 		this.photo = photo;
 		this.status = status;
 		this.writerNick = writerNick;
+		this.lectureName = lectureName;
+		this.adminNick = adminNick;
+		this.memberNo = memberNo;
 	}
 	public QnaVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 	
 	
 	

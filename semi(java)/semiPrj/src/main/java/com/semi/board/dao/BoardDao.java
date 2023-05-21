@@ -300,7 +300,7 @@ public class BoardDao {
 			pstmt.setString(1, bno);
 			ResultSet rs = pstmt.executeQuery();
 			
-			BoardVo bv = null;
+			BoardVo cvNo = null;
 			if (rs.next()) {
 				
 				String boardNo = rs.getString("BOARD_NO");
@@ -316,25 +316,25 @@ public class BoardDao {
 				String boardCategoryType = rs.getString("BOARD_CATEGORY_TYPE");
 				String lectureName = rs.getString("LECTURE_NAME");
 				
-				bv = new BoardVo();
-				bv.setBoardNo(boardNo);
-				bv.setBoardCategoryNo(boardCategoryNo);
-				bv.setMemberNo(memberNo);
-				bv.setBoardTitle(boardTitle);
-				bv.setBoardContent(boardContent);
-				bv.setEnrollDate(enrollDate);
-				bv.setModifyDate(modifyDate);
-				bv.setStatus(status);
-				bv.setHit(hit);
-				bv.setWriterNick(writerNick);
-				bv.setBoardCategoryType(boardCategoryType);
-				bv.setLectureName(lectureName);
+				cvNo = new BoardVo();
+				cvNo.setBoardNo(boardNo);
+				cvNo.setBoardCategoryNo(boardCategoryNo);
+				cvNo.setMemberNo(memberNo);
+				cvNo.setBoardTitle(boardTitle);
+				cvNo.setBoardContent(boardContent);
+				cvNo.setEnrollDate(enrollDate);
+				cvNo.setModifyDate(modifyDate);
+				cvNo.setStatus(status);
+				cvNo.setHit(hit);
+				cvNo.setWriterNick(writerNick);
+				cvNo.setBoardCategoryType(boardCategoryType);
+				cvNo.setLectureName(lectureName);
 			}
 			
 			JDBCTemplate.close(pstmt);
 			JDBCTemplate.close(rs);
 			
-			return bv;
+			return cvNo;
 		}
 
 }
