@@ -1,4 +1,4 @@
---๋ฐ์€ ๋ฉ”์ธ์ง€์—์ OPT ๊ฒ€์ํ•๊ธฐ
+--๋ฐ์? ๋ฉ”์ธ์ง??—? OPT ๊ฒ???•๊ธ?
 SELECT * 
 FROM 
 (
@@ -12,7 +12,7 @@ FROM
 )
 WHERE RNUM BETWEEN ? AND ?;
 
---๊ทธ๋ฅ ๊ฒ€์
+--๊ทธ๋ฅ ๊ฒ??
 SELECT * 
 FROM 
     ( 
@@ -28,7 +28,7 @@ FROM
     WHERE RNUM BETWEEN ? AND ?;
 
 
---๋ฉ”์ธ์ง€ ์ด ๊ฐ์
+--๋ฉ”์ธ์ง? ์ด? ๊ฐ์
 SELECT COUNT(*)
 FROM ( 
         SELECT L.LETTER_NO , L.LETTER_TITLE , L.LETTER_CONTENT , L.SEND_MEMBER_NO , L.ENROLL_DATE , L.STATUS , M.MEMBER_NICK
@@ -37,4 +37,34 @@ FROM (
     )
 WHERE STATUS = 'O';
 
-select * from letter
+select * from letter;
+
+
+INSERT INTO 
+LETTER (LETTER_NO, SEND_MEMBER_NO, RECEIVE_MEMBER_NO, LETTER_TITLE, LETTER_CONTENT, STATUS)
+VALUES (SEQ_LETTER_NO.NEXTVAL,'1', (SELECT MEMBER_NO FROM MEMBER WHERE MEMBER_NO = 2),'พ๐ดจ', 'คทคท', 'O');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -21,7 +21,7 @@ public class WriteLetterController extends HttpServlet{
 		
 		HttpSession session = req.getSession();
 		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
-		
+				
 		if(loginMember == null) {
 			req.setAttribute("errorMsg", "로그인을 먼저 해주세요");
 			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
@@ -37,38 +37,34 @@ public class WriteLetterController extends HttpServlet{
 		HttpSession session = req.getSession();
 		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
 		
+		String sendMemberName = loginMember.getMemberNick();
+		
 		try {
 			String receiver = req.getParameter("receiver");
 			String title = req.getParameter("title");
 			String content = req.getParameter("content");
 			
 			LetterVo vo = new LetterVo();
+			vo.setReceiveMemberName(receiver);
 			vo.setLetterTitle(title);
-			vo.setReceiveMemberNo(receiver);
 			vo.setLetterContent(content);
 			
 			LetterService ms = new LetterService();
-			int result = ms.writeLetter(vo, loginMember);
-			
-//			System.out.println(loginMember);
-//			System.out.println(receiver);
-//			System.out.println(title);
-//			System.out.println(content);
+			int result = ms.writeLetter(vo, sendMemberName);
 			
 			if(result == 1) {
 				req.getRequestDispatcher("/WEB-INF/views/letter/sent-letter.jsp").forward(req, resp);
 			}
 			
 			else {
-				String root = req.getContextPath();
-				resp.sendRedirect(root + "/letter/sent");
+				req.setAttribute("errorMsg", "오류발생");
+				req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
 			}
 			
 		} catch (Exception e) {
 			System.out.println("쪽지 작성 중 오류 발생");
 			e.printStackTrace();
 		}
-		
 		
 	}
 	
