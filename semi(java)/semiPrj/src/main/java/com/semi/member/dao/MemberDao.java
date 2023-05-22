@@ -14,7 +14,7 @@ public class MemberDao {
 	public int join(Connection conn, MemberVo vo) throws Exception {
 
 		//sql
-		String sql = "INSERT INTO MEMBER (MEMBER_NO, MEMBER_ID, MEMBER_PWD, MEMBER_NICK, BIRTH_NUM, PHONE_NO, IDENTITY) VALUES (SEQ_MEMBER_NO.NEXTVAL, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO MEMBER (MEMBER_NO, MEMBER_ID, MEMBER_PWD, MEMBER_NICK, BIRTH_NUM, PHONE_NO, IDENTITY, PROFILE) VALUES (SEQ_MEMBER_NO.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, vo.getMemberId());
 		pstmt.setString(2, vo.getMemberPwd());
@@ -22,20 +22,34 @@ public class MemberDao {
 		pstmt.setString(4, vo.getBirthNum());
 		pstmt.setString(5, vo.getPhoneNo());
 		pstmt.setString(6, vo.getIdentity());
-//		pstmt.setString(7, vo.getProfile());
+		pstmt.setString(7, vo.getProfile());
 		int result = pstmt.executeUpdate();
 		
-		String sql2 = "INSERT INTO STUDENT (STUDENT_MEMBER_NO) VALUES (SEQ_MEMBER_NO.NEXTVAL)";
-		PreparedStatement pstmt2 = conn.prepareStatement(sql2);
-		int result2 = pstmt2.executeUpdate();
+		if (result == 1) {
+			String sql2 = "INSERT INTO STUDENT (STUDENT_MEMBER_NO) VALUES (SEQ_MEMBER_NO.CURRVAL)";
+			PreparedStatement pstmt2 = conn.prepareStatement(sql2);
+			int result2 = pstmt2.executeUpdate();
+			
+			JDBCTemplate.close(pstmt);
+			
+			return result2;
+		}
 		
 		JDBCTemplate.close(pstmt);
 		
-		if (result == 1 && result2 == 1) {
-			return result;
-		}else {
-			throw new Exception();
-		}
+		return result;
+		
+//		String sql2 = "INSERT INTO STUDENT (STUDENT_MEMBER_NO) VALUES (SEQ_MEMBER_NO.NEXTVAL)";
+//		PreparedStatement pstmt2 = conn.prepareStatement(sql2);
+//		int result2 = pstmt2.executeUpdate();
+//		
+//		JDBCTemplate.close(pstmt);
+//		
+//		if (result == 1 && result2 == 1) {
+//			return result;
+//		}else {
+//			throw new Exception();
+//		}
 		
 	}
 
