@@ -1,6 +1,8 @@
 package com.semi.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.semi.lecture.vo.LectureCategoryVo;
 import com.semi.member.service.MemberService;
 import com.semi.member.vo.MemberVo;
 
@@ -45,8 +48,8 @@ public class MemberLoginController extends HttpServlet{
 			MemberService ms = new MemberService();
 			MemberVo loginMember = ms.login(vo);
 			
-//			List<LectureVo> memberLecture = new ArrayList();
-			
+			List<LectureCategoryVo> memberLecture = new ArrayList<>();
+
 			//화면
 			if(loginMember != null) {
 				
@@ -54,8 +57,8 @@ public class MemberLoginController extends HttpServlet{
 				String root = req.getContextPath();
 				
 				if ( "S".equals(loginMember.getIdentity()) ) {
-//					memberLecture = ms.getSlecture(loginMember.getMemberNo());
-//					req.getSession().setAttribute("memberLecture", memberLecture);
+					memberLecture = ms.getSlecture(loginMember.getMemberNo());
+					req.getSession().setAttribute("memberLecture", memberLecture);
 				}else if( "T".equals(loginMember.getIdentity()) ) {
 //					memberLecture = ms.getTlecture(loginMember.getMemberNo());
 //					req.getSession().setAttribute("memberLecture", memberLecture);

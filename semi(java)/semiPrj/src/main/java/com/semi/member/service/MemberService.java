@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import com.semi.common.db.JDBCTemplate;
+import com.semi.lecture.vo.LectureCategoryVo;
 import com.semi.member.dao.MemberDao;
 import com.semi.member.vo.MemberVo;
 
@@ -122,6 +124,21 @@ public class MemberService {
 		
 	}
 
+	//학생회원 강의 꺼내기
+	public List<LectureCategoryVo> getSlecture(String memberNo) throws Exception {
+		
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		//sql
+		List<LectureCategoryVo> memberLecture = (List<LectureCategoryVo>) dao.getSlecture(conn, memberNo);
+		//close
+		JDBCTemplate.close(conn);
+		
+		return memberLecture;
 	
+	}
+
+	
+	//강사회원 강의 꺼내기
 
 }

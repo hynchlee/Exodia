@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.semi.common.db.JDBCTemplate;
+import com.semi.lecture.vo.LectureCategoryVo;
 import com.semi.member.vo.MemberVo;
 
 public class MemberDao {
@@ -199,31 +202,6 @@ public class MemberDao {
 			vo.setPhoneNo(phoneNo);
 			vo.setProfile(profile);
 			
-//			String memberNo = rs.getString("MEMBER_NO");
-//			String memberId = rs.getString("MEMBER_ID");
-//			String memberPwd = rs.getString("MEMBER_PWD");
-//			String memberNick = rs.getString("MEMBER_NICK");
-//			String birthNum = rs.getString("BIRTH_NUM");
-//			String status = rs.getString("STATUS");
-//			String phoneNo = rs.getString("PHONE_NO");
-//			String signDate = rs.getString("SIGN_DATE");
-//			String profile = rs.getString("PROFILE");
-//			String identity = rs.getString("IDENTITY");
-//			String leftVacation = rs.getString("LEFT_VACATION");
-//			
-//			vo = new MemberVo();
-//			vo.setMemberNo(memberNo);
-//			vo.setMemberId(memberId);
-//			vo.setMemberPwd(memberPwd);
-//			vo.setMemberNick(memberNick);
-//			vo.setBirthNum(birthNum);
-//			vo.setStatus(status);
-//			vo.setPhoneNo(phoneNo);
-//			vo.setSignDate(signDate);
-//			vo.setProfile(profile);
-//			vo.setIdentity(identity);
-//			vo.setLeftVacation(leftVacation);
-			
 		}
 		
 		JDBCTemplate.close(rs);
@@ -243,6 +221,31 @@ public class MemberDao {
 		JDBCTemplate.close(pstmt);
 		
 		return result;
+	}
+
+	public List<LectureCategoryVo> getSlecture(Connection conn, String memberNo) throws Exception {
+
+		String sql = "SELECT LECTURE_NAME FROM MEMBER M JOIN STUDENT S ON(M.MEMBER_NO = S.STUDENT_MEMBER_NO) JOIN LECTURE L ON (S.LECTURE_NO = L.LECTURE_NO) JOIN LECTURE_CATEGORY LC ON (L.LECTURE_CATEGORY_NO = LC.LECTURE_CATEGORY_NO) WHERE M.MEMBER_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		//tx||rs
+		List<LectureCategoryVo> memberLecture = new ArrayList<>();
+		while(rs.next()) {
+			String lectureName = rs.getString("LECTURE_NAME");
+			
+			LectureCategoryVo vo = new LectureCategoryVo();
+			vo.setLectureName(lectureName);
+			
+			memberLecture.add(vo);
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return memberLecture;
+	
 	}
 
 
