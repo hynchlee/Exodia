@@ -171,7 +171,7 @@
     position: relative;
     width: 160px;
     height: 40px;
-    left: 100px;
+    left: 50px;
     bottom: 100px;
     border-radius: 35px;
     background: rgba(217,217,217,1);
@@ -186,7 +186,7 @@
     position: relative;
     width: 160px;
     height: 40px;
-    left: 300px;
+    left: 250px;
     bottom: 140px;
     border-radius: 35px;
     background: rgba(245,190,107,1);
@@ -201,7 +201,7 @@
     position: relative;
     width: 160px;
     height: 40px;
-    left: 500px;
+    left: 450px;
     bottom: 180px;
     border-radius: 35px;
     background: rgba(32,103,167,1);
@@ -301,7 +301,7 @@
     position: relative;
     width: 120px;
     height: 30px;
-	left: 575px;
+	left: 525px;
 	top: 50px;
     border-radius: 35px;
     background: rgba(217,217,217,1);
