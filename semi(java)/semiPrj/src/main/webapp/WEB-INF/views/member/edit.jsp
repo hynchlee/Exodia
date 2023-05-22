@@ -53,7 +53,7 @@
                 </tr>
                 <tr>
                     <th>프로필 사진</th>
-                    <td><input type="text" id="fileName-zone" disabled></td>
+                    <td><input type="text" id="fileName-zone" value="${loginMember.profile}" disabled></td>
                     <td>
                         <div id="dup-check">
                             <label for="profile-file">파일첨부</label>
@@ -102,7 +102,7 @@
 
     //탈퇴
     function quit(){
-        result = confirm('정말로 탈퇴하실 건가요?');
+        result = confirm('정말로 탈퇴하시겠습니까?');
         if(result) {
             location.href='${root}/member/quit';
         }

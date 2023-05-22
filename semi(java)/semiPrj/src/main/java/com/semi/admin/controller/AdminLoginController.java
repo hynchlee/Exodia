@@ -44,7 +44,7 @@ public class AdminLoginController extends HttpServlet{
 			if (loginAdmin != null) {
 				req.getSession().setAttribute("loginAdmin", loginAdmin);
 				String root = req.getContextPath();
-				resp.sendRedirect(root + "/mmain");
+				resp.sendRedirect(root + "/main");
 			}else {
 				throw new Exception();
 			}

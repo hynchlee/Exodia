@@ -56,6 +56,7 @@ public class MemberJoinController extends HttpServlet{
 			vo.setMemberNick(memberNick);
 			vo.setBirthNum(birthNum);
 			vo.setPhoneNo(phoneNo);
+			vo.setProfile(attachmentVo.getChangeName());
 			
 			//서비스
 			MemberService ms = new MemberService();
