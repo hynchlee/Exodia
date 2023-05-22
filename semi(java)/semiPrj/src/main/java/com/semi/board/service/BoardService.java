@@ -168,11 +168,46 @@ public class BoardService {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		
-		List<ReplyVo> reList = dao.getBoardReplyList(conn, bno);
+		List<ReplyVo> revoList = dao.getBoardReplyList(conn, bno);
 		
 		JDBCTemplate.close(conn);
 		
-		return reList;
+		return revoList;
+	}
+
+	//내가쓴글 목록 조회
+	public List<BoardVo> getBoardMyList(PageVo pv) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		List<BoardVo> bvoList = dao.getBoardMyList(conn, pv);
+		
+		JDBCTemplate.close(conn);
+		
+		return bvoList;
+	}
+
+	//내가 쓴글 검색 목록 조회
+//	public List<BoardVo> getBoardMyList(PageVo pv, String searchType, String searchValue) throws Exception {
+//		Connection conn = JDBCTemplate.getConnection();
+//		
+//		List<BoardVo> bvoList = dao.getBoardMyList(conn, pv, searchType, searchValue);
+//		
+//		JDBCTemplate.close(conn);
+//		
+//		return bvoList;
+//	}
+
+	//페이징
+	public int getBoardMyListCnt(String searchType, String searchValue, String mno) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int cnt = dao.getBoardMyListCnt(conn, searchType, searchValue, mno);
+		
+		JDBCTemplate.close(conn);
+		
+		return cnt;
 	}
 
 }

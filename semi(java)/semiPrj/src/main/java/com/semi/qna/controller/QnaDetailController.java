@@ -12,14 +12,14 @@ import com.semi.qna.service.QnaService;
 import com.semi.qna.vo.QnaVo;
 
 @WebServlet("/qna/detail")
-public class BoardQnaAnswerController extends HttpServlet{
+public class QnaDetailController extends HttpServlet{
 	
 	//관리자한테만 보이는 페이지
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		try {
-			String qno = req.getParameter("qnaNo");
+			String qno = req.getParameter("qno");
 			
 			QnaService qs = new QnaService();
 			QnaVo qvNo = qs.getQnaByNo(qno);
@@ -29,7 +29,7 @@ public class BoardQnaAnswerController extends HttpServlet{
 			}
 			
 			req.setAttribute("qvNo", qvNo);
-			req.getRequestDispatcher("/WEB-INF/views/qna/qnaAnswerEdit.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/qna/qnaDetail.jsp").forward(req, resp);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -21,7 +21,6 @@
                 </ul>
             </div>
             
-            <form action="${root}/qna/detail" method="post">
                 <div class="board_bt">
                     <a href="${root}/qna/list?page=1" class="bt1">목록으로</a>
                 </div>
@@ -63,68 +62,23 @@
                         </tr>
                     </tbody>
                 </table>
-
-                <c:if test="${loginMember.memberNo eq qvNo.memberNo && empty qvNo.qnaAnswer}">
-					<div class="view_btn">
-	                    <a href="${root}/qna/delete?qno=${qvNo.qnaNo}" class="bt1" id="del">삭제하기</a>
-	                    <a href="${root}/qna/edit?qno=${qvNo.qnaNo}" class="bt1">수정하기</a>
-                	</div>
-                </c:if>
                 
-                <c:if test="${not empty loginAdmin && empty qvNo.qnaAnswer}">
-                	<p class="answer_title">답변하기</p>
+				<p class="answer_title">답변 수정</p>
 
-	                <form action="" method="post">
-	
-	                    <div class="write_wrap">
-	                        <div></div>
-	                        <textarea name="qnaAswerContent" class="content_input" placeholder="내용을 입력해주세요." required></textarea>
-	                        <input type="file" name="select_file">
-	                    </div>
-	        
-	                    <div class="board_bt">
-	                        <input type="button" value="작성취소" class="bt1">
-	                        <input type="submit" value="답변완료" class="bt1">
-	                    </div>
-	                </form>
-                </c:if>
+				<form action="${root}/qna/answer/edit?qno=${qvNo.qnaNo}" method="post">
 
-                <c:if test="${not empty qvNo.qnaAnswer}">
-	                <p class="answer_title">답변 내용</p>
-	
-	                <table class="qna_answer">
-	                    <colgroup>
-	                        <col width="15%">
-	                        <col width="50%">
-	                        <col width="15%">
-	                        <col width="*%">
-	                        <col width="10">
-	                    </colgroup>
-	                    <tbody>
-	                        <tr>
-	                            <th>답변자</th>
-	                            <td colspan="4">${qvNo.adminNick}</td>
-	                        </tr>
-	                        <tr>
-	                            <th>내용</th>
-	                            <td colspan="4" style="height: 500px;">${qvNo.qnaAnswer}</td>
-	                        </tr>
-	                        <tr>
-	                            <th>첨부파일</th>
-	                            <td colspan="4"></td>
-	                        </tr>
-	                    </tbody>
-	                </table>
-	    
-	    			<c:if test="${not empty loginAdmin}">
-		                <div class="view_btn">
-		                    <input type="button" class="bt1" value="삭제하기">
-		                    <input type="submit" class="bt1" value="수정하기">
-		                </div>
-	    			</c:if>
-                </c:if>
-                
-            </form>
+					<div class="write_wrap">
+						<div></div>
+						<textarea name="qnaAnswerContent" class="content_input" required>${qvNo.qnaAnswer}</textarea>
+						<input type="file" name="select_file">
+					</div>
+		
+					<div class="board_bt">
+						<input type="reset" value="작성취소" class="bt1">
+						<input type="submit" value="답변완료" class="bt1">
+					</div>
+				</form>
+
             
 		</main>
 

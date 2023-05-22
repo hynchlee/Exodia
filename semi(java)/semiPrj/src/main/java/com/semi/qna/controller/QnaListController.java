@@ -18,7 +18,7 @@ import com.semi.qna.service.QnaService;
 import com.semi.qna.vo.QnaVo;
 
 @WebServlet("/qna/list")
-public class BoardQnAListController extends HttpServlet{
+public class QnaListController extends HttpServlet{
 
 	private final QnaService qs = new QnaService();
 	

@@ -20,7 +20,8 @@
                     <li class="boardCategoryName">상세조회</li>
                 </ul>
             </div>
-            
+
+            <form action="${root}/qna/answer/write" method="post">
                 <div class="board_bt">
                     <a href="${root}/qna/list?page=1" class="bt1">목록으로</a>
                 </div>
@@ -28,57 +29,53 @@
                 <table class="board_view">
                     <colgroup>
                         <col width="15%">
-                        <col width="50%">
+                        <col width="35%">
                         <col width="15%">
-                        <col width="*%">
-                        <col width="10">
+                        <col width="*">
                     </colgroup>
                     <tbody>
                         <tr>
                             <th>제목</th>
-                            <td colspan="4">${qvNo.qnaTitle}</td>
+                            <td>이곳은제목자리</td>
+                            <th>조회수</th>
+                            <td>77</td>
                         </tr>
                         <tr>
                             <th>작성자</th>
-                            <td>${qvNo.writerNick}</td>
+                            <td>이곳은작성자</td>
                             <th>작성일</th>
-                            <td>${qvNo.enrollDate}</td>
-                            <td class="edit_date">${qvNo.modifyDate}</td>
-                        </tr>
-                        <!-- 후기게시판과 큐엔에이 게시판에만 보임 -->
-                        <c:if test="${qvNo.identity eq 'S'}">
-	                        <tr>
-	                            <th>강좌명</th>
-	                            <td colspan="4">${qvNo.lectureName}</td>
-	                        </tr>
-                        </c:if>
-                        <tr>
-                            <th>내용</th>
-                            <td colspan="4" style="height: 500px;">${qvNo.qnaContent}</td>
+                            <td>2023.05.01</td>
                         </tr>
                         <tr>
                             <th>첨부파일</th>
-                            <td colspan="4"></td>
+                            <td></td>
+                            <th>수정일</th>
+                            <td>2023.05.06</td>
+                        </tr>
+                        <tr>
+                            <th>내용</th>
+                            <td colspan="3" style="height: 500px;">이곳은 내용자리</td>
                         </tr>
                     </tbody>
                 </table>
+
+                <p class="answer_title">답변하기</p>
+
+                <form action="" method="post">
+
+                    <div class="write_wrap">
+                        <div></div>
+                        <textarea name="content" class="content_input" placeholder="내용을 입력해주세요." required></textarea>
+                        <input type="file" name="select_file">
+                    </div>
+        
+                    <div class="board_bt">
+                        <input type="button" value="작성취소" class="bt1">
+                        <input type="submit" value="답변완료" class="bt1">
+                    </div>
+                </form>
                 
-				<p class="answer_title">답변하기</p>
-
-				<form action="${root}/qna/answer/write?qno=${qvNo.qnaNo}" method="post">
-
-					<div class="write_wrap">
-						<div></div>
-						<textarea name="qnaAnswerContent" class="content_input" placeholder="내용을 입력해주세요." required></textarea>
-						<input type="file" name="select_file">
-					</div>
-		
-					<div class="board_bt">
-						<input type="reset" value="작성취소" class="bt1">
-						<input type="submit" value="답변완료" class="bt1">
-					</div>
-				</form>
-
+            </form>
             
 		</main>
 

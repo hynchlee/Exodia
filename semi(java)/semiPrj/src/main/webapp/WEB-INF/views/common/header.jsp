@@ -37,7 +37,7 @@
 						src="/semi/static/img/header/___7.png" alt="profile"
 						id="profile_img"></a></li>
 				<li class="menu3"><a href="${root}/introduce/greet"> KH소개 </a></li>
-				<li class="menu3"><a href="${root}/my/list"> 게시판 </a></li>
+				<li class="menu3"><a href="${root}/my/list?page=1"> 게시판 </a></li>
 				<li class="menu3"><a href="${root}/introduce/lecture?subject=1">
 						강의 </a></li>
 				<li class="menu4"></li>
