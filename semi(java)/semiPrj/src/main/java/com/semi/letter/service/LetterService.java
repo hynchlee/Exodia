@@ -8,7 +8,6 @@ import com.semi.common.db.JDBCTemplate;
 import com.semi.common.page.PageVo;
 import com.semi.letter.dao.LetterDao;
 import com.semi.letter.vo.LetterVo;
-import com.semi.member.vo.MemberVo;
 
 public class LetterService {
 
@@ -77,13 +76,33 @@ public class LetterService {
 		return cnt;
 	}
 
-	public int deleteLetter(int[] letterNo) throws Exception {
+	public int deleteReceiveLetter(int[] letterNo) throws Exception {
 
 		Connection conn = JDBCTemplate.getConnection();
 
 		int x = 1;
 		for (int number : letterNo) {
-			int result = dao.deleteLetter(conn, number);
+			int result = dao.deleteReceiveLetter(conn, number);
+
+			if (result != 1) {
+				x = 0;
+				break;
+			}
+
+		}
+
+		JDBCTemplate.close(conn);
+
+		return x;
+	}
+	
+	public int deleteSentLetter(int[] letterNo) throws Exception {
+
+		Connection conn = JDBCTemplate.getConnection();
+
+		int x = 1;
+		for (int number : letterNo) {
+			int result = dao.deleteSentLetter(conn, number);
 
 			if (result != 1) {
 				x = 0;
