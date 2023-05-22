@@ -65,6 +65,18 @@ public class LetterService {
 		return cnt;
 	}
 
+	public int getLetterListCnt(String searchSR, String searchType, String searchValue, String MemberNo)
+			throws Exception {
+
+		Connection conn = JDBCTemplate.getConnection();
+
+		int cnt = dao.getLetterListCnt(conn, searchType, searchValue, MemberNo);
+
+		JDBCTemplate.close(conn);
+
+		return cnt;
+	}
+
 	public int deleteLetter(int[] letterNo) throws Exception {
 
 		Connection conn = JDBCTemplate.getConnection();
@@ -110,12 +122,28 @@ public class LetterService {
 
 	}
 
-	public List<LetterVo> getLetterSendList(PageVo pv, String searchType, String searchValue, String MemberNo) throws SQLException {
-		
+	public List<LetterVo> getLetterSendList(PageVo pv, String searchType, String searchValue, String MemberNo)
+			throws SQLException {
+
 		// conn
 		Connection conn = JDBCTemplate.getConnection();
 
 		List<LetterVo> voList = dao.getLetterSendList(conn, pv, searchType, searchValue, MemberNo);
+
+		// close
+		JDBCTemplate.close(conn);
+
+		return voList;
+
+	}
+
+	public List<LetterVo> getLetterTrashList(String searchSR, PageVo pv, String searchType, String searchValue,
+			String memberNo) throws SQLException {
+		
+		// conn
+		Connection conn = JDBCTemplate.getConnection();
+
+		List<LetterVo> voList = dao.getLetterTrashList(searchSR, conn, pv, searchType, searchValue, memberNo);
 
 		// close
 		JDBCTemplate.close(conn);

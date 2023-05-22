@@ -91,7 +91,7 @@
 
 		<script>
 			const title = document.querySelector(".title");
-			title.innerHTML = "쪽지 쓰기";
+			title.innerHTML = "쪽지 상세조회";
 
 			const banner = document.querySelector(".banner");
 			banner.style.marginBottom = 0;

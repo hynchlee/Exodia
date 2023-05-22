@@ -35,7 +35,7 @@
 							<form action="${root}/letter/receive" method="get">
 								<div id="select-button">
 									<img src="${root}/static/img/letter/받은 쪽지.png">
-									<input type="submit" value="받은 쪽지" id="receive-letter"  disabled>
+									<input type="submit" value="받은 쪽지" id="receive-letter" disabled>
 								</div>
 							</form>
 						</div>
@@ -147,7 +147,7 @@
 					data: JSON.stringify(boxList),
 					contentType: "application/json",
 					success: function () {
-						alert("성공");
+						alert("삭제완료");
 					},
 					error: function () {
 						alert("에러");
@@ -156,31 +156,40 @@
 
 			}
 
-
 			const searchType = '${searchVo.searchType}';
 			const searchValue = '${searchVo.searchValue}';
+
+			const searchValueSelectTag = document.querySelector("select[name='searchValue']");
+			const searchValueInputTag = document.querySelector("input[name='searchValue']");
 
 			if (searchType.length > 1) {
 				initSearchType();
 			}
 
-			document.querySelector('#searchButton').addEventListener('click', function (e) {
-			e.preventDefault();
-
-			// 검색 유형 및 값 가져오기
-			const searchType = document.querySelector('select[name="searchType"]').value;
-			const searchValue = document.querySelector('input[name="searchValue"]').value;
-
-			if (!searchValue.trim()) {
-				alert('검색할 내용을 입력해주세요.');
-				return;
+			// 검색 타입 초기셋팅
+			function initSearchType() {
+				const x = document.querySelector('select > option[value="' + searchType + '"]');
+				x.selected = true;
 			}
 
-			// 검색 URL 생성
-			const searchUrl = `http://127.0.0.1:8888/semi/letter/receive?searchType=${searchType}&searchValue=${searchValue}`;
 
-			// 검색 페이지로 이동
-			location.href = searchUrl;
-		});
+			//서치타입 변경 시 함수 실행
+			const searchTypeTag = document.querySelector('select[name="searchType"]');
+			searchTypeTag.addEventListener("change", setSearchValueTag);
+
+			function setSearchValueTag() {
+				const searchType = searchTypeTag.value;
+					setSearchValueTagInput();
+			}
+
+			//검색값 영역을 인풋이 보이게 (타입이 카테고리가 아닐 때)
+			function setSearchValueTagInput() {
+				searchValueInputTag.classList.add("active");
+				searchValueInputTag.disabled = false;
+				searchValueSelectTag.classList.remove("active");
+				searchValueSelectTag.disabled = true;
+			}
+
+			setSearchValueTag();
 
 		</script>

@@ -85,8 +85,8 @@ table {
     text-align: center;
 }
 
-select{
-    width: 10%;
+select:nth-child(1){
+    width: 12%;
     height: 40px;
     font-size: 16px;
     font-family: 'Spoqa Han Sans Neo';
@@ -95,7 +95,7 @@ select{
 }
 
 input[type=text]{
-    width: 80%;
+    width: 77%;
     height: 40px;
     font-size: 16px;
     font-family: 'Spoqa Han Sans Neo';
@@ -103,7 +103,7 @@ input[type=text]{
     box-sizing: border-box;
 }
 
-thead button{
+thead input[type=submit]{
     width: 9%;
     height: 40px;
     font-size: 16px;
