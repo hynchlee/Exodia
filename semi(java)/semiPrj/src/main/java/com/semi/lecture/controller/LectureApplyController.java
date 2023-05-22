@@ -21,16 +21,20 @@ public class LectureApplyController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			int cnt = ls.getLectureListCnt();
-
+			
 			String page = req.getParameter("page");
+			String searchType = req.getParameter("searchType");
+			String searchValue = req.getParameter("searchValue");
+
+			int cnt = ls.getLectureListCnt(searchType, searchValue);
+			
 			int pageInt = 1;
 			if (page != null) {
 				pageInt = Integer.parseInt(page);
 			}
 			
 			PageVo pageVo = new PageVo(cnt, pageInt, 5, 10);
-			List<LectureVo> lectureList = ls.getLectureList(pageVo);
+			List<LectureVo> lectureList = ls.getLectureList(pageVo, searchType, searchValue);
 
 			req.setAttribute("lectureList", lectureList);
 			req.setAttribute("pageVo", pageVo);
