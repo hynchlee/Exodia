@@ -40,12 +40,28 @@ public class MypageController extends HttpServlet{
 			String countMyWrite = ms.countMyWrite(memberNo);
 			List<TeamVo> teamList = ms.teamList();
 			List<VacationVo> restList= ms.restList(memberNo);
+			String lectureStart = ms.lecturestart(memberNo);
+			String lectureEnd = ms.lectureEnd(memberNo);
+			String checkDate = ms.checkDate(memberNo);
+			String runDate = ms.runDate(memberNo);
+			String lateDate = ms.lateDate(memberNo);
+			String earlyDate = ms.earlyDate(memberNo);
+			String getoutDate = ms.getoutDate(memberNo);
+			int percentage = 156 * Integer.parseInt(checkDate) / 100;
 			
 			req.setAttribute("snotList", snotList);
 			req.setAttribute("letterCount", letterCount);
 			req.setAttribute("countMyWrite", countMyWrite);
 			req.setAttribute("teamList", teamList);
 			req.setAttribute("restList", restList);
+			req.setAttribute("lectureStart", lectureStart);			
+			req.setAttribute("lectureEnd", lectureEnd);
+			req.setAttribute("checkDate", checkDate);			
+			req.setAttribute("runDate", runDate);
+			req.setAttribute("lateDate", lateDate);
+			req.setAttribute("earlyDate", earlyDate);
+			req.setAttribute("getoutDate", getoutDate);
+			req.setAttribute("percentage", percentage);			
 			req.getRequestDispatcher("/WEB-INF/views/personal/mypage.jsp").forward(req, resp);
 			
 			} catch (Exception e) {

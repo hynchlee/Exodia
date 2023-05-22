@@ -134,4 +134,95 @@ public class MypageService {
 		
 	}
 
+	public String lecturestart(String memberNo) throws Exception {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		String lectureStart = mdao.lectureStart(conn, memberNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return lectureStart;
+	
+	}
+
+	public String lectureEnd(String memberNo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		String lectureEnd = mdao.lectureEnd(conn, memberNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return lectureEnd;
+		
+	}
+
+	public String checkDate(String memberNo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		String checkDate = mdao.checkDate(conn, memberNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return checkDate;
+	}
+
+	public String runDate(String memberNo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		String runDate = mdao.runDate(conn, memberNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return runDate;
+	
+	}
+
+	public String lateDate(String memberNo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		String lateDate = mdao.lateDate(conn, memberNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return lateDate;
+	
+	}
+
+	public String earlyDate(String memberNo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		String earlyDate = mdao.earlyDate(conn, memberNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return earlyDate;
+	
+		
+	}
+
+	public String getoutDate(String memberNo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		String getoutDate = mdao.getoutDate(conn, memberNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return getoutDate;
+	
+	}
+
 }

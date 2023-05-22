@@ -188,7 +188,7 @@
           <div class="v69_16">
           	<div class="logout"><a href="${root}/member/logout">로그아웃</a></div>
 			<div class="photo01"></div>
-			<div class="identity">${loginMember.memberNick}님 (관리자)</div>
+			<div class="identity">${loginAdmin.adminNick}님 (관리자)</div>
 			<div class="class01">관리자 등급: A</div>
 			<div class="managermenu"><a href="${root}/admin/menu" class="awhite">관리자 메뉴</a></div>
           </div>
