@@ -74,19 +74,16 @@ public class MemberService {
 	}
 
 	//정보수정
-	public MemberVo edit(MemberVo vo) throws Exception {
-
+	public MemberVo edit(MemberVo editVo, MemberVo loginMember) throws Exception {
 		//conn
 		Connection conn = JDBCTemplate.getConnection();
-		
-		MemberVo updatedMember = null;
-		
 		//SQL
-		int result = dao.edit(conn, vo);
-		
+		int result = dao.edit(conn, editVo);
+
+		MemberVo updatedMember = loginMember;
 		//tx || rs
 		if(result == 1) {
-			updatedMember = dao.selectOneByNo(conn, vo.getMemberNo());
+			updatedMember = dao.selectOneByNo(conn, loginMember);
 			if(updatedMember == null) {
 				throw new Exception();
 			}
@@ -101,7 +98,8 @@ public class MemberService {
 		return updatedMember;
 	
 	}
-
+	
+	//탈퇴
 	public int quit(String memberNo) throws Exception {
 
 		//conn
