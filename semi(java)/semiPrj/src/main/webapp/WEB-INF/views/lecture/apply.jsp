@@ -40,7 +40,6 @@
 						<th>수업시간</th>
 						<th>정원</th>
 						<th>수강료</th>
-						<th>현황</th>
 						<th>상세보기</th>
 						<th>수강신청</th>
 					</tr>
@@ -58,8 +57,7 @@
 								<td>${vo.lectureStartTime}~${vo.lectureFinishTime}</td>
 								<td>30</td>
 								<td>국비지원</td>
-								<td><button class="bbtn">접수완료</button></td>
-								<td><button class="bbtn" onclick="goDetail()">상세조회</button></td>
+								<td><button class="bbtn" onclick="goDetail(event, '${vo.lectureNo}')">상세조회</button></td>
 								<td><input class="bbtn" type="submit" value="수강신청"></td>
 							</tr>
 						</form>
@@ -91,11 +89,13 @@
 	const title = document.querySelector('.title');
 	title.innerHTML = "수강신청";
 
-	function goDetail() {
+	function goDetail(event, lectureNo) {
+		event.preventDefault();
+		console.log(event.target);
 		var leftPosition = (window.screen.width - 1200) / 2;
 		var topPosition = (window.screen.height - 800) / 2;
 		var windowFeatures = 'width=1200,height=800,left=' + leftPosition + ',top=' + topPosition;
-		window.open("${root}/lecture/detail", '_blank', windowFeatures);
+		window.open("${root}/lecture/detail?lectureNo=" + lectureNo, '_blank', windowFeatures);
 	}
 	
 	const pageBtn = document.querySelectorAll('.pageBtn');

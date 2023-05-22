@@ -1,3 +1,4 @@
+<%@page import="com.semi.lecture.vo.LectureVo"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 		<!DOCTYPE html>
@@ -14,6 +15,8 @@
 		</head>
 
 		<body>
+			<% LectureVo vo = (LectureVo) request.getAttribute("lecture"); %>
+
 			<div class="menu_1">
 				<img src="${root}/static/img/header/4.png" alt="logo" class="logo_img">
 				<div class="wrap">
@@ -21,8 +24,8 @@
 					<div class="wrap_1">
 						<table class="lecture-dtl">
 							<tr>
-								<td>강의명</th>
-								<td>(스마트웹&콘텐츠개발) 반응형 UI/UX 웹콘텐츠 개발자 양성과정 A9</th>
+								<td>강의명</td>
+								<td>${lecture.lectureCategoryName}</td>
 							</tr>
 							<tr>
 								<td>강의실</td>
@@ -30,22 +33,26 @@
 							</tr>
 							<tr>
 								<td>강사</td>
-								<td>심원용</td>
+								<td>${lecture.teacherMemberName}</td>
 							</tr>
 							<tr>
 								<td>강의 기간</td>
-								<td>2022 12 30 ~ 2023 08 16</td>
+								<td>${lecture.lectureOpenDate} ~ ${lecture.lectureCloseDate}</td>
 							</tr>
 							<tr>
 								<td id="last-td">강의 시간</td>
-								<td id="last-td">15:30 ~ 22:00</td>
+								<td id="last-td">${lecture.lectureStartTime} ~ ${lecture.lectureFinishTime}</td>
 							</tr>
 						</table>
 					</div>
 
 					<div class="cate2">커리큘럼</div>
 					<div class="wrap_1">
+						<% if(vo.getLectureCategoryNo().equals("1")) { %>
 						<img src="${root}/static/img/introduce/curr1.png" alt="logo" class="currImg" onclick="showImageInNewWindow(this)">
+						<% } else if(vo.getLectureCategoryNo().equals("2")) {%> 
+						<img src="${root}/static/img/introduce/curr2.png" alt="logo" class="currImg" onclick="showImageInNewWindow(this)">
+						<% } %>
 					</div>
 					<div class="hi"></div>
 				</div>

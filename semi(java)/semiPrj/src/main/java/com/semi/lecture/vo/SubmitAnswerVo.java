@@ -11,6 +11,7 @@ public class SubmitAnswerVo {
 	private String submitAnswer;
 	private String answer;
 	private String problemPoint;
+	private String scorePoint;
 
 	public SubmitAnswerVo() {
 		super();
@@ -18,7 +19,8 @@ public class SubmitAnswerVo {
 	}
 
 	public SubmitAnswerVo(String examCategoryNo, String examSubject, String memberNo, String memberNick, String score,
-			String examProblemNo, String problem, String submitAnswer, String answer, String problemPoint) {
+			String examProblemNo, String problem, String submitAnswer, String answer, String problemPoint,
+			String scorePoint) {
 		super();
 		this.examCategoryNo = examCategoryNo;
 		this.examSubject = examSubject;
@@ -30,6 +32,7 @@ public class SubmitAnswerVo {
 		this.submitAnswer = submitAnswer;
 		this.answer = answer;
 		this.problemPoint = problemPoint;
+		this.scorePoint = scorePoint;
 	}
 
 	public String getExamCategoryNo() {
@@ -112,12 +115,20 @@ public class SubmitAnswerVo {
 		this.problemPoint = problemPoint;
 	}
 
+	public String getScorePoint() {
+		return scorePoint;
+	}
+
+	public void setScorePoint(String scorePoint) {
+		this.scorePoint = scorePoint;
+	}
+
 	@Override
 	public String toString() {
 		return "SubmitAnswerVo [examCategoryNo=" + examCategoryNo + ", examSubject=" + examSubject + ", memberNo="
 				+ memberNo + ", memberNick=" + memberNick + ", score=" + score + ", examProblemNo=" + examProblemNo
 				+ ", problem=" + problem + ", submitAnswer=" + submitAnswer + ", answer=" + answer + ", problemPoint="
-				+ problemPoint + "]";
+				+ problemPoint + ", scorePoint=" + scorePoint + "]";
 	}
 
 }

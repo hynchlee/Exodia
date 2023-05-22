@@ -263,7 +263,34 @@ public class LectureDao {
 			vo = new LectureVo();
 			vo.setLectureNo(rs.getString("LECTURE_NO"));
 			vo.setTeacherMemberNo(rs.getString("TEACHER_MEMBER_NO"));
-			vo.setLectureCategoryName(rs.getString("LECTURE_CATEGORY_NO"));
+			vo.setLectureCategoryNo(rs.getString("LECTURE_CATEGORY_NO"));
+			vo.setLectureStartTime(rs.getString("LECTURE_START_TIME"));
+			vo.setLectureFinishTime(rs.getString("LECTURE_FINISH_TIME"));
+			vo.setLectureOpenDate(rs.getString("LECTURE_OPEN_DATE"));
+			vo.setLectureCloseDate(rs.getString("LECTURE_CLOSE_DATE"));
+			vo.setStatus(rs.getString("STATUS"));
+			vo.setTeacherMemberName(rs.getString("MEMBER_NICK"));
+			vo.setLectureCategoryName(rs.getString("LECTURE_NAME"));
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+
+		return vo;
+	}
+	
+	public LectureVo getLectureOne(Connection conn, String lectureNo) throws SQLException {
+		String sql = "SELECT * FROM LECTURE L JOIN MEMBER M ON M.MEMBER_NO = L.TEACHER_MEMBER_NO JOIN LECTURE_CATEGORY LC ON L.LECTURE_CATEGORY_NO = LC.LECTURE_CATEGORY_NO WHERE LECTURE_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, lectureNo);
+		ResultSet rs = pstmt.executeQuery();
+
+		LectureVo vo = null;
+		if (rs.next()) {
+			vo = new LectureVo();
+			vo.setLectureNo(rs.getString("LECTURE_NO"));
+			vo.setTeacherMemberNo(rs.getString("TEACHER_MEMBER_NO"));
+			vo.setLectureCategoryNo(rs.getString("LECTURE_CATEGORY_NO"));
 			vo.setLectureStartTime(rs.getString("LECTURE_START_TIME"));
 			vo.setLectureFinishTime(rs.getString("LECTURE_FINISH_TIME"));
 			vo.setLectureOpenDate(rs.getString("LECTURE_OPEN_DATE"));
@@ -347,6 +374,7 @@ public class LectureDao {
 			sav.setScore(rs.getString("SCORE"));
 			sav.setExamProblemNo(rs.getString("EXAM_PROBLEM_NO"));
 			sav.setProblem(rs.getString("PROBLEM"));
+			sav.setScorePoint(rs.getString("SCORE_POINT"));
 			sav.setSubmitAnswer(rs.getString("SUBMIT_ANSWER"));
 			sav.setAnswer(rs.getString("ANSWER"));
 			sav.setProblemPoint(rs.getString("PROBLEM_POINT"));
