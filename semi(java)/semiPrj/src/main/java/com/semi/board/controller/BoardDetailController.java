@@ -33,9 +33,10 @@ public class BoardDetailController extends HttpServlet{
 				
 			}
 			
-			List<ReplyVo> reList = bs.getBoardReplyList(bno);
+//			List<ReplyVo> revoList = bs.getBoardReplyList(bno);
 			
-			
+//			req.setAttribute("bno", bno);
+//			req.setAttribute("revoList", revoList);
 			req.setAttribute("cvNo", cvNo);
 			req.getRequestDispatcher("/WEB-INF/views/board/boardDetail.jsp").forward(req, resp);
 			
@@ -45,6 +46,14 @@ public class BoardDetailController extends HttpServlet{
 			req.setAttribute("errorMsg", "잘못된 접근");
 			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
 		}
+		
+		
+	}
+	
+	//댓글 작성
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		
 		
 	}

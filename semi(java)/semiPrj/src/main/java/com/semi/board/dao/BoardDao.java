@@ -386,7 +386,7 @@ public class BoardDao {
 			pstmt.setString(1, bno);
 			ResultSet rs = pstmt.executeQuery();
 			
-			List<ReplyVo> reList = new ArrayList<>();
+			List<ReplyVo> revoList = new ArrayList<>();
 			while (rs.next()) {
 				String replyNo = rs.getString("REPLY_NO");
 				String writerNo = rs.getString("WRITER_NO");
@@ -407,14 +407,153 @@ public class BoardDao {
 				rv.setStatus(status);
 				rv.setWriterNick(writerNick);
 				
-				reList.add(rv);
+				revoList.add(rv);
 				
 			}
 			
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(pstmt);
 			
-			return reList;
+			return revoList;
+		}
+
+		//전체 목록 조회
+		public List<BoardVo> getBoardMyList(Connection conn, PageVo pv) throws Exception {
+			
+			String sql =  "SELECT * FROM ( SELECT ROWNUM RNUM ,T.* FROM ( SELECT B.BOARD_NO, B.BOARD_CATEGORY_NO, B.MEMBER_NO, B.BOARD_TITLE, B.BOARD_CONTENT, TO_CHAR(B.ENROLL_DATE,'YYYY.MM.DD') AS ENROLL_DATE, TO_CHAR(B.MODIFY_DATE,'YYYY.MM.DD') AS MODIFY_DATE, B.STATUS, B.HIT, M.MEMBER_NICK, C.BOARD_CATEGORY_TYPE, COUNT(R.REPLY_NO) AS TOTAL_REPLIES FROM BOARD B JOIN MEMBER M ON (B.MEMBER_NO = M.MEMBER_NO) JOIN BOARD_CATEGORY C ON (B.BOARD_CATEGORY_NO = C.BOARD_CATEGORY_NO) LEFT JOIN REPLY R ON (B.BOARD_NO = R.BOARD_NO) WHERE B.STATUS = 'O' GROUP BY B.BOARD_NO, B.BOARD_CATEGORY_NO, B.MEMBER_NO, B.BOARD_TITLE, B.BOARD_CONTENT, B.ENROLL_DATE, B.MODIFY_DATE, B.STATUS, B.HIT, M.MEMBER_NICK, C.BOARD_CATEGORY_TYPE ORDER BY B.BOARD_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pv.getBeginRow());
+			pstmt.setInt(2, pv.getLastRow());
+			ResultSet rs = pstmt.executeQuery();
+			
+			List<BoardVo> bvoList = new ArrayList<>();
+			while (rs.next()) {
+				
+				String boardNo = rs.getString("BOARD_NO");
+				String boardCategoryNo = rs.getString("BOARD_CATEGORY_NO");
+				String memberNo = rs.getString("MEMBER_NO");
+				String boardTitle = rs.getString("BOARD_TITLE");
+				String boardContent = rs.getString("BOARD_CONTENT");
+				String enrollDate = rs.getString("ENROLL_DATE");
+				String modifyDate = rs.getString("MODIFY_DATE");
+				String status = rs.getString("STATUS");
+				String hit = rs.getString("HIT");
+				String writerNick = rs.getString("MEMBER_NICK");
+				String boardCategoryType = rs.getString("BOARD_CATEGORY_TYPE");
+				String totalReplies = rs.getString("TOTAL_REPLIES");
+				
+				BoardVo bv = new BoardVo();
+				bv.setBoardNo(boardNo);
+				bv.setBoardCategoryNo(boardCategoryNo);
+				bv.setMemberNo(memberNo);
+				bv.setBoardTitle(boardTitle);
+				bv.setBoardContent(boardContent);
+				bv.setEnrollDate(enrollDate);
+				bv.setModifyDate(modifyDate);
+				bv.setStatus(status);
+				bv.setHit(hit);
+				bv.setWriterNick(writerNick);
+				bv.setBoardCategoryType(boardCategoryType);
+				bv.setTotalReplies(totalReplies);
+				
+				bvoList.add(bv);
+				
+			}
+			
+			return bvoList;
+			
+		}
+
+		
+//		//내가쓴글 검색 목록 조회
+//		public List<BoardVo> getBoardMyList(Connection conn, PageVo pv, String searchType, String searchValue) throws Exception {
+//			
+//			String sql = "";
+//			
+//			if (searchType.equals("myTitle")) {
+//				//제목 검색
+//				sql = "SELECT * FROM ( SELECT ROWNUM RNUM ,T.* FROM ( SELECT B.BOARD_NO, B.BOARD_CATEGORY_NO, B.MEMBER_NO, B.BOARD_TITLE, B.BOARD_CONTENT, TO_CHAR(B.ENROLL_DATE,'YYYY.MM.DD') AS ENROLL_DATE, TO_CHAR(B.MODIFY_DATE,'YYYY.MM.DD') AS MODIFY_DATE, B.STATUS, B.HIT, M.MEMBER_NICK, C.BOARD_CATEGORY_TYPE, COUNT(R.REPLY_NO) AS TOTAL_REPLIES FROM BOARD B JOIN MEMBER M ON (B.MEMBER_NO = M.MEMBER_NO) JOIN BOARD_CATEGORY C ON (B.BOARD_CATEGORY_NO = C.BOARD_CATEGORY_NO) LEFT JOIN REPLY R ON (B.BOARD_NO = R.BOARD_NO) WHERE B.STATUS = 'O' AND B.BOARD_TITLE LIKE ('%' || ? || '%') GROUP BY B.BOARD_NO, B.BOARD_CATEGORY_NO, B.MEMBER_NO, B.BOARD_TITLE, B.BOARD_CONTENT, B.ENROLL_DATE, B.MODIFY_DATE, B.STATUS, B.HIT, M.MEMBER_NICK, C.BOARD_CATEGORY_TYPE ORDER BY B.BOARD_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
+//			}else if (searchType.equals("myContent")) {
+//				//내용 검색
+//				sql = "SELECT * FROM ( SELECT ROWNUM RNUM ,T.* FROM ( SELECT B.BOARD_NO, B.BOARD_CATEGORY_NO, B.MEMBER_NO, B.BOARD_TITLE, B.BOARD_CONTENT, TO_CHAR(B.ENROLL_DATE,'YYYY.MM.DD') AS ENROLL_DATE, TO_CHAR(B.MODIFY_DATE,'YYYY.MM.DD') AS MODIFY_DATE, B.STATUS, B.HIT, M.MEMBER_NICK, C.BOARD_CATEGORY_TYPE, COUNT(R.REPLY_NO) AS TOTAL_REPLIES FROM BOARD B JOIN MEMBER M ON (B.MEMBER_NO = M.MEMBER_NO) JOIN BOARD_CATEGORY C ON (B.BOARD_CATEGORY_NO = C.BOARD_CATEGORY_NO) LEFT JOIN REPLY R ON (B.BOARD_NO = R.BOARD_NO) WHERE B.STATUS = 'O' AND B.BOARD_CONTENT LIKE ('%' || ? || '%') GROUP BY B.BOARD_NO, B.BOARD_CATEGORY_NO, B.MEMBER_NO, B.BOARD_TITLE, B.BOARD_CONTENT, B.ENROLL_DATE, B.MODIFY_DATE, B.STATUS, B.HIT, M.MEMBER_NICK, C.BOARD_CATEGORY_TYPE ORDER BY B.BOARD_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
+//			}else if (searchType.equals("myCategory")) {
+//				sql = "SELECT * FROM ( SELECT ROWNUM RNUM ,T.* FROM ( SELECT B.BOARD_NO, B.BOARD_CATEGORY_NO, B.MEMBER_NO, B.BOARD_TITLE, B.BOARD_CONTENT, TO_CHAR(B.ENROLL_DATE,'YYYY.MM.DD') AS ENROLL_DATE, TO_CHAR(B.MODIFY_DATE,'YYYY.MM.DD') AS MODIFY_DATE, B.STATUS, B.HIT, M.MEMBER_NICK, C.BOARD_CATEGORY_TYPE, COUNT(R.REPLY_NO) AS TOTAL_REPLIES FROM BOARD B JOIN MEMBER M ON (B.MEMBER_NO = M.MEMBER_NO) JOIN BOARD_CATEGORY C ON (B.BOARD_CATEGORY_NO = C.BOARD_CATEGORY_NO) LEFT JOIN REPLY R ON (B.BOARD_NO = R.BOARD_NO) WHERE B.STATUS = 'O' AND B.BOARD_CONTENT_NO LIKE ('%' || ? || '%') GROUP BY B.BOARD_NO, B.BOARD_CATEGORY_NO, B.MEMBER_NO, B.BOARD_TITLE, B.BOARD_CONTENT, B.ENROLL_DATE, B.MODIFY_DATE, B.STATUS, B.HIT, M.MEMBER_NICK, C.BOARD_CATEGORY_TYPE ORDER BY B.BOARD_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
+//			}else {
+//				return getBoardMyList(conn, pv);
+//			}
+//			
+//			
+//			PreparedStatement pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, searchValue);
+//			pstmt.setInt(2, pv.getBeginRow());
+//			pstmt.setInt(3, pv.getLastRow());
+//			ResultSet rs = pstmt.executeQuery();
+//			
+//			List<BoardVo> bvoList = new ArrayList<>();
+//			while (rs.next()) {
+//				
+//				String boardNo = rs.getString("BOARD_NO");
+//				String boardCategoryNo = rs.getString("BOARD_CATEGORY_NO");
+//				String memberNo = rs.getString("MEMBER_NO");
+//				String boardTitle = rs.getString("BOARD_TITLE");
+//				String boardContent = rs.getString("BOARD_CONTENT");
+//				String enrollDate = rs.getString("ENROLL_DATE");
+//				String modifyDate = rs.getString("MODIFY_DATE");
+//				String status = rs.getString("STATUS");
+//				String hit = rs.getString("HIT");
+//				String writerNick = rs.getString("MEMBER_NICK");
+//				String boardCategoryType = rs.getString("BOARD_CATEGORY_TYPE");
+//				String totalReplies = rs.getString("TOTAL_REPLIES");
+//				
+//				BoardVo bv = new BoardVo();
+//				bv.setBoardNo(boardNo);
+//				bv.setBoardCategoryNo(boardCategoryNo);
+//				bv.setMemberNo(memberNo);
+//				bv.setBoardTitle(boardTitle);
+//				bv.setBoardContent(boardContent);
+//				bv.setEnrollDate(enrollDate);
+//				bv.setModifyDate(modifyDate);
+//				bv.setStatus(status);
+//				bv.setHit(hit);
+//				bv.setWriterNick(writerNick);
+//				bv.setBoardCategoryType(boardCategoryType);
+//				bv.setTotalReplies(totalReplies);
+//				
+//				bvoList.add(bv);
+//			}
+//			
+//			JDBCTemplate.close(rs);
+//			JDBCTemplate.close(pstmt);
+//			
+//			return bvoList;
+//			
+//		}
+
+		//페이징
+		public int getBoardMyListCnt(Connection conn, String searchType, String searchValue, String mno) throws Exception {
+			
+			String sql = "SELECT COUNT(*) FROM BOARD WHERE STATUS='O' AND MEMBER_NO=?";
+			if ("myTitle".equals(searchType)) {
+				sql += "AND BOARD_TITLE LIKE '%" + searchValue + "%'";
+			} else if ("myContent".equals(searchType)) {
+				sql += "AND BOARD_CONTENT LIKE '%" + searchValue + "%'";
+			}
+//			}else if ("myCategory".equals(searchType)) {
+//				sql += "AND BOARD_CATEGORY_NO LIKE '%" + searchValue + "%'";
+//			}
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mno);
+			ResultSet rs = pstmt.executeQuery();
+			
+			int cnt = 0;
+			if (rs.next()) {
+				cnt = rs.getInt(1);
+			}
+			
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+			
+			return cnt;
 		}
 		
 

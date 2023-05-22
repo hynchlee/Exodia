@@ -32,7 +32,7 @@
                 </c:if>
             </div>
 
-            <form action="${root}/board/detail" method="post" enctype="multipart/form-data">
+            <form action="${root}/board/detail?bno=${cvNo.boardNo}" method="post" enctype="multipart/form-data">
 
                 <!-- 관리자에게만 보이는 체크박스 -->
 				<c:if test="${not empty loginAdmin }">
@@ -81,19 +81,19 @@
 	                    <a href="${root}/board/edit?bno=${cvNo.boardNo}" class="bt1">수정하기</a>
 	                </div>
                 </c:if>
-            </form>
+            
 
             <!-- 큐엔에이, 후기게시판은 답글 안받음 -->
-            <form action="">
-	            <div class="write_comment">
-	                <span>댓글쓰기</span> 
-	                <textarea name="comment" class="view_comment" style="resize: none; height: 50px;"></textarea> 
-	                <input type="submit" value="댓글작성">
-	            </div>
-            </form>
+            <div class="write_comment">
+                <span>댓글쓰기</span> 
+                <textarea name="replyComment" class="view_comment" style="resize: none; height: 50px;"></textarea> 
+                <input type="submit" value="댓글작성">
+            </div>
+	            
+	            
             <c:if test="${cvo.totalReplies > 0}">
 	            <div class="comment_list">
-	            	<c:forEach items="${reList}" var="re">
+	            	<c:forEach items="${revoList}" var="re">
 		                <div class="comment_col">
 		                    <span>${re.writerNick}</span>
 		                    <span>${re.replyContent}</span>
@@ -132,6 +132,7 @@
                 </div>
                </div>
             </c:if>
+            </form>
 		</main>
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>

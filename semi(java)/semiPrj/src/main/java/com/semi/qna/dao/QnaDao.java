@@ -221,4 +221,51 @@ public class QnaDao {
 		return result;
 	}
 
+	//수정하기
+	public int editQna(Connection conn, QnaVo qvo) throws Exception {
+		
+		String sql = "UPDATE QNA SET QNA_TITLE=?, QNA_CONTENT=?, MODIFY_DATE=SYSDATE WHERE QNA_NO=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, qvo.getQnaTitle());
+		pstmt.setString(2, qvo.getQnaContent());
+		pstmt.setString(3, qvo.getQnaNo());
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	}
+
+	//답변작성
+	public int answerWriteQna(Connection conn, QnaVo qvo) throws Exception {
+		
+		String sql = "UPDATE QNA SET QNA_ANSWER=?, ADMIN_NO=? WHERE QNA_NO=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, qvo.getQnaAnswer());
+		pstmt.setString(2, qvo.getAdminNo());
+		pstmt.setString(3, qvo.getQnaNo());
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	}
+
+	//답변수정
+	public int answerEditQna(Connection conn, QnaVo qvo) throws Exception {
+		
+		String sql = "UPDATE QNA SET QNA_ANSWER=?, MODIFY_DATE=SYSDATE WHERE QNA_NO=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, qvo.getQnaAnswer());
+		pstmt.setString(2, qvo.getQnaNo());
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+		
+		
+	}
+
+	
 }

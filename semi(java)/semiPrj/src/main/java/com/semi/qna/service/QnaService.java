@@ -64,7 +64,7 @@ public class QnaService {
 		return qvNo;
 	}
 
-	//질문하기
+	//질문 작성
 	public int qnaWrite(QnaVo qvo) throws Exception {
 		
 		Connection conn = JDBCTemplate.getConnection();
@@ -76,7 +76,7 @@ public class QnaService {
 		return result;
 	}
 
-	//삭제
+	//질문 삭제
 	public int qnaDelete(String qno) throws Exception {
 		
 		Connection conn = JDBCTemplate.getConnection();
@@ -93,5 +93,57 @@ public class QnaService {
 		
 		return result;
 	}
+
+	//질문 수정
+	public int editQna(QnaVo qvo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.editQna(conn, qvo);
+		
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+	//답변 작성하기
+	public int answerWriteQna(QnaVo qvo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.answerWriteQna(conn, qvo);
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+		
+	}
+
+	//답변 수정하기
+	public int answerEditQna(QnaVo qvo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.answerEditQna(conn, qvo);
+		
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+		
+	}
+
+
 
 }
