@@ -63,7 +63,7 @@
 						<div class="menu_2">
 							<div id="pageDiv">
 								<button onclick="pageMove('${pageVo.startPage}');">
-									<<< /button>
+									<<</button>
 										<c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" var="i">
 											<button class="pageBtn" onclick="pageMove('${i}');">${i}</button>
 										</c:forEach>
