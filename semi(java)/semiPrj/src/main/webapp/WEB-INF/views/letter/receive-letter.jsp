@@ -50,7 +50,7 @@
 					</div>
 					<div id="letter-list">
 						<table>
-							<form action="${root}/letter/receive" method="get">
+							<form action="${root}/letter/receive" method="post">
 								<thead>
 									<tr>
 										<td colspan="5">
@@ -142,12 +142,13 @@
 					}
 				}
 				$.ajax({
-					url: '/semi/letter/delete',
+					url: '/semi/letter/delete/receive',
 					type: 'post',
 					data: JSON.stringify(boxList),
 					contentType: "application/json",
 					success: function () {
 						alert("삭제완료");
+						location.reload();
 					},
 					error: function () {
 						alert("에러");
