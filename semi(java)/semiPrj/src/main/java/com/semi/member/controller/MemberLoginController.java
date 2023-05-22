@@ -54,19 +54,14 @@ public class MemberLoginController extends HttpServlet{
 				String root = req.getContextPath();
 				
 				if ( "S".equals(loginMember.getIdentity()) ) {
-					
 //					memberLecture = ms.getSlecture(loginMember.getMemberNo());
 //					req.getSession().setAttribute("memberLecture", memberLecture);
-					resp.sendRedirect(root + "/smain");
-					
 				}else if( "T".equals(loginMember.getIdentity()) ) {
-					
 //					memberLecture = ms.getTlecture(loginMember.getMemberNo());
 //					req.getSession().setAttribute("memberLecture", memberLecture);
-					resp.sendRedirect(root + "/tmain");
-					
 				}//ifif
 				
+				resp.sendRedirect(root + "/main");
 			}else {
 				throw new Exception();
 			}

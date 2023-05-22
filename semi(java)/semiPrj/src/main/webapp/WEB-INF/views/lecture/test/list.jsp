@@ -36,9 +36,13 @@
 						<td>서술형(신)</td>
 						<td></td>
 						<td></td>
-						<td>
-							<button onclick="testStart();">시험시작</button>
-							<button onclick="testScore();">결과확인</button>
+						<td class="bbb">
+							<form action="${root}/lecture/test/list" method="post">
+											<input hidden type="text" name="examCategoryNo" value="${vo.examCategoryNo}">
+											<input hidden type="text" name="examSubject" value="${vo.examSubject}">
+											<input type="submit" value="시험시작">
+							</form>
+							<button>결과확인</button>
 							<button>확인완료</button>
 						</td>
 					</tr>

@@ -11,7 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/lecture/test/start")
 public class TestStartController extends HttpServlet{
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/lecture/test/start.jsp").forward(req, resp);
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String[] answerArr = req.getParameterValues("answer");
+		
+		// 업데이트 
+		
+		resp.sendRedirect("semi/lecture/test/list");
 	}
 }
