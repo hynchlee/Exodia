@@ -305,6 +305,138 @@ public class MypageDao {
 	
 	}
 
+	public String lectureStart(Connection conn, String memberNo) throws Exception {
+
+		String sql = "SELECT TO_CHAR(TO_DATE(L.LECTURE_OPEN_DATE), 'YYYY-MM-DD') STARTDATE, TO_CHAR(TO_DATE(L.LECTURE_CLOSE_DATE), 'YYYY-MM-DD') ENDDATE FROM MEMBER M JOIN STUDENT S ON (M.MEMBER_NO = S.STUDENT_MEMBER_NO) JOIN LECTURE L ON (L.LECTURE_NO = S.LECTURE_NO) WHERE MEMBER_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		String lectureStart = null;
+		while(rs.next()) {
+			lectureStart = rs.getString("STARTDATE");			
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return lectureStart;
+	
+	}
+
+	public String lectureEnd(Connection conn, String memberNo) throws Exception {
+		
+		String sql = "SELECT TO_CHAR(TO_DATE(L.LECTURE_OPEN_DATE), 'YYYY-MM-DD') STARTDATE, TO_CHAR(TO_DATE(L.LECTURE_CLOSE_DATE), 'YYYY-MM-DD') ENDDATE FROM MEMBER M JOIN STUDENT S ON (M.MEMBER_NO = S.STUDENT_MEMBER_NO) JOIN LECTURE L ON (L.LECTURE_NO = S.LECTURE_NO) WHERE MEMBER_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		String lectureEnd = null;
+		while(rs.next()) {
+			lectureEnd = rs.getString("ENDDATE");			
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return lectureEnd;
+	}
+
+	public String checkDate(Connection conn, String memberNo) throws Exception {
+		
+		String sql = "SELECT COUNT(*) FROM ATTENDANCE_LIST WHERE STUDENT_MEMBER_NO = ? AND STATUS = 'O' OR STATUS = 'L' OR STATUS = 'E' OR STATUS = 'G'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		String checkDate = null;
+		while(rs.next()) {
+			checkDate = rs.getString("COUNT(*)");			
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return checkDate;
+		
+	}
+
+	public String runDate(Connection conn, String memberNo) throws Exception {
+		
+		String sql = "SELECT COUNT(*) FROM ATTENDANCE_LIST WHERE STUDENT_MEMBER_NO = ? AND STATUS = 'X'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		String runDate = null;
+		while(rs.next()) {
+			runDate = rs.getString("COUNT(*)");			
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return runDate;
+	
+	}
+
+	public String lateDate(Connection conn, String memberNo) throws Exception {
+		
+		String sql = "SELECT COUNT(*) FROM ATTENDANCE_LIST WHERE STUDENT_MEMBER_NO = ? AND STATUS = 'L'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		String lateDate = null;
+		while(rs.next()) {
+			lateDate = rs.getString("COUNT(*)");			
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return lateDate;
+	
+	}
+
+	public String earlyDate(Connection conn, String memberNo) throws Exception {
+		
+		String sql = "SELECT COUNT(*) FROM ATTENDANCE_LIST WHERE STUDENT_MEMBER_NO = ? AND STATUS = 'L'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		String earlyDate = null;
+		while(rs.next()) {
+			earlyDate = rs.getString("COUNT(*)");			
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return earlyDate;
+	
+	}
+
+	public String getoutDate(Connection conn, String memberNo) throws Exception {
+
+		String sql = "SELECT COUNT(*) FROM ATTENDANCE_LIST WHERE STUDENT_MEMBER_NO = ? AND STATUS = 'G'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		String getoutDate = null;
+		while(rs.next()) {
+			getoutDate = rs.getString("COUNT(*)");			
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return getoutDate;
+	
+	}
+
 	
 	
 }

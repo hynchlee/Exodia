@@ -98,20 +98,20 @@
 					<div class="classdate">
 						<table class="innertable02">
 							<tr class="tr02">
+								<th class="td02">훈련 시작일</th>
+								<th class="td02">훈련 종료일</th>
 								<th class="td02">총 훈련 일수</th>
-								<th class="td02">실시일수</th>
 								<th class="td02">출석일</th>
 								<th class="td02">결석일</th>
 								<th class="td02">출석률(일)</th>
-								<th class="td02">출석률(시간)</th>
 							</tr>
 							<tr class="tr02">
-								<td class="td02">--일</td>
-								<td class="td02">--일</td>
-								<td class="td02">--일</td>
-								<td class="td02">--일</td>
-								<td class="td02">--%</td>
-								<td class="td02">--%</td>
+								<td class="td02">${lectureStart}</td>
+								<td class="td02">${lectureEnd}</td>
+								<td class="td02">156일</td>
+								<td class="td02">${checkDate}일</td>
+								<td class="td02">${runDate}일</td>
+								<td class="td02">${percentage}%</td>
 							</tr>
 						</table>
 					</div>
@@ -124,14 +124,14 @@
 								<th class="td02">결석</th>
 								<th class="td02">지각</th>
 								<th class="td02">조퇴</th>
-								<th class="td02">외풀</th>
+								<th class="td02">외출</th>
 							</tr>
 							<tr class="tr02">
-								<td class="td02">--일</td>
-								<td class="td02">--일</td>
-								<td class="td02">--일</td>
-								<td class="td02">--일</td>
-								<td class="td02">--일</td>
+								<td class="td02">${checkDate}일</td>
+								<td class="td02">${runDate}일</td>
+								<td class="td02">${lateDate}일</td>
+								<td class="td02">${earlyDate}일</td>
+								<td class="td02">${getoutDate}일</td>
 							</tr>
 						</table>
 					</div>
