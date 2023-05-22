@@ -357,5 +357,10 @@ public class LectureDao {
 		
 		return result;
 	}
+	
+//	public int submitAnswerOne(Connection conn, String examCategoryNo, String memberNo, String totalScore) throws SQLException {
+//		
+//	
+//	}
 
 }
