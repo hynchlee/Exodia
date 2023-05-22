@@ -16,6 +16,8 @@ public class TestStartController extends HttpServlet{
 		
 		// 업데이트 
 		
+		
+		
 		resp.sendRedirect("semi/lecture/test/list");
 	}
 }

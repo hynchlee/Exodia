@@ -14,15 +14,16 @@
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<main>
-		<div class="tit">
-			<div class="tit1">${submitAnswerList[0].examSubject}</div>
-			<div class="tit2">
-				<span>&nbsp;</span> <span class="score"></span> <span></span>
-			</div>
-		</div>
-		<br> <br> <br> <br> <br>
-
 		<form action="${root}/lecture/test/start" method="post">
+			<input hidden type="text" name="examCateogoryNo" value= "${submitAnswerList[0].examCategoryNo}"> 
+			<div class="tit">
+				<div class="tit1">${submitAnswerList[0].examSubject}</div>
+				<div class="tit2">
+					<span>&nbsp;</span> <span class="score"></span> <span></span>
+				</div>
+			</div>
+			<br> <br> <br> <br> <br>
+
 			<%
 			int i = 1;
 			%>
@@ -42,10 +43,10 @@
 				%>
 			</c:forEach>
 
-		<br>
-		<div class="finish">
-		<input type="submit" class="finish-btn" value="제출">
-		</div>
+			<br>
+			<div class="finish">
+				<input type="submit" class="finish-btn" value="제출">
+			</div>
 		</form>
 	</main>
 
