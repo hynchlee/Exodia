@@ -96,7 +96,7 @@
 </html>
 <script>
 	const title = document.querySelector('.title');
-	title.innerHTML = "우리반 게시판";
+	title.innerHTML = "우리반게시판";
 </script>
 <script>
 

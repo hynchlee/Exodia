@@ -206,7 +206,7 @@ public class NoticeDao {
 
 	public int noticeDelete(Connection conn, String nno) throws Exception {
 		
-		String sql = "UPDATE BOARD SET STATUS='X' WHERE NOTICE_NO=?";
+		String sql = "UPDATE NOTICE SET STATUS='X' WHERE NOTICE_NO=?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, nno);
 		int result = pstmt.executeUpdate();

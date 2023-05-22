@@ -85,7 +85,7 @@
                 </tbody>
             </table>
             <!-- 관리자나 강사가 클릭하면 다른 창 -->
-            <c:if test="${not empty loginMember}">
+            <c:if test="${not empty loginMember && loginMember.identity eq 'S'}">
 	            <div class="board_bt">
 	                <a href="${root}/qna/write" class="bt1">질문하기</a>
 	            </div>

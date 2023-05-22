@@ -33,7 +33,7 @@ public class NoticeDetailController extends HttpServlet{
 			}
 			
 			req.setAttribute("nvNo", nvNo);
-			req.getRequestDispatcher("/WEB-INF/views/notice/noticeEdit.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/notice/noticeDetail.jsp").forward(req, resp);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
