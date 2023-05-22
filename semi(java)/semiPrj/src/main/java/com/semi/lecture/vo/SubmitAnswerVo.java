@@ -6,6 +6,7 @@ public class SubmitAnswerVo {
 	private String memberNo;
 	private String memberNick;
 	private String score;
+	private String examProblemNo;
 	private String problem;
 	private String submitAnswer;
 	private String answer;
@@ -17,13 +18,14 @@ public class SubmitAnswerVo {
 	}
 
 	public SubmitAnswerVo(String examCategoryNo, String examSubject, String memberNo, String memberNick, String score,
-			String problem, String submitAnswer, String answer, String problemPoint) {
+			String examProblemNo, String problem, String submitAnswer, String answer, String problemPoint) {
 		super();
 		this.examCategoryNo = examCategoryNo;
 		this.examSubject = examSubject;
 		this.memberNo = memberNo;
 		this.memberNick = memberNick;
 		this.score = score;
+		this.examProblemNo = examProblemNo;
 		this.problem = problem;
 		this.submitAnswer = submitAnswer;
 		this.answer = answer;
@@ -70,6 +72,14 @@ public class SubmitAnswerVo {
 		this.score = score;
 	}
 
+	public String getExamProblemNo() {
+		return examProblemNo;
+	}
+
+	public void setExamProblemNo(String examProblemNo) {
+		this.examProblemNo = examProblemNo;
+	}
+
 	public String getProblem() {
 		return problem;
 	}
@@ -105,8 +115,9 @@ public class SubmitAnswerVo {
 	@Override
 	public String toString() {
 		return "SubmitAnswerVo [examCategoryNo=" + examCategoryNo + ", examSubject=" + examSubject + ", memberNo="
-				+ memberNo + ", memberNick=" + memberNick + ", score=" + score + ", problem=" + problem
-				+ ", submitAnswer=" + submitAnswer + ", answer=" + answer + ", problemPoint=" + problemPoint + "]";
+				+ memberNo + ", memberNick=" + memberNick + ", score=" + score + ", examProblemNo=" + examProblemNo
+				+ ", problem=" + problem + ", submitAnswer=" + submitAnswer + ", answer=" + answer + ", problemPoint="
+				+ problemPoint + "]";
 	}
 
 }

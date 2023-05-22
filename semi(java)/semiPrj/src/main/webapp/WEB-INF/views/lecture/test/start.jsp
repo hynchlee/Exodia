@@ -15,7 +15,7 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<main>
 		<form action="${root}/lecture/test/start" method="post">
-			<input hidden type="text" name="examCateogoryNo" value= "${submitAnswerList[0].examCategoryNo}"> 
+			<input hidden type="text" name="examCategoryNo" value= "${submitAnswerList[0].examCategoryNo}"> 
 			<div class="tit">
 				<div class="tit1">${submitAnswerList[0].examSubject}</div>
 				<div class="tit2">
@@ -28,13 +28,14 @@
 			int i = 1;
 			%>
 			<c:forEach items="${submitAnswerList}" var="vo">
+				<input hidden type="text" name="examProblemNo" value= "${vo.examProblemNo}"> 
 				<div class="problem">
 					<div>
 						<%=i%>. ${vo.problem} (${vo.problemPoint}점)
 					</div>
 					<br>
 					<div class="hi">
-						<textarea style="resize: none;" name="answer"></textarea>
+						<textarea style="resize: none;" name="answer">${vo.submitAnswer}</textarea>
 					</div>
 					<br> <br> <br>
 				</div>

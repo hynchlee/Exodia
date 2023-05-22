@@ -32,7 +32,7 @@ public class LectureService {
 		JDBCTemplate.close(conn);
 		return examCategoryList;
 	}
-	
+
 	public List<ExamCategoryVo> getExamCategoryList(PageVo pageVo, MemberVo loginMember) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
 		List<ExamCategoryVo> examCategoryList = dao.getExamCategoryList(conn, pageVo, loginMember);
@@ -40,7 +40,7 @@ public class LectureService {
 		JDBCTemplate.close(conn);
 		return examCategoryList;
 	}
-	
+
 	public List<ExamCategoryVo> getExamCategoryList2(PageVo pageVo, MemberVo loginMember) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
 		List<ExamCategoryVo> examCategoryList = dao.getExamCategoryList2(conn, pageVo, loginMember);
@@ -76,7 +76,7 @@ public class LectureService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
-	
+
 	public int getExamCategoryListCnt(MemberVo loginMember) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
 
@@ -85,7 +85,7 @@ public class LectureService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
-	
+
 	public int getExamCategoryListCnt2(MemberVo loginMember) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
 
@@ -110,7 +110,7 @@ public class LectureService {
 		LectureVo vo = dao.getLectureOne(conn, lectureCategoryNo, memberNo);
 
 		JDBCTemplate.close(conn);
-		
+
 		return vo;
 	}
 
@@ -120,17 +120,17 @@ public class LectureService {
 		List<LectureMemberVo> memberList = dao.getMemberList(conn, pbv, lectureVo);
 
 		JDBCTemplate.close(conn);
-		
+
 		return memberList;
 	}
-	
+
 	public List<SubmitAnswerVo> getSubmitAnswerList(ProblemBankVo pbv) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
 
 		List<SubmitAnswerVo> submitAnswerList = dao.getSubmitAnswerList(conn, pbv);
 
 		JDBCTemplate.close(conn);
-		
+
 		return submitAnswerList;
 	}
 
@@ -140,7 +140,7 @@ public class LectureService {
 		List<SubmitAnswerVo> submitAnswerList = dao.getSubmitAnswerList(conn, pbv, memberNo);
 
 		JDBCTemplate.close(conn);
-		
+
 		return submitAnswerList;
 	}
 
@@ -149,15 +149,58 @@ public class LectureService {
 
 		int result = dao.scoreOne(conn, examCategoryNo, memberNo, totalScore);
 
-		if(result == 1) {
+		if (result == 1) {
 			JDBCTemplate.commit(conn);
 		} else {
 			JDBCTemplate.rollback(conn);
 		}
-		
+
+		JDBCTemplate.close(conn);
+
+		return result;
+	}
+
+	public int lectureApplyOne(String lectureNo, String memberNo) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+
+		int result = dao.lectureApplyOne(conn, lectureNo, memberNo);
+
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+
+		JDBCTemplate.close(conn);
+
+		return result;
+	}
+
+	public int submitAnswers(String memberNo, String examCategoryNo, String[] examProblemNoArr, String[] answerArr) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = 1;
+		int result2 = 0;
+
+		for (int i = 0; i < examProblemNoArr.length; i++) {
+			int cnt = dao.selectAnswerCnt(conn, memberNo, examCategoryNo, memberNo, examCategoryNo);
+			
+			if(cnt == 1) {
+				result2 = dao.updateAnswer(conn, memberNo, examCategoryNo, examProblemNoArr[i], answerArr[i]);				
+			} else {
+				result2 = dao.insertAnswer(conn, memberNo, examCategoryNo, examProblemNoArr[i], answerArr[i]);
+			}
+			
+			if (result2 == 1) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+				result = 0;
+			}
+		}
+
 		JDBCTemplate.close(conn);
 		
 		return result;
 	}
-	
+
 }

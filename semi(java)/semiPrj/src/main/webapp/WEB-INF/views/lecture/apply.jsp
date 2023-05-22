@@ -47,19 +47,22 @@
 				</thead>
 				<tbody>
 					<c:forEach items="${lectureList}" var="vo">
-						<tr>
-							<td>강남</td>
-							<td>${vo.lectureOpenDate}</td>
-							<td>${vo.lectureCloseDate}</td>
-							<td>${vo.teacherMemberName}</td>
-							<td>${vo.lectureCategoryName}</td>
-							<td>${vo.lectureStartTime}~${vo.lectureFinishTime}</td>
-							<td>30</td>
-							<td>국비지원</td>
-							<td><button>접수완료</button></td>
-							<td><button onclick="goDetail()">상세조회</button></td>
-							<td><button>수강신청</button></td>
-						</tr>
+						<form action="${root}/lecture/apply" method="post">
+							<tr>
+								<input hidden type="text" name="lectureNo" value="${vo.lectureNo}">
+								<td>강남</td>
+								<td>${vo.lectureOpenDate}</td>
+								<td>${vo.lectureCloseDate}</td>
+								<td>${vo.teacherMemberName}</td>
+								<td>${vo.lectureCategoryName}</td>
+								<td>${vo.lectureStartTime}~${vo.lectureFinishTime}</td>
+								<td>30</td>
+								<td>국비지원</td>
+								<td><button class="bbtn">접수완료</button></td>
+								<td><button class="bbtn" onclick="goDetail()">상세조회</button></td>
+								<td><input class="bbtn" type="submit" value="수강신청"></td>
+							</tr>
+						</form>
 					</c:forEach>
 				</tbody>
 			</table>

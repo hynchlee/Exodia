@@ -53,15 +53,21 @@ public class TestListController extends HttpServlet {
 			MemberVo loginMember = (MemberVo) req.getSession().getAttribute("loginMember");
 			String examCategoryNo = req.getParameter("examCategoryNo");
 			String examSubject = req.getParameter("examSubject");
+			String result = req.getParameter("result");
 			
 			ProblemBankVo pbv = new ProblemBankVo();
 			pbv.setExamCategoryNo(examCategoryNo);
 			pbv.setExamSubject(examSubject);
-
 			List<SubmitAnswerVo> submitAnswerList = ls.getSubmitAnswerList(pbv, loginMember.getMemberNo());
+
 			req.setAttribute("submitAnswerList", submitAnswerList);
 			req.setAttribute("problemBankVo", pbv);
-			req.getRequestDispatcher("/WEB-INF/views/lecture/test/start.jsp").forward(req, resp);
+
+			if(result.equals("0")) {	
+				req.getRequestDispatcher("/WEB-INF/views/lecture/test/start.jsp").forward(req, resp);								
+			} else if(result.equals("1")) {
+				req.getRequestDispatcher("/WEB-INF/views/lecture/test/result.jsp").forward(req, resp);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("error(학생 평)");
