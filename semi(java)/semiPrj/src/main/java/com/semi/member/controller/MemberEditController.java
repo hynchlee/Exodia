@@ -38,22 +38,22 @@ public class MemberEditController extends HttpServlet{
 			String profile = req.getParameter("profile");
 			
 			//데뭉
-			MemberVo vo = new MemberVo();
-			vo.setMemberNo(memberNo);
-			vo.setMemberPwd(memberPwd);
-			vo.setPhoneNo(phoneNo);
-			vo.setProfile(profile);
+			MemberVo editVo = new MemberVo();
+			editVo.setMemberNo(memberNo);
+			editVo.setMemberPwd(memberPwd);
+			editVo.setPhoneNo(phoneNo);
+			editVo.setProfile(profile);
 			
 			//서비스
 			MemberService ms = new MemberService();
-			MemberVo updatedMember = ms.edit(vo);
+			MemberVo updatedMember = ms.edit(editVo, loginMember);
 			
 			//화면
 			if(updatedMember != null) {
 				req.getSession().setAttribute("alertMsg", "수정완료!");
 				req.getSession().setAttribute("loginMember", updatedMember);
 				String root = req.getContextPath();
-				resp.sendRedirect(root + "/smain");
+				resp.sendRedirect(root + "/main");
 			}else {
 				throw new Exception();
 			}

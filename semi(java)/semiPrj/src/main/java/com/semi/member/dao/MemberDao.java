@@ -25,9 +25,17 @@ public class MemberDao {
 //		pstmt.setString(7, vo.getProfile());
 		int result = pstmt.executeUpdate();
 		
+		String sql2 = "INSERT INTO STUDENT (STUDENT_MEMBER_NO) VALUES (SEQ_MEMBER_NO.NEXTVAL)";
+		PreparedStatement pstmt2 = conn.prepareStatement(sql2);
+		int result2 = pstmt2.executeUpdate();
+		
 		JDBCTemplate.close(pstmt);
 		
-		return result;
+		if (result == 1 && result2 == 1) {
+			return result;
+		}else {
+			throw new Exception();
+		}
 		
 	}
 
@@ -132,24 +140,24 @@ public class MemberDao {
 	}
 
 	//정보수정
-	public int edit(Connection conn, MemberVo vo) throws Exception {
+	public int edit(Connection conn, MemberVo editVo) throws Exception {
 		
 		String sql = "UPDATE MEMBER SET PHONE_NO = ?, PROFILE = ?";
 		
-		if(vo.getMemberPwd() != null && vo.getMemberPwd().length() > 0) {
+		if(editVo.getMemberPwd() != null && editVo.getMemberPwd().length() > 0) {
 			sql += ", MEMBER_PWD = ?";
 		}
 		
 		sql += " WHERE MEMBER_NO = ? AND STATUS = 'O'";
 		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, vo.getPhoneNo());
-		pstmt.setString(2, vo.getProfile());
-		if(vo.getMemberPwd() != null && vo.getMemberPwd().length() > 0) {
-			pstmt.setString(3, vo.getMemberPwd());
-			pstmt.setString(4, vo.getMemberNo());
+		pstmt.setString(1, editVo.getPhoneNo());
+		pstmt.setString(2, editVo.getProfile());
+		if(editVo.getMemberPwd() != null && editVo.getMemberPwd().length() > 0) {
+			pstmt.setString(3, editVo.getMemberPwd());
+			pstmt.setString(4, editVo.getMemberNo());
 		}else {
-			pstmt.setString(3, vo.getMemberNo());
+			pstmt.setString(3, editVo.getMemberNo());
 		}
 		
 		int result = pstmt.executeUpdate();
@@ -160,23 +168,19 @@ public class MemberDao {
 	}
 
 	//회원번호로 회원조회
-	public MemberVo selectOneByNo(Connection conn, String memberNo) throws Exception {
+	public MemberVo selectOneByNo(Connection conn, MemberVo loginMember) throws Exception {
 
 		String sql = "SELECT * FROM MEMBER WHERE MEMBER_NO = ? AND STATUS = 'O'";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, memberNo);
+		pstmt.setString(1, loginMember.getMemberNo());
 		ResultSet rs = pstmt.executeQuery();
 		
-		MemberVo vo = null;
+		MemberVo vo = loginMember;
 		if(rs.next()) {
-			String memberId = rs.getString("MEMBER_ID");
 			String memberPwd = rs.getString("MEMBER_PWD");
 			String phoneNo = rs.getString("PHONE_NO");
 			String profile = rs.getString("PROFILE");
-			
-			vo = new MemberVo();
-			vo.setMemberNo(memberNo);
-			vo.setMemberId(memberId);
+		
 			vo.setMemberPwd(memberPwd);
 			vo.setPhoneNo(phoneNo);
 			vo.setProfile(profile);
@@ -215,6 +219,7 @@ public class MemberDao {
 		
 	}
 
+	//탈퇴
 	public int quit(Connection conn, String memberNo) throws Exception {
 		String sql = "UPDATE MEMBER SET STATUS = 'X' WHERE MEMBER_NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
