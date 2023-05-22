@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.semi.common.page.PageVo;
 import com.semi.lecture.service.LectureService;
 import com.semi.lecture.vo.ExamCategoryVo;
+import com.semi.lecture.vo.LectureMemberVo;
+import com.semi.lecture.vo.ProblemBankVo;
+import com.semi.lecture.vo.SubmitAnswerVo;
 import com.semi.member.vo.MemberVo;
 import com.semi.member.vo.MemberVo;
 
@@ -20,7 +23,7 @@ public class TestListController extends HttpServlet {
 	private final LectureService ls = new LectureService();
 	
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			MemberVo loginMember = (MemberVo) req.getSession().getAttribute("loginMember");
 			
@@ -40,6 +43,28 @@ public class TestListController extends HttpServlet {
 			req.getRequestDispatcher("/WEB-INF/views/lecture/test/list.jsp").forward(req, resp);
 		} catch (Exception e) {
 			System.out.println("error(시험 목록 (학생))");
+		}
+
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		try {
+			MemberVo loginMember = (MemberVo) req.getSession().getAttribute("loginMember");
+			String examCategoryNo = req.getParameter("examCategoryNo");
+			String examSubject = req.getParameter("examSubject");
+			
+			ProblemBankVo pbv = new ProblemBankVo();
+			pbv.setExamCategoryNo(examCategoryNo);
+			pbv.setExamSubject(examSubject);
+
+			List<SubmitAnswerVo> submitAnswerList = ls.getSubmitAnswerList(pbv, loginMember.getMemberNo());
+			req.setAttribute("submitAnswerList", submitAnswerList);
+			req.setAttribute("problemBankVo", pbv);
+			req.getRequestDispatcher("/WEB-INF/views/lecture/test/start.jsp").forward(req, resp);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("error(학생 평)");
 		}
 
 	}

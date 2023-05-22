@@ -101,16 +101,12 @@
 	}
 
 	if ('${loginMember.identity}' == 'S') {
-		logo.href = "${root}/smain";
 		profileImg.href = "${root}/mypage";
 	} else if ('${loginMember.identity}' == 'T') {
-		logo.href = "${root}/tmain";
 		profileImg.href = "${root}/tmypage";
 	} else if ('${loginAdmin}' != '' && '${loginAdmin}' != null) {
-		logo.href = "${root}/mmain";
 		profileImg.hidden = true;
 	} else {
-		logo.href = "${root}/main";
 		profileImg.hidden = true;
 	}
 </script>
