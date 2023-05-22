@@ -26,6 +26,13 @@
 </head>
 
 <body>
+	<c:if test="${ not empty alertMsg }">
+		<script>
+			alert('${alertMsg}');
+		</script>
+	</c:if>
+	<c:remove var="alertMsg" scope="session" />
+
 	<header>
 		<nav>
 			<ul>
@@ -85,12 +92,12 @@
 
 	if ('${loginMember}' != '' && '${loginMember}' != null) {
 		console.log("회원 : ${loginMember.memberNick}");
-		
-		if("S" == "${loginMember.identity}") {
+
+		if ("S" == "${loginMember.identity}") {
 			console.log("[수강생]");
-		} else if("T" == "${loginMember.identity}") {
+		} else if ("T" == "${loginMember.identity}") {
 			console.log("[강사]");
-			if('${lectureVo}' != '' && '${lectureVo}' != null) {
+			if ('${lectureVo}' != '' && '${lectureVo}' != null) {
 				console.log("lectureVo : ${lectureVo}")
 			}
 		}
