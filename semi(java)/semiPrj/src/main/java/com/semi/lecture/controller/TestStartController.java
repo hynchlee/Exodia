@@ -14,10 +14,9 @@ public class TestStartController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String[] answerArr = req.getParameterValues("answer");
 		
-		// 업데이트 
+		// 인서트
+		System.out.println("미구현");
 		
-		
-		
-		resp.sendRedirect("semi/lecture/test/list");
+		resp.sendRedirect("/semi/lecture/test/list");
 	}
 }
