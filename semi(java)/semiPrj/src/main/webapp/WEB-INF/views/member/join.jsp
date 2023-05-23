@@ -24,7 +24,7 @@
             </a>
         </div>
 
-        <form action="${root}/member/join" method="post"  enctype="multipart/form-data">
+        <form action="${root}/member/join" method="post" enctype="multipart/form-data">
             
             <div class="radio-area">
                 <div class="identity-box">

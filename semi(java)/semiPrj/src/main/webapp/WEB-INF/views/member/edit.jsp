@@ -24,7 +24,7 @@
             </a>
         </div>
 
-        <form action="${root}/member/edit" method="post">
+        <form action="${root}/member/edit" method="post" enctype="multipart/form-data">
 
             <table>
                 <tr>
