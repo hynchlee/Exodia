@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.semi.attendance.vo.AttendanceVo;
 import com.semi.board.vo.BoardVo;
 import com.semi.common.db.JDBCTemplate;
 import com.semi.lecture.vo.LectureVo;
@@ -222,6 +223,19 @@ public class MypageService {
 		JDBCTemplate.close(conn);
 		
 		return getoutDate;
+	
+	}
+
+	public List<AttendanceVo> AttendanceList(String memberNo) throws Exception {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		List<AttendanceVo> avoList = mdao.AttendanceList(conn, memberNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return avoList;
 	
 	}
 

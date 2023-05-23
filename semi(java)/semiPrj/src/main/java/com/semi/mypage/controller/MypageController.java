@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.semi.attendance.vo.AttendanceVo;
 import com.semi.board.vo.BoardVo;
 import com.semi.lecture.vo.LectureVo;
 import com.semi.member.vo.MemberVo;
@@ -40,6 +41,7 @@ public class MypageController extends HttpServlet{
 			String countMyWrite = ms.countMyWrite(memberNo);
 			List<TeamVo> teamList = ms.teamList();
 			List<VacationVo> restList= ms.restList(memberNo);
+			List<AttendanceVo> avoList = ms.AttendanceList(memberNo);
 			String lectureStart = ms.lecturestart(memberNo);
 			String lectureEnd = ms.lectureEnd(memberNo);
 			String checkDate = ms.checkDate(memberNo);
@@ -54,6 +56,7 @@ public class MypageController extends HttpServlet{
 			req.setAttribute("countMyWrite", countMyWrite);
 			req.setAttribute("teamList", teamList);
 			req.setAttribute("restList", restList);
+			req.setAttribute("avoList", avoList);
 			req.setAttribute("lectureStart", lectureStart);			
 			req.setAttribute("lectureEnd", lectureEnd);
 			req.setAttribute("checkDate", checkDate);			

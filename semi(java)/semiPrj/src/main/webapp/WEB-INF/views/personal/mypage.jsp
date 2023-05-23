@@ -143,38 +143,24 @@
 		<table class="table03" width="100%" height="450px">
 			<tr>
 				<td class="td03">
-					<div class="detail01">
+					<div class="detail01" style="overflow: auto;">
 						<table class="innertable03">
 							<tr class="tr030">
 								<td colspan="3" class="td030">출결 내역</td>
 								<td class="plus01"><a href="/" class="plus02">더보기</a></td>
 							</tr>
-							<tr class="tr03">
-								<td class="line02">
-								<div class="enter">입실</div>
-								</td>
-								<td class="line02">2023-00-00 00:00:00:00</td>
-								<td class="line02">
-								<div class="done">퇴실</div>
-								</td>
-								<td class="line02">2023-00-00 00:00:00:00</td>
-							</tr>
-							<tr class="tr03">
-								<td class="line02">
-								<div class="enter">입실</div>
-								</td>
-								<td class="line02">2023-00-00</td>
-								<td class="line02"></td>
-								<td class="line02"></td>
-							</tr>
-							<tr class="tr03">
-								<td class="line02">
-								<div class="enter">입실</div>
-								</td>
-								<td class="line02">2023-00-00</td>
-								<td class="line02"></td>
-								<td class="line02"></td>
-							</tr>
+							<c:forEach items="${avoList}" var="avoList">
+								<tr class="tr03">
+									<td class="line02">
+									<div class="enter">입실</div>
+									</td>
+									<td class="line02">${avoList.checkInTime}</td>
+									<td class="line02">
+									<div class="done">퇴실</div>
+									</td>
+									<td class="line02">${avoList.checkOutTime}</td>
+								</tr>
+							</c:forEach>
 						</table>
 					</div>
 				</td>

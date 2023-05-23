@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.semi.attendance.vo.AttendanceVo;
 import com.semi.board.vo.BoardVo;
 import com.semi.common.db.JDBCTemplate;
 import com.semi.lecture.vo.LectureVo;
@@ -434,6 +435,34 @@ public class MypageDao {
 		JDBCTemplate.close(pstmt);
 		
 		return getoutDate;
+	
+	}
+
+	public List<AttendanceVo> AttendanceList(Connection conn, String memberNo) throws Exception {
+
+		String sql = "SELECT TO_CHAR(CHECK_IN_TIME, 'YY-MM-DD HH24:MI:SS')CIT , TO_CHAR(CHECK_OUT_TIME, 'YY-MM-DD HH24:MI:SS')COT FROM ATTENDANCE_LIST WHERE STUDENT_MEMBER_NO = ? ORDER BY ATTENDANCE_DATE DESC";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		List<AttendanceVo> avoList = new ArrayList<>();
+		while (rs.next()) {
+			
+			String checkinTime = rs.getString("CIT");
+			String checkOutTime = rs.getString("COT");
+			
+			AttendanceVo av = new AttendanceVo();
+			av.setCheckInTime(checkinTime);
+			av.setCheckOutTime(checkOutTime);
+			
+			avoList.add(av);
+		
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return avoList;
 	
 	}
 
