@@ -390,7 +390,6 @@ public class BoardDao {
 			while (rs.next()) {
 				String replyNo = rs.getString("REPLY_NO");
 				String writerNo = rs.getString("WRITER_NO");
-				String boardNo = rs.getString("BOARD_NO");
 				String replyContent = rs.getString("REPLY_CONTENT");
 				String enrollDate = rs.getString("ENROLL_DATE");
 				String modifyDate = rs.getString("MODIFY_DATE");
@@ -400,7 +399,6 @@ public class BoardDao {
 				ReplyVo rv = new ReplyVo();
 				rv.setReplyNo(replyNo);
 				rv.setWriterNo(writerNo);
-				rv.setBoardNo(boardNo);
 				rv.setReplyContent(replyContent);
 				rv.setEnrollDate(enrollDate);
 				rv.setModifyDate(modifyDate);
@@ -554,6 +552,21 @@ public class BoardDao {
 			JDBCTemplate.close(pstmt);
 			
 			return cnt;
+		}
+
+		//댓글 작성
+		public int replyWrite(Connection conn, ReplyVo revo) throws Exception {
+			
+			String sql = "INSERT INTO REPLY(REPLY_NO, WRITER_NO, BOARD_NO, REPLY_CONTENT) VALUES(SEQ_REPLY_NO.NEXTVAL, ?,?,?)";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, revo.getWriterNo());;
+			pstmt.setString(2, revo.getBoardNo());;
+			pstmt.setString(3, revo.getReplyContent());;
+			int result = pstmt.executeUpdate();
+			
+			JDBCTemplate.close(pstmt);
+			
+			return result;
 		}
 		
 
