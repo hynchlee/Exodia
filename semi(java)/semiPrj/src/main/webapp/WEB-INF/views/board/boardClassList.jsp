@@ -21,8 +21,7 @@
 				<div class="myClass">
 	                <ul>
 	                    <li class="loginName">${loginMember.memberNick} 님 환영합니다</li>
-	                    <li class="class">(스마트웹&콘텐츠개발)반응형 UI/UX 웹콘텐츠 개발자 양성과정A</li>
-	                    <li class="classRoom">[강남 362] 2022. 12. 30 ~ 2023. 08. 16 ｜ 15:30 ~ 22:00 (심원용 강사 ｜ 김리아 취업담임)</li>
+	                    <li class="class">${memberLecture[0].lectureName}</li>
 	                </ul>
 	            </div>
 			</c:if>
@@ -50,6 +49,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                <c:if test="${memberLecture[0].lectureName && loginMember.identity eq 'S'}">
                     <c:forEach items="${cvoList}" var="cvo">
 	                    <tr>
 	                        <td>${cvo.boardNo}</td>
@@ -63,6 +63,7 @@
 	                        <td>${cvo.hit}</td>
 	                    </tr>
                     </c:forEach>
+                </c:if>
                 </tbody>
             </table>
             
