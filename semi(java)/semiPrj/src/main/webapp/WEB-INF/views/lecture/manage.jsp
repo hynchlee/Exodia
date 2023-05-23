@@ -4,10 +4,18 @@
 		<html>
 
 		<head>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 			<meta charset="UTF-8">
 			<title>Insert title here</title>
 			<c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 			<link href="${root}/static/css/lecture/manage.css" rel="stylesheet">
+
+		<style>
+			input, select {
+				margin: 0;
+				padding: 0;
+			}
+		</style>
 		</head>
 
 
@@ -35,7 +43,7 @@
 									<th>개강일</th>
 									<th>종강일</th>
 									<th>담당 강사</th>
-									<th>과정명</th>
+									<th class="lname">과정명</th>
 									<th>수업시간</th>
 									<th>정원</th>
 									<th>수강료</th>
@@ -47,13 +55,14 @@
 							</thead>
 							<tbody>
 								<c:forEach items="${lectureList}" var="vo">
-									<tr>
+									<tr class="tr${vo.lectureNo}">
 										<td>강남</td>
-										<td>${vo.lectureOpenDate}</td>
-										<td>${vo.lectureCloseDate}</td>
-										<td>${vo.teacherMemberName}</td>
-										<td>${vo.lectureCategoryName}</td>
-										<td>${vo.lectureStartTime}~${vo.lectureFinishTime}</td>
+										<td class="td" hidden>${vo.lectureNo}</td>
+										<td class="td">${vo.lectureOpenDate}</td>
+										<td class="td">${vo.lectureCloseDate}</td>
+										<td class="td">${vo.teacherMemberName}</td>
+										<td class="td">${vo.lectureCategoryName}</td>
+										<td class="td">${vo.lectureStartTime}~${vo.lectureFinishTime}</td>
 										<td>30</td>
 										<td>국비지원</td>
 										<td><button>접수완료</button></td>
@@ -70,8 +79,9 @@
 					<div class="wrap_1">
 						<div class="menu_3">
 							<div class="btn">
-								<button>수정</button>
-								<button id="deleteButton" onclick="delButton();">삭제</button>
+								<button class="modbtn1" onclick="modButton1();">수정</button>
+								<button class="modbtn2" hidden onclick="modButton2();">저장</button>
+								<button onclick="delButton();">삭제</button>
 								<button>추가</button>
 							</div>
 						</div>
@@ -100,6 +110,9 @@
 
 		<script>
 			const title = document.querySelector('.title');
+			const modbtn1 = document.querySelector('.modbtn1');
+			const modbtn2 = document.querySelector('.modbtn2');
+			const checkboxes = document.querySelectorAll('.checkbox');
 			title.innerHTML = "강의 관리";
 
 			function goDetail() {
@@ -122,8 +135,71 @@
 				}
 			}
 
+			function modButton1() {
+				var boxList = [];
+				for (const checkbox of checkboxes) {
+					if (checkbox.checked) {
+						boxList.push(checkbox.value);
+					}
+				}
+
+				for (const chbox of boxList) {
+					const tr = document.querySelector('.tr' + chbox);
+					const tds = tr.querySelectorAll('.td');
+	
+					tds.forEach(td => {
+						const txt = td.innerText;
+						td.innerHTML = '<input style="text-align:center; width: 100%; height: 76px;" type="text" value="' + txt + '">';
+					});
+					tds[3].innerHTML = '<select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${lectureList}" var="vo"> <option value="${vo.teacherMemberNo}">${vo.teacherMemberName}</option> </c:forEach> </select>';
+					tds[4].innerHTML = '<select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${lectureList}" var="vo"> <option value="${vo.lectureCategoryNo}">${vo.lectureCategoryName}</option> </c:forEach> </select>';
+				}
+
+				modbtn1.hidden = true;
+				modbtn2.hidden = false;
+			}
+
+			function modButton2() {
+				var boxList = [];
+				for (const checkbox of checkboxes) {
+					if (checkbox.checked) {
+						boxList.push(checkbox.value);
+					}
+				}
+
+				for (const chbox of boxList) {
+					const tr = document.querySelector('.tr' + chbox);
+					const tds = tr.querySelectorAll('.td');
+					var bList = [];
+
+					
+					bList.push(tds[0].querySelector('input').value);
+					bList.push(tds[1].querySelector('input').value);
+					bList.push(tds[2].querySelector('input').value);
+					bList.push(tds[3].querySelector('select').value);
+					bList.push(tds[4].querySelector('select').value);
+					bList.push(tds[5].querySelector('input').value);
+	
+					$.ajax({
+						url: '/semi/lecture/manage/modify',
+						type: 'post',
+						data: JSON.stringify(bList),
+						contentType: "application/json",
+						success: function () {
+							location.reload();
+						},
+						error: function () {
+							alert("에러");
+						}
+					});
+				}
+				
+				alert("수정 완료");
+				modbtn1.hidden = false;
+				modbtn2.hidden = true;
+			}
+
 			function delButton() {
-				const checkboxes = document.querySelectorAll('.checkbox');
 				var boxList = [];
 
 				for (const checkbox of checkboxes) {
@@ -133,7 +209,7 @@
 				}
 
 				$.ajax({
-					url: '/semi/lecture/manage',
+					url: '/semi/lecture/manage/delete',
 					type: 'post',
 					data: JSON.stringify(boxList),
 					contentType: "application/json",
@@ -145,6 +221,5 @@
 						alert("에러");
 					}
 				});
-
 			}
 		</script>

@@ -32,7 +32,12 @@ main * {
 
 .e112_923 {
 	width: 70%;
+	table-layout: fixed;
 	text-align: center;
+}
+
+.lname {
+	width: 30%;
 }
 
 .menu_1 * {

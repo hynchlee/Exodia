@@ -543,4 +543,37 @@ public class LectureDao {
 		return result;
 	}
 
+	public int deleteLecture(Connection conn, int number) throws SQLException {
+		String sql = "UPDATE LECTURE SET STATUS = 'X' WHERE LECTURE_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, number);
+		int result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	}
+
+	public int modifyLectureOne(Connection conn, String[] params) throws SQLException {
+		String sql = "UPDATE LECTURE SET LECTURE_OPEN_DATE = ? , LECTURE_CLOSE_DATE = ? , TEACHER_MEMBER_NO = (SELECT MEMBER_NO FROM MEMBER WHERE MEMBER_NICK = ? AND IDENTITY = 'T' FETCH FIRST 1 ROW ONLY) , LECTURE_CATEGORY_NO = (SELECT LECTURE_CATEGORY_NO FROM LECTURE_CATEGORY WHERE LECTURE_NAME = ?) , LECTURE_START_TIME = ? , LECTURE_FINISH_TIME = ? WHERE LECTURE_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		
+		for (int i = 0; i <params.length; i++) {
+			System.out.println(i + ":" + params[i]);
+		}
+		
+		String[] split = params[5].split("~");		
+		pstmt.setString(1, params[1]);
+		pstmt.setString(2, params[2]);
+		pstmt.setString(3, params[3]);
+		pstmt.setString(4, params[4]);
+		pstmt.setString(5, split[0]);
+		pstmt.setString(6, split[1]);
+		pstmt.setString(7, params[0]);
+		
+		int result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	}
+
 }
