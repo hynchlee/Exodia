@@ -10,7 +10,6 @@ import java.util.List;
 import com.semi.common.db.JDBCTemplate;
 import com.semi.common.page.PageVo;
 import com.semi.letter.vo.LetterVo;
-import com.semi.member.vo.MemberVo;
 
 public class LetterDao {
 
@@ -126,16 +125,29 @@ public class LetterDao {
 		List<LetterVo> voList = new ArrayList<>();
 		while (rs.next()) {
 
-			String memberNick = rs.getString("MEMBER_NICK");
+			String no = rs.getString("LETTER_NO");
+			String sendMemberNo = rs.getString("SEND_MEMBER_NO");
+			String sendMemberName = rs.getString("SEND_MEMBER_NAME");			
+			String receiveNo = rs.getString("RECEIVE_MEMBER_NO");
+			String receiveName = rs.getString("RECEIVE_MEMBER_NAME");
 			String letterTitle = rs.getString("LETTER_TITLE");
+			String letterContent = rs.getString("LETTER_CONTENT");
 			String enrollDate = rs.getString("ENROLL_DATE");
+			String status = rs.getString("STATUS");
 
 			LetterVo vo = new LetterVo();
-			vo.setSendMemberName(memberNick);
+			vo.setSendMemberName(sendMemberName);
+			vo.setSendMemberNo(sendMemberNo);
+			vo.setReceiveMemberNo(receiveNo);
+			vo.setReceiveMemberName(receiveName);
 			vo.setLetterTitle(letterTitle);
 			vo.setEnrollDate(enrollDate);
-
+			vo.setLetterNo(no);
+			vo.setLetterContent(letterContent);
+			vo.setStatus(status);
+			
 			voList.add(vo);
+
 		}
 
 		JDBCTemplate.close(rs);
@@ -253,18 +265,26 @@ public class LetterDao {
 		while (rs.next()) {
 
 			String no = rs.getString("LETTER_NO");
+			String sendMemberNo = rs.getString("SEND_MEMBER_NO");
+			String sendMemberName = rs.getString("SEND_MEMBER_NAME");			
+			String receiveNo = rs.getString("RECEIVE_MEMBER_NO");
 			String receiveName = rs.getString("RECEIVE_MEMBER_NAME");
 			String letterTitle = rs.getString("LETTER_TITLE");
+			String letterContent = rs.getString("LETTER_CONTENT");
 			String enrollDate = rs.getString("ENROLL_DATE");
+			String status = rs.getString("STATUS");
 
 			LetterVo vo = new LetterVo();
+			vo.setSendMemberName(sendMemberName);
+			vo.setSendMemberNo(sendMemberNo);
+			vo.setReceiveMemberNo(receiveNo);
 			vo.setReceiveMemberName(receiveName);
 			vo.setLetterTitle(letterTitle);
 			vo.setEnrollDate(enrollDate);
 			vo.setLetterNo(no);
+			vo.setLetterContent(letterContent);
+			vo.setStatus(status);
 			
-			System.out.println(receiveName);
-
 			voList.add(vo);
 
 		}
@@ -364,4 +384,66 @@ public class LetterDao {
 
 		return voList;
 	}
+
+	public int deleteTrashLetter(Connection conn, int number) throws Exception {
+		
+		String sql = "UPDATE LETTER SET SET STATUS = 'XX' WHERE LETTER_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, number);
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	}
+
+	public LetterVo selectLetterOneByNo(String no, Connection conn) throws Exception {
+
+		String sql = "SELECT LETTER_NO, SEND_MEMBER_NO, RECEIVE_MEMBER_NO, LETTER_TITLE, LETTER_CONTENT, ENROLL_DATE FROM LETTER WHERE LETTER_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, no);
+		ResultSet rs = pstmt.executeQuery();
+		
+		LetterVo vo = null;
+		if(rs.next()) {
+			String sendMemberNo = rs.getString("SEND_MEMBER_NO");
+			String sendMemberName = rs.getString("SEND_MEMBER_NAME");
+			String receiveMemberNo = rs.getString("RECEIVE_MEMBER_NO");
+			String receiveMemberName = rs.getString("RECEIVE_MEMBER_NAME");
+			String letterTitle = rs.getString("LETTER_TITLE");
+			String letterContent = rs.getString("LETTER_CONTENT");
+			String enrollDate = rs.getString("ENROLL_DATE");
+			
+			vo.setLetterNo(no);
+			vo.setSendMemberNo(sendMemberNo);
+			vo.setSendMemberName(sendMemberName);
+			vo.setReceiveMemberName(receiveMemberName);
+			vo.setReceiveMemberNo(receiveMemberNo);
+			vo.setLetterTitle(letterTitle);
+			vo.setLetterContent(letterContent);
+			vo.setEnrollDate(enrollDate);
+			
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return vo;
+		
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

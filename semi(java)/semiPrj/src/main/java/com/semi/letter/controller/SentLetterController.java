@@ -57,7 +57,6 @@ public class SentLetterController extends HttpServlet {
 			else {
 				voList = bs.getLetterSendList(pv, searchType, searchValue, MemberNo);
 			}
-			System.out.println(voList.get(0));
 			
 			Map<String, String> map = new HashMap<>();
 			map.put("searchType", searchType);
