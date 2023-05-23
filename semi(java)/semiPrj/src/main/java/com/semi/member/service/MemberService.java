@@ -124,21 +124,18 @@ public class MemberService {
 		
 	}
 
-	//학생회원 강의 꺼내기
-	public List<LectureCategoryVo> getSlecture(String memberNo) throws Exception {
+	//로그인 시 강의명 담기
+	public List<LectureCategoryVo> getLecture(String memberNo, String identity) throws Exception {
 		
 		//conn
 		Connection conn = JDBCTemplate.getConnection();
 		//sql
-		List<LectureCategoryVo> memberLecture = (List<LectureCategoryVo>) dao.getSlecture(conn, memberNo);
+		List<LectureCategoryVo> memberLecture = (List<LectureCategoryVo>) dao.getLecture(conn, memberNo, identity);
 		//close
 		JDBCTemplate.close(conn);
 		
 		return memberLecture;
 	
 	}
-
-	
-	//강사회원 강의 꺼내기
 
 }

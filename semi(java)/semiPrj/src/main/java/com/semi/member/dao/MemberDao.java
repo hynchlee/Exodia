@@ -28,6 +28,7 @@ public class MemberDao {
 		pstmt.setString(7, vo.getProfile());
 		int result = pstmt.executeUpdate();
 		
+		//학생 테이블 칼럼 추가
 		if (result == 1) {
 			String sql2 = "INSERT INTO STUDENT (STUDENT_MEMBER_NO) VALUES (SEQ_MEMBER_NO.CURRVAL)";
 			PreparedStatement pstmt2 = conn.prepareStatement(sql2);
@@ -41,19 +42,7 @@ public class MemberDao {
 		JDBCTemplate.close(pstmt);
 		
 		return result;
-		
-//		String sql2 = "INSERT INTO STUDENT (STUDENT_MEMBER_NO) VALUES (SEQ_MEMBER_NO.NEXTVAL)";
-//		PreparedStatement pstmt2 = conn.prepareStatement(sql2);
-//		int result2 = pstmt2.executeUpdate();
-//		
-//		JDBCTemplate.close(pstmt);
-//		
-//		if (result == 1 && result2 == 1) {
-//			return result;
-//		}else {
-//			throw new Exception();
-//		}
-		
+				
 	}
 
 	//로그인
@@ -222,12 +211,24 @@ public class MemberDao {
 		
 		return result;
 	}
+	
+	//로그인 시 강의명 담기
+	public List<LectureCategoryVo> getLecture(Connection conn, String memberNo, String identity) throws Exception {
 
-	public List<LectureCategoryVo> getSlecture(Connection conn, String memberNo) throws Exception {
-
-		String sql = "SELECT LECTURE_NAME FROM MEMBER M JOIN STUDENT S ON(M.MEMBER_NO = S.STUDENT_MEMBER_NO) JOIN LECTURE L ON (S.LECTURE_NO = L.LECTURE_NO) JOIN LECTURE_CATEGORY LC ON (L.LECTURE_CATEGORY_NO = LC.LECTURE_CATEGORY_NO) WHERE M.MEMBER_NO = ?";
+		String sql = "";
+		if ( "S".equals(identity) ) {
+			sql = "SELECT LECTURE_NAME FROM MEMBER M JOIN STUDENT S ON(M.MEMBER_NO = S.STUDENT_MEMBER_NO) JOIN LECTURE L ON (S.LECTURE_NO = L.LECTURE_NO) JOIN LECTURE_CATEGORY LC ON (L.LECTURE_CATEGORY_NO = LC.LECTURE_CATEGORY_NO) WHERE M.MEMBER_NO = ? AND M.IDENTITY = ?";
+		}
+		else if(( "T".equals(identity) )) {
+			sql = "SELECT LECTURE_NAME FROM MEMBER M JOIN LECTURE L ON(M.MEMBER_NO = L.TEACHER_MEMBER_NO) JOIN LECTURE_CATEGORY LC ON (L.LECTURE_CATEGORY_NO = LC.LECTURE_CATEGORY_NO) WHERE M.MEMBER_NO = ? AND M.IDENTITY = ?";
+		}
+		else {
+			throw new Exception();
+		}
+		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, memberNo);
+		pstmt.setString(2, identity);
 		ResultSet rs = pstmt.executeQuery();
 		
 		//tx||rs
