@@ -210,4 +210,22 @@ public class BoardService {
 		return cnt;
 	}
 
+	//댓글쓰기
+	public int replyWrite(ReplyVo revo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.replyWrite(conn, revo);
+		
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
 }
