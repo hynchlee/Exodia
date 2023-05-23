@@ -29,7 +29,7 @@ public class BoardReplyListController extends HttpServlet{
 			List<ReplyVo> revolist = bs.getBoardReplyList(bno);
 			
 			PrintWriter out = resp.getWriter();
-			out.write(revolist.toString());
+			out.write("{\"\":\"\"}");
 			
 		} catch (Exception e) {
 			System.out.println("[ERROR] reply list error");
