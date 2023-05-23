@@ -18,7 +18,7 @@ public class LectureManageController extends HttpServlet{
 	private final LectureService ls = new LectureService();
 	
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			int cnt = ls.getLectureListCnt();
 
@@ -38,5 +38,14 @@ public class LectureManageController extends HttpServlet{
 			System.out.println("error(강의 관리)");
 		}
 		
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		try {
+			
+		} catch (Exception e) {
+			System.out.println("ERROR(강의 관리 post)");
+		}
 	}
 }

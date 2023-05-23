@@ -374,6 +374,24 @@ public class LectureDao {
 
 		return vo;
 	}
+	
+
+	public String getLectureNo(Connection conn, String memberNo) throws SQLException {
+		String sql = "SELECT LECTURE_NO FROM STUDENT WHERE STUDENT_MEMBER_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		String result = null;
+		if (rs.next()) {
+			result = rs.getString(1);
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	}
 
 	public List<LectureMemberVo> getMemberList(Connection conn, ProblemBankVo pbv,LectureVo lectureVo) throws SQLException {
 		String sql = "SELECT * FROM MEMBER M JOIN STUDENT S ON M.MEMBER_NO = S.STUDENT_MEMBER_NO JOIN EXAM_LIST EL ON EL.MEMBER_NO = M.MEMBER_NO WHERE LECTURE_NO = ? AND EXAM_CATEGORY_NO = ?";
@@ -524,4 +542,5 @@ public class LectureDao {
 		
 		return result;
 	}
+
 }
