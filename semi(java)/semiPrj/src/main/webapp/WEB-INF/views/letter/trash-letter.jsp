@@ -3,6 +3,7 @@
 	<!DOCTYPE html>
 	<html>
 	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 		<c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
@@ -89,6 +90,11 @@
 						</tbody>
 						<tfoot>
 							<tr>
+								<td id="deleteTd" colspan="5">
+									<button id="deleteButton" onclick="delButton();">삭제하기</button>
+								</td>
+							</tr>
+							<tr>
 								<td id="pageTd" colspan="5">
 									<button onclick="pageMove('${pageVo.startPage}');"><<</button>
 									<c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" var="i">
@@ -130,6 +136,31 @@
 			}
 		}
 
+		function delButton() {
+			const checkboxes = document.querySelectorAll('.checkbox');
+			var boxList = [];
+
+			for (const checkbox of checkboxes) {
+				if (checkbox.checked) {
+					boxList.push(checkbox.value);
+				}
+			}
+			$.ajax({
+				url: '/semi/letter/delete/receive',
+				type: 'post',
+				data: JSON.stringify(boxList),
+				contentType: "application/json",
+				success: function () {
+					alert("삭제완료");
+					location.reload();
+				},
+				error: function () {
+					alert("에러");
+				}
+			});
+
+		}
+
 		const opt = document.querySelector("#changeOpt");
 		opt.addEventListener("change",function(){
 			$.ajax({
@@ -145,5 +176,42 @@
 				}
 			});
 		});
+
+		const searchSR = '${searchVo.searchSR}'
+		const searchType = '${searchVo.searchType}';
+		const searchValue = '${searchVo.searchValue}';
+
+		const searchValueSelectTag = document.querySelector("select[name='searchValue']");
+		const searchValueInputTag = document.querySelector("input[name='searchValue']");
+
+		if (searchType.length > 1) {
+			initSearchType();
+		}
+
+		// 검색 타입 초기셋팅
+		function initSearchType() {
+			const x = document.querySelector('select > option[value="' + searchType + '"]');
+			x.selected = true;
+		}
+
+
+		//서치타입 변경 시 함수 실행
+		const searchTypeTag = document.querySelector('select[name="searchType"]');
+		searchTypeTag.addEventListener("change", setSearchValueTag);
+
+		function setSearchValueTag() {
+			const searchType = searchTypeTag.value;
+			setSearchValueTagInput();
+		}
+
+		//검색값 영역을 인풋이 보이게 (타입이 카테고리가 아닐 때)
+		function setSearchValueTagInput() {
+			searchValueInputTag.classList.add("active");
+			searchValueInputTag.disabled = false;
+			searchValueSelectTag.classList.remove("active");
+			searchValueSelectTag.disabled = true;
+		}
+
+		setSearchValueTag();
 
 	</script>

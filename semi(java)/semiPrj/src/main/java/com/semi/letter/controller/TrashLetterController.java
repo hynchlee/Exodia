@@ -31,10 +31,11 @@ public class TrashLetterController extends HttpServlet {
 			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
 			return;
 		}
+		
+		String memberNo = loginMember.getMemberNo();
+
 		try {
-
-			String memberNo = loginMember.getMemberNo();
-
+			
 			String searchType = req.getParameter("searchType");
 			String searchValue = req.getParameter("searchValue");
 			String searchSR = req.getParameter("searchSR");
@@ -67,7 +68,7 @@ public class TrashLetterController extends HttpServlet {
 			req.setAttribute("searchVo", map);
 			req.setAttribute("voList", voList);
 			req.setAttribute("pageVo", pv);
-			req.getRequestDispatcher("/WEB-INF/views/letter/receive-letter.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/letter/trash-letter.jsp").forward(req, resp);
 		} catch (Exception e) {
 			System.out.println("[ERROR] 받은편지 오류 에러");
 			e.printStackTrace();

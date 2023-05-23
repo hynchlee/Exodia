@@ -21,6 +21,11 @@ main {
     border-bottom: 1px solid #ddd;
 }
 
+.head{
+    border: none;
+    background-color:  #F0F0F0 ;
+}
+
 input[type=checkbox]{
     width: 15px;
     height: 15px;

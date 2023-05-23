@@ -26,6 +26,8 @@ public class DeleteSentLetterController extends HttpServlet{
 					.replace("\"","")
 					.split(",");
 			
+			System.out.println(json);
+			
 			int[] letterNo = new int[strNumbers.length];
 			
 			for (int i = 0; i < letterNo.length; i++) {

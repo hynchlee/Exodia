@@ -171,4 +171,37 @@ public class LetterService {
 
 	}
 
+	public int deleteTrashLetter(int[] letterNo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+
+		int x = 1;
+		for (int number : letterNo) {
+			int result = dao.deleteTrashLetter(conn, number);
+
+			if (result != 1) {
+				x = 0;
+				break;
+			}
+
+		}
+
+		JDBCTemplate.close(conn);
+
+		return x;
+	}
+
+	public LetterVo selectLetterOneByNo(String no) throws Exception {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		LetterVo vo = dao.selectLetterOneByNo(no, conn);
+		
+		JDBCTemplate.close(conn);
+		
+		return vo;
+	}
+
+		
+
 }

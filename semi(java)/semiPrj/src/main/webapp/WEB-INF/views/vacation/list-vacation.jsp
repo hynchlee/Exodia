@@ -14,7 +14,7 @@
             <%@ include file="/WEB-INF/views/common/header.jsp" %>
                 <main>
                     <div id="target">
-                        <div id="content">
+                        <div id="content" class="head">
                             <div>수강강의</div>
                             <div>담당강사</div>
                             <div>신청기간</div>

@@ -91,11 +91,12 @@
 								</tr>
 								<tr>
 									<td id="pageTd" colspan="4">
-										<button onclick="pageMove('${pageVo.startPage}');"><<</button>
-										<c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" var="i">
-											<button class="pageBtn" onclick="pageMove('${i}');">${i}</button>
-										</c:forEach>
-										<button onclick="pageMove('${pageVo.endPage}');">>></button>
+										<button onclick="pageMove('${pageVo.startPage}');">
+											<<</button>
+												<c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" var="i">
+													<button class="pageBtn" onclick="pageMove('${i}');">${i}</button>
+												</c:forEach>
+												<button onclick="pageMove('${pageVo.endPage}');">>></button>
 									</td>
 								</tr>
 							</tfoot>
@@ -180,7 +181,7 @@
 
 			function setSearchValueTag() {
 				const searchType = searchTypeTag.value;
-					setSearchValueTagInput();
+				setSearchValueTagInput();
 			}
 
 			//검색값 영역을 인풋이 보이게 (타입이 카테고리가 아닐 때)
