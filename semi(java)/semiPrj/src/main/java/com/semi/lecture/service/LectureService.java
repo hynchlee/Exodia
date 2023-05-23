@@ -140,6 +140,16 @@ public class LectureService {
 
 		return vo;
 	}
+	
+	public String getLectureNo(String memberNo) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+
+		String result = dao.getLectureNo(conn, memberNo);
+
+		JDBCTemplate.close(conn);
+
+		return result;
+	}
 
 	public List<LectureMemberVo> getMemberList(ProblemBankVo pbv, LectureVo lectureVo) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();

@@ -59,7 +59,7 @@
 										<td><button>접수완료</button></td>
 										<td><button onclick="goDetail()">상세조회</button></td>
 										<td><button>수강신청</button></td>
-										<td><input type="checkbox"></td>
+										<td><input type="checkbox" class="checkbox" value="${vo.lectureNo}"></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -71,7 +71,7 @@
 						<div class="menu_3">
 							<div class="btn">
 								<button>수정</button>
-								<button>삭제</button>
+								<button id="deleteButton" onclick="delButton();">삭제</button>
 								<button>추가</button>
 							</div>
 						</div>
@@ -122,4 +122,29 @@
 				}
 			}
 
+			function delButton() {
+				const checkboxes = document.querySelectorAll('.checkbox');
+				var boxList = [];
+
+				for (const checkbox of checkboxes) {
+					if (checkbox.checked) {
+						boxList.push(checkbox.value);
+					}
+				}
+
+				$.ajax({
+					url: '/semi/lecture/manage',
+					type: 'post',
+					data: JSON.stringify(boxList),
+					contentType: "application/json",
+					success: function () {
+						alert("삭제완료");
+						location.reload();
+					},
+					error: function () {
+						alert("에러");
+					}
+				});
+
+			}
 		</script>

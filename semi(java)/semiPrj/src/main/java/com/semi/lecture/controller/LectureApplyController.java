@@ -15,24 +15,24 @@ import com.semi.lecture.vo.LectureVo;
 import com.semi.member.vo.MemberVo;
 
 @WebServlet("/lecture/apply")
-public class LectureApplyController extends HttpServlet{
+public class LectureApplyController extends HttpServlet {
 	private final LectureService ls = new LectureService();
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			
+
 			String page = req.getParameter("page");
 			String searchType = req.getParameter("searchType");
 			String searchValue = req.getParameter("searchValue");
 
 			int cnt = ls.getLectureListCnt(searchType, searchValue);
-			
+
 			int pageInt = 1;
 			if (page != null) {
 				pageInt = Integer.parseInt(page);
 			}
-			
+
 			PageVo pageVo = new PageVo(cnt, pageInt, 5, 10);
 			List<LectureVo> lectureList = ls.getLectureList(pageVo, searchType, searchValue);
 
@@ -43,25 +43,31 @@ public class LectureApplyController extends HttpServlet{
 			System.out.println("error(수강신청 get)");
 		}
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			MemberVo loginMember = (MemberVo) req.getSession().getAttribute("loginMember");
 			String lectureNo = req.getParameter("lectureNo");
-			
-			if(loginMember == null) {
+
+			if (loginMember == null) {
 				req.getSession().setAttribute("alertMsg", "로그인을 먼저 해주세요");
 				resp.sendRedirect("/semi/member/login");
 				return;
 			} else {
-				int result = ls.lectureApplyOne(lectureNo, loginMember.getMemberNo());
-				
-				if(result == 1) {
-					req.getSession().setAttribute("alertMsg", "수강신청이 완료되었습니다");
-					resp.sendRedirect("/semi/lecture/apply");
+				String no = ls.getLectureNo(loginMember.getMemberNo());
+				if (no == null) {
+					int result = ls.lectureApplyOne(lectureNo, loginMember.getMemberNo());
+
+					if (result == 1) {
+						req.getSession().setAttribute("alertMsg", "수강신청이 완료되었습니다");
+						resp.sendRedirect("/semi/lecture/apply");
+					} else {
+						throw new Exception();
+					}
 				} else {
-					throw new Exception();
+					req.getSession().setAttribute("alertMsg", "이미 수강중인 강의가 있습니다");
+					resp.sendRedirect("/semi/lecture/apply");
 				}
 			}
 		} catch (Exception e) {
