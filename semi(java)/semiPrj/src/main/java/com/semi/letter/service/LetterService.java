@@ -83,19 +83,20 @@ public class LetterService {
 		int x = 1;
 		for (int number : letterNo) {
 			int result = dao.deleteReceiveLetter(conn, number);
-
-			if (result != 1) {
+			if (result == 1) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
 				x = 0;
 				break;
 			}
-
 		}
 
 		JDBCTemplate.close(conn);
 
 		return x;
 	}
-	
+
 	public int deleteSentLetter(int[] letterNo) throws Exception {
 
 		Connection conn = JDBCTemplate.getConnection();
@@ -158,7 +159,7 @@ public class LetterService {
 
 	public List<LetterVo> getLetterTrashList(String searchSR, PageVo pv, String searchType, String searchValue,
 			String memberNo) throws SQLException {
-		
+
 		// conn
 		Connection conn = JDBCTemplate.getConnection();
 

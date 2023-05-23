@@ -24,7 +24,7 @@ public class LectureService {
 		JDBCTemplate.close(conn);
 		return lectureList;
 	}
-	
+
 	public List<LectureVo> getLectureList(PageVo pageVo, String searchType, String searchValue) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
 		List<LectureVo> lectureList = dao.getLectureList(conn, pageVo, searchType, searchValue);
@@ -66,7 +66,7 @@ public class LectureService {
 		JDBCTemplate.close(conn);
 		return problemList;
 	}
-	
+
 	public int getLectureListCnt() throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
 
@@ -130,7 +130,7 @@ public class LectureService {
 
 		return vo;
 	}
-	
+
 	public LectureVo getLectureOne(String lectureNo) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
 
@@ -140,7 +140,7 @@ public class LectureService {
 
 		return vo;
 	}
-	
+
 	public String getLectureNo(String memberNo) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
 
@@ -213,20 +213,21 @@ public class LectureService {
 		return result;
 	}
 
-	public int submitAnswers(String memberNo, String examCategoryNo, String[] examProblemNoArr, String[] answerArr) throws SQLException {
+	public int submitAnswers(String memberNo, String examCategoryNo, String[] examProblemNoArr, String[] answerArr)
+			throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = 1;
 		int result2 = 0;
 
 		for (int i = 0; i < examProblemNoArr.length; i++) {
 			int cnt = dao.selectAnswerCnt(conn, memberNo, examCategoryNo, memberNo, examCategoryNo);
-			
-			if(cnt == 1) {
-				result2 = dao.updateAnswer(conn, memberNo, examCategoryNo, examProblemNoArr[i], answerArr[i]);				
+
+			if (cnt == 1) {
+				result2 = dao.updateAnswer(conn, memberNo, examCategoryNo, examProblemNoArr[i], answerArr[i]);
 			} else {
 				result2 = dao.insertAnswer(conn, memberNo, examCategoryNo, examProblemNoArr[i], answerArr[i]);
 			}
-			
+
 			if (result2 == 1) {
 				JDBCTemplate.commit(conn);
 			} else {
@@ -236,8 +237,38 @@ public class LectureService {
 		}
 
 		JDBCTemplate.close(conn);
-		
+
 		return result;
 	}
 
+	public int deleteLecture(int[] lectureNo) throws Exception {
+		Connection conn = JDBCTemplate.getConnection();
+
+		int x = 1;
+		for (int number : lectureNo) {
+			int result = dao.deleteLecture(conn, number);
+
+			if (result != 1) {
+				x = 0;
+				break;
+			}
+		}
+
+		JDBCTemplate.close(conn);
+		return x;
+	}
+
+	public int modifyLectureOne(String[] params) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.modifyLectureOne(conn, params);
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+
+		JDBCTemplate.close(conn);
+		return result;
+	}
 }
