@@ -201,4 +201,11 @@
 			}
 
 			setSearchValueTag();
+
+			const tbody = document.querySelector('tbody');
+			tbody.addEventListener('click', (event)=>{
+				const bno = event.target.parentNode.children[0].innerText;
+
+				location.href = '${root}/board/detail?bno='+bno;
+			})
 		</script>
