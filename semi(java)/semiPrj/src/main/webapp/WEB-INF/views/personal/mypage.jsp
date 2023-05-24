@@ -8,8 +8,9 @@
 <title>Insert title here</title>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <link rel="stylesheet" href="${root}/static/css/personal/mypage.css" type="text/css">
+<!-- 제이쿼리 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <style>
-	
 </style>
 </head>
 <body>
@@ -23,19 +24,24 @@
 				<td colspan="2" class="td01">
 					<div class="board">
 						<table class="innertable01">
-							<tr>
-								<td colspan="2" class="line00">공지사항</td>
-								<td class="plus01">
-								<a href="${root}/notice/list" class="plus02">더보기</a>
-								</td>
-							</tr>
-							<c:forEach items="${snotList}" var="snotList">
+							<thead>
 								<tr>
-									<td class="line01">${snotList.writerNick}</td>
-									<td class="line01">${snotList.boardTitle}</td>
-									<td class="line01">${snotList.enrollDate}</td>
+									<td colspan="3" class="line00">공지사항</td>
+									<td class="plus01">
+									<a href="${root}/notice/list?page=1" class="plus02">더보기</a>
+									</td>
 								</tr>
-							</c:forEach>
+							</thead>	
+							<tbody>
+								<c:forEach items="${snotList}" var="snotList">
+									<tr style="cursor: pointer;">									
+										<td class="line01">${snotList.noticeNo}</td>
+										<td class="line01">${snotList.adminNick}</td>
+										<td class="line01">${snotList.noticeTitle}</td>
+										<td class="line01">${snotList.enrollDate}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
 						</table>
 					</div>
 				</td>
@@ -48,11 +54,11 @@
 							<div class="class01"><a href="${root}/lecture/apply">반응형 UX/UI 웹컨텐츠 개발자 양성과정 A9</a></div>
 							<div class="change"><a href="${root}/member/edit">내 정보 수정</a></div>
 							<div class="letter"><a href="${root}/letter/receive">쪽지 ${letterCount}</a></div>
-							<div class="mywrite"><a href="${root}/my/list">내가 쓴 글 ${countMyWrite}</a></div>
+							<div class="mywrite"><a href="${root}/my/list?page=1">내가 쓴 글 ${countMyWrite}</a></div>
 							<div class="point"><a href="/">마일리지</a></div>
 							<div class="test"><a href="${root}/lecture/test/list" class="a01">시험 응시</a></div>
 							<div class="vacation"><a href="${root}/member/vacation/form" class="a01">휴가 신청</a></div>
-							<div class="exit"><a href="/" class="a01">퇴실 하기</a></div>
+							<div class="exit"><a href="/" class="a01">입/퇴실 하기</a></div>
 						</div>
 					</div>
 				</td>
@@ -195,6 +201,22 @@
 </body>
 </html>
 <script>
-	const title = document.querySelector(".title");
+	const title = document.querySelector('td:first-child');
 	title.innerHTML = "마이페이지";
+</script>
+<script>
+	
+	$(".innertable01 tbody tr").click(function(){
+	    //글번호 가져오기..감사합니다..
+	    const nno = $(this).find('td:first-child').text();
+	    // const boardTitle = $(this).find('.board_title').text();
+	  
+	    // 페이지 이동을 위한 URL 구성
+	    const url = '${root}/notice/detail?nno=' + nno;
+	    
+	    // 페이지 이동
+	    window.location.href = url;
+	
+	});
+	
 </script>
