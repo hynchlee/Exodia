@@ -24,7 +24,7 @@ public class BoardClassListController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-try {
+		try {
 			
 			String searchType = req.getParameter("searchType");
 			String searchValue = req.getParameter("searchValue");

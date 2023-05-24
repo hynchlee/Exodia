@@ -49,7 +49,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                <c:if test="${memberLecture[0].lectureName && loginMember.identity eq 'S'}">
+                <c:if test="${memberLecture[0].lectureName == ${cvoList.} && loginMember.identity eq 'S'}">
                     <c:forEach items="${cvoList}" var="cvo">
 	                    <tr>
 	                        <td>${cvo.boardNo}</td>
