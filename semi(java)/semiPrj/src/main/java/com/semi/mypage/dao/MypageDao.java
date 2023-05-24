@@ -12,6 +12,7 @@ import com.semi.board.vo.BoardVo;
 import com.semi.common.db.JDBCTemplate;
 import com.semi.lecture.vo.LectureVo;
 import com.semi.mypage.vo.TeamVo;
+import com.semi.notice.vo.NoticeVo;
 import com.semi.vacation.vo.VacationVo;
 
 public class MypageDao {
@@ -133,44 +134,36 @@ public class MypageDao {
 		return freeList;
 	}
 
-	public List<BoardVo> showNotice02(Connection conn) throws Exception {
+	public List<NoticeVo> showNotice02(Connection conn) throws Exception {
 		
-		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM ,T.* FROM ( SELECT B.BOARD_NO, B.BOARD_CATEGORY_NO, B.MEMBER_NO, B.BOARD_TITLE, B.BOARD_CONTENT, TO_CHAR(B.ENROLL_DATE,'YYYY.MM.DD') AS ENROLL_DATE, TO_CHAR(B.MODIFY_DATE,'YYYY.MM.DD') AS MODIFY_DATE, B.STATUS, B.HIT, M.MEMBER_NICK, C.BOARD_CATEGORY_TYPE, COUNT(R.REPLY_NO) AS TOTAL_REPLIES FROM BOARD B JOIN MEMBER M ON (B.MEMBER_NO = M.MEMBER_NO) JOIN BOARD_CATEGORY C ON (B.BOARD_CATEGORY_NO = C.BOARD_CATEGORY_NO) LEFT JOIN REPLY R ON (B.BOARD_NO = R.BOARD_NO) WHERE B.STATUS = 'O' AND C.BOARD_CATEGORY_NO = 1 GROUP BY B.BOARD_NO, B.BOARD_CATEGORY_NO, B.MEMBER_NO, B.BOARD_TITLE, B.BOARD_CONTENT, B.ENROLL_DATE, B.MODIFY_DATE, B.STATUS, B.HIT, M.MEMBER_NICK, C.BOARD_CATEGORY_TYPE ORDER BY B.BOARD_NO DESC ) T ) WHERE RNUM BETWEEN 1 AND 3";
+		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT N.NOTICE_NO ,N.ADMIN_NO ,N.NOTICE_TITLE ,N.NOTICE_CONTENT ,TO_CHAR(N.ENROLL_DATE, 'YYYY.MM.DD') AS ENROLL_DATE ,TO_CHAR(N.MODIFY_DATE, 'YYYY.MM.DD') AS MODIFY_DATE ,N.HIT ,N.STATUS ,A.ADMIN_NICK FROM NOTICE N JOIN ADMIN A ON(N.ADMIN_NO = A.ADMIN_NO) WHERE N.STATUS='O' ORDER BY NOTICE_NO DESC ) T ) WHERE RNUM BETWEEN 1 AND 3";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
 		
-		List<BoardVo> snotList = new ArrayList<>();
+		List<NoticeVo> snotList = new ArrayList<>();
 		while (rs.next()) {
-			
-			String boardNo = rs.getString("BOARD_NO");
-			String boardCategoryNo = rs.getString("BOARD_CATEGORY_NO");
-			String memberNo = rs.getString("MEMBER_NO");
-			String boardTitle = rs.getString("BOARD_TITLE");
-			String boardContent = rs.getString("BOARD_CONTENT");
+			String noticeNo = rs.getString("NOTICE_NO");
+			String adminNo = rs.getString("ADMIN_NO");
+			String noticeTitle = rs.getString("NOTICE_TITLE");
+			String noticeContent = rs.getString("NOTICE_CONTENT");
 			String enrollDate = rs.getString("ENROLL_DATE");
 			String modifyDate = rs.getString("MODIFY_DATE");
-			String status = rs.getString("STATUS");
 			String hit = rs.getString("HIT");
-			String writerNick = rs.getString("MEMBER_NICK");
-			String boardCategoryType = rs.getString("BOARD_CATEGORY_TYPE");
-			String totalReplies = rs.getString("TOTAL_REPLIES");
+			String status = rs.getString("STATUS");
+			String adminNick = rs.getString("ADMIN_NICK");
 			
-			BoardVo bv = new BoardVo();
-			bv.setBoardNo(boardNo);
-			bv.setBoardCategoryNo(boardCategoryNo);
-			bv.setMemberNo(memberNo);
-			bv.setBoardTitle(boardTitle);
-			bv.setBoardContent(boardContent);
-			bv.setEnrollDate(enrollDate);
-			bv.setModifyDate(modifyDate);
-			bv.setStatus(status);
-			bv.setHit(hit);
-			bv.setWriterNick(writerNick);
-			bv.setBoardCategoryType(boardCategoryType);
-			bv.setTotalReplies(totalReplies);
+			NoticeVo vo = new NoticeVo();
+			vo.setNoticeNo(noticeNo);
+			vo.setAdminNo(adminNo);
+			vo.setNoticeTitle(noticeTitle);
+			vo.setNoticeContent(noticeContent);
+			vo.setEnrollDate(enrollDate);
+			vo.setModifyDate(modifyDate);
+			vo.setHit(hit);
+			vo.setStatus(status);
+			vo.setAdminNick(adminNick);
 			
-			snotList.add(bv);
-		
+			snotList.add(vo);
 		}
 		
 		JDBCTemplate.close(rs);

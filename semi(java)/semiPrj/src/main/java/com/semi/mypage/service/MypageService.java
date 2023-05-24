@@ -14,6 +14,7 @@ import com.semi.lecture.vo.LectureVo;
 import com.semi.letter.vo.LetterVo;
 import com.semi.mypage.dao.MypageDao;
 import com.semi.mypage.vo.TeamVo;
+import com.semi.notice.vo.NoticeVo;
 import com.semi.vacation.vo.VacationVo;
 
 public class MypageService {
@@ -58,12 +59,12 @@ public class MypageService {
 	
 	}
 
-	public List<BoardVo> showNotice02() throws Exception {
+	public List<NoticeVo> showNotice02() throws Exception {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		
 		MypageDao mdao = new MypageDao();
-		List<BoardVo> snotList = mdao.showNotice02(conn);
+		List<NoticeVo> snotList = mdao.showNotice02(conn);
 		
 		JDBCTemplate.close(conn);
 		

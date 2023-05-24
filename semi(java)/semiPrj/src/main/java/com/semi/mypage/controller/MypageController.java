@@ -17,6 +17,7 @@ import com.semi.lecture.vo.LectureVo;
 import com.semi.member.vo.MemberVo;
 import com.semi.mypage.service.MypageService;
 import com.semi.mypage.vo.TeamVo;
+import com.semi.notice.vo.NoticeVo;
 import com.semi.vacation.vo.VacationVo;
 
 @WebServlet(urlPatterns = "/mypage")
@@ -36,7 +37,7 @@ public class MypageController extends HttpServlet{
 			String memberNo = loginMember.getMemberNo();
 			
 			MypageService ms = new MypageService();
-			List<BoardVo> snotList = ms.showNotice02();
+			List<NoticeVo> snotList = ms.showNotice02();
 			String letterCount = ms.countLetter01(memberNo);
 			String countMyWrite = ms.countMyWrite(memberNo);
 			List<TeamVo> teamList = ms.teamList();
