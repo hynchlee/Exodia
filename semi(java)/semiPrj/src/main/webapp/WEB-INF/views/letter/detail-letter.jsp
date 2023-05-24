@@ -98,4 +98,5 @@
 
 			const caption = document.querySelector(".caption1");
 			caption.style.marginTop = 0;
+			
 		</script>
