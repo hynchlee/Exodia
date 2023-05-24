@@ -88,4 +88,17 @@
 <script>
 	const title = document.querySelector('.title');
 	title.innerHTML = "내가 쓴 글";
+	
+	$(".board tbody tr").click(function(){
+        //글번호 가져오기
+        const bno = $(this).find('td:first-child').text();
+        //const boardTitle = $(this).find('.board_title').text();
+      
+        // 페이지 이동을 위한 URL 구성
+        const url = '${root}/board/detail?bno=' + bno;
+        
+        // 페이지 이동
+        window.location.href = url;
+
+    });
 </script>

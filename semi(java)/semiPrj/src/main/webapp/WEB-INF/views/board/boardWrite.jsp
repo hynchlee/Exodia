@@ -15,7 +15,58 @@
 <!-- 제이쿼리 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
-<script>
+
+</head>
+<body>
+	<%@ include file="/WEB-INF/views/common/header.jsp" %>
+
+		<main>
+			<c:if test="${not empty loginMember}">
+				<div class="myClass">
+	                <ul>
+	                    <li class="loginName">${loginMember.memberNick} 님 환영합니다</li>
+	                    <li class="class">${memberLecture[0].lectureName}</li>
+	                </ul>
+	            </div>
+			</c:if>
+
+            <hr>
+
+            <form action="${root}/board/write" method="post">
+
+                <!-- 관리자에게만 보이는 체크박스 -->
+                <c:if test="${not empty loginAdmin}">
+	                <div class="checked">
+	                    <input type="checkbox" name="" id=""><span>상단고정</span>
+	                </div>
+                </c:if>
+
+                <div class="write_wrap">
+                    <input type="text" name="boardTitle" placeholder="제목을 입력해주세요." required>
+                    <select name="boardCategoryNo" id="select_category" >
+                        <option value="1">자유게시판</option>
+                        <option value="3">우리반게시판</option>
+                    </select>
+
+                    <textarea name="boardContent" id="summernote"></textarea>
+                    <input type="file" name="select_file">
+                </div>
+    
+                <div class="board_bt">
+                    <input type="submit" value="작성완료" class="bt1">
+                </div>
+            </form>
+
+		</main>
+
+	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+</body>
+</html>
+<script type="text/javascript">
+	const title = document.querySelector('.title');
+	title.innerHTML = "게시글 작성";
+	
+	
     $(document).ready(function(){
     // 썸머노트
     $('#summernote').summernote({
@@ -44,52 +95,4 @@
             
         });
     });
-</script>
-</head>
-<body>
-	<%@ include file="/WEB-INF/views/common/header.jsp" %>
-
-		<main>
-			<c:if test="${not empty loginMember}">
-				<div class="myClass">
-	                <ul>
-	                    <li class="loginName">${loginMember.memberNick} 님 환영합니다</li>
-	                    <li class="class">${memberLecture[0].lectureName}</li>
-	                </ul>
-	            </div>
-			</c:if>
-
-            <hr>
-
-            <form action="${root}/board/write" method="post">
-
-                <!-- 관리자에게만 보이는 체크박스 -->
-                <div class="checked">
-                    <input type="checkbox" name="" id=""><span>상단고정</span>
-                </div>
-
-                <div class="write_wrap">
-                    <input type="text" name="boardTitle" placeholder="제목을 입력해주세요." required>
-                    <select name="boardCategoryNo" id="select_category" >
-                        <option value="1">자유게시판</option>
-                        <option value="3">우리반게시판</option>
-                    </select>
-
-                    <textarea name="boardContent" id="summernote"></textarea>
-                    <input type="file" name="select_file">
-                </div>
-    
-                <div class="board_bt">
-                    <input type="submit" value="작성완료" class="bt1">
-                </div>
-            </form>
-
-		</main>
-
-	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
-</body>
-</html>
-<script>
-	const title = document.querySelector('.title');
-	title.innerHTML = "게시글 작성";
 </script>

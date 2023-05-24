@@ -19,12 +19,14 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 
 		<main>
-			<div class="myClass">
-                <ul>
-                    <li class="loginName">${loginMember.memberNick} 님 환영합니다</li>
-                    <li class="class">${memberLecture[0].lectureName}</li>
-                </ul>
-            </div>
+			<c:if test="${not empty loginMembers}">
+				<div class="myClass">
+	                <ul>
+	                    <li class="loginName">${loginMember.memberNick} 님 환영합니다</li>
+	                    <li class="class">${memberLecture[0].lectureName}</li>
+	                </ul>
+	            </div>
+			</c:if>
 
             <hr>
 

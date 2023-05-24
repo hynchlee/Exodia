@@ -21,13 +21,15 @@
 				<div class="myClass">
 	                <ul>
 	                    <li class="loginName">${loginMember.memberNick} 님 환영합니다</li>
-	                    <li class="class">${memberLecture[0].lectureName}</li>
+	                    <c:if test="${loginMember.identity eq 'S'}">
+		                    <li class="class">${memberLecture[0].lectureName}</li>
+	                    </c:if>
 	                </ul>
 	            </div>
 			</c:if>
             
-            <form action="${root}/qna/list">
-                <div class="board_search">
+               <div class="board_search">
+	            <form action="${root}/qna/list">
                     <div class="qna_control">
                         <label>
                             <input type="radio" name="contact" value="a_all" checked />
@@ -42,17 +44,17 @@
                             <span>답변완료</span>
                           </label>
                     </div>
-            </form>
-                <form action="${root}/qna/list" method="get" name="searchBoard">
-                	<input type="hidden" name="page" value="1">
-                    <select class="searchCategory" name="searchType">
-                        <option value="qnaTitle">제목</option>
-                        <option value="qnaContent">내용</option>
-                    </select>
-                    <input type="text" class="searchInput" placeholder="검색어 입력" value="${searchVo.searchValue}" name="searchValue">
-                    <input type="submit" value="검색" class="searchBtn">
-                </form>
-            </div>
+            	</form>	
+	            <form action="${root}/qna/list" method="get" name="searchBoard">
+	            	<input type="hidden" name="page" value="1">
+	                <select class="searchCategory" name="searchType">
+	                    <option value="qnaTitle">제목</option>
+	                    <option value="qnaContent">내용</option>
+	                </select>
+	                <input type="text" class="searchInput" placeholder="검색어 입력" value="${searchVo.searchValue}" name="searchValue">
+	                <input type="submit" value="검색" class="searchBtn">
+	            </form>
+              </div>
             
             <table class="board">
                 <thead>

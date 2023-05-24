@@ -21,7 +21,9 @@
 				<div class="myClass">
 	                <ul>
 	                    <li class="loginName">${loginMember.memberNick} 님 환영합니다</li>
-	                    <li class="class">${memberLecture[0].lectureName}</li>
+	                    <c:if test="${loginMember.identity eq 'S' }">
+		                    <li class="class">${memberLecture[0].lectureName}</li>
+	                    </c:if>
 	                </ul>
 	            </div>
 			</c:if>
