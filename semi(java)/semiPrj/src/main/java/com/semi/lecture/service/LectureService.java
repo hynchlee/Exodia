@@ -260,7 +260,7 @@ public class LectureService {
 
 	public int modifyLectureOne(String[] params) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
-		
+
 		int result = dao.modifyLectureOne(conn, params);
 		if (result == 1) {
 			JDBCTemplate.commit(conn);
@@ -270,5 +270,20 @@ public class LectureService {
 
 		JDBCTemplate.close(conn);
 		return result;
+	}
+
+	public int insertLectureOne(String[] params) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+
+		int result = dao.insertLectureOne(conn, params);
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+
+		JDBCTemplate.close(conn);
+		return result;
+
 	}
 }

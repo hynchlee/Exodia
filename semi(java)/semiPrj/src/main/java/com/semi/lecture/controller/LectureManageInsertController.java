@@ -15,8 +15,8 @@ import com.semi.lecture.service.LectureService;
 import com.semi.lecture.vo.LectureVo;
 import com.semi.letter.service.LetterService;
 
-@WebServlet("/lecture/manage/modify")
-public class LectureManageModifyController extends HttpServlet {
+@WebServlet("/lecture/manage/insert")
+public class LectureManageInsertController extends HttpServlet {
 	private final LectureService ls = new LectureService();
 
 	@Override
@@ -27,12 +27,12 @@ public class LectureManageModifyController extends HttpServlet {
 			String[] strNumbers = json.replaceAll("\\s+", " ").replace("[", "").replace("]", "").replace("\"", "")
 					.split(",");
 
-			int result = ls.modifyLectureOne(strNumbers);
+			int result = ls.insertLectureOne(strNumbers);
 			if (result != 1) {
 				throw new Exception();
 			}
 		} catch (Exception e) {
-			System.out.println("ERROR (강의 수정)");
+			System.out.println("ERROR (강의 추가)");
 			e.printStackTrace();
 		}
 
