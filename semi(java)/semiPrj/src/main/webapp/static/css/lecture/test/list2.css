@@ -103,5 +103,15 @@ form {
 }
 
 .last-th {
-    width: 280px;
+    width: 100px;
+}
+
+.finInput {
+    background-color: #d14949;
+    color: white;
+}
+
+.scoreInput {
+    background-color: #075200;
+    color: white;
 }

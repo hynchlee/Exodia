@@ -44,7 +44,7 @@ public class TestScoreListController extends HttpServlet {
 			pbv.setExamCategoryNo(examCategoryNo);
 			pbv.setExamSubject(examSubject);
 
-			List<LectureMemberVo> memberList = ls.getMemberList(pbv, lectureVo);
+			List<LectureMemberVo> memberList = ls.getMemberList(examCategoryNo, lectureVo.getLectureNo());
 
 			req.setAttribute("problemBankVo", pbv);
 			req.setAttribute("memberList", memberList);

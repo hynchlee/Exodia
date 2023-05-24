@@ -21,7 +21,6 @@ public class LectureApplyController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-
 			String page = req.getParameter("page");
 			String searchType = req.getParameter("searchType");
 			String searchValue = req.getParameter("searchValue");

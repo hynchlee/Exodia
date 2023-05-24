@@ -40,6 +40,14 @@ public class LectureService {
 		JDBCTemplate.close(conn);
 		return examCategoryList;
 	}
+	
+	public List<ExamCategoryVo> getExamCategoryList(PageVo pageVo, String searchType, String searchValue) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		List<ExamCategoryVo> examCategoryList = dao.getExamCategoryList(conn, pageVo, searchType, searchValue);
+
+		JDBCTemplate.close(conn);
+		return examCategoryList;
+	}
 
 	public List<ExamCategoryVo> getExamCategoryList(PageVo pageVo, MemberVo loginMember) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
@@ -151,10 +159,20 @@ public class LectureService {
 		return result;
 	}
 
-	public List<LectureMemberVo> getMemberList(ProblemBankVo pbv, LectureVo lectureVo) throws SQLException {
+	public List<MemberVo> getMemberList(String lectureNo) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
 
-		List<LectureMemberVo> memberList = dao.getMemberList(conn, pbv, lectureVo);
+		List<MemberVo> memberList = dao.getMemberList(conn, lectureNo);
+
+		JDBCTemplate.close(conn);
+
+		return memberList;
+	}
+
+	public List<LectureMemberVo> getMemberList(String examCategoryNo, String lectureNo) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+
+		List<LectureMemberVo> memberList = dao.getMemberList(conn, examCategoryNo, lectureNo);
 
 		JDBCTemplate.close(conn);
 
@@ -285,5 +303,53 @@ public class LectureService {
 		JDBCTemplate.close(conn);
 		return result;
 
+	}
+
+	public int testStart(String examCategoryNo, String lectureNo) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+
+		List<MemberVo> studentList = dao.getMemberList(conn, lectureNo);
+
+		int result = 1;
+		for (MemberVo lmv : studentList) {
+			int temp = dao.insertExamList(conn, examCategoryNo, lmv.getMemberNo());
+			if (temp != 1) {
+				result = 0;
+			}
+		}
+
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+	public int testEnd(String examCategoryNo, String lectureNo) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+
+		List<MemberVo> studentList = dao.getMemberList(conn, lectureNo);
+
+		int result = 1;
+		for (MemberVo lmv : studentList) {
+			int temp = dao.updateExamList(conn, examCategoryNo, lmv.getMemberNo());
+			if (temp != 1) {
+				result = 0;
+			}
+		}
+
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public List<ExamCategoryVo> updateExamStatusList(List<ExamCategoryVo> examCategoryList, String memberNo) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		List<ExamCategoryVo> updatedList = examCategoryList;
+		for (ExamCategoryVo ecv : updatedList) {
+			String[] arr = dao.getStatus(conn, ecv.getExamCategoryNo(), memberNo);
+			ecv.setStatus(arr[0]);
+			ecv.setEnrollDate(arr[1]);
+		}
+
+		JDBCTemplate.close(conn);
+		return updatedList;
 	}
 }

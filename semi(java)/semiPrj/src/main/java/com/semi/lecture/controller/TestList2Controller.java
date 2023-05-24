@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.semi.common.page.PageVo;
 import com.semi.lecture.service.LectureService;
 import com.semi.lecture.vo.ExamCategoryVo;
+import com.semi.lecture.vo.LectureMemberVo;
 import com.semi.lecture.vo.LectureVo;
 import com.semi.member.vo.MemberVo;
 
@@ -20,7 +21,7 @@ public class TestList2Controller extends HttpServlet {
 	private final LectureService ls = new LectureService();
 
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			MemberVo loginMember = (MemberVo) req.getSession().getAttribute("loginMember");
 
@@ -34,7 +35,11 @@ public class TestList2Controller extends HttpServlet {
 
 			PageVo pageVo = new PageVo(cnt, pageInt, 5, 10);
 			List<ExamCategoryVo> examCategoryList = ls.getExamCategoryList2(pageVo, loginMember);
-			LectureVo lectureVo = ls.getLectureOne(examCategoryList.get(0).getLectureCategoryNo(), loginMember.getMemberNo());
+			LectureVo lectureVo = ls.getLectureOne(examCategoryList.get(0).getLectureCategoryNo(),
+					loginMember.getMemberNo());
+
+			List<MemberVo> memberList = ls.getMemberList(lectureVo.getLectureNo());
+			examCategoryList = ls.updateExamStatusList(examCategoryList, memberList.get(0).getMemberNo());
 			
 			req.getSession().setAttribute("lectureVo", lectureVo);
 			req.setAttribute("examCategoryList", examCategoryList);
@@ -43,6 +48,30 @@ public class TestList2Controller extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("error(시험 목록 (강사))");
+		}
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		try {
+			String type = req.getParameter("type");
+			String examCategoryNo = req.getParameter("examCategoryNo");
+			String lectureNo = req.getParameter("lectureNo");
+			int result = 0;
+			
+			if(type.equals("start")) {
+				result = ls.testStart(examCategoryNo, lectureNo);
+			} else if(type.equals("end")) {
+				result = ls.testEnd(examCategoryNo, lectureNo);
+			}
+			
+			if(result != 1) {
+				throw new Exception();
+			}	
+			resp.sendRedirect("/semi/lecture/test/list2");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("error(시험 시작 (강사))");
 		}
 	}
 }

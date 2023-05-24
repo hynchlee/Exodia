@@ -34,15 +34,36 @@
 									<td id="no">${vo.examCategoryNo}</td>
 									<td id="subject">${vo.examSubject}</td>
 									<td>서술형(신)</td>
-									<td></td>
+									<td>${vo.enrollDate}</td>
 									<td class="bbb">
-										<button>시작</button>
-										<button>종료</button>
-										<form action="${root}/lecture/test/scoreList" method="post">
-											<input hidden type="text" name="examCategoryNo" value="${vo.examCategoryNo}">
-											<input hidden type="text" name="examSubject" value="${vo.examSubject}">
-											<input type="submit" value="채점">
-										</form>
+										<c:if test="${vo.status == null}">
+											<form action="${root}/lecture/test/list2" method="post">
+												<input hidden type="text" name="type" value="start">
+												<input hidden type="text" name="examCategoryNo"
+													value="${vo.examCategoryNo}">
+												<input hidden type="text" name="lectureNo"
+													value="${lectureVo.lectureNo}">
+												<input type="submit" value="시작">
+											</form>
+										</c:if>
+										<c:if test="${vo.status == 'X'}">
+											<form action="${root}/lecture/test/list2" method="post">
+												<input hidden type="text" name="type" value="end">
+												<input hidden type="text" name="examCategoryNo"
+													value="${vo.examCategoryNo}">
+												<input hidden type="text" name="lectureNo"
+													value="${lectureVo.lectureNo}">
+												<input type="submit" value="종료" class="finInput">
+											</form>
+										</c:if>
+										<c:if test="${vo.status == 'O'}">
+											<form action="${root}/lecture/test/scoreList" method="post">
+												<input hidden type="text" name="examCategoryNo"
+													value="${vo.examCategoryNo}">
+												<input hidden type="text" name="examSubject" value="${vo.examSubject}">
+												<input type="submit" value="채점" class="scoreInput">
+											</form>
+										</c:if>
 									</td>
 								</tr>
 							</c:forEach>
@@ -70,6 +91,7 @@
 
 		<script>
 			const title = document.querySelector('.title');
+			const finRed = document.querySelector('.finRed');
 			title.innerHTML = "평가";
 
 			const pageBtn = document.querySelectorAll('.pageBtn');
