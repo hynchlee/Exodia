@@ -20,16 +20,19 @@ public class TestInfoController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			int cnt = ls.getExamCategoryListCnt();
-
 			String page = req.getParameter("page");
+			String searchType = req.getParameter("searchType");
+			String searchValue = req.getParameter("searchValue");
+
+			int cnt = ls.getLectureListCnt(searchType, searchValue);
+
 			int pageInt = 1;
 			if (page != null) {
 				pageInt = Integer.parseInt(page);
 			}
-			
+
 			PageVo pageVo = new PageVo(cnt, pageInt, 5, 10);
-			List<ExamCategoryVo> examCategoryList = ls.getExamCategoryList(pageVo);
+			List<ExamCategoryVo> examCategoryList = ls.getExamCategoryList(pageVo, searchType, searchValue);
 
 			req.setAttribute("examCategoryList", examCategoryList);
 			req.setAttribute("pageVo", pageVo);

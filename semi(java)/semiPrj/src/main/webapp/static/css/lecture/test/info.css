@@ -69,3 +69,7 @@
 #pageDiv button:hover {
 	background-color: #ddd;
 }
+
+table tbody tr:hover{
+    background-color:  #F0F0F0;
+}

@@ -14,17 +14,21 @@
 		<body>
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
 				<main>
-					<div class="wrap_1">
-						<div class="menu_1">
-							<select class="e112_901">
-								<option value="">개강일</option>
-								<option value="">지점</option>
-								<option value="">진출분야</option>
-								<option value="">과정명</option>
-							</select> <input type="text" class="e112_902" placeholder="검색어">
-							<button class="e112_909">검색</button>
+					<form action="${root}/lecture/manage" method="get">
+						<div class="wrap_1">
+							<div class="menu_1">
+								<select name="searchType">
+									<option value="lectureOpenDate">개강일</option>
+									<option value="teacher">강사</option>
+									<option value="lectureCategoryName">과정명</option>
+									<option value="lectureStartTime">수업시간</option>
+								</select>
+								<input type="text" class="searchValueElem e112_902" name="searchValue"
+									value="${searchVo.searchValue}" placeholder="검색할내용">
+								<input type="submit" id="searchButton" class="e112_909" value="검색하기">
+							</div>
 						</div>
-					</div>
+					</form>
 					<br> <br>
 
 					<div class="wrap_1">
@@ -56,7 +60,7 @@
 										<td>30</td>
 										<td>국비지원</td>
 										<td><button class="bbtn"
-											onclick="goDetail(event, '${vo.lectureNo}')">상세조회</button></td>
+												onclick="goDetail(event, '${vo.lectureNo}')">상세조회</button></td>
 										<td><input type="checkbox" class="checkbox" value="${vo.lectureNo}"></td>
 									</tr>
 								</c:forEach>
@@ -107,7 +111,6 @@
 
 			function goDetail(event, lectureNo) {
 				event.preventDefault();
-				console.log(event.target);
 				var leftPosition = (window.screen.width - 1200) / 2;
 				var topPosition = (window.screen.height - 800) / 2;
 				var windowFeatures = 'width=1200,height=800,left=' + leftPosition + ',top=' + topPosition;
@@ -169,17 +172,16 @@
 					const tr = document.querySelector('.tr' + chbox);
 					const tds = tr.querySelectorAll('.td');
 					var bList = [];
-
-
+					bList.push('mod');
 					bList.push(tds[0].querySelector('input').value);
 					bList.push(tds[1].querySelector('input').value);
 					bList.push(tds[2].querySelector('input').value);
 					bList.push(tds[3].querySelector('select').value);
 					bList.push(tds[4].querySelector('select').value);
-					bList.push(tds[5].querySelector('input').value);
+					bList.push(tds[5].querySelector('select').value);
 
 					$.ajax({
-						url: '/semi/lecture/manage/modify',
+						url: '/semi/lecture/manage',
 						type: 'post',
 						data: JSON.stringify(bList),
 						contentType: "application/json",
@@ -199,7 +201,7 @@
 
 			function delButton() {
 				var boxList = [];
-
+				boxList.push('del');
 				for (const checkbox of checkboxes) {
 					if (checkbox.checked) {
 						boxList.push(checkbox.value);
@@ -212,7 +214,7 @@
 				}
 
 				$.ajax({
-					url: '/semi/lecture/manage/delete',
+					url: '/semi/lecture/manage',
 					type: 'post',
 					data: JSON.stringify(boxList),
 					contentType: "application/json",
@@ -226,34 +228,28 @@
 				});
 			}
 
-			var saveTxt = "";
-
 			function plusButton() {
 				var txt = tbd.innerHTML;
-				var plusTxt = '<tr> <td>강남</td> <td><input type="text" style="text-align:center; width: 100%; height: 76px;"></td> <td><input type="text" style="text-align:center; width: 100%; height: 76px;"></td> <td><select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${lectureList}" var="vo"> <option value="${vo.teacherMemberNo}">${vo.teacherMemberName}</option> </c:forEach> </select></td> <td><select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${lectureList}" var="vo"> <option value="${vo.lectureCategoryNo}">${vo.lectureCategoryName}</option> </c:forEach> </select></td> <td><select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${lectureList}" var="vo"> <option value="${vo.lectureStartTime}~${vo.lectureFinishTime}">${vo.lectureStartTime}~${vo.lectureFinishTime}</option> </c:forEach> </select></td> <td>30</td> <td>국비지원</td> <td><button class="bbtn" onclick="goDetail(event, "${vo.lectureNo}")">상세조회</button></td> <td><button onclick="plusSave();">저장</button></td> </tr>';
+				var plusTxt = '<tr class="newTr"> <td>강남</td> <td><input type="text" style="text-align:center; width: 100%; height: 76px;"></td> <td><input type="text" style="text-align:center; width: 100%; height: 76px;"></td> <td><select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${lectureList}" var="vo"> <option value="${vo.teacherMemberNo}">${vo.teacherMemberName}</option> </c:forEach> </select></td> <td><select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${lectureList}" var="vo"> <option value="${vo.lectureCategoryNo}">${vo.lectureCategoryName}</option> </c:forEach> </select></td> <td><select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${lectureList}" var="vo"> <option value="${vo.lectureStartTime}~${vo.lectureFinishTime}">${vo.lectureStartTime}~${vo.lectureFinishTime}</option> </c:forEach> </select></td> <td>30</td> <td>국비지원</td> <td><button class="bbtn" onclick="goDetail(event, "${vo.lectureNo}")">상세조회</button></td> <td><button onclick="plusSave();">저장</button></td> </tr>';
 				tbd.innerHTML = plusTxt + txt;
-
-				saveTxt = plusTxt;
 			}
 
 			function plusSave() {
 				var boxList = [];
-				var tempElement = document.createElement('table');
-  				tempElement.innerHTML = saveTxt;
-				var selectElements = tempElement.querySelectorAll('select');
-  				var inputElements = tempElement.querySelectorAll('input');
+				const newTr = document.querySelector('.newTr');
+				var selectElements = newTr.querySelectorAll('select');
+				var inputElements = newTr.querySelectorAll('input');
 
-				inputElements.forEach(function(inputElement) {
+				boxList.push('plus');
+				inputElements.forEach(function (inputElement) {
 					boxList.push(inputElement.value);
-				});	
-				selectElements.forEach(function(selectElement) {
-    				boxList.push(selectElement.value);
+				});
+				selectElements.forEach(function (selectElement) {
+					boxList.push(selectElement.value);
 				});
 
-				console.log(boxList);
-
 				$.ajax({
-					url: '/semi/lecture/manage/insert',
+					url: '/semi/lecture/manage',
 					type: 'post',
 					data: JSON.stringify(boxList),
 					contentType: "application/json",

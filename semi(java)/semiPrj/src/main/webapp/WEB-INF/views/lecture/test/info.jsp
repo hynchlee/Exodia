@@ -13,17 +13,19 @@
 		<body>
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
 				<main>
-					<div class="wrap_1">
-						<div class="menu_1">
-							<select class="e112_901">
-								<option value="">강의</option>
-								<option value="">단원</option>
-								<option value="">작성자</option>
-								<option value="">작성일자</option>
-							</select> <input type="text" class="e112_902" placeholder="검색어">
-							<button class="e112_909">검색</button>
+					<form action="${root}/lecture/test/info" method="get">
+						<div class="wrap_1">
+							<div class="menu_1">
+								<select name="searchType">
+									<option value="name">강의명</option>
+									<option value="unit">단원</option>
+								</select>
+								<input type="text" class="searchValueElem e112_902" name="searchValue"
+									value="${searchVo.searchValue}" placeholder="검색할내용">
+								<input type="submit" id="searchButton" class="e112_909" value="검색하기">
+							</div>
 						</div>
-					</div>
+					</form>
 					<br> <br>
 
 					<div class="wrap_1">
@@ -31,10 +33,8 @@
 							<thead>
 								<tr>
 									<th>번호</th>
-									<th>강의</th>
+									<th>강의명</th>
 									<th>단원</th>
-									<th>수정자</th>
-									<th>수정 일자</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -43,8 +43,6 @@
 										<td id="no">${vo.examCategoryNo}</td>
 										<td>${vo.lectureCategoryName}</td>
 										<td id="subject">${vo.examSubject}</td>
-										<td>ADMIN01</td>
-										<td>YYYY-MM-DD 24:00</td>
 									</tr>
 								</c:forEach>
 							</tbody>

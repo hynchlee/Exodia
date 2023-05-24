@@ -5,18 +5,23 @@ public class ExamCategoryVo {
 	private String lectureCategoryNo;
 	private String lectureCategoryName;
 	private String examSubject;
+	private String status;
+	private String enrollDate;
 
 	public ExamCategoryVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public ExamCategoryVo(String examCategoryNo, String lectureCategoryNo, String lectureCategoryName, String examSubject) {
+	public ExamCategoryVo(String examCategoryNo, String lectureCategoryNo, String lectureCategoryName,
+			String examSubject, String status, String enrollDate) {
 		super();
 		this.examCategoryNo = examCategoryNo;
 		this.lectureCategoryNo = lectureCategoryNo;
 		this.lectureCategoryName = lectureCategoryName;
 		this.examSubject = examSubject;
+		this.status = status;
+		this.enrollDate = enrollDate;
 	}
 
 	public String getExamCategoryNo() {
@@ -51,10 +56,27 @@ public class ExamCategoryVo {
 		this.examSubject = examSubject;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getEnrollDate() {
+		return enrollDate;
+	}
+
+	public void setEnrollDate(String enrollDate) {
+		this.enrollDate = enrollDate;
+	}
+
 	@Override
 	public String toString() {
-		return "TestInfoVo [examCategoryNo=" + examCategoryNo + ", lectureCategoryNo=" + lectureCategoryNo
-				+ ", lectureCategoryName=" + lectureCategoryName + ", examSubject=" + examSubject + "]";
+		return "ExamCategoryVo [examCategoryNo=" + examCategoryNo + ", lectureCategoryNo=" + lectureCategoryNo
+				+ ", lectureCategoryName=" + lectureCategoryName + ", examSubject=" + examSubject + ", status=" + status
+				+ ", enrollDate=" + enrollDate + "]";
 	}
 
 }
