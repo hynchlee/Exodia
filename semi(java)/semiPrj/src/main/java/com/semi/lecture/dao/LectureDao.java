@@ -47,20 +47,21 @@ public class LectureDao {
 
 		return lectureList;
 	}
-	
-	public List<LectureVo> getLectureList(Connection conn, PageVo pageVo, String searchType, String searchValue) throws SQLException {
+
+	public List<LectureVo> getLectureList(Connection conn, PageVo pageVo, String searchType, String searchValue)
+			throws SQLException {
 		String sql = "SELECT * FROM (SELECT ROWNUM AS RNUM, A.* FROM ( SELECT * FROM LECTURE L JOIN LECTURE_CATEGORY LC ON L.LECTURE_CATEGORY_NO = LC.LECTURE_CATEGORY_NO JOIN MEMBER M ON L.TEACHER_MEMBER_NO = M.MEMBER_NO WHERE L.STATUS = 'O' ORDER BY L.LECTURE_OPEN_DATE ) A ) WHERE RNUM BETWEEN ? AND ?";
-				
-		if("lectureOpenDate".equals(searchType)) {
+
+		if ("lectureOpenDate".equals(searchType)) {
 			sql += "AND LECTURE_OPEN_DATE LIKE '%" + searchValue + "%'";
-		} else if("teacher".equals(searchType)) {	
+		} else if ("teacher".equals(searchType)) {
 			sql += "AND MEMBER_NICK LIKE '%" + searchValue + "%'";
-		} else if("lectureCategoryName".equals(searchType)) {
+		} else if ("lectureCategoryName".equals(searchType)) {
 			sql += "AND LECTURE_NAME LIKE '%" + searchValue + "%'";
-		} else if("lectureStartTime".equals(searchType)) {
+		} else if ("lectureStartTime".equals(searchType)) {
 			sql += "AND LECTURE_START_TIME LIKE '%" + searchValue + "%'";
 		}
-		
+
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, pageVo.getBeginRow());
 		pstmt.setInt(2, pageVo.getLastRow());
@@ -208,10 +209,10 @@ public class LectureDao {
 
 		return problemList;
 	}
-	
+
 	public int getLectureListCnt(Connection conn) throws SQLException {
 		String sql = "SELECT COUNT(*) FROM LECTURE WHERE STATUS = 'O'";
-		
+
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
 
@@ -228,17 +229,19 @@ public class LectureDao {
 
 	public int getLectureListCnt(Connection conn, String searchType, String searchValue) throws SQLException {
 		String sql = "SELECT COUNT(*) FROM LECTURE WHERE STATUS = 'O'";
-		
-		if("lectureOpenDate".equals(searchType)) {
+
+		if ("lectureOpenDate".equals(searchType)) {
 			sql = "SELECT COUNT(*) FROM LECTURE WHERE STATUS = 'O' AND LECTURE_OPEN_DATE LIKE '%" + searchValue + "%'";
-		} else if("teacher".equals(searchType)) {	
-			sql = "SELECT COUNT(*) FROM LECTURE L JOIN MEMBER M ON M.MEMBER_NO = L.TEACHER_MEMBER_NO WHERE L.STATUS = 'O' AND L.TEACHER_MEMBER_NO IN (SELECT MEMBER_NO FROM MEMBER WHERE MEMBER_NICK LIKE '%" + searchValue + "%')";
-		} else if("lectureCategoryName".equals(searchType)) {
-			sql = "SELECT COUNT(*) FROM LECTURE L JOIN LECTURE_CATEGORY LC ON LC.LECTURE_CATEGORY_NO = L.LECTURE_CATEGORY_NO WHERE L.STATUS = 'O' AND LECTURE_NAME LIKE '%" + searchValue + "%'";
-		} else if("lectureStartTime".equals(searchType)) {
+		} else if ("teacher".equals(searchType)) {
+			sql = "SELECT COUNT(*) FROM LECTURE L JOIN MEMBER M ON M.MEMBER_NO = L.TEACHER_MEMBER_NO WHERE L.STATUS = 'O' AND L.TEACHER_MEMBER_NO IN (SELECT MEMBER_NO FROM MEMBER WHERE MEMBER_NICK LIKE '%"
+					+ searchValue + "%')";
+		} else if ("lectureCategoryName".equals(searchType)) {
+			sql = "SELECT COUNT(*) FROM LECTURE L JOIN LECTURE_CATEGORY LC ON LC.LECTURE_CATEGORY_NO = L.LECTURE_CATEGORY_NO WHERE L.STATUS = 'O' AND LECTURE_NAME LIKE '%"
+					+ searchValue + "%'";
+		} else if ("lectureStartTime".equals(searchType)) {
 			sql = "SELECT COUNT(*) FROM LECTURE WHERE STATUS = 'O' AND lectureStartTime LIKE '%" + searchValue + "%'";
 		}
-		
+
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
 
@@ -341,13 +344,13 @@ public class LectureDao {
 			vo.setTeacherMemberName(rs.getString("MEMBER_NICK"));
 			vo.setLectureCategoryName(rs.getString("LECTURE_NAME"));
 		}
-		
+
 		JDBCTemplate.close(rs);
 		JDBCTemplate.close(pstmt);
 
 		return vo;
 	}
-	
+
 	public LectureVo getLectureOne(Connection conn, String lectureNo) throws SQLException {
 		String sql = "SELECT * FROM LECTURE L JOIN MEMBER M ON M.MEMBER_NO = L.TEACHER_MEMBER_NO JOIN LECTURE_CATEGORY LC ON L.LECTURE_CATEGORY_NO = LC.LECTURE_CATEGORY_NO WHERE LECTURE_NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -368,32 +371,32 @@ public class LectureDao {
 			vo.setTeacherMemberName(rs.getString("MEMBER_NICK"));
 			vo.setLectureCategoryName(rs.getString("LECTURE_NAME"));
 		}
-		
+
 		JDBCTemplate.close(rs);
 		JDBCTemplate.close(pstmt);
 
 		return vo;
 	}
-	
 
 	public String getLectureNo(Connection conn, String memberNo) throws SQLException {
 		String sql = "SELECT LECTURE_NO FROM STUDENT WHERE STUDENT_MEMBER_NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, memberNo);
 		ResultSet rs = pstmt.executeQuery();
-		
+
 		String result = null;
 		if (rs.next()) {
 			result = rs.getString(1);
 		}
-		
+
 		JDBCTemplate.close(rs);
 		JDBCTemplate.close(pstmt);
-		
+
 		return result;
 	}
 
-	public List<LectureMemberVo> getMemberList(Connection conn, ProblemBankVo pbv,LectureVo lectureVo) throws SQLException {
+	public List<LectureMemberVo> getMemberList(Connection conn, ProblemBankVo pbv, LectureVo lectureVo)
+			throws SQLException {
 		String sql = "SELECT * FROM MEMBER M JOIN STUDENT S ON M.MEMBER_NO = S.STUDENT_MEMBER_NO JOIN EXAM_LIST EL ON EL.MEMBER_NO = M.MEMBER_NO WHERE LECTURE_NO = ? AND EXAM_CATEGORY_NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, lectureVo.getLectureNo());
@@ -408,7 +411,7 @@ public class LectureDao {
 			vo.setScore(rs.getString("SCORE"));
 			memberList.add(vo);
 		}
-		
+
 		JDBCTemplate.close(rs);
 		JDBCTemplate.close(pstmt);
 
@@ -436,7 +439,7 @@ public class LectureDao {
 
 			submitAnswerList.add(sav);
 		}
-		
+
 		JDBCTemplate.close(rs);
 		JDBCTemplate.close(pstmt);
 
@@ -468,14 +471,15 @@ public class LectureDao {
 
 			submitAnswerList.add(sav);
 		}
-		
+
 		JDBCTemplate.close(rs);
 		JDBCTemplate.close(pstmt);
 
 		return submitAnswerList;
 	}
 
-	public int scoreOne(Connection conn, String examCategoryNo, String memberNo, String totalScore) throws SQLException {
+	public int scoreOne(Connection conn, String examCategoryNo, String memberNo, String totalScore)
+			throws SQLException {
 		String sql = "UPDATE EXAM_LIST SET SCORE = ? WHERE EXAM_CATEGORY_NO = ? AND MEMBER_NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, totalScore);
@@ -483,7 +487,7 @@ public class LectureDao {
 		pstmt.setString(3, memberNo);
 		int result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
-		
+
 		return result;
 	}
 
@@ -494,30 +498,32 @@ public class LectureDao {
 		pstmt.setString(2, memberNo);
 		int result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
-		
+
 		return result;
 	}
-	
-	public int selectAnswerCnt(Connection conn, String memberNo, String examCategoryNo, String examProblemNo, String answer) throws SQLException {
+
+	public int selectAnswerCnt(Connection conn, String memberNo, String examCategoryNo, String examProblemNo,
+			String answer) throws SQLException {
 		String sql = "SELECT COUNT(*) FROM SUBMIT_ANSWER WHERE EXAM_SCORE_NO = (SELECT EXAM_SCORE_NO FROM EXAM_LIST WHERE EXAM_CATEGORY_NO = ? AND MEMBER_NO = ?) AND EXAM_PROBLEM_NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, examCategoryNo);
 		pstmt.setString(2, memberNo);
 		pstmt.setString(3, examProblemNo);
 		ResultSet rs = pstmt.executeQuery();
-		
+
 		int cnt = 0;
 		if (rs.next()) {
 			cnt = rs.getInt(1);
 		}
-		
+
 		JDBCTemplate.close(rs);
 		JDBCTemplate.close(pstmt);
-		
+
 		return cnt;
 	}
 
-	public int insertAnswer(Connection conn, String memberNo, String examCategoryNo, String examProblemNo, String answer) throws SQLException {
+	public int insertAnswer(Connection conn, String memberNo, String examCategoryNo, String examProblemNo,
+			String answer) throws SQLException {
 		String sql = "INSERT INTO SUBMIT_ANSWER VALUES(SEQ_SUBMIT_ANSWER_NO.NEXTVAL, (SELECT EXAM_SCORE_NO FROM EXAM_LIST WHERE EXAM_CATEGORY_NO = ? AND MEMBER_NO = ?), ?, ?)";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, examCategoryNo);
@@ -526,11 +532,12 @@ public class LectureDao {
 		pstmt.setString(4, answer);
 		int result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
-		
+
 		return result;
 	}
-	
-	public int updateAnswer(Connection conn, String memberNo, String examCategoryNo, String examProblemNo, String answer) throws SQLException {
+
+	public int updateAnswer(Connection conn, String memberNo, String examCategoryNo, String examProblemNo,
+			String answer) throws SQLException {
 		String sql = "UPDATE SUBMIT_ANSWER SET SUBMIT_ANSWER = ? WHERE EXAM_SCORE_NO = (SELECT EXAM_SCORE_NO FROM EXAM_LIST WHERE EXAM_CATEGORY_NO = ? AND MEMBER_NO = ?) AND EXAM_PROBLEM_NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, answer);
@@ -539,7 +546,7 @@ public class LectureDao {
 		pstmt.setString(4, examProblemNo);
 		int result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
-		
+
 		return result;
 	}
 
@@ -549,19 +556,15 @@ public class LectureDao {
 		pstmt.setInt(1, number);
 		int result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
-		
+
 		return result;
 	}
 
 	public int modifyLectureOne(Connection conn, String[] params) throws SQLException {
-		String sql = "UPDATE LECTURE SET LECTURE_OPEN_DATE = ? , LECTURE_CLOSE_DATE = ? , TEACHER_MEMBER_NO = (SELECT MEMBER_NO FROM MEMBER WHERE MEMBER_NICK = ? AND IDENTITY = 'T' FETCH FIRST 1 ROW ONLY) , LECTURE_CATEGORY_NO = (SELECT LECTURE_CATEGORY_NO FROM LECTURE_CATEGORY WHERE LECTURE_NAME = ?) , LECTURE_START_TIME = ? , LECTURE_FINISH_TIME = ? WHERE LECTURE_NO = ?";
+		String sql = "UPDATE LECTURE SET LECTURE_OPEN_DATE = ? , LECTURE_CLOSE_DATE = ? , TEACHER_MEMBER_NO = ? , LECTURE_CATEGORY_NO = ? , LECTURE_START_TIME = ? , LECTURE_FINISH_TIME = ? WHERE LECTURE_NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		
-		for (int i = 0; i <params.length; i++) {
-			System.out.println(i + ":" + params[i]);
-		}
-		
-		String[] split = params[5].split("~");		
+
+		String[] split = params[5].split("~");
 		pstmt.setString(1, params[1]);
 		pstmt.setString(2, params[2]);
 		pstmt.setString(3, params[3]);
@@ -569,10 +572,32 @@ public class LectureDao {
 		pstmt.setString(5, split[0]);
 		pstmt.setString(6, split[1]);
 		pstmt.setString(7, params[0]);
-		
+
 		int result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
+
+		return result;
+	}
+
+	public int insertLectureOne(Connection conn, String[] params) throws SQLException {
+		String sql = "INSERT INTO LECTURE VALUES (SEQ_LECTURE_NO.NEXTVAL , ? , ? , ? , ? , ? , ? , 'O')";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+
+		String[] split = params[4].split("~");
+		pstmt.setString(1, params[2]);
+		pstmt.setString(2, params[3]);
+		pstmt.setString(3, split[0]);
+		pstmt.setString(4, split[1]);
+		pstmt.setString(5, params[0]);
+		pstmt.setString(6, params[1]);
 		
+		for (String s : params) {
+			System.out.println(s);
+		}
+
+		int result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+
 		return result;
 	}
 
