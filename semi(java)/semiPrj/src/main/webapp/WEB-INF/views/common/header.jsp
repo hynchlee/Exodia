@@ -33,7 +33,7 @@
 						</li>
 						<li class="menu2"></li>
 						<li class="menu3"><a class="profileImg" href="${root}/mypage"><img
-									src="/semi/static/img/header/___7.png" alt="사진x" id="profile_img"></a></li>
+									src="" alt="사진x" id="profile_img"></a></li>
 						<li class="menu3"><a href="${root}/introduce/greet"> KH소개 </a></li>
 						<li class="menu3"><a href="${root}/my/list?page=1"> 게시판 </a></li>
 						<li class="menu3"><a href="${root}/introduce/lecture?subject=1">
@@ -101,12 +101,12 @@
 			}
 
 			function loginShow() {
-				if ('${empty loginMember.profile}') {
+				if ("${empty loginMember.profile}" == true) {
 					profile_img.src = "/semi/static/img/header/___7.png";
 				} else {
 					profile_img.src = "/semi/static/img/profile/${loginMember.profile}";
 				}
-
+				
 				if ('${loginMember.identity}' == 'S') {
 					profileImg.href = "${root}/mypage";
 				} else if ('${loginMember.identity}' == 'T') {
