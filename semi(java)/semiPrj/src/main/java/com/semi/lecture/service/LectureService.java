@@ -57,9 +57,9 @@ public class LectureService {
 		return examCategoryList;
 	}
 
-	public List<ExamCategoryVo> getExamCategoryList2(PageVo pageVo, MemberVo loginMember) throws SQLException {
+	public List<ExamCategoryVo> getExamCategoryList2(PageVo pageVo, String lectureNo) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
-		List<ExamCategoryVo> examCategoryList = dao.getExamCategoryList2(conn, pageVo, loginMember);
+		List<ExamCategoryVo> examCategoryList = dao.getExamCategoryList2(conn, pageVo, lectureNo);
 
 		JDBCTemplate.close(conn);
 		return examCategoryList;
@@ -111,10 +111,10 @@ public class LectureService {
 		return result;
 	}
 
-	public int getExamCategoryListCnt2(MemberVo loginMember) throws SQLException {
+	public int getExamCategoryListCnt2(String lectureNo) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
 
-		int result = dao.getExamCategoryListCnt2(conn, loginMember);
+		int result = dao.getExamCategoryListCnt2(conn, lectureNo);
 
 		JDBCTemplate.close(conn);
 		return result;

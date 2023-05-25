@@ -16,53 +16,76 @@ import javax.servlet.http.HttpSession;
 import com.semi.board.service.BoardService;
 import com.semi.board.vo.BoardVo;
 import com.semi.common.page.PageVo;
+import com.semi.lecture.service.LectureService;
 import com.semi.lecture.vo.LectureVo;
 import com.semi.letter.vo.LetterVo;
 import com.semi.member.vo.MemberVo;
 import com.semi.mypage.service.MypageService;
 
 @WebServlet(urlPatterns = "/tmypage")
-public class tMypageController extends HttpServlet{
-	
+public class tMypageController extends HttpServlet {
+
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		try {
 			HttpSession session = req.getSession();
-			MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
-			
+			MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+			LectureVo lectureVo = (LectureVo) session.getAttribute("lectureVo");
+
 			if (loginMember == null) {
 				throw new IllegalSelectorException();
 			}
-			
+
 			String memberNo = loginMember.getMemberNo();
-			
+
 			MypageService ms = new MypageService();
-			List<LectureVo> volist = ms.viewStudent(memberNo);
+			LectureService ls = new LectureService();
 			List<LectureVo> tvolist = ms.teacherLecture(memberNo);
-			List<BoardVo> notList = ms.showNotice();			
-			List<BoardVo> freeList = ms.freeboard();
+
+			if(lectureVo == null) {
+				lectureVo = tvolist.get(0);
+				session.setAttribute("lectureVo", lectureVo);
+			}
+			
+			List<MemberVo> volist = ls.getMemberList(lectureVo.getLectureNo());
+			List<BoardVo> notList = ms.showNotice();
+			List<BoardVo> freeList = ms.freeboard(); //  // 수정 필요
 			String letterCount = ms.countLetter01(memberNo);
 			String countMyWrite = ms.countMyWrite(memberNo);
-			
+
 			req.setAttribute("volist", volist);
-			req.setAttribute("tvolist", tvolist);			
+			req.setAttribute("tvolist", tvolist);
 			req.setAttribute("notList", notList);
 			req.setAttribute("freeList", freeList);
 			req.setAttribute("letterCount", letterCount);
 			req.setAttribute("countMyWrite", countMyWrite);
 			req.getRequestDispatcher("/WEB-INF/views/personal/tmypage.jsp").forward(req, resp);
-			
-			} catch (Exception e) {
-				System.out.println("tmypage 게시판 조회 중 발생");
-				e.printStackTrace();
-				
-				req.setAttribute("errorMsg", "마이페이지 조회중 에러발생");
-				req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
-			}
-	
-		
-	
+
+		} catch (Exception e) {
+			System.out.println("tmypage 게시판 조회 중 발생");
+			e.printStackTrace();
+
+			req.setAttribute("errorMsg", "마이페이지 조회중 에러발생");
+			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+		}
 	}
-	
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		try {
+			String lectureNo = req.getParameter("lectureNo");
+			LectureService ls = new LectureService();
+			LectureVo lectureVo = ls.getLectureOne(lectureNo);
+			
+			req.getSession().setAttribute("lectureVo", lectureVo);
+		} catch (Exception e) {
+			System.out.println("tmypage 게시판 조회 중 발생");
+			e.printStackTrace();
+			
+			req.setAttribute("errorMsg", "마이페이지 조회중 에러발생");
+			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+		}
+	}
+
 }

@@ -19,12 +19,12 @@ import com.semi.vacation.vo.VacationVo;
 
 public class MypageService {
 
-	public List<LectureVo> viewStudent(String memberNo) throws Exception {
+	public List<LectureVo> viewStudent(String lectureNo) throws Exception {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		
 		MypageDao mdao = new MypageDao();
-		List<LectureVo> volist = mdao.viewStudent(conn, memberNo);
+		List<LectureVo> volist = mdao.viewStudent(conn, lectureNo);
 		
 		JDBCTemplate.close(conn);
 		
