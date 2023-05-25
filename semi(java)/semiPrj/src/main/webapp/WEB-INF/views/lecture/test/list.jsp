@@ -36,21 +36,28 @@
 									<td></td>
 									<td></td>
 									<td class="bbb">
-										<form action="${root}/lecture/test/list" method="post">
-											<input hidden type="text" name="result" value="0">
-											<input hidden type="text" name="examCategoryNo"
-												value="${vo.examCategoryNo}">
-											<input hidden type="text" name="examSubject" value="${vo.examSubject}">
-											<input type="submit" value="시험시작">
-										</form>
-										<form action="${root}/lecture/test/list" method="post">
-											<input hidden type="text" name="result" value="1">
-											<input hidden type="text" name="examCategoryNo"
-												value="${vo.examCategoryNo}">
-											<input hidden type="text" name="examSubject" value="${vo.examSubject}">
-											<input type="submit" value="결과 확인">
-										</form>
-										<button>확인완료</button>
+										<c:if test="${vo.status == null}">
+											<button>응시 대기</button>
+										</c:if>
+
+										<c:if test="${vo.status == 'X'}">
+											<form action="${root}/lecture/test/list" method="post">
+												<input hidden type="text" name="result" value="0">
+												<input hidden type="text" name="examCategoryNo"
+													value="${vo.examCategoryNo}">
+												<input hidden type="text" name="examSubject" value="${vo.examSubject}">
+												<input type="submit" value="시험 시작">
+											</form>
+										</c:if>
+										<c:if test="${vo.status == 'O'}">
+											<form action="${root}/lecture/test/list" method="post">
+												<input hidden type="text" name="result" value="1">
+												<input hidden type="text" name="examCategoryNo"
+													value="${vo.examCategoryNo}">
+												<input hidden type="text" name="examSubject" value="${vo.examSubject}">
+												<input type="submit" value="결과 확인">
+											</form>
+										</c:if>
 									</td>
 								</tr>
 							</c:forEach>
