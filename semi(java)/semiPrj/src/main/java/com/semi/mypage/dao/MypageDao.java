@@ -17,11 +17,11 @@ import com.semi.vacation.vo.VacationVo;
 
 public class MypageDao {
 
-	public List<LectureVo> viewStudent(Connection conn, String memberNo) throws Exception {
+	public List<LectureVo> viewStudent(Connection conn, String lectureNo) throws Exception {
 
-		String sql = "SELECT M.MEMBER_NICK, G.LECTURE_NAME FROM LECTURE L JOIN STUDENT S ON (L.LECTURE_NO = S.LECTURE_NO) JOIN MEMBER M ON(S.STUDENT_MEMBER_NO = M.MEMBER_NO) JOIN LECTURE_CATEGORY G ON (G.LECTURE_CATEGORY_NO = L.LECTURE_CATEGORY_NO) WHERE TEACHER_MEMBER_NO = ?";
+		String sql = "SELECT * FROM LECTURE L JOIN STUDENT S ON (L.LECTURE_NO = S.LECTURE_NO) JOIN MEMBER M ON(S.STUDENT_MEMBER_NO = M.MEMBER_NO) JOIN LECTURE_CATEGORY G ON (G.LECTURE_CATEGORY_NO = L.LECTURE_CATEGORY_NO) WHERE L.LECTURE_NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, memberNo);
+		pstmt.setString(1, lectureNo);
 		ResultSet rs = pstmt.executeQuery();
 		
 		List<LectureVo> volist = new ArrayList<>();
@@ -211,22 +211,26 @@ public class MypageDao {
 
 	public List<LectureVo> teacherLecture(Connection conn, String memberNo) throws Exception {
 
-		String sql = "SELECT M.MEMBER_NICK, G.LECTURE_NAME FROM LECTURE L JOIN MEMBER M ON(L.TEACHER_MEMBER_NO = M.MEMBER_NO) JOIN LECTURE_CATEGORY G ON (G.LECTURE_CATEGORY_NO = L.LECTURE_CATEGORY_NO) WHERE TEACHER_MEMBER_NO = ?";
+		String sql = "SELECT * FROM LECTURE L JOIN MEMBER M ON(L.TEACHER_MEMBER_NO = M.MEMBER_NO) JOIN LECTURE_CATEGORY G ON (G.LECTURE_CATEGORY_NO = L.LECTURE_CATEGORY_NO) WHERE TEACHER_MEMBER_NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, memberNo);
 		ResultSet rs = pstmt.executeQuery();
 		
 		List<LectureVo> tvolist = new ArrayList<>();
 		while(rs.next()) {
-			String memberNick = rs.getString("MEMBER_NICK");
-			String lectureName = rs.getString("LECTURE_NAME");
-			
 			LectureVo vo = new LectureVo();
-			vo.setTeacherMemberName(memberNick);
-			vo.setLectureCategoryName(lectureName);
+			vo.setLectureNo(rs.getString("LECTURE_NO"));
+			vo.setTeacherMemberNo(rs.getString("TEACHER_MEMBER_NO"));
+			vo.setLectureCategoryNo(rs.getString("LECTURE_CATEGORY_NO"));
+			vo.setLectureStartTime(rs.getString("LECTURE_START_TIME"));
+			vo.setLectureFinishTime(rs.getString("LECTURE_FINISH_TIME"));
+			vo.setLectureOpenDate(rs.getString("LECTURE_OPEN_DATE"));
+			vo.setLectureCloseDate(rs.getString("LECTURE_CLOSE_DATE"));
+			vo.setStatus(rs.getString("STATUS"));
+			vo.setTeacherMemberName(rs.getString("MEMBER_NICK"));
+			vo.setLectureCategoryName(rs.getString("LECTURE_NAME"));
 			
 			tvolist.add(vo);
-				
 		}
 		
 		JDBCTemplate.close(rs);

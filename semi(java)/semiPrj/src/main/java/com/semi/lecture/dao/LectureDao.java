@@ -173,11 +173,11 @@ public class LectureDao {
 		return ExamCategoryList;
 	}
 
-	public List<ExamCategoryVo> getExamCategoryList2(Connection conn, PageVo pageVo, MemberVo loginMember)
+	public List<ExamCategoryVo> getExamCategoryList2(Connection conn, PageVo pageVo, String lectureNo)
 			throws SQLException {
-		String sql = "SELECT * FROM (SELECT ROWNUM AS RNUM, A.* FROM ( SELECT * FROM EXAM_CATEGORY EC JOIN LECTURE_CATEGORY LC ON EC.LECTURE_CATEGORY_NO = LC.LECTURE_CATEGORY_NO WHERE EC.LECTURE_CATEGORY_NO = (SELECT LECTURE_CATEGORY_NO FROM LECTURE WHERE TEACHER_MEMBER_NO = ?) ORDER BY EC.EXAM_CATEGORY_NO )A )WHERE RNUM BETWEEN ? AND ?";
+		String sql = "SELECT * FROM (SELECT ROWNUM AS RNUM, A.* FROM ( SELECT * FROM EXAM_CATEGORY EC JOIN LECTURE_CATEGORY LC ON EC.LECTURE_CATEGORY_NO = LC.LECTURE_CATEGORY_NO WHERE EC.LECTURE_CATEGORY_NO = (SELECT LECTURE_CATEGORY_NO FROM LECTURE WHERE LECTURE_NO = ?) ORDER BY EC.EXAM_CATEGORY_NO )A )WHERE RNUM BETWEEN ? AND ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, loginMember.getMemberNo());
+		pstmt.setString(1, lectureNo);
 		pstmt.setInt(2, pageVo.getBeginRow());
 		pstmt.setInt(3, pageVo.getLastRow());
 		ResultSet rs = pstmt.executeQuery();
@@ -322,10 +322,10 @@ public class LectureDao {
 		return cnt;
 	}
 
-	public int getExamCategoryListCnt2(Connection conn, MemberVo loginMember) throws SQLException {
-		String sql = "SELECT COUNT(*) FROM EXAM_CATEGORY WHERE LECTURE_CATEGORY_NO = (SELECT LECTURE_CATEGORY_NO FROM LECTURE WHERE TEACHER_MEMBER_NO = ?)";
+	public int getExamCategoryListCnt2(Connection conn, String lectureNo) throws SQLException {
+		String sql = "SELECT COUNT(*) FROM EXAM_CATEGORY WHERE LECTURE_CATEGORY_NO = (SELECT LECTURE_CATEGORY_NO FROM LECTURE WHERE LECTURE_NO = ?)";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, loginMember.getMemberNo());
+		pstmt.setString(1, lectureNo);
 		ResultSet rs = pstmt.executeQuery();
 
 		int cnt = 0;
@@ -438,6 +438,7 @@ public class LectureDao {
 		while (rs.next()) {
 			MemberVo vo = new MemberVo();
 			vo.setMemberNo(rs.getString("MEMBER_NO"));
+			vo.setMemberId(rs.getString("MEMBER_ID"));
 			vo.setMemberNick(rs.getString("MEMBER_NICK"));
 			memberList.add(vo);
 		}

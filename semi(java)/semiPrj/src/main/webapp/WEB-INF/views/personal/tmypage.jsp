@@ -4,12 +4,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <link rel="stylesheet" href="${root}/static/css/personal/tmypage.css" type="text/css">
 <style>
-	
+	.choiceLecture:hover * {
+		background-color: #4998D1;
+		color: white;
+	}
 </style>
 </head>
 <body>
@@ -70,9 +74,12 @@
 							<span class="teamlisttitle">담당 강의</span>
 							<hr>
 							<ul>
-								<c:forEach items="${tvolist}" var="tvolist">
-									<li class="list02">${tvolist.lectureCategoryName}</li>	
-									<li class="list03">${tvolist.teacherMemberName}</li>				
+								<c:forEach items="${tvolist}" var="tvo">
+									<ul class="choiceLecture">
+										<input hidden type="text" value="${tvo.lectureNo}">
+										<li class="list02">${tvo.lectureCategoryName}</li>	
+										<li class="list03">${tvo.teacherMemberName}</li>				
+									</ul>
 									<hr>			
 								</c:forEach>
 							</ul>	
@@ -113,9 +120,8 @@
 							<br>
 							<hr>
 							<ul>
-								<c:forEach items="${volist}" var="volist">
-									<li class="list01">${volist.teacherMemberName}</li>				
-									<li class="list02">${volist.lectureCategoryName}</li>	
+								<c:forEach items="${volist}" var="vo">
+									<li class="list01">${vo.memberNick} (${vo.memberId})</li>			
 									<hr>			
 								</c:forEach>
 							</ul>							
@@ -135,6 +141,30 @@
 </body>
 </html>
 <script>
+	const clArr = document.querySelectorAll('.choiceLecture');
 	const title = document.querySelector(".title");
 	title.innerHTML = "강사 마이페이지";
+
+	for (const cl of clArr) {
+		const lectureNo = cl.querySelector('input').value;
+		
+		cl.addEventListener("click", function() {
+			$.ajax({
+					url: '/semi/tmypage',
+					type: 'post',
+					data: { lectureNo: lectureNo },
+					success: function () {
+						location.reload();
+					},
+					error: function () {
+						alert("에러");
+					}
+			});
+		});
+
+		if(lectureNo == "${lectureVo.lectureNo}") {
+			cl.style.backgroundColor = "#F0F0F0";
+		}
+	}
+	
 </script>
