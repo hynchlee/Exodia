@@ -45,7 +45,6 @@
                     </select>
 
                     <textarea name="boardContent" id="summernote"></textarea>
-                    <input type="file" name="select_file">
                 </div>
     
                 <div class="board_bt">

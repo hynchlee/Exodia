@@ -46,7 +46,7 @@
                         <option value="3">우리반게시판</option>
                     </select>
                     <textarea name="boardContent" id="summernote"></textarea>
-                    <input type="file" name="select_file">
+                    <!-- <input type="file" name="select_file"> -->
                 </div>
 
     
@@ -97,10 +97,8 @@
                     fd.append("f", file)
                 }
 
-                fd.append("f", fileList[0]);
-
                 $.ajax({
-                    url: '/semi/board/upload',
+                    url: '${root}/board/upload',
                     type: 'post',
                     data: fd,
                     processData: false,
@@ -109,7 +107,7 @@
                     success: function(changeNameList){
                         console.log(changeNameList);
                         for(let changeName of changeNameList){
-                            $('#summernote').summernote('insertImage', '/static/img/board/' + changeName);
+                            $('#summernote').summernote('insertImage', '/semi/static/img/board/' + changeName);
                         }
                     },
                     error: function(error){

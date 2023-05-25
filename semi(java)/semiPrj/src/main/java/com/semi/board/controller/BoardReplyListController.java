@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.semi.board.service.BoardService;
 import com.semi.board.vo.ReplyVo;
 
@@ -28,8 +30,12 @@ public class BoardReplyListController extends HttpServlet{
 			BoardService bs = new BoardService();
 			List<ReplyVo> revolist = bs.getBoardReplyList(bno);
 			
+			Gson gson = new Gson();
+			String jsonStr = gson.toJson(revolist);
+			
+			resp.setCharacterEncoding("UTF-8");
 			PrintWriter out = resp.getWriter();
-			out.write("{\"\":\"\"}");
+			out.write(jsonStr);
 			
 		} catch (Exception e) {
 			System.out.println("[ERROR] reply list error");

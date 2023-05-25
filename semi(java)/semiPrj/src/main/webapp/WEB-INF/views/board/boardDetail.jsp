@@ -69,10 +69,10 @@
                             <th>내용</th>
                             <td colspan="4" style="height: 500px;">${cvNo.boardContent}</td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <th>첨부파일</th>
                             <td colspan="4"></td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
                 <!-- 작성자에게만 보이기 -->
@@ -93,18 +93,18 @@
                     <input type="button" onclick="writeComment();" value="댓글작성">
 
                     <!-- 댓글 조회 -->
-                    <c:if test="${cvo.totalReplies > 0}">
+                    <!-- <c:if test="${cvo.totalReplies > 0}"> -->
                         <div class="comment_list">
-                            <c:forEach items="${revoList}" var="re">
+                            <!-- <c:forEach items="${revoList}" var="re"> -->
                                 <div class="comment_col">
-                                    <span>${re.writerNick}</span>
-                                    <span>${re.replyContent}</span>
+                                    <span></span>
+                                    <span></span>
                                     <input type="button" value="수정">
                                     <input type="button" value="삭제">
                                     <input type="button" value="답글" id="onDisplay">
-                                    <span class="time">${re.enrollDate}</span>
+                                    <span class="time"></span>
                                 </div>
-                            </c:forEach>
+                            <!-- </c:forEach> -->
                             <!-- <div class="recomment">
                                 <i class="bi bi-arrow-return-right"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>
@@ -123,8 +123,7 @@
                             <input type="button" value="작성">
                             <input type="button" id="offDisplay" value="취소">
                         </div>
-                       </div>
-                    </c:if>
+                    <!-- </c:if> -->
                 </div>
             </div>
 	            
@@ -136,26 +135,26 @@
 </body>
 </html>
 <script>
-	const title = document.querySelector('.title');
-	title.innerHTML = "${cvNo.boardCategoryType}";
+	// const title = document.querySelector('.title');
+	// title.innerHTML = "${cvNo.boardCategoryType}";
 
-    // 답글 작성란 보이기 숨기기
+    // // 답글 작성란 보이기 숨기기
 
-    $(function(){
-        $('#onDisplay').click(function(){
-            if($("#noneDiv").css("display") == "none"){
-                $('#noneDiv').show();
-            }
-        });
-    });
+    // $(function(){
+    //     $('#onDisplay').click(function(){
+    //         if($("#noneDiv").css("display") == "none"){
+    //             $('#noneDiv').show();
+    //         }
+    //     });
+    // });
 
-    $(function(){
-        $('#offDisplay').click(function(){
-            if($("#noneDiv").css("display") != "none"){
-                $('#noneDiv').hide();
-            }
-        })
-    })
+    // $(function(){
+    //     $('#offDisplay').click(function(){
+    //         if($("#noneDiv").css("display") != "none"){
+    //             $('#noneDiv').hide();
+    //         }
+    //     })
+    // })
 
     // // $('#onDisplay').click(function(){
     // //     $('#noneDiv').show();
@@ -202,7 +201,7 @@
 
         $.ajax({
             url : '${root}/board/reply/list',
-            type : 'GET',
+            type : "GET",
             data : {
                 bno : '${cvNo.boardNo}',
 
@@ -210,9 +209,18 @@
             success : function(result){
                 console.log(result);
                 const x = JSON.parse(result);
-            },
-            error : function(x){
                 console.log(x);
+
+                for(let i = 0; i < x.length; i++){
+                    replyList.innerHTML 
+                                += "<span>" + x[0].replyContent 
+                                + "</span><span>" 
+                                + x[0].writerNick 
+                                + "</span>";
+                }
+            },
+            error : function(e){
+                console.log(e);
             },
         });
 

@@ -62,10 +62,10 @@
                             <th>내용</th>
                             <td colspan="4" style="height: 500px;">${nvNo.noticeContent}</td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <th>첨부파일</th>
                             <td colspan="4"></td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
                 <!-- 작성자에게만 보이기 -->

@@ -1,4 +1,4 @@
-package com.semi.board.controller;
+package com.semi.notice.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,15 +23,15 @@ import com.google.gson.Gson;
 		maxFileSize = 1024*1024*50,
 		maxRequestSize = 1024*1024*50*10
 		)
-@WebServlet("/board/upload")
-public class BoardUploadController extends HttpServlet{
+@WebServlet("/notice/upload")
+public class NoticeUploadController extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		List<String> changeNameList = new ArrayList<>();
 		
-		String path = req.getServletContext().getRealPath("/static/img/board/");
+		String path = req.getServletContext().getRealPath("/static/img/notice/");
 		Collection<Part> fileList = req.getParts();
 		for (Part f : fileList) {
 			

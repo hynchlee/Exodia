@@ -55,10 +55,7 @@
                             <th>내용</th>
                             <td colspan="4" style="height: 500px;">${rvNo.reviewContent}</td>
                         </tr>
-                        <tr>
-                            <th>첨부파일</th>
-                            <td colspan="4"></td>
-                        </tr>
+                        
                     </tbody>
                 </table>
 
