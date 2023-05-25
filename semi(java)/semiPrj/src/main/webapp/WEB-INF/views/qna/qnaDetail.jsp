@@ -57,10 +57,10 @@
                             <th>내용</th>
                             <td colspan="4" style="height: 500px;">${qvNo.qnaContent}</td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <th>첨부파일</th>
                             <td colspan="4"></td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
 
@@ -98,10 +98,10 @@
 	                            <th>내용</th>
 	                            <td colspan="4" style="height: 500px;">${qvNo.qnaAnswer}</td>
 	                        </tr>
-	                        <tr>
+	                        <!-- <tr>
 	                            <th>첨부파일</th>
 	                            <td colspan="4"></td>
-	                        </tr>
+	                        </tr> -->
 	                    </tbody>
 	                </table>
 	    
