@@ -188,15 +188,15 @@ public class BoardService {
 	}
 
 	//내가 쓴글 검색 목록 조회
-//	public List<BoardVo> getBoardMyList(PageVo pv, String searchType, String searchValue) throws Exception {
-//		Connection conn = JDBCTemplate.getConnection();
-//		
-//		List<BoardVo> bvoList = dao.getBoardMyList(conn, pv, searchType, searchValue);
-//		
-//		JDBCTemplate.close(conn);
-//		
-//		return bvoList;
-//	}
+	public List<BoardVo> getBoardMyList(PageVo pv, String searchType, String searchValue) throws Exception {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		List<BoardVo> bvoList = dao.getBoardMyList(conn, pv, searchType, searchValue);
+		
+		JDBCTemplate.close(conn);
+		
+		return bvoList;
+	}
 
 	//페이징
 	public int getBoardMyListCnt(String searchType, String searchValue, String mno) throws Exception {
@@ -227,5 +227,6 @@ public class BoardService {
 		
 		return result;
 	}
+
 
 }

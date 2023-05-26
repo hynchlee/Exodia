@@ -25,13 +25,20 @@ public class BoardReviewListController extends HttpServlet{
 		try {
 			
 			//검색
-//			String searchCategory = req.getParameter("searchCategory");
+			String searchType = req.getParameter("searchType");
+			String searchValue = req.getParameter("searchValue");
+			String searchCategory = req.getParameter("searchCategory");
 			
 			int cnt = res.getReviewListCnt();
 			int page = Integer.parseInt(req.getParameter("page"));
 			PageVo pv = new PageVo(cnt, page, 5, 10);
 			
-			List<ReviewVo> rvoList = res.getReviewList(pv);
+			List<ReviewVo> rvoList = null;
+			if (searchType == null || searchType.equals("")) {
+				rvoList = res.getReviewList(pv);
+			}else {
+				rvoList = res.getReviewList(pv, searchType, searchValue);
+			}
 			
 			
 			//화면

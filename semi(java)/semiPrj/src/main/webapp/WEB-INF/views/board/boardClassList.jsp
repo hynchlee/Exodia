@@ -105,7 +105,7 @@
     const searchType = "${searchVo.searchType}";
 
     // 검색 타입
-    const nc = document.querySelector(`select > option[value="${searchType}"]`);
+    const nc = document.querySelector(`select > option[value="${searchVo.searchType}"]`);
     if (nc) {
     nc.selected = true;
     }
