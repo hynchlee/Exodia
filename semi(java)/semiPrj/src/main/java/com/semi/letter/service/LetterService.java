@@ -3,6 +3,7 @@ package com.semi.letter.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import com.semi.common.db.JDBCTemplate;
 import com.semi.common.page.PageVo;
@@ -173,7 +174,7 @@ public class LetterService {
 	}
 
 	public int deleteTrashLetter(int[] letterNo) throws Exception {
-		
+
 		Connection conn = JDBCTemplate.getConnection();
 
 		int x = 1;
@@ -192,17 +193,28 @@ public class LetterService {
 		return x;
 	}
 
-	public LetterVo selectLetterOneByNo(String no) throws Exception {
+	public LetterVo selectSendOneByNo(String bno) throws Exception {
 
 		Connection conn = JDBCTemplate.getConnection();
-		
-		LetterVo vo = dao.selectLetterOneByNo(no, conn);
+
+		LetterVo vo = dao.selectSendOneByNo(bno, conn);
 		
 		JDBCTemplate.close(conn);
-		
+
 		return vo;
+
 	}
 
+	public LetterVo selectReceiveOneByNo(String bno) throws Exception {
 		
+		Connection conn = JDBCTemplate.getConnection();
+
+		LetterVo vo = dao.selectReceiveOneByNo(bno, conn);
+		
+		JDBCTemplate.close(conn);
+
+		return vo;
+		
+	}
 
 }

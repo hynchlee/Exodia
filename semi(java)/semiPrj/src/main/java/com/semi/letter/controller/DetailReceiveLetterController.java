@@ -11,28 +11,32 @@ import javax.servlet.http.HttpServletResponse;
 import com.semi.letter.service.LetterService;
 import com.semi.letter.vo.LetterVo;
 
-@WebServlet("/letter/detail")
-public class DetailLetterController extends HttpServlet{
+@WebServlet("/letter/receive/detail")
+public class DetailReceiveLetterController extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 		try {
-			String no = req.getParameter("no");
+			String bno = req.getParameter("bno");
 			
 			LetterService ls = new LetterService();
-			LetterVo vo = ls.selectLetterOneByNo(no);
+			
+			LetterVo vo = ls.selectReceiveOneByNo(bno);
 			
 			if(vo != null) {
 				req.setAttribute("vo", vo);
-				req.getRequestDispatcher("/WEB-INF/views/letter/detail.jsp").forward(req, resp);
+				req.getRequestDispatcher("/WEB-INF/views/letter/detail-receive-letter.jsp").forward(req, resp);
 			}
 			else {
-				req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+				throw new Exception();
 			}
-		} catch (Exception e) {
+			
+		}catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("상세조회 중 오류 발생");
+			System.out.println("받은메세지 상세조회 중 오류 발생");
+			req.setAttribute("errorMsg", "보낸 편지 상세조회 중 오류 발생");
+			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
 		}
 		
 	}

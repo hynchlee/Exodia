@@ -17,7 +17,7 @@
 							<form action="${root}/letter/write" method="post">
 								<div id="select-button">
 									<img src="${root}/static/img/letter/쪽지 쓰기.png">
-									<input type="submit" value="쪽지 쓰기" id="write-letter" disabled>
+									<input type="submit" value="쪽지 쓰기" id="write-letter">
 								</div>
 							</form>
 						</div>
@@ -52,31 +52,23 @@
 								<thead>
 									<tr>
 										<th id="title" style="width: 100px;">받는 사람</th>
-										<th><input type="text" name="receiver"></th>
+										<th><input type="text" name="receiver" value="${vo.sendMemberName}" disabled></th>
                                         <th id="title">보낸 시간</th>
-                                        <th><input type="text" value="시간" style="width: 75%;"></th>
+                                        <th><input type="text" value="${vo.enrollDate}" style="width: 75%;" disabled></th>
 									</tr>
 									<tr>
 										<th id="title">제목</th>
-										<th id="inputText" colspan="3"><input type="text" name="title"></th>
+										<th id="inputText" colspan="3"><input type="text" name="title" value="${vo.letterTitle}" disabled></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
 										<th colspan="4">
-											<textarea></textarea>
+											<textarea disabled>${vo.letterContent}</textarea>
 										</th>
 									</tr>
 								</tbody>
 								<tfoot>
-									<tr>
-                                        <th id="deleteTh">
-                                        </th>
-										<th colspan="3">
-                                            <button id="delete">삭제하기</button>
-											<button id="send">보내기</button>
-										</th>
-									</tr>
 								</tfoot>
 							</table>
 						</div>
@@ -91,7 +83,7 @@
 
 		<script>
 			const title = document.querySelector(".title");
-			title.innerHTML = "쪽지 상세조회";
+			title.innerHTML = "받은 쪽지 상세조회";
 
 			const banner = document.querySelector(".banner");
 			banner.style.marginBottom = 0;

@@ -71,9 +71,10 @@
 									</tr>
 								</thead>
 							</form>
-							<tbody>
+							<tbody id="letterBody">
 								<c:forEach items="${voList}" var="vo">
-									<tr>
+									<tr onclick="detail();">
+										<td id="letterNo" hidden>${vo.letterNo}</td>
 										<td style="width: 50px;">
 											<input type="checkbox" class="checkbox" value="${vo.letterNo}">
 										</td>
@@ -91,12 +92,11 @@
 								</tr>
 								<tr>
 									<td id="pageTd" colspan="4">
-										<button onclick="pageMove('${pageVo.startPage}');">
-											<<</button>
-												<c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" var="i">
-													<button class="pageBtn" onclick="pageMove('${i}');">${i}</button>
-												</c:forEach>
-												<button onclick="pageMove('${pageVo.endPage}');">>></button>
+										<button onclick="pageMove('${pageVo.startPage}');"><<</button>
+										<c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" var="i">
+											<button class="pageBtn" onclick="pageMove('${i}');">${i}</button>
+										</c:forEach>
+										<button onclick="pageMove('${pageVo.endPage}');">>></button>
 									</td>
 								</tr>
 							</tfoot>
@@ -194,11 +194,10 @@
 
 			setSearchValueTag();
 
-			const tbody = document.querySelector('tbody');
-			tbody.addEventListener('click', (event)=>{
-				const bno = event.target.parentNode.children[0].innerText;
-
-				location.href = '${root}/board/detail?bno='+bno;
-			})
+			function detail(){
+				const bno = event.target.parentElement.querySelector("#letterNo").innerText;
+				location.href = "${root}/letter/receive/detail?bno="+bno;
+				
+			};
 
 		</script>

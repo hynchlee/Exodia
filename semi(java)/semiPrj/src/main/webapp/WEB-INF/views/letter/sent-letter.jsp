@@ -72,10 +72,10 @@
 									</tr>
 								</thead>
 							</form>
-							<tbody>
+							<tbody id="letterBody">
 								<c:forEach items="${voList}" var="vo">
-									<form action="${root}/letter/detail" method="post">
-										<tr onclick="handleClick(event, this.closest('form'));">
+										<tr onclick="detail();">
+											<td id="letterNo" hidden>${vo.letterNo}</td>
 											<td style="width: 50px;">
 												<input type="checkbox" class="checkbox" value="${vo.letterNo}">
 											</td>
@@ -83,7 +83,6 @@
 											<td>${vo.letterTitle}</td>
 											<td>${vo.enrollDate}</td>
 										</tr>
-									</form>
 								</c:forEach>
 							</tbody>
 							<tfoot>
@@ -122,11 +121,6 @@
 
 			const caption = document.querySelector(".caption1");
 			caption.style.marginTop = 0;
-
-			function handleClick(event, formElement){
-				event.stopPropagation();
-				formElement.submit();
-			}
 
 			const pageBtn = document.querySelectorAll('.pageBtn');
 
@@ -202,10 +196,9 @@
 
 			setSearchValueTag();
 
-			const tbody = document.querySelector('tbody');
-			tbody.addEventListener('click', (event)=>{
-				const bno = event.target.parentNode.children[0].innerText;
-
-				location.href = '${root}/board/detail?bno='+bno;
-			})
+			function detail(){
+				const bno = event.target.parentElement.querySelector("#letterNo").innerText;
+				location.href = "${root}/letter/send/detail?bno="+bno;
+				
+			};
 		</script>
