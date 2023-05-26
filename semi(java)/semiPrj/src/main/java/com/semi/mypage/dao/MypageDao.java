@@ -43,52 +43,6 @@ public class MypageDao {
 		return volist;
 	}
 
-	public List<BoardVo> showNotice(Connection conn) throws Exception {
-
-		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM ,T.* FROM ( SELECT B.BOARD_NO, B.BOARD_CATEGORY_NO, B.MEMBER_NO, B.BOARD_TITLE, B.BOARD_CONTENT, TO_CHAR(B.ENROLL_DATE,'YYYY.MM.DD') AS ENROLL_DATE, TO_CHAR(B.MODIFY_DATE,'YYYY.MM.DD') AS MODIFY_DATE, B.STATUS, B.HIT, M.MEMBER_NICK, C.BOARD_CATEGORY_TYPE, COUNT(R.REPLY_NO) AS TOTAL_REPLIES FROM BOARD B JOIN MEMBER M ON (B.MEMBER_NO = M.MEMBER_NO) JOIN BOARD_CATEGORY C ON (B.BOARD_CATEGORY_NO = C.BOARD_CATEGORY_NO) LEFT JOIN REPLY R ON (B.BOARD_NO = R.BOARD_NO) WHERE B.STATUS = 'O' AND C.BOARD_CATEGORY_NO = 1 GROUP BY B.BOARD_NO, B.BOARD_CATEGORY_NO, B.MEMBER_NO, B.BOARD_TITLE, B.BOARD_CONTENT, B.ENROLL_DATE, B.MODIFY_DATE, B.STATUS, B.HIT, M.MEMBER_NICK, C.BOARD_CATEGORY_TYPE ORDER BY B.BOARD_NO DESC ) T ) WHERE RNUM BETWEEN 1 AND 3";
-		PreparedStatement pstmt = conn.prepareStatement(sql);
-		ResultSet rs = pstmt.executeQuery();
-		
-		List<BoardVo> notList = new ArrayList<>();
-		while (rs.next()) {
-			
-			String boardNo = rs.getString("BOARD_NO");
-			String boardCategoryNo = rs.getString("BOARD_CATEGORY_NO");
-			String memberNo = rs.getString("MEMBER_NO");
-			String boardTitle = rs.getString("BOARD_TITLE");
-			String boardContent = rs.getString("BOARD_CONTENT");
-			String enrollDate = rs.getString("ENROLL_DATE");
-			String modifyDate = rs.getString("MODIFY_DATE");
-			String status = rs.getString("STATUS");
-			String hit = rs.getString("HIT");
-			String writerNick = rs.getString("MEMBER_NICK");
-			String boardCategoryType = rs.getString("BOARD_CATEGORY_TYPE");
-			String totalReplies = rs.getString("TOTAL_REPLIES");
-			
-			BoardVo bv = new BoardVo();
-			bv.setBoardNo(boardNo);
-			bv.setBoardCategoryNo(boardCategoryNo);
-			bv.setMemberNo(memberNo);
-			bv.setBoardTitle(boardTitle);
-			bv.setBoardContent(boardContent);
-			bv.setEnrollDate(enrollDate);
-			bv.setModifyDate(modifyDate);
-			bv.setStatus(status);
-			bv.setHit(hit);
-			bv.setWriterNick(writerNick);
-			bv.setBoardCategoryType(boardCategoryType);
-			bv.setTotalReplies(totalReplies);
-			
-			notList.add(bv);
-		}
-		
-		JDBCTemplate.close(rs);
-		JDBCTemplate.close(pstmt);
-		
-		return notList;
-	
-	}
-
 	public List<BoardVo> freeBoard(Connection conn) throws Exception {
 		
 		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM ,T.* FROM ( SELECT B.BOARD_NO, B.BOARD_CATEGORY_NO, B.MEMBER_NO, B.BOARD_TITLE, B.BOARD_CONTENT, TO_CHAR(B.ENROLL_DATE,'YYYY.MM.DD') AS ENROLL_DATE, TO_CHAR(B.MODIFY_DATE,'YYYY.MM.DD') AS MODIFY_DATE, B.STATUS, B.HIT, M.MEMBER_NICK, C.BOARD_CATEGORY_TYPE, COUNT(R.REPLY_NO) AS TOTAL_REPLIES FROM BOARD B JOIN MEMBER M ON (B.MEMBER_NO = M.MEMBER_NO) JOIN BOARD_CATEGORY C ON (B.BOARD_CATEGORY_NO = C.BOARD_CATEGORY_NO) LEFT JOIN REPLY R ON (B.BOARD_NO = R.BOARD_NO) WHERE B.STATUS = 'O' AND C.BOARD_CATEGORY_NO = 1 GROUP BY B.BOARD_NO, B.BOARD_CATEGORY_NO, B.MEMBER_NO, B.BOARD_TITLE, B.BOARD_CONTENT, B.ENROLL_DATE, B.MODIFY_DATE, B.STATUS, B.HIT, M.MEMBER_NICK, C.BOARD_CATEGORY_TYPE ORDER BY B.BOARD_NO DESC ) T ) WHERE RNUM BETWEEN 1 AND 3";
@@ -461,6 +415,85 @@ public class MypageDao {
 		
 		return avoList;
 	
+	}
+
+	public int checkIn(Connection conn, String memberNo) throws Exception {
+
+		String sql = "INSERT INTO ATTENDANCE_LIST (ATTENDANCE_DATE, STUDENT_MEMBER_NO, CHECK_IN_TIME, STATUS) VALUES (SYSDATE, ?, SYSDATE, 'X')";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		int result = pstmt.executeUpdate();
+	
+		if(result == 1) {
+			JDBCTemplate.commit(conn);
+		}
+		else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+		
+	}
+
+	public int checkOut(Connection conn, String memberNo) throws Exception {
+		
+		String sql = "UPDATE ATTENDANCE_LIST SET CHECK_OUT_TIME = SYSDATE, STATUS = 'O' WHERE ATTENDANCE_DATE = TO_CHAR(SYSDATE, 'YY/MM/DD') AND STUDENT_MEMBER_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		int result = pstmt.executeUpdate();
+	
+		if(result == 1) {
+			JDBCTemplate.commit(conn);
+		}
+		else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	
+	}
+
+	public List<NoticeVo> showNotice(Connection conn) throws Exception {
+		
+		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT N.NOTICE_NO ,N.ADMIN_NO ,N.NOTICE_TITLE ,N.NOTICE_CONTENT ,TO_CHAR(N.ENROLL_DATE, 'YYYY.MM.DD') AS ENROLL_DATE ,TO_CHAR(N.MODIFY_DATE, 'YYYY.MM.DD') AS MODIFY_DATE ,N.HIT ,N.STATUS ,A.ADMIN_NICK FROM NOTICE N JOIN ADMIN A ON(N.ADMIN_NO = A.ADMIN_NO) WHERE N.STATUS='O' ORDER BY NOTICE_NO DESC ) T ) WHERE RNUM BETWEEN 1 AND 3";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		
+		List<NoticeVo> notList = new ArrayList<>();
+		while (rs.next()) {
+			String noticeNo = rs.getString("NOTICE_NO");
+			String adminNo = rs.getString("ADMIN_NO");
+			String noticeTitle = rs.getString("NOTICE_TITLE");
+			String noticeContent = rs.getString("NOTICE_CONTENT");
+			String enrollDate = rs.getString("ENROLL_DATE");
+			String modifyDate = rs.getString("MODIFY_DATE");
+			String hit = rs.getString("HIT");
+			String status = rs.getString("STATUS");
+			String adminNick = rs.getString("ADMIN_NICK");
+			
+			NoticeVo vo = new NoticeVo();
+			vo.setNoticeNo(noticeNo);
+			vo.setAdminNo(adminNo);
+			vo.setNoticeTitle(noticeTitle);
+			vo.setNoticeContent(noticeContent);
+			vo.setEnrollDate(enrollDate);
+			vo.setModifyDate(modifyDate);
+			vo.setHit(hit);
+			vo.setStatus(status);
+			vo.setAdminNick(adminNick);
+			
+			notList.add(vo);
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return notList;
+		
 	}
 
 	

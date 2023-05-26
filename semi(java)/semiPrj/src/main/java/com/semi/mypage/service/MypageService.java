@@ -30,20 +30,6 @@ public class MypageService {
 		
 		return volist;
 		
-		
-	}
-
-	public List<BoardVo> showNotice() throws Exception {
-		
-		Connection conn = JDBCTemplate.getConnection();
-		
-		MypageDao mdao = new MypageDao();
-		List<BoardVo> notList = mdao.showNotice(conn);
-		
-		JDBCTemplate.close(conn);
-		
-		return notList;
-		
 	}
 
 	public List<BoardVo> freeboard() throws Exception {
@@ -238,6 +224,44 @@ public class MypageService {
 		
 		return avoList;
 	
+	}
+
+	public int checkIn(String memberNo) throws Exception {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		int result = mdao.checkIn(conn, memberNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+	
+	}
+
+	public int checkout(String memberNo) throws Exception {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		int result = mdao.checkOut(conn, memberNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+		
+	}
+
+	public List<NoticeVo> showNotice() throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		List<NoticeVo> notList = mdao.showNotice(conn);
+		
+		JDBCTemplate.close(conn);
+		
+		return notList;
 	}
 
 }
