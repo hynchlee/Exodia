@@ -10,6 +10,7 @@ import java.util.List;
 import com.semi.common.db.JDBCTemplate;
 import com.semi.lecture.vo.LectureCategoryVo;
 import com.semi.member.vo.MemberVo;
+import com.semi.vacation.vo.VacationVo;
 
 public class MemberDao {
 	
@@ -246,6 +247,22 @@ public class MemberDao {
 		JDBCTemplate.close(pstmt);
 		
 		return memberLecture;
+	
+	}
+
+	public int requestVacation(Connection conn, VacationVo vo) throws Exception {
+
+		String sql = "INSERT INTO VACATION_REQUEST_LIST (VACATION_REQUEST_LIST_NO, MEMBER_NO, REASON, VACATION_START, VACATION_END, STATUS) VALUES (SEQ_VACATION_REQUEST_LIST_NO.NEXTVAL, ?, ?, ?, ?, 'X')";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, vo.getMemberNo());
+		pstmt.setString(2, vo.getReason());
+		pstmt.setString(3, vo.getVacationStart());
+		pstmt.setString(4, vo.getVacationEnd());
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
 	
 	}
 

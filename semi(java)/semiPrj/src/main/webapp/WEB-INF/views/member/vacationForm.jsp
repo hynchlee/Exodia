@@ -36,12 +36,12 @@
                 <tr>
                     <th>휴가기간</th>
                     <td id="vac-period">
-                        <input id="start-date" type="date"> ~ <input id="end-date" type="date">
+                        <input id="start-date" name="vacationStart" type="date"> ~ <input id="end-date" name="vacationEnd" type="date">
                     </td>
                 </tr>
                 <tr>
                     <th>휴가사유</th>
-                    <td><input type="text" placeholder="간단하게 작성해주세요"></td>
+                    <td><input type="text" name="reason" placeholder="간단하게 작성해주세요"></td>
                 </tr>
             </table>
 
