@@ -17,7 +17,6 @@ public class MemberDao {
 	//회원가입
 	public int join(Connection conn, MemberVo vo) throws Exception {
 
-		//sql
 		String sql = "INSERT INTO MEMBER (MEMBER_NO, MEMBER_ID, MEMBER_PWD, MEMBER_NICK, BIRTH_NUM, PHONE_NO, IDENTITY, PROFILE) VALUES (SEQ_MEMBER_NO.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, vo.getMemberId());
@@ -91,6 +90,43 @@ public class MemberDao {
 		return loginMember;
 		
 	}
+	
+	//로그인 시 강의명 담기
+	public List<LectureCategoryVo> getLecture(Connection conn, String memberNo, String identity) throws Exception {
+
+		String sql = "";
+		if ( "S".equals(identity) ) {
+			sql = "SELECT LECTURE_NAME FROM MEMBER M JOIN STUDENT S ON(M.MEMBER_NO = S.STUDENT_MEMBER_NO) JOIN LECTURE L ON (S.LECTURE_NO = L.LECTURE_NO) JOIN LECTURE_CATEGORY LC ON (L.LECTURE_CATEGORY_NO = LC.LECTURE_CATEGORY_NO) WHERE M.MEMBER_NO = ? AND M.IDENTITY = ?";
+		}
+		else if(( "T".equals(identity) )) {
+			sql = "SELECT LECTURE_NAME FROM MEMBER M JOIN LECTURE L ON(M.MEMBER_NO = L.TEACHER_MEMBER_NO) JOIN LECTURE_CATEGORY LC ON (L.LECTURE_CATEGORY_NO = LC.LECTURE_CATEGORY_NO) WHERE M.MEMBER_NO = ? AND M.IDENTITY = ?";
+		}
+		else {
+			throw new Exception();
+		}
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		pstmt.setString(2, identity);
+		ResultSet rs = pstmt.executeQuery();
+		
+		//tx||rs
+		List<LectureCategoryVo> memberLecture = new ArrayList<>();
+		while(rs.next()) {
+			String lectureName = rs.getString("LECTURE_NAME");
+			
+			LectureCategoryVo vo = new LectureCategoryVo();
+			vo.setLectureName(lectureName);
+			
+			memberLecture.add(vo);
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return memberLecture;
+	
+	}
 
 	//아이디 찾기
 	public MemberVo findId(Connection conn, MemberVo vo) throws Exception {
@@ -148,6 +184,21 @@ public class MemberDao {
 		return pwdFind;
 	
 	}
+	
+	//비번갱신
+	public int renewPwd(Connection conn, MemberVo vo) throws Exception {
+
+		String sql = "UPDATE MEMBER SET MEMBER_PWD = ? WHERE MEMBER_NO = ? AND STATUS = 'O'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, vo.getMemberPwd());
+		pstmt.setString(2, vo.getMemberNo());
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	
+	}
 
 	//정보수정
 	public int edit(Connection conn, MemberVo editVo) throws Exception {
@@ -175,8 +226,9 @@ public class MemberDao {
 		JDBCTemplate.close(pstmt);
 		
 		return result;
+		
 	}
-
+	
 	//회원번호로 회원조회
 	public MemberVo selectOneByNo(Connection conn, MemberVo loginMember) throws Exception {
 
@@ -203,9 +255,10 @@ public class MemberDao {
 		return vo;
 		
 	}
-
+	
 	//탈퇴
 	public int quit(Connection conn, String memberNo) throws Exception {
+		
 		String sql = "UPDATE MEMBER SET STATUS = 'X' WHERE MEMBER_NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, memberNo);
@@ -214,43 +267,7 @@ public class MemberDao {
 		JDBCTemplate.close(pstmt);
 		
 		return result;
-	}
-	
-	//로그인 시 강의명 담기
-	public List<LectureCategoryVo> getLecture(Connection conn, String memberNo, String identity) throws Exception {
-
-		String sql = "";
-		if ( "S".equals(identity) ) {
-			sql = "SELECT LECTURE_NAME FROM MEMBER M JOIN STUDENT S ON(M.MEMBER_NO = S.STUDENT_MEMBER_NO) JOIN LECTURE L ON (S.LECTURE_NO = L.LECTURE_NO) JOIN LECTURE_CATEGORY LC ON (L.LECTURE_CATEGORY_NO = LC.LECTURE_CATEGORY_NO) WHERE M.MEMBER_NO = ? AND M.IDENTITY = ?";
-		}
-		else if(( "T".equals(identity) )) {
-			sql = "SELECT LECTURE_NAME FROM MEMBER M JOIN LECTURE L ON(M.MEMBER_NO = L.TEACHER_MEMBER_NO) JOIN LECTURE_CATEGORY LC ON (L.LECTURE_CATEGORY_NO = LC.LECTURE_CATEGORY_NO) WHERE M.MEMBER_NO = ? AND M.IDENTITY = ?";
-		}
-		else {
-			throw new Exception();
-		}
 		
-		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, memberNo);
-		pstmt.setString(2, identity);
-		ResultSet rs = pstmt.executeQuery();
-		
-		//tx||rs
-		List<LectureCategoryVo> memberLecture = new ArrayList<>();
-		while(rs.next()) {
-			String lectureName = rs.getString("LECTURE_NAME");
-			
-			LectureCategoryVo vo = new LectureCategoryVo();
-			vo.setLectureName(lectureName);
-			
-			memberLecture.add(vo);
-		}
-		
-		JDBCTemplate.close(rs);
-		JDBCTemplate.close(pstmt);
-		
-		return memberLecture;
-	
 	}
 
 	//휴가신청
@@ -269,22 +286,5 @@ public class MemberDao {
 		return result;
 	
 	}
-
-	//비번갱신
-	public int renewPwd(Connection conn, MemberVo vo) throws Exception {
-
-		String sql = "UPDATE MEMBER SET MEMBER_PWD = ? WHERE MEMBER_NO = ? AND STATUS = 'O'";
-		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, vo.getMemberPwd());
-		pstmt.setString(2, vo.getMemberNo());
-		int result = pstmt.executeUpdate();
-		
-		JDBCTemplate.close(pstmt);
-		
-		return result;
-	
-	}
-
-
 
 }
