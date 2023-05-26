@@ -45,8 +45,9 @@ public class PwdFindController extends HttpServlet{
 			
 			//화면
 			if(pwdFind != null) {
-				req.setAttribute("pwdFind", pwdFind);
-				req.getRequestDispatcher("/WEB-INF/views/member/pwdFind2.jsp").forward(req, resp);
+				req.getSession().setAttribute("pwdFind", pwdFind);
+				String root = req.getContextPath();
+				resp.sendRedirect(root + "/member/pwd/find2");
 			}else {
 				throw new Exception();
 			}

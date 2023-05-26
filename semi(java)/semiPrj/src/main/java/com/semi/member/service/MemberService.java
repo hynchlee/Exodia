@@ -139,6 +139,7 @@ public class MemberService {
 	
 	}
 
+	//휴가신청
 	public int requestVacation(VacationVo vo) throws Exception {
 
 		//conn
@@ -151,6 +152,28 @@ public class MemberService {
 		}else {
 			JDBCTemplate.rollback(conn);
 		}
+		//close
+		JDBCTemplate.close(conn);
+		
+		return result;
+	
+	}
+
+	//비번갱신
+	public int renewPwd(MemberVo vo) throws Exception {
+
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		//sql
+		int result = dao.renewPwd(conn, vo);
+
+		//tx||rs
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
 		//close
 		JDBCTemplate.close(conn);
 		

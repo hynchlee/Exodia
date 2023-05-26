@@ -29,11 +29,11 @@
             <table>
                 <tr>
                     <th>새 비밀번호</th>
-                    <td><input type="password"></td>
+                    <td><input type="password" name="memberPwd"></td>
                 </tr>
                 <tr>
                     <th>비밀번호 확인</th>
-                    <td><input type="password"></td>
+                    <td><input type="password" name="memberPwd2"></td>
                 </tr>
             </table>
 
