@@ -1,4 +1,4 @@
-package com.semi.board.controller;
+package com.semi.reply.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.semi.board.service.BoardService;
+import com.semi.board.vo.AnswerVo;
 import com.semi.board.vo.ReplyVo;
 
 @WebServlet("/board/reply/list")
@@ -28,10 +29,14 @@ public class BoardReplyListController extends HttpServlet{
 			String bno = req.getParameter("bno");
 			
 			BoardService bs = new BoardService();
-			List<ReplyVo> revolist = bs.getBoardReplyList(bno);
+			//댓글 조회
+			List<ReplyVo> revoList = bs.getBoardReplyList(bno);
+			
+			//답글 조회
+//			List<AnswerVo> answerList = bs.getReplyAnswerList(rno);
 			
 			Gson gson = new Gson();
-			String jsonStr = gson.toJson(revolist);
+			String jsonStr = gson.toJson(revoList);
 			
 			resp.setCharacterEncoding("UTF-8");
 			PrintWriter out = resp.getWriter();

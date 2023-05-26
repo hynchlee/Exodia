@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.semi.board.dao.BoardDao;
+import com.semi.board.vo.AnswerVo;
 import com.semi.board.vo.BoardVo;
 import com.semi.board.vo.ReplyVo;
 import com.semi.common.db.JDBCTemplate;
@@ -216,6 +217,37 @@ public class BoardService {
 		Connection conn = JDBCTemplate.getConnection();
 		
 		int result = dao.replyWrite(conn, revo);
+		
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+	//답글 조회
+	public List<AnswerVo> getReplyAnswerList(String rno) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		List<AnswerVo> answerList = dao.getReplyAnswerList(conn, rno);
+		
+		JDBCTemplate.close(conn);
+		
+		return answerList;
+	}
+
+	
+
+	public int editReply(ReplyVo revo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.editReply(conn, revo);
 		
 		if (result == 1) {
 			JDBCTemplate.commit(conn);

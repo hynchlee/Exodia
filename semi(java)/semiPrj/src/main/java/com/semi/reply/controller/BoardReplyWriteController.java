@@ -1,4 +1,4 @@
-package com.semi.board.controller;
+package com.semi.reply.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;

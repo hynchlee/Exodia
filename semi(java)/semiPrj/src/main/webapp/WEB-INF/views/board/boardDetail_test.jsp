@@ -95,12 +95,14 @@
                     <!-- 댓글 조회 -->
                         <div class="comment_list">
                                 <div class="comment_col">
-                                    <!-- <span></span>
-                                    <span></span>
-                                    <input type="button" value="수정">
-                                    <input type="button" value="삭제">
-                                    <input type="button" value="답글" id="onDisplay">
-                                    <span class="time"></span> -->
+                                    <div class="reply_col">
+                                        <span>${revoList.writerNick}</span>
+                                        <span>${revoList.replyContent}</span>
+                                        <input type="button" value="수정">
+                                        <input type="button" value="삭제">
+                                        <input type="button" value="답글" id="onDisplay">
+                                        <span class="time"></span>
+                                    </div>
                                 </div>
                             	<div class="recomment">
                                 <i class="bi bi-arrow-return-right"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">
@@ -135,23 +137,23 @@
 	const title = document.querySelector('.title');
 	title.innerHTML = "${cvNo.boardCategoryType}";
 
-    // 답글 작성란 보이기 숨기기
+    //답글 작성란 보이기 숨기기
 
-    // $(function(){
-    //     $('#onDisplay').click(function(){
-    //         if($("#noneDiv").css("display") == "none"){
-    //             $('#noneDiv').show();
-    //         }
-    //     });
-    // });
+    $(function(){
+        $('#onDisplay').click(function(){
+            if($("#noneDiv").css("display") == "none"){
+                $('#noneDiv').show();
+            }
+        });
+    });
 
-    // $(function(){
-    //     $('#offDisplay').click(function(){
-    //         if($("#noneDiv").css("display") != "none"){
-    //             $('#noneDiv').hide();
-    //         }
-    //     })
-    // })
+    $(function(){
+        $('#offDisplay').click(function(){
+            if($("#noneDiv").css("display") != "none"){
+                $('#noneDiv').hide();
+            }
+        })
+    })
 
     $('#onDisplay').click(function(){
         $('#noneDiv').show();
@@ -185,8 +187,6 @@
                 if(x = "success"){
                     alert("댓글 작성 성공");
                     document.querySelector("textarea[name=replyContent]").value='';
-                    //댓글 조회 호출
-                    loadComment();
                 }
             },
             error : (x)=>{
@@ -196,66 +196,6 @@
     }
 
 
-    //댓글 조회
-    function loadComment(){
-        const replyList = document.querySelector('.comment_col');
-        const loginMemberNo = '${loginMember.memberNo}';
-
-        $.ajax({
-            url : '${root}/board/reply/list',
-            type : "GET",
-            data : {
-                bno : '${cvNo.boardNo}',
-                
-
-            },
-            success : function(result){
-                console.log(result);
-                const x = JSON.parse(result);
-                console.log(x);
-
-                replyList.innerHTML = "";
-                let str = "";
-                for(let i = 0; i < x.length; i++){
-                    str += '<div class="reply_col">';
-                    str += '<span>' + x[i].writerNick +'</span>';
-                    str += '<span>' + x[i].replyContent + '</span>';
-
-                    if (loginMemberNo == x[i].writerNo) {
-                        str += '<input type="button" value="수정" onclick="edit();">'; 
-                        str += '<input type="button" value="삭제">';
-                    }else if(loginMemberNo != x[i].writerNo){
-                        str += '<div></div>'
-                        str += '<div></div>'
-                    }
-                    str += '<input type="button" value="답글" id="onDisplay">';
-                    str += '<span class="time">' + x[i].enrollDate + '</span>';
-                    str += '<div class="recomment"></div>'
-                    str += '</div>';
-
-                }
-                replyList.innerHTML += str;
-                
-
-            },
-            error : function(e){
-                console.log(e);
-            },
-        });
-
-    }
-
-    //댓글 수정
-    function edit() {
-        $.ajax({
-            url: '${root}/board/reply/edit',
-        })
-    }
-
     
-
-    //댓글 조회 호출
-    loadComment();
-
 </script>
 

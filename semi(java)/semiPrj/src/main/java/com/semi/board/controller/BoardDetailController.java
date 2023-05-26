@@ -50,12 +50,6 @@ public class BoardDetailController extends HttpServlet{
 		
 	}
 	
-	//댓글 작성
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		
-		
-	}
+	
 
 }
