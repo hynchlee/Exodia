@@ -122,7 +122,7 @@ public class MemberDao {
 	public MemberVo findPwd(Connection conn, MemberVo vo) throws Exception {
 
 		//SQL
-		String sql = "SELECT MEMBER_PWD FROM MEMBER WHERE MEMBER_ID = ? AND MEMBER_NICK = ? AND BIRTH_NUM = ? AND PHONE_NO = ? AND STATUS = 'O'";
+		String sql = "SELECT MEMBER_NO, MEMBER_PWD FROM MEMBER WHERE MEMBER_ID = ? AND MEMBER_NICK = ? AND BIRTH_NUM = ? AND PHONE_NO = ? AND STATUS = 'O'";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, vo.getMemberId());
 		pstmt.setString(2, vo.getMemberNick());
@@ -134,8 +134,11 @@ public class MemberDao {
 		MemberVo pwdFind = null;
 		
 		if(rs.next()) {
-			pwdFind = new MemberVo();
+			String memberNo = rs.getString("MEMBER_NO");
 			String memberPwd = rs.getString("MEMBER_PWD");
+
+			pwdFind = new MemberVo();
+			pwdFind.setMemberNo(memberNo);
 			pwdFind.setMemberPwd(memberPwd);
 		}
 		
@@ -250,6 +253,7 @@ public class MemberDao {
 	
 	}
 
+	//휴가신청
 	public int requestVacation(Connection conn, VacationVo vo) throws Exception {
 
 		String sql = "INSERT INTO VACATION_REQUEST_LIST (VACATION_REQUEST_LIST_NO, MEMBER_NO, REASON, VACATION_START, VACATION_END, STATUS) VALUES (SEQ_VACATION_REQUEST_LIST_NO.NEXTVAL, ?, ?, ?, ?, 'X')";
@@ -258,6 +262,21 @@ public class MemberDao {
 		pstmt.setString(2, vo.getReason());
 		pstmt.setString(3, vo.getVacationStart());
 		pstmt.setString(4, vo.getVacationEnd());
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	
+	}
+
+	//비번갱신
+	public int renewPwd(Connection conn, MemberVo vo) throws Exception {
+
+		String sql = "UPDATE MEMBER SET MEMBER_PWD = ? WHERE MEMBER_NO = ? AND STATUS = 'O'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, vo.getMemberPwd());
+		pstmt.setString(2, vo.getMemberNo());
 		int result = pstmt.executeUpdate();
 		
 		JDBCTemplate.close(pstmt);

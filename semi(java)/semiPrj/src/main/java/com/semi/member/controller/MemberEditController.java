@@ -63,7 +63,7 @@ public class MemberEditController extends HttpServlet{
 			
 			//화면
 			if(updatedMember != null) {
-				req.getSession().setAttribute("alertMsg", "수정완료!");
+				req.getSession().setAttribute("alertMsg", "회원정보 수정 성공!");
 				req.getSession().setAttribute("loginMember", updatedMember);
 				String root = req.getContextPath();
 				resp.sendRedirect(root + "/main");
