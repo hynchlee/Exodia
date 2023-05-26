@@ -184,7 +184,7 @@
 									<div class="vac">휴가</div>
 									</td>
 									<td class="vaclist">${restList.vacationStart}</td>
-									<td class="vaclist">${restList.vacationEnd}</td>
+									<td class="vaclist">${restList.reason}</td>
 								</tr>
 							</c:forEach>
 						</table>

@@ -33,7 +33,7 @@
 								<tr>
 									<td colspan="3" class="line00">공지사항</td>
 									<td class="plus01">
-									<a href="${root}/notice/list" class="plus02">더보기</a>
+									<a href="${root}/notice/list?page=1" class="plus02">더보기</a>
 									</td>
 								</tr>
 							</thead>
@@ -59,7 +59,7 @@
 						<div class="class01"><a href="${root}/lecture/test/list2" class="awhite">시험 출제 하기</a></div>
 						<div class="change"><a href="${root}/member/edit">내 정보 수정</a></div>
 						<div class="letter"><a href="${root}/letter/receive">쪽지 ${letterCount}</a></div>
-						<div class="mywrite"><a href="${root}/my/list">내가 쓴 글 ${countMyWrite}</a></div>
+						<div class="mywrite"><a href="${root}/my/list?page=1">내가 쓴 글 ${countMyWrite}</a></div>
 					</div>
 					</div>
 				</td>
@@ -103,11 +103,11 @@
 				<tr>
 					<td class="classboard">
 						<div class="innercb">
-							<table class="innertable01">
+							<table class="innertable02">
 							<tr>
 								<td colspan="2" class="line00">우리반 게시판</td>
 								<td class="plus01">
-								<a href="${root}/class/list" class="plus02">더보기</a>
+								<a href="${root}/class/list?page=1" class="plus02">더보기</a>
 								</td>
 							</tr>
 							<c:forEach items="${freeList}" var="freeList">
@@ -178,7 +178,7 @@
 
 <script>
 	 $(".innertable01 tbody tr").click(function(){
-	        //글번호 가져오기
+	        //글번호 가져오기 //압도적 감사에오
 	        const nno = $(this).find('td:first-child').text();
 	        // const boardTitle = $(this).find('.board_title').text();
 	      
