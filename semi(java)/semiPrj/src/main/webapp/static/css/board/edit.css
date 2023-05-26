@@ -286,18 +286,21 @@ table{
     color: #414141;
 }
 
-.comment_list .comment_col{
+.comment_list .comment_col .reply_col{
     display: grid;
-    grid-template-columns: 70px 700px 50px 50px 50px 150px;
+    grid-template-columns: 80px 700px 50px 50px 50px 150px;
     column-gap: 5px;
-    border-top: 1px solid #cccccc79;
     justify-content: center;
     align-items: first baseline;
     padding: 10px 10px 10px;
+    border-top: 1px solid #cccccc79;
     color: #424242;
+    row-gap: 10px;
 }
 
-.comment_list .comment_col input, .comment_list .recomment input{
+
+
+.comment_list .reply_col input, .comment_list .recomment input{
     border: 1px solid rgb(219, 219, 219);
     cursor: pointer;
     border-radius: 5px;
@@ -308,7 +311,7 @@ table{
     color: #3d3d3d;
 }
 
-.comment_list .comment_col .time, .comment_list .recomment .time{
+.comment_list .reply_col .time, .comment_list .recomment .time{
     font-size: 11px;
     color: #979797;
     font-size: 12px;
@@ -395,3 +398,4 @@ table{
     font-size: 15px;
     margin-left: 5px;
 }
+

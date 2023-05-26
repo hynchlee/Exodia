@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.semi.board.vo.AnswerVo;
 import com.semi.board.vo.BoardVo;
 import com.semi.board.vo.ReplyVo;
 import com.semi.common.db.JDBCTemplate;
@@ -569,6 +570,52 @@ public class BoardDao {
 			return result;
 		}
 
+		//답글 조회
+		public List<AnswerVo> getReplyAnswerList(Connection conn, String rno) throws Exception {
+			
+			String sql = "SELECT A.ANSWER_NO ,A.REPLY_NO2 ,A.ANSWER_CONTENT ,TO_CHAR(A.ENROLL_DATE,'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DATE ,TO_CHAR(A.MODIFY_DATE,'YYYY-MM-DD HH24:MI:SS') AS MODIFY_DATE ,A.STATUS FROM ANSWER A JOIN REPLY R ON(A.REPLY_NO2 = R.REPLY_NO) WHERE A.STATUS='O' AND A.REPLY_NO2=? ORDER BY A.ANSWER_NO DESC";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, rno);
+			ResultSet rs = pstmt.executeQuery();
+			
+			List<AnswerVo> answerList = new ArrayList<>();
+			if (rs.next()) {
+				
+				String answerNo = rs.getString("ANSWER_NO");
+				String answerContent = rs.getString("ANSWER_CONTENT");
+				String enrollDate = rs.getString("ENROLL_DATE");
+				String modifyDate = rs.getString("MODIFY_DATE");
+				String status = rs.getString("STATUS");
+				
+				AnswerVo av = new AnswerVo();
+				av.setAnswerNo(answerNo);
+				av.setAnswerContent(answerContent);
+				av.setEnrollDate(enrollDate);
+				av.setModifyDate(modifyDate);
+				av.setStatus(status);
+				
+				answerList.add(av);
+				
+			}		
+			
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+			
+			return answerList;
+		}
+
+		public int editReply(Connection conn, ReplyVo revo) throws Exception {
+			
+			String sql = "UPDATE REPLY SET REPLY_CONTENT=?, MODIFY_DATE=SYSDATE WHERE REPLY_NO=?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, revo.getReplyContent());
+			pstmt.setString(2, revo.getReplyNo());
+			int result = pstmt.executeUpdate();
+			
+			JDBCTemplate.close(pstmt);
+			
+			return result;
+		}
 		
 
 }
