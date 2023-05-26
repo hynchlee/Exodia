@@ -10,6 +10,7 @@ import com.semi.common.db.JDBCTemplate;
 import com.semi.lecture.vo.LectureCategoryVo;
 import com.semi.member.dao.MemberDao;
 import com.semi.member.vo.MemberVo;
+import com.semi.vacation.vo.VacationVo;
 
 public class MemberService {
 	
@@ -135,6 +136,25 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 		
 		return memberLecture;
+	
+	}
+
+	public int requestVacation(VacationVo vo) throws Exception {
+
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		//sql
+		int result = dao.requestVacation(conn, vo);
+		//tx || rs
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		//close
+		JDBCTemplate.close(conn);
+		
+		return result;
 	
 	}
 
