@@ -52,6 +52,18 @@ public class MemberService {
 		return loginMember;
 	}
 	
+	//로그인 시 강의명 담기
+	public List<LectureCategoryVo> getLecture(String memberNo, String identity) throws Exception {
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		//sql
+		List<LectureCategoryVo> memberLecture = (List<LectureCategoryVo>) dao.getLecture(conn, memberNo, identity);
+		//close
+		JDBCTemplate.close(conn);
+		
+		return memberLecture;
+	}
+	
 	//아이디 찾기
 	public MemberVo findId(MemberVo vo) throws Exception {
 		//conn
@@ -74,6 +86,26 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 		
 		return pwdFind;
+	}
+	
+	//비번갱신
+	public int renewPwd(MemberVo vo) throws Exception {
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		//sql
+		int result = dao.renewPwd(conn, vo);
+		
+		//tx||rs
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		//close
+		JDBCTemplate.close(conn);
+		
+		return result;
 	}
 
 	//정보수정
@@ -99,15 +131,12 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 		
 		return updatedMember;
-	
 	}
 	
 	//탈퇴
 	public int quit(String memberNo) throws Exception {
-
 		//conn
 		Connection conn = JDBCTemplate.getConnection();
-		
 		//sql
 		int result = dao.quit(conn, memberNo);
 		
@@ -122,63 +151,27 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 		
 		return result;
-		
-	}
-
-	//로그인 시 강의명 담기
-	public List<LectureCategoryVo> getLecture(String memberNo, String identity) throws Exception {
-		
-		//conn
-		Connection conn = JDBCTemplate.getConnection();
-		//sql
-		List<LectureCategoryVo> memberLecture = (List<LectureCategoryVo>) dao.getLecture(conn, memberNo, identity);
-		//close
-		JDBCTemplate.close(conn);
-		
-		return memberLecture;
-	
 	}
 
 	//휴가신청
 	public int requestVacation(VacationVo vo) throws Exception {
-
 		//conn
 		Connection conn = JDBCTemplate.getConnection();
 		//sql
 		int result = dao.requestVacation(conn, vo);
+		
 		//tx || rs
 		if (result == 1) {
 			JDBCTemplate.commit(conn);
 		}else {
 			JDBCTemplate.rollback(conn);
 		}
-		//close
-		JDBCTemplate.close(conn);
-		
-		return result;
-	
-	}
-
-	//비번갱신
-	public int renewPwd(MemberVo vo) throws Exception {
-
-		//conn
-		Connection conn = JDBCTemplate.getConnection();
-		//sql
-		int result = dao.renewPwd(conn, vo);
-
-		//tx||rs
-		if (result == 1) {
-			JDBCTemplate.commit(conn);
-		}else {
-			JDBCTemplate.rollback(conn);
-		}
 		
 		//close
 		JDBCTemplate.close(conn);
 		
 		return result;
-	
 	}
+
 
 }
