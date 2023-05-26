@@ -9,6 +9,8 @@
 <title>Insert title here</title>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <link rel="stylesheet" href="${root}/static/css/personal/tmypage.css" type="text/css">
+<!-- 제이쿼리 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <style>
 	.choiceLecture:hover * {
 		background-color: #4998D1;
@@ -27,19 +29,24 @@
 				<td colspan="2" class="td01">
 					<div class="board">
 						<table class="innertable01">
-							<tr>
-								<td colspan="2" class="line00">공지사항</td>
-								<td class="plus01">
-								<a href="${root}/notice/list" class="plus02">더보기</a>
-								</td>
-							</tr>
-							<c:forEach items="${notList}" var="notList">
+							<thead>
 								<tr>
-									<td class="line01">${notList.writerNick}</td>
-									<td class="line01">${notList.boardTitle}</td>
-									<td class="line01">${notList.enrollDate}</td>
+									<td colspan="3" class="line00">공지사항</td>
+									<td class="plus01">
+									<a href="${root}/notice/list" class="plus02">더보기</a>
+									</td>
 								</tr>
-							</c:forEach>
+							</thead>
+							<tbody>
+								<c:forEach items="${notList}" var="notList">
+									<tr style="cursor: pointer;">
+										<td class="line01">${notList.noticeNo}</td>
+										<td class="line01">${notList.adminNick}</td>
+										<td class="line01">${notList.noticeTitle}</td>
+										<td class="line01">${notList.enrollDate}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
 						</table>
 					</div>
 				</td>
@@ -166,5 +173,20 @@
 			cl.style.backgroundColor = "#F0F0F0";
 		}
 	}
-	
+		
+</script>
+
+<script>
+	 $(".innertable01 tbody tr").click(function(){
+	        //글번호 가져오기
+	        const nno = $(this).find('td:first-child').text();
+	        // const boardTitle = $(this).find('.board_title').text();
+	      
+	        // 페이지 이동을 위한 URL 구성
+	        const url = '${root}/notice/detail?nno=' + nno;
+	        
+	        // 페이지 이동
+	        window.location.href = url;
+
+	    });
 </script>

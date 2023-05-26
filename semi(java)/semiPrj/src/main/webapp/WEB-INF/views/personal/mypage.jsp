@@ -58,7 +58,8 @@
 							<div class="point"><a href="/">마일리지</a></div>
 							<div class="test"><a href="${root}/lecture/test/list" class="a01">시험 응시</a></div>
 							<div class="vacation"><a href="${root}/member/vacation/form" class="a01">휴가 신청</a></div>
-							<div class="exit"><a href="/" class="a01">입/퇴실 하기</a></div>
+							<div class="checkin"><a href="${root}/mypage/checkin" class="a01">입실하기</a></div>
+							<div class="exit"><a href="${root}/mypage/checkout" class="a01">퇴실 하기</a></div>
 						</div>
 					</div>
 				</td>
@@ -153,7 +154,7 @@
 						<table class="innertable03">
 							<tr class="tr030">
 								<td colspan="3" class="td030">출결 내역</td>
-								<td class="plus01"><a href="/" class="plus02">더보기</a></td>
+								<td class="plus01"><a href="${root}/attendance/list?page=1" class="plus02">더보기</a></td>
 							</tr>
 							<c:forEach items="${avoList}" var="avoList">
 								<tr class="tr03">

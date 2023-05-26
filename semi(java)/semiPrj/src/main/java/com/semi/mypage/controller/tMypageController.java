@@ -21,6 +21,7 @@ import com.semi.lecture.vo.LectureVo;
 import com.semi.letter.vo.LetterVo;
 import com.semi.member.vo.MemberVo;
 import com.semi.mypage.service.MypageService;
+import com.semi.notice.vo.NoticeVo;
 
 @WebServlet(urlPatterns = "/tmypage")
 public class tMypageController extends HttpServlet {
@@ -49,7 +50,7 @@ public class tMypageController extends HttpServlet {
 			}
 			
 			List<MemberVo> volist = ls.getMemberList(lectureVo.getLectureNo());
-			List<BoardVo> notList = ms.showNotice();
+			List<NoticeVo> notList = ms.showNotice();
 			List<BoardVo> freeList = ms.freeboard(); //  // 수정 필요
 			String letterCount = ms.countLetter01(memberNo);
 			String countMyWrite = ms.countMyWrite(memberNo);
