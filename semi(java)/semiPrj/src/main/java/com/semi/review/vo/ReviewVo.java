@@ -14,6 +14,7 @@ public class ReviewVo {
 	private String writerNick;
 	private String lectureName;
 	private String identity;
+	private String lectureCategoryNo;
 	public String getReviewNo() {
 		return reviewNo;
 	}
@@ -80,15 +81,22 @@ public class ReviewVo {
 	public void setIdentity(String identity) {
 		this.identity = identity;
 	}
+	public String getLectureCategoryNo() {
+		return lectureCategoryNo;
+	}
+	public void setLectureCategoryNo(String lectureCategoryNo) {
+		this.lectureCategoryNo = lectureCategoryNo;
+	}
 	@Override
 	public String toString() {
 		return "ReviewVo [reviewNo=" + reviewNo + ", memberNo=" + memberNo + ", reviewTitle=" + reviewTitle
 				+ ", reviewContent=" + reviewContent + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate
 				+ ", photo=" + photo + ", status=" + status + ", writerNick=" + writerNick + ", lectureName="
-				+ lectureName + ", identity=" + identity + "]";
+				+ lectureName + ", identity=" + identity + ", lectureCategoryNo=" + lectureCategoryNo + "]";
 	}
 	public ReviewVo(String reviewNo, String memberNo, String reviewTitle, String reviewContent, String enrollDate,
-			String modifyDate, String photo, String status, String writerNick, String lectureName, String identity) {
+			String modifyDate, String photo, String status, String writerNick, String lectureName, String identity,
+			String lectureCategoryNo) {
 		super();
 		this.reviewNo = reviewNo;
 		this.memberNo = memberNo;
@@ -101,11 +109,17 @@ public class ReviewVo {
 		this.writerNick = writerNick;
 		this.lectureName = lectureName;
 		this.identity = identity;
+		this.lectureCategoryNo = lectureCategoryNo;
 	}
 	public ReviewVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	
+	
+	
 	
 	
 	

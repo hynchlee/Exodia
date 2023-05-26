@@ -53,7 +53,7 @@
                     	<tr>
 	                        <td>${nvo.noticeNo}</td>
 	                        <td class="board_title">${nvo.noticeTitle}
-                                <!-- <span class="new_btn">New</span> -->
+	                        	<span class="new_btn">New</span>
 	                        </td>
 	                        <td>${nvo.adminNick}</td>
 	                        <td>${nvo.enrollDate}</td>
@@ -98,7 +98,7 @@
     const searchType = "${searchVo.searchType}";
 
     // 검색 타입
-    const nc = document.querySelector(`select > option[value="${searchType}"]`);
+    const nc = document.querySelector(`select > option[value="${searchVo.searchType}"]`);
     if (nc) {
     nc.selected = true;
     }
@@ -115,4 +115,13 @@
         window.location.href = url;
 
     });
+    
+ 	// 현재 날짜와 등록일(enrollDate)이 일치하는 경우 .new_btn 요소 활성화
+    const enrollDate = "${nvo.enrollDate}"; // JSP에서 가져온 등록일(enrollDate) 값
+    const currentDate = new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\./g, '-'); // 현재 날짜를 'YYYY-MM-DD' 형식으로 가져옴
+
+    if (enrollDate === currentDate) {
+        const newBtn = document.querySelector('.new_btn');
+        newBtn.style.display = 'inline-block'; // .new_btn 요소를 보이도록 설정
+    }
 </script>

@@ -49,11 +49,11 @@ public class BoardMyListController extends HttpServlet{
 				PageVo pv = new PageVo(cnt, page, 5, 10);
 				
 				List<BoardVo> bvoList = bs.getBoardMyList(pv);
-//				if (searchType == null || searchType.equals("")) {
-//					bvoList = bs.getBoardMyList(pv);
-//				}else {
-//					bvoList = bs.getBoardMyList(pv, searchType, searchValue);
-//				}
+				if (searchType == null || searchType.equals("")) {
+					bvoList = bs.getBoardMyList(pv);
+				}else {
+					bvoList = bs.getBoardMyList(pv, searchType, searchValue);
+				}
 				
 				Map<String, String> map = new HashMap<>();
 				map.put("searchType", searchType);

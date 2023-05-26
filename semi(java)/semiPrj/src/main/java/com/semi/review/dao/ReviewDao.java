@@ -34,7 +34,7 @@ public class ReviewDao {
 	//목록 조회
 	public List<ReviewVo> getReviewList(Connection conn, PageVo pv) throws Exception {
 		
-		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM ,T.* FROM ( SELECT V.REVIEW_NO ,V.MEMBER_NO ,V.REVIEW_TITLE ,V.REVIEW_CONTENT ,TO_CHAR(V.ENROLL_DATE,'YYYY.MM.DD') AS ENROLL_DATE ,TO_CHAR(V.MODIFY_DATE,'YYYY.MM.DD') AS MODIFY_DATE ,V.PHOTO ,V.STATUS ,M.MEMBER_NICK ,LC.LECTURE_NAME FROM REVIEW V JOIN MEMBER M ON(V.MEMBER_NO = M.MEMBER_NO) JOIN STUDENT D ON(D.STUDENT_MEMBER_NO = M.MEMBER_NO) JOIN LECTURE L ON(L.LECTURE_NO = D.LECTURE_NO) JOIN LECTURE_CATEGORY LC ON(LC.LECTURE_CATEGORY_NO = L.LECTURE_CATEGORY_NO) WHERE V.STATUS = 'O' ORDER BY V.REVIEW_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
+		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM ,T.* FROM ( SELECT V.REVIEW_NO ,V.MEMBER_NO ,V.REVIEW_TITLE ,V.REVIEW_CONTENT ,TO_CHAR(V.ENROLL_DATE,'YYYY.MM.DD') AS ENROLL_DATE ,TO_CHAR(V.MODIFY_DATE,'YYYY.MM.DD') AS MODIFY_DATE ,V.PHOTO ,V.STATUS ,M.MEMBER_NICK ,LC.LECTURE_NAME ,L.LECTURE_CATEGORY_NO FROM REVIEW V JOIN MEMBER M ON(V.MEMBER_NO = M.MEMBER_NO) JOIN STUDENT D ON(D.STUDENT_MEMBER_NO = M.MEMBER_NO) JOIN LECTURE L ON(L.LECTURE_NO = D.LECTURE_NO) JOIN LECTURE_CATEGORY LC ON(LC.LECTURE_CATEGORY_NO = L.LECTURE_CATEGORY_NO) WHERE V.STATUS = 'O' ORDER BY V.REVIEW_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, pv.getBeginRow());
 		pstmt.setInt(2, pv.getLastRow());
@@ -53,6 +53,7 @@ public class ReviewDao {
 			String status = rs.getString("STATUS");
 			String writerNick = rs.getString("MEMBER_NICK");
 			String lectureName = rs.getString("LECTURE_NAME");
+			String lectureCategoryNo = rs.getString("LECTURE_CATEGORY_NO");
 			
 			ReviewVo rv = new ReviewVo();
 			rv.setReviewNo(reviewNo);
@@ -65,6 +66,7 @@ public class ReviewDao {
 			rv.setStatus(status);
 			rv.setWriterNick(writerNick);
 			rv.setLectureName(lectureName);
+			rv.setLectureCategoryNo(lectureCategoryNo);
 			
 			rvoList.add(rv);
 			
@@ -75,6 +77,62 @@ public class ReviewDao {
 		
 		return rvoList;
 	}
+	
+	//검색해 목록 조회
+		public List<ReviewVo> getReviewList(Connection conn, PageVo pv, String searchType, String searchValue) throws Exception {
+			
+			String sql = "";
+			//검색 조건이 강좌카테고리번호
+			if("reviewLecture".equals(searchType)) {
+				sql = "SELECT * FROM ( SELECT ROWNUM RNUM ,T.* FROM ( SELECT V.REVIEW_NO ,V.MEMBER_NO ,V.REVIEW_TITLE ,V.REVIEW_CONTENT ,TO_CHAR(V.ENROLL_DATE,'YYYY.MM.DD') AS ENROLL_DATE ,TO_CHAR(V.MODIFY_DATE,'YYYY.MM.DD') AS MODIFY_DATE ,V.PHOTO ,V.STATUS ,M.MEMBER_NICK ,LC.LECTURE_NAME ,L.LECTURE_CATEGORY_NO FROM REVIEW V JOIN MEMBER M ON(V.MEMBER_NO = M.MEMBER_NO) JOIN STUDENT D ON(D.STUDENT_MEMBER_NO = M.MEMBER_NO) JOIN LECTURE L ON(L.LECTURE_NO = D.LECTURE_NO) JOIN LECTURE_CATEGORY LC ON(LC.LECTURE_CATEGORY_NO = L.LECTURE_CATEGORY_NO) WHERE V.STATUS = 'O' AND L.LECTURE_CATEGORY_NO = ? ORDER BY V.REVIEW_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
+			}else {
+				//기본 목록 조회
+				return getReviewList(conn, pv);
+			}
+			
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, searchValue);
+			pstmt.setInt(2, pv.getBeginRow());
+			pstmt.setInt(3, pv.getLastRow());
+			ResultSet rs = pstmt.executeQuery();
+			
+			List<ReviewVo> rvoList = new ArrayList<>();
+			while (rs.next()) {
+				
+				String reviewNo = rs.getString("REVIEW_NO");
+				String memberNo = rs.getString("MEMBER_NO");
+				String reviewTitle = rs.getString("REVIEW_TITLE");
+				String reviewContent = rs.getString("REVIEW_CONTENT");
+				String enrollDate = rs.getString("ENROLL_DATE");
+				String modifyDate = rs.getString("MODIFY_DATE");
+				String photo = rs.getString("PHOTO");
+				String status = rs.getString("STATUS");
+				String writerNick = rs.getString("MEMBER_NICK");
+				String lectureName = rs.getString("LECTURE_NAME");
+				String lectureCategoryNo = rs.getString("LECTURE_CATEGORY_NO");
+				
+				ReviewVo rv = new ReviewVo();
+				rv.setReviewNo(reviewNo);
+				rv.setMemberNo(memberNo);
+				rv.setReviewTitle(reviewTitle);
+				rv.setReviewContent(reviewContent);
+				rv.setEnrollDate(enrollDate);
+				rv.setModifyDate(modifyDate);
+				rv.setPhoto(photo);
+				rv.setStatus(status);
+				rv.setWriterNick(writerNick);
+				rv.setLectureName(lectureName);
+				rv.setLectureCategoryNo(lectureCategoryNo);
+				
+				rvoList.add(rv);
+				
+			}
+			
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+			
+			return rvoList;
+		}
 
 	//상세조회
 	public ReviewVo getReviewNo(Connection conn, String rno) throws Exception {

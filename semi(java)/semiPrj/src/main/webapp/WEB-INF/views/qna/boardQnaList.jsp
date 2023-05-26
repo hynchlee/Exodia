@@ -26,8 +26,8 @@
 	            </div>
 			</c:if>
             
-            <form action="${root}/qna/list">
-                <div class="board_search">
+              <div class="board_search">
+	            <form action="${root}/qna/list">
                     <div class="qna_control">
                         <label>
                             <input type="radio" name="contact" value="a_all" checked />
@@ -42,7 +42,8 @@
                             <span>답변완료</span>
                           </label>
                     </div>
-            </form>
+            	</form>
+            	<div></div>
                 <form action="${root}/qna/list" method="get" name="searchBoard">
                 	<input type="hidden" name="page" value="1">
                     <select class="searchCategory" name="searchType">
@@ -121,7 +122,7 @@
     const searchType = "${searchVo.searchType}";
 
     // 검색 타입
-    const nc = document.querySelector(`select > option[value="${searchType}"]`);
+    const nc = document.querySelector(`select > option[value="${searchVo.searchType}"]`);
     if (nc) {
     nc.selected = true;
     }

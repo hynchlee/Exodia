@@ -29,8 +29,9 @@
             <div class="board_search">
                 <form action="${root}/review/list" method="get" name="searchBoard">
                     <input type="hidden" name="page" value="1">
-                    <select class="searchCategory" name="searchCategory">
-                        <option value="cn">강좌</option>
+                    <select class="searchType" name="searchCategory">
+                        <option value="all">전체</option>
+                        <option value="reviewLecture">강좌</option>
                     </select>
                     <select class="selectCategory" name="selectCategory">
                         <option value="1">sw개발자</option>

@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <link href="${root}/static/css/board/list.css" rel="stylesheet">
+<!-- 제이쿼리 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <style>
 </style>
 </head>
@@ -88,4 +90,17 @@
 <script>
 	const title = document.querySelector('.title');
 	title.innerHTML = "내가 쓴 글";
+	
+	$(".board tbody tr").click(function(){
+        //글번호 가져오기
+        const bno = $(this).find('td:first-child').text();
+        //const boardTitle = $(this).find('.board_title').text();
+      
+        // 페이지 이동을 위한 URL 구성
+        const url = '${root}/board/detail?bno=' + bno;
+        
+        // 페이지 이동
+        window.location.href = url;
+
+    });
 </script>

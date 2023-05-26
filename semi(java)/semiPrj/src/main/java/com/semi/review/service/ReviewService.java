@@ -38,6 +38,18 @@ public class ReviewService {
 		
 		return rvoList;
 	}
+	
+	//검색해서 목록 조회
+	public List<ReviewVo> getReviewList(PageVo pv, String searchType, String searchValue) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		List<ReviewVo> rvoList = dao.getReviewList(conn, pv, searchType, searchValue);
+		
+		JDBCTemplate.close(conn);
+		
+		return rvoList;
+	}
 
 	//상세 조회
 	public ReviewVo getReviewNo(String rno) throws Exception {
