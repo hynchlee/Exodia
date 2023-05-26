@@ -25,7 +25,13 @@ public class TestList2Controller extends HttpServlet {
 		try {
 			MemberVo loginMember = (MemberVo) req.getSession().getAttribute("loginMember");
 			LectureVo lectureVo = (LectureVo) req.getSession().getAttribute("lectureVo");
+			if(loginMember == null || !loginMember.getIdentity().equals("T")) {
+				req.getSession().setAttribute("alertMsg", "로그인이 필요한 기능입니다");
+				resp.sendRedirect("/semi/member/login");
+				return;
+			}
 
+			
 			int cnt = ls.getExamCategoryListCnt2(lectureVo.getLectureNo());
 
 			String page = req.getParameter("page");
@@ -45,7 +51,7 @@ public class TestList2Controller extends HttpServlet {
 			req.getRequestDispatcher("/WEB-INF/views/lecture/test/list2.jsp").forward(req, resp);
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("error(시험 목록 (강사))");
+			resp.sendRedirect("/semi/main");
 		}
 	}
 
@@ -63,13 +69,12 @@ public class TestList2Controller extends HttpServlet {
 				result = ls.testEnd(examCategoryNo, lectureNo);
 			}
 			
-			if(result != 1) {
+			if(result == 0) {
 				throw new Exception();
 			}	
-			resp.sendRedirect("/semi/lecture/test/list2");
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("error(시험 시작 (강사))");
 		}
+		resp.sendRedirect("/semi/lecture/test/list2");
 	}
 }

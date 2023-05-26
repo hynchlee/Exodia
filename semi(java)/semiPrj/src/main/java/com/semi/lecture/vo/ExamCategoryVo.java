@@ -7,6 +7,7 @@ public class ExamCategoryVo {
 	private String examSubject;
 	private String status;
 	private String enrollDate;
+	private String score;
 
 	public ExamCategoryVo() {
 		super();
@@ -14,7 +15,7 @@ public class ExamCategoryVo {
 	}
 
 	public ExamCategoryVo(String examCategoryNo, String lectureCategoryNo, String lectureCategoryName,
-			String examSubject, String status, String enrollDate) {
+			String examSubject, String status, String enrollDate, String score) {
 		super();
 		this.examCategoryNo = examCategoryNo;
 		this.lectureCategoryNo = lectureCategoryNo;
@@ -22,6 +23,7 @@ public class ExamCategoryVo {
 		this.examSubject = examSubject;
 		this.status = status;
 		this.enrollDate = enrollDate;
+		this.score = score;
 	}
 
 	public String getExamCategoryNo() {
@@ -72,11 +74,19 @@ public class ExamCategoryVo {
 		this.enrollDate = enrollDate;
 	}
 
+	public String getScore() {
+		return score;
+	}
+
+	public void setScore(String score) {
+		this.score = score;
+	}
+
 	@Override
 	public String toString() {
 		return "ExamCategoryVo [examCategoryNo=" + examCategoryNo + ", lectureCategoryNo=" + lectureCategoryNo
 				+ ", lectureCategoryName=" + lectureCategoryName + ", examSubject=" + examSubject + ", status=" + status
-				+ ", enrollDate=" + enrollDate + "]";
+				+ ", enrollDate=" + enrollDate + ", score=" + score + "]";
 	}
 
 }

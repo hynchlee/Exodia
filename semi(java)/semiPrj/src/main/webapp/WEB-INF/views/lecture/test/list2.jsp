@@ -56,13 +56,16 @@
 												<input type="submit" value="종료" class="finInput">
 											</form>
 										</c:if>
-										<c:if test="${vo.status == 'O'}">
-											<form action="${root}/lecture/test/scoreList" method="post">
+										<c:if test="${vo.status == 'S'}">
+											<form action="${root}/lecture/test/scoreList" method="get">
 												<input hidden type="text" name="examCategoryNo"
 													value="${vo.examCategoryNo}">
 												<input hidden type="text" name="examSubject" value="${vo.examSubject}">
 												<input type="submit" value="채점" class="scoreInput">
 											</form>
+										</c:if>
+										<c:if test="${vo.status == 'O'}">
+											<button class="fffooo">완료</button>
 										</c:if>
 									</td>
 								</tr>

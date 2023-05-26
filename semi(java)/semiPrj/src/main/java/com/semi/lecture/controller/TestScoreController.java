@@ -12,14 +12,22 @@ import javax.servlet.http.HttpServletResponse;
 import com.semi.lecture.service.LectureService;
 import com.semi.lecture.vo.ProblemBankVo;
 import com.semi.lecture.vo.SubmitAnswerVo;
+import com.semi.member.vo.MemberVo;
 
 @WebServlet("/lecture/test/score")
 public class TestScoreController extends HttpServlet{
 	private final LectureService ls = new LectureService();
 	
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
+			MemberVo loginMember = (MemberVo) req.getSession().getAttribute("loginMember");
+			if(loginMember == null || !loginMember.getIdentity().equals("T")) {
+				req.getSession().setAttribute("alertMsg", "로그인이 필요한 기능입니다");
+				resp.sendRedirect("/semi/member/login");
+				return;
+			}
+			
 			String memberNo = req.getParameter("memberNo");
 			String examCategoryNo = req.getParameter("examCategoryNo");
 			String examSubject = req.getParameter("examSubject");
@@ -32,7 +40,8 @@ public class TestScoreController extends HttpServlet{
 			req.setAttribute("submitAnswerList", submitAnswerList);
 			req.getRequestDispatcher("/WEB-INF/views/lecture/test/score.jsp").forward(req, resp);
 		} catch (Exception e) {
-			System.out.println("error(채점 post)");
+			e.printStackTrace();
+			resp.sendRedirect("/semi/main");
 		}
 	}
 }

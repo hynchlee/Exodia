@@ -33,12 +33,20 @@
 									<td id="no">${vo.examCategoryNo}</td>
 									<td id="subject">${vo.examSubject}</td>
 									<td>서술형(신)</td>
-									<td></td>
-									<td></td>
+									<td>${vo.enrollDate}</td>
+									<td>
+										<c:if test="${vo.status == 'O'}">
+											${vo.score}
+										</c:if>
+									</td>
 									<td class="bbb">
 										<c:if test="${vo.status == null}">
 											<button>응시 대기</button>
 										</c:if>
+										<c:if test="${vo.status == 'S'}">
+											<button class="resultInput">채점중</button>
+										</c:if>
+
 
 										<c:if test="${vo.status == 'X'}">
 											<form action="${root}/lecture/test/list" method="post">
@@ -46,7 +54,7 @@
 												<input hidden type="text" name="examCategoryNo"
 													value="${vo.examCategoryNo}">
 												<input hidden type="text" name="examSubject" value="${vo.examSubject}">
-												<input type="submit" value="시험 시작">
+												<input type="submit" value="시험 응시" class="startInput">
 											</form>
 										</c:if>
 										<c:if test="${vo.status == 'O'}">
@@ -55,7 +63,7 @@
 												<input hidden type="text" name="examCategoryNo"
 													value="${vo.examCategoryNo}">
 												<input hidden type="text" name="examSubject" value="${vo.examSubject}">
-												<input type="submit" value="결과 확인">
+												<input type="submit" value="결과 확인" class="fffooo">
 											</form>
 										</c:if>
 									</td>

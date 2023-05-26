@@ -39,7 +39,8 @@ public class LectureApplyController extends HttpServlet {
 			req.setAttribute("pageVo", pageVo);
 			req.getRequestDispatcher("/WEB-INF/views/lecture/apply.jsp").forward(req, resp);
 		} catch (Exception e) {
-			System.out.println("error(수강신청 get)");
+			e.printStackTrace();
+			resp.sendRedirect("/semi/main");
 		}
 	}
 
@@ -50,27 +51,25 @@ public class LectureApplyController extends HttpServlet {
 			String lectureNo = req.getParameter("lectureNo");
 
 			if (loginMember == null) {
-				req.getSession().setAttribute("alertMsg", "로그인을 먼저 해주세요");
+				req.getSession().setAttribute("alertMsg", "로그인이 필요한 기능입니다");
 				resp.sendRedirect("/semi/member/login");
 				return;
 			} else {
 				String no = ls.getLectureNo(loginMember.getMemberNo());
 				if (no == null) {
 					int result = ls.lectureApplyOne(lectureNo, loginMember.getMemberNo());
-
 					if (result == 1) {
 						req.getSession().setAttribute("alertMsg", "수강신청이 완료되었습니다");
-						resp.sendRedirect("/semi/lecture/apply");
 					} else {
 						throw new Exception();
 					}
 				} else {
 					req.getSession().setAttribute("alertMsg", "이미 수강중인 강의가 있습니다");
-					resp.sendRedirect("/semi/lecture/apply");
 				}
 			}
 		} catch (Exception e) {
-			System.out.println("error(수강신청 post)");
+			e.printStackTrace();
 		}
+		resp.sendRedirect("/semi/main");
 	}
 }

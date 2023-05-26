@@ -50,9 +50,11 @@
 
 					<br><br><br>
 					<div class="finish">
-						<a href="${root}/lecture/test/list2" class="finish-btn">채점 완료</a>
+						<form action="${root}/lecture/test/scoreList" method="post">
+							<input type="text" hidden value="${memberList.get(0).examCategoryNo}" name="examCategoryNo">
+							<input type="submit" value="채점 완료" class="finish-btn">
+						</form>
 					</div>
-
 				</main>
 				<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 		</body>
