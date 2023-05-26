@@ -83,7 +83,7 @@
             const pageBtn = document.querySelectorAll('.pageBtn');
 
 			function pageMove(i) {
-				location.href = "${root}/letter/sent?page=" + i;
+				location.href = "${root}/attendance/manage?page=" + i;
 			}
 
 			for (let btn of pageBtn) {

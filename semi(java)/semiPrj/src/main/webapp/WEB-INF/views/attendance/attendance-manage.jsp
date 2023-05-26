@@ -14,13 +14,14 @@
                 <main>
                     <div id="target">
                         <div id="selectDiv">
-                            <select name="" id="">
+                            <select name="searchType">
                                 <option value="student">수강생</option>
                                 <option value="date">일자</option>
-                                <option value="">출결상태</option>
+                                <option value="status">출결상태</option>
                             </select>
-                            <input type="text" name="attendanceInput">
-                            <button type="submit">검색</button>
+                            <input type="text" class="searchValueElem" name="searchValue"
+                            value="" placeholder="검색할내용">
+                            <input type="submit" id="searchButton" value="검색하기">
                         </div>
                         <div id="content">
                             <div>수강생</div>
@@ -32,104 +33,22 @@
                             <div>출결상태</div>
                         </div>
                         <div id="content">
-                            <div>수강생</div>
-                            <div>YYYY-MM-DD</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                        </div>
-                        <div id="content">
-                            <div>수강생</div>
-                            <div>YYYY-MM-DD</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                        </div>
-                        <div id="content">
-                            <div>수강생</div>
-                            <div>YYYY-MM-DD</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                        </div>
-                        <div id="content">
-                            <div>수강생</div>
-                            <div>YYYY-MM-DD</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                        </div>
-                        <div id="content">
-                            <div>수강생</div>
-                            <div>YYYY-MM-DD</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                        </div>
-                        <div id="content">
-                            <div>수강생</div>
-                            <div>YYYY-MM-DD</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                        </div>
-                        <div id="content">
-                            <div>수강생</div>
-                            <div>YYYY-MM-DD</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                        </div>
-                        <div id="content">
-                            <div>수강생</div>
-                            <div>YYYY-MM-DD</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                        </div>
-                        <div id="content">
-                            <div>수강생</div>
-                            <div>YYYY-MM-DD</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                        </div>
-                        <div id="content">
-                            <div>수강생</div>
-                            <div>YYYY-MM-DD</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                            <div>AAAAAAAA</div>
-                        </div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
                         </div>
                         <div id="pageDiv">
-                            <button><</button>
-                            <button>1</button>
-                            <button>2</button>
-                            <button>3</button>
-                            <button>4</button>
-                            <button>5</button>
-                            <button>></button>
+                            <td id="pageTd" colspan="4">
+                                <button onclick="pageMove('${pageVo.startPage}');"><<</button> <c:forEach
+                                    begin="${pageVo.startPage}" end="${pageVo.endPage}" var="i">
+                                    <button class="pageBtn" onclick="pageMove('${i}');">${i}</button>
+                                </c:forEach>
+                                <button onclick="pageMove('${pageVo.endPage}');">>></button>
+                            </td>
                         </div>
                     </div>
                 </main>
@@ -142,4 +61,53 @@
         <script>
             const title = document.querySelector(".title");
             title.innerHTML = "출결 내역";
+
+            const pageBtn = document.querySelectorAll('.pageBtn');
+
+			function pageMove(i) {
+				location.href = "${root}/attendance/manage?page=" + i;
+			}
+
+			for (let btn of pageBtn) {
+				if (btn.innerHTML == '${pageVo.currentPage}') {
+					btn.style.backgroundColor = '#4998D1';
+					btn.style.color = 'white';
+				}
+			}
+
+            			const searchType = '${searchVo.searchType}';
+			const searchValue = '${searchVo.searchValue}';
+
+			const searchValueSelectTag = document.querySelector("select[name='searchValue']");
+			const searchValueInputTag = document.querySelector("input[name='searchValue']");
+
+			if (searchType.length > 1) {
+				initSearchType();
+			}
+
+			// 검색 타입 초기셋팅
+			function initSearchType() {
+				const x = document.querySelector('select > option[value="' + searchType + '"]');
+				x.selected = true;
+			}
+
+
+			//서치타입 변경 시 함수 실행
+			const searchTypeTag = document.querySelector('select[name="searchType"]');
+			searchTypeTag.addEventListener("change", setSearchValueTag);
+
+			function setSearchValueTag() {
+				const searchType = searchTypeTag.value;
+				setSearchValueTagInput();
+			}
+
+			//검색값 영역을 인풋이 보이게 (타입이 카테고리가 아닐 때)
+			function setSearchValueTagInput() {
+				searchValueInputTag.classList.add("active");
+				searchValueInputTag.disabled = false;
+				searchValueSelectTag.classList.remove("active");
+				searchValueSelectTag.disabled = true;
+			}
+
+			setSearchValueTag();
         </script>
