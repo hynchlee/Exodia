@@ -227,7 +227,7 @@ public class MypageDao {
 
 	public List<VacationVo> restList(Connection conn, String memberNo) throws Exception {
 
-		String sql = "SELECT VACATION_REQUEST_LIST_NO, TO_CHAR(TO_DATE(VACATION_START), 'YYYY-MM-DD') VACATION_START, TO_CHAR(TO_DATE(VACATION_END), 'YYYY-MM-DD') VACATION_END, STATUS FROM VACATION_REQUEST_LIST WHERE MEMBER_NO = ? AND STATUS = 'O'";
+		String sql = "SELECT VACATION_REQUEST_LIST_NO, TO_CHAR(TO_DATE(VACATION_START), 'YYYY-MM-DD') VACATION_START, TO_CHAR(TO_DATE(VACATION_END), 'YYYY-MM-DD') VACATION_END, STATUS, REASON FROM VACATION_REQUEST_LIST WHERE MEMBER_NO = ? AND STATUS = 'O'";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, memberNo);
 		ResultSet rs = pstmt.executeQuery();
@@ -239,12 +239,14 @@ public class MypageDao {
 			String vacationStart = rs.getString("VACATION_START");
 			String vacationEnd = rs.getString("VACATION_END");
 			String status = rs.getString("STATUS");
+			String reason = rs.getString("REASON");
 			
 			VacationVo vv = new VacationVo();
 			vv.setVacationRequestListNo(vacationRequestListNo);
 			vv.setVacationStart(vacationStart);
 			vv.setVacationEnd(vacationEnd);
 			vv.setStatus(status);
+			vv.setReason(reason);
 			
 			restList.add(vv);
 		
