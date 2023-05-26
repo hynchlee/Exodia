@@ -397,40 +397,61 @@ public class LetterDao {
 		return result;
 	}
 
-	public LetterVo selectLetterOneByNo(String no, Connection conn) throws Exception {
-
-		String sql = "SELECT LETTER_NO, SEND_MEMBER_NO, RECEIVE_MEMBER_NO, LETTER_TITLE, LETTER_CONTENT, ENROLL_DATE FROM LETTER WHERE LETTER_NO = ?";
+	public LetterVo selectSendOneByNo(String bno, Connection conn) throws Exception {
+		
+		String sql = "SELECT LETTER_TITLE, LETTER_CONTENT, TO_CHAR(ENROLL_DATE,'YYYY-MM-DD HH24\"시\"') ENROLL_DATE, MEMBER_NICK FROM LETTER L JOIN MEMBER M ON MEMBER_NO = RECEIVE_MEMBER_NO WHERE LETTER_NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, no);
+		pstmt.setString(1, bno);
 		ResultSet rs = pstmt.executeQuery();
 		
 		LetterVo vo = null;
+		
 		if(rs.next()) {
-			String sendMemberNo = rs.getString("SEND_MEMBER_NO");
-			String sendMemberName = rs.getString("SEND_MEMBER_NAME");
-			String receiveMemberNo = rs.getString("RECEIVE_MEMBER_NO");
-			String receiveMemberName = rs.getString("RECEIVE_MEMBER_NAME");
-			String letterTitle = rs.getString("LETTER_TITLE");
-			String letterContent = rs.getString("LETTER_CONTENT");
+			String title = rs.getString("LETTER_TITLE");
+			String content = rs.getString("LETTER_CONTENT");
 			String enrollDate = rs.getString("ENROLL_DATE");
+			String receiver = rs.getString("MEMBER_NICK");			
 			
-			vo.setLetterNo(no);
-			vo.setSendMemberNo(sendMemberNo);
-			vo.setSendMemberName(sendMemberName);
-			vo.setReceiveMemberName(receiveMemberName);
-			vo.setReceiveMemberNo(receiveMemberNo);
-			vo.setLetterTitle(letterTitle);
-			vo.setLetterContent(letterContent);
+			vo = new LetterVo();
+			vo.setLetterTitle(title);
+			vo.setReceiveMemberName(receiver);
+			vo.setLetterContent(content);
 			vo.setEnrollDate(enrollDate);
-			
 		}
 		
 		JDBCTemplate.close(rs);
 		JDBCTemplate.close(pstmt);
 		
 		return vo;
-		
 	}
+
+	public LetterVo selectReceiveOneByNo(String bno, Connection conn) throws Exception {
+		String sql = "SELECT LETTER_TITLE, LETTER_CONTENT, TO_CHAR(ENROLL_DATE,'YYYY-MM-DD HH24\"시\"') ENROLL_DATE, MEMBER_NICK FROM LETTER L JOIN MEMBER M ON MEMBER_NO = SEND_MEMBER_NO WHERE LETTER_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, bno);
+		ResultSet rs = pstmt.executeQuery();
+		
+		LetterVo vo = null;
+		
+		if(rs.next()) {
+			String title = rs.getString("LETTER_TITLE");
+			String content = rs.getString("LETTER_CONTENT");
+			String enrollDate = rs.getString("ENROLL_DATE");
+			String sender = rs.getString("MEMBER_NICK");			
+			
+			vo = new LetterVo();
+			vo.setLetterTitle(title);
+			vo.setSendMemberName(sender);
+			vo.setLetterContent(content);
+			vo.setEnrollDate(enrollDate);
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return vo;
+	}
+
 	
 }
 
