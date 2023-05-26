@@ -24,7 +24,8 @@ public class LectureDetailController extends HttpServlet{
 			req.setAttribute("lecture", lecture);
 			req.getRequestDispatcher("/WEB-INF/views/lecture/detail.jsp").forward(req, resp);			
 		} catch (Exception e) {
-			System.out.println("ERROR(상세 조회)");
+			e.printStackTrace();
+			resp.sendRedirect("/semi/lecture/apply");
 		}
 		
 	}

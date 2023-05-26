@@ -16,9 +16,15 @@ public class TestStartController extends HttpServlet {
 	private final LectureService ls = new LectureService();
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			MemberVo loginMember = (MemberVo) req.getSession().getAttribute("loginMember");
+			if (loginMember == null || !loginMember.getIdentity().equals("S")) {
+				req.getSession().setAttribute("alertMsg", "로그인이 필요한 기능입니다");
+				resp.sendRedirect("/semi/member/login");
+				return;
+			}
+			
 			String examCategoryNo = req.getParameter("examCategoryNo");
 			String[] examProblemNoArr = req.getParameterValues("examProblemNo");
 			String[] answerArr = req.getParameterValues("answer");
@@ -33,7 +39,7 @@ public class TestStartController extends HttpServlet {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("error(시험)");
+			resp.sendRedirect("/semi/main");
 		}
 
 	}

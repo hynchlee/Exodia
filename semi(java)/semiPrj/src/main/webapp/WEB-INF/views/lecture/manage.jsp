@@ -208,7 +208,7 @@
 					}
 				}
 
-				if (boxList.length == 0) {
+				if (boxList.length == 1) {
 					alert("삭제할 강의를 선택해주세요");
 					return;
 				}

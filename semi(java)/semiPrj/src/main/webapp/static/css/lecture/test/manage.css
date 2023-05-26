@@ -3,7 +3,6 @@
 main * {
     font-size: 18px;
     font-family:Noto Sans KR;
-    overflow: auto;
 }
 .wrap_1 {
 	width: 100%;

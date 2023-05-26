@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.semi.admin.vo.AdminVo;
 import com.semi.common.page.PageVo;
 import com.semi.lecture.service.LectureService;
 import com.semi.lecture.vo.ExamCategoryVo;
@@ -20,6 +21,13 @@ public class TestInfoController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
+			AdminVo loginAdmin = (AdminVo) req.getSession().getAttribute("loginAdmin");
+			if(loginAdmin == null) {
+				req.getSession().setAttribute("alertMsg", "로그인이 필요한 기능입니다");
+				resp.sendRedirect("/semi/member/login");
+				return;
+			}
+			
 			String page = req.getParameter("page");
 			String searchType = req.getParameter("searchType");
 			String searchValue = req.getParameter("searchValue");
@@ -38,7 +46,8 @@ public class TestInfoController extends HttpServlet{
 			req.setAttribute("pageVo", pageVo);
 			req.getRequestDispatcher("/WEB-INF/views/lecture/test/info.jsp").forward(req, resp);
 		} catch (Exception e) {
-			System.out.println("error(시험 정보)");
+			e.printStackTrace();
+			resp.sendRedirect("/semi/main");
 		}
 	}
 }

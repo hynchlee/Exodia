@@ -106,3 +106,17 @@ form {
 .last-th {
     width: 280px;
 }
+.startInput {
+    background-color: #d14949;
+    color: white;
+}
+
+.resultInput {
+    background-color: #075200;
+    color: white;
+}
+
+.fffooo {
+    background-color: #b6aa00;
+    color: white;
+}

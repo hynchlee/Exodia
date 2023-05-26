@@ -26,6 +26,11 @@ public class TestListController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			MemberVo loginMember = (MemberVo) req.getSession().getAttribute("loginMember");
+			if(loginMember == null || !loginMember.getIdentity().equals("S")) {
+				req.getSession().setAttribute("alertMsg", "로그인이 필요한 기능입니다");
+				resp.sendRedirect("/semi/member/login");
+				return;
+			}
 			
 			int cnt = ls.getExamCategoryListCnt(loginMember);
 
@@ -37,12 +42,14 @@ public class TestListController extends HttpServlet {
 
 			PageVo pageVo = new PageVo(cnt, pageInt, 5, 10);
 			List<ExamCategoryVo> examCategoryList = ls.getExamCategoryList(pageVo, loginMember);
-
+			examCategoryList = ls.updateExamStatusList(examCategoryList, loginMember.getMemberNo());
+			
 			req.setAttribute("examCategoryList", examCategoryList);
 			req.setAttribute("pageVo", pageVo);
 			req.getRequestDispatcher("/WEB-INF/views/lecture/test/list.jsp").forward(req, resp);
 		} catch (Exception e) {
-			System.out.println("error(시험 목록 (학생))");
+			e.printStackTrace();
+			resp.sendRedirect("/semi/main");
 		}
 
 	}
@@ -70,7 +77,7 @@ public class TestListController extends HttpServlet {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("error(학생 평)");
+			resp.sendRedirect("/semi/lecture/test/list");
 		}
 
 	}

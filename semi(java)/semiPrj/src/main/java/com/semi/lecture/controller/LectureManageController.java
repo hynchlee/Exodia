@@ -23,6 +23,12 @@ public class LectureManageController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
+			AdminVo loginAdmin = (AdminVo) req.getSession().getAttribute("loginAdmin");
+			if (loginAdmin == null) {
+				req.getSession().setAttribute("alertMsg", "로그인이 필요한 기능입니다");
+				resp.sendRedirect("/semi/member/login");
+				return;
+			}
 
 			String page = req.getParameter("page");
 			String searchType = req.getParameter("searchType");
@@ -42,7 +48,8 @@ public class LectureManageController extends HttpServlet {
 			req.setAttribute("pageVo", pageVo);
 			req.getRequestDispatcher("/WEB-INF/views/lecture/manage.jsp").forward(req, resp);
 		} catch (Exception e) {
-			System.out.println("error(강의 관리)");
+			e.printStackTrace();
+			resp.sendRedirect("/semi/main");
 		}
 
 	}
@@ -51,8 +58,7 @@ public class LectureManageController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			String json = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-			String[] params = json.replaceAll("\\s", "").replace("[", "").replace("]", "").replace("\"", "")
-					.split(",");
+			String[] params = json.replaceAll("\\s", "").replace("[", "").replace("]", "").replace("\"", "").split(",");
 			String type = params[0];
 			int result = 0;
 
@@ -68,11 +74,12 @@ public class LectureManageController extends HttpServlet {
 				result = ls.insertLectureOne(params);
 			}
 
-			if (result != 1) {
+			if (result == 0) {
 				throw new Exception();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			resp.sendRedirect("/semi/lecture/manage");
 		}
 	}
 }
