@@ -300,15 +300,19 @@ table{
 
 
 
-.comment_list .reply_col input,.recomment input{
+.comment_list .reply_col input, .recomment input{
     border: 1px solid rgb(219, 219, 219);
     cursor: pointer;
     border-radius: 5px;
 
-    font-size: 12px;
+    font-size: 13px;
     font-family: 'Spoqa Han Sans Neo';
     font-weight: 400;
     color: #3d3d3d;
+}
+
+.comment_list .reply_col input[type=button]{
+    font-size: 12px;
 }
 
 .comment_list .reply_col .time,.recomment .time{
@@ -341,6 +345,10 @@ table{
     font-family: 'Spoqa Han Sans Neo';
     font-weight: 400;
     color: #3d3d3d;
+}
+
+.recomment span{
+    color: #979797;
 }
 
 .recomment_write{

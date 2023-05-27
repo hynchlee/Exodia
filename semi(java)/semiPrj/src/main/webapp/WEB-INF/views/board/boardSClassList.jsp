@@ -63,18 +63,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                	<c:if test="${loginMember.identity eq 'T' }">
-	                    <c:forEach items="${tcvoList}" var="tcvo">
+                	<c:if test="${loginMember.identity eq 'S' }">
+	                    <c:forEach items="${cvoList}" var="cvo">
 		                    <tr>
-		                        <td>${tcvo.boardNo}</td>
-		                        <td class="board_title">${tcvo.boardTitle}
-			                        <c:if test="${tcvo.totalReplies > 0}">
-				                        <span class="comment_num">[${tcvo.totalReplies}]</span>
+		                        <td>${cvo.boardNo}</td>
+		                        <td class="board_title">${cvo.boardTitle}
+			                        <c:if test="${cvo.totalReplies > 0}">
+				                        <span class="comment_num">[${cvo.totalReplies}]</span>
 			                        </c:if>
 		                        </td>
-		                        <td>${tcvo.writerNick}</td>
-		                        <td>${tcvo.enrollDate}</td>
-		                        <td>${tcvo.hit}</td>
+		                        <td>${cvo.writerNick}</td>
+		                        <td>${cvo.enrollDate}</td>
+		                        <td>${cvo.hit}</td>
 		                    </tr>
 	                    </c:forEach>
                 	</c:if>
@@ -89,18 +89,18 @@
             
 			<div class="board_page">
 				<c:if test="${pv.currentPage > 1}">
-					<a href="${root}/class/tlist?page=${pv.currentPage-1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button><<</button></a>
+					<a href="${root}/class/slist?page=${pv.currentPage-1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button><<</button></a>
 				</c:if>
 				<c:forEach begin="${pv.startPage}" end="${pv.endPage}" var="i">
 					<c:if test="${pv.currentPage ne i}">
-						<a href="${root}/class/tlist?page=${i}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>${i}</button></a>
+						<a href="${root}/class/slist?page=${i}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>${i}</button></a>
 					</c:if>
 					<c:if test="${pv.currentPage eq i}">
 						<a><button class="active">${i}</button></a>
 					</c:if>
 				</c:forEach>
 				<c:if test="${pv.currentPage < pv.maxPage}">
-					<a href="${root}/class/tlist?page=${pv.currentPage+1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>>></button></a>
+					<a href="${root}/class/slist?page=${pv.currentPage+1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>>></button></a>
 				</c:if>
             </div>
            

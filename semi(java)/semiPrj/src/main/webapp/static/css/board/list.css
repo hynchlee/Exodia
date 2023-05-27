@@ -143,6 +143,15 @@ table{
 
 
 /* 검색창 */
+
+.searchContainer{
+    width: 1130px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 90px;
+}
+
 .board_search{
     width: 1130px;
     margin: 0 auto;
@@ -154,6 +163,24 @@ table{
     font-family: 'Spoqa Han Sans Neo';
     font-weight: normal;
 }
+.board_search2{
+    width: 1130px;
+    margin: 0 auto;
+    margin-top:90px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: normal;
+}
+
+.choiceLecture{
+    /* width: 1130px;
+    margin: 0 auto; */
+}
+
+.choiceLecture .board_search
 
 .board_search .searchInput{
     padding: 2px 2px 2px;

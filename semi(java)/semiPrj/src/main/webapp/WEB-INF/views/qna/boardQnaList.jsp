@@ -26,7 +26,7 @@
 	            </div>
 			</c:if>
             
-              <div class="board_search">
+            <div class="board_search">
 	            <form action="${root}/qna/list">
                     <div class="qna_control">
                         <label>
@@ -44,7 +44,7 @@
                     </div>
             	</form>
             	<div></div>
-                <form action="${root}/qna/list" method="get" name="searchBoard">
+              <form action="${root}/qna/list" method="get" name="searchBoard">
                 	<input type="hidden" name="page" value="1">
                     <select class="searchCategory" name="searchType">
                         <option value="qnaTitle">제목</option>
@@ -52,7 +52,7 @@
                     </select>
                     <input type="text" class="searchInput" placeholder="검색어 입력" value="${searchVo.searchValue}" name="searchValue">
                     <input type="submit" value="검색" class="searchBtn">
-                </form>
+              </form>
             </div>
             
             <table class="board">
