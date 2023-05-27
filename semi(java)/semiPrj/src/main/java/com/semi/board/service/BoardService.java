@@ -13,6 +13,8 @@ import com.semi.board.vo.BoardVo;
 import com.semi.board.vo.ReplyVo;
 import com.semi.common.db.JDBCTemplate;
 import com.semi.common.page.PageVo;
+import com.semi.lecture.vo.LectureVo;
+import com.semi.mypage.dao.MypageDao;
 import com.semi.notice.vo.NoticeVo;
 
 public class BoardService {
@@ -20,40 +22,40 @@ public class BoardService {
 	private final BoardDao dao = new BoardDao();
 
 	//우리반 페이징
-	public int getBoardClassListCnt(String searchType, String searchValue) throws Exception {
+	public int getBoardClassListCnt(String searchType, String searchValue, String lno) throws Exception {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		
-		int cnt = dao.getBoardClassListCnt(conn, searchType, searchValue);
+		int cnt = dao.getBoardClassListCnt(conn, searchType, searchValue, lno);
 		
 		JDBCTemplate.close(conn);
 		
 		return cnt;
 	}
 
-	//우리반 목록 조회
-	public List<BoardVo> getBoardClassList(PageVo pv) throws Exception {
+//	//우리반 목록 조회
+	public List<BoardVo> getBoardClassList(PageVo pv, String memberNo) throws Exception {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		
-		List<BoardVo> cvoList = dao.getBoardClassList(conn,pv);
+		List<BoardVo> cvoList = dao.getBoardClassList(conn,pv,memberNo);
 		
 		JDBCTemplate.close(conn);
 		
 		return cvoList;
 	}
 
-	//우리반 검색해서 목록 조회
-	public List<BoardVo> getBoardClassList(PageVo pv, String searchType, String searchValue) throws Exception {
-		
-		Connection conn = JDBCTemplate.getConnection();
-		
-		List<BoardVo> cvoList = dao.getBoardClassList(conn,pv,searchType,searchValue);
-		
-		JDBCTemplate.close(conn);
-		
-		return cvoList;
-	}
+////	//우리반 검색해서 목록 조회
+//	public List<BoardVo> getBoardClassList(PageVo pv, String searchType, String searchValue) throws Exception {
+//		
+//		Connection conn = JDBCTemplate.getConnection();
+//		
+//		List<BoardVo> cvoList = dao.getBoardClassList(conn,pv,searchType,searchValue);
+//		
+//		JDBCTemplate.close(conn);
+//		
+//		return cvoList;
+//	}
 
 	//자유 페이징
 	public int getBoardFreeListCnt(String searchType, String searchValue) throws Exception {
@@ -258,6 +260,51 @@ public class BoardService {
 		JDBCTemplate.close(conn);
 		
 		return result;
+	}
+
+	
+	
+
+	public List<BoardVo> getBoardTClassList(PageVo pv, String lno) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		List<BoardVo> tcvoList = dao.getBoardTClassList(conn,pv,lno);
+		
+		JDBCTemplate.close(conn);
+		
+		return tcvoList;
+	}
+
+	public List<BoardVo> getBoardTClassList(PageVo pv, String searchType, String searchValue, String lno) throws Exception {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		List<BoardVo> tcvoList = dao.getBoardTClassList(conn,pv,searchType, searchValue, lno);
+		
+		JDBCTemplate.close(conn);
+		
+		return tcvoList;
+	}
+
+//	public List<BoardVo> getBoardSClassList(PageVo pv, String memberNo) throws Exception {
+//		Connection conn = JDBCTemplate.getConnection();
+//		
+//		List<BoardVo> scvoList = dao.getBoardSClassList(conn,pv,memberNo);
+//		
+//		JDBCTemplate.close(conn);
+//		
+//		return scvoList;
+//	}
+
+	public int getBoardSClassListCnt(String searchType, String searchValue, String memberNo) throws Exception {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int cnt = dao.getBoardSClassListCnt(conn, searchType, searchValue, memberNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return cnt;
 	}
 
 

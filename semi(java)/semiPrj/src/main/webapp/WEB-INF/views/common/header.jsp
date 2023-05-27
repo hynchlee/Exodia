@@ -64,7 +64,12 @@
 						</tr>
 						<tr>
 							<td></td>
-							<td><a href="${root}/class/list?page=1">우리반게시판</a></td>
+							<c:if test="${loginMember.identity eq 'S' }">
+								<td><a href="${root}/class/slist?page=1">우리반게시판</a></td>
+							</c:if>
+							<c:if test="${loginMember.identity eq 'T' }">
+								<td><a href="${root}/class/tlist?page=1">우리반게시판</a></td>
+							</c:if>
 						</tr>
 					</table>
 				</div>
