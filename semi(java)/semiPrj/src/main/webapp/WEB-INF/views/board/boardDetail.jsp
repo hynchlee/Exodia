@@ -101,16 +101,17 @@
                                     <input type="button" value="삭제">
                                     <input type="button" value="답글" id="onDisplay">
                                     <span class="time"></span> -->
+                                    <!-- <div class="recomment">
+                                    </div> -->
                                 </div>
-                            	<div class="recomment">
-                                <i class="bi bi-arrow-return-right"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">
+                                <!-- <i class="bi bi-arrow-return-right"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>
                                   </svg></i>
                                 <span>작성자</span>
                                 <span>답글내용자리는이곳이다</span>
                                 <input type="button" value="수정">
                                 <input type="button" value="삭제">
-                                <span class="time">2023.05.01 - 00:00:00:00</span>
+                                <span class="time">2023.05.01 - 00:00:00:00</span> -->
                                 <!-- 답글달기 -->
                                 <div class="recomment_write" id="noneDiv" style="display: none;">
                                     <span>답글</span>
@@ -132,8 +133,8 @@
 <script>
 
     
-	const title = document.querySelector('.title');
-	title.innerHTML = "${cvNo.boardCategoryType}";
+	// const title = document.querySelector('.title');
+	// title.innerHTML = "${cvNo.boardCategoryType}";
 
     // 답글 작성란 보이기 숨기기
 
@@ -182,7 +183,7 @@
             },
             success : (x)=>{
                 console.log(x);
-                if(x = "success"){
+                if(x === "success"){
                     alert("댓글 작성 성공");
                     document.querySelector("textarea[name=replyContent]").value='';
                     //댓글 조회 호출
@@ -196,66 +197,118 @@
     }
 
 
-    //댓글 조회
-    function loadComment(){
-        const replyList = document.querySelector('.comment_col');
-        const loginMemberNo = '${loginMember.memberNo}';
+    // 댓글 조회
+function loadComment() {
+  const replyList = document.querySelector('.comment_col');
+  const loginMemberNo = '${loginMember.memberNo}';
+
+  if (replyList) {
+    $.ajax({
+      url: '${root}/board/reply/list',
+      type: "GET",
+      data: {
+        bno: '${cvNo.boardNo}',
+      },
+      success: function(result) {
+        console.log(result);
+        const x = JSON.parse(result);
+        console.log(x);
+
+        replyList.innerHTML = "";
+        let str = "";
+        for (let i = 0; i < x.length; i++) {
+          str += '<div class="reply_col">';
+          str += '<span>' + x[i].writerNick + '</span>';
+          // str += '<span>' + x[i].replyContent + '</span>';
+          str += '<input type="text" name="rC" style="border:none;" value="' + x[i].replyContent + '" readonly>';
+
+          if (loginMemberNo == x[i].writerNo) {
+            str += '<input type="button" value="수정" onclick="edit(' + x[i].replyNo + ', \'' + x[i].replyContent + '\');">';
+            str += '<input type="button" value="삭제">';
+          } else if (loginMemberNo != x[i].writerNo) {
+            str += '<div></div>';
+            str += '<div></div>';
+          }
+          str += '<input type="button" value="답글" id="onDisplay" onclick="loadAnswer(' + x[i].replyNo + ');">';
+          str += '<span class="time">' + x[i].enrollDate + '</span>';
+          str += '<div class="recomment"></div>';
+          str += '</div>';
+
+        //   loadAnswer(x[i].replyNo);
+        }
+        replyList.innerHTML += str;
+      },
+      error: function(e) {
+        console.log(e);
+      },
+    });
+  }
+}
+
+    //답글 조회
+    function loadAnswer(replyNo) {
+        const recomment = document.querySelector('.recomment');
 
         $.ajax({
-            url : '${root}/board/reply/list',
-            type : "GET",
-            data : {
-                bno : '${cvNo.boardNo}',
-                
-
+            url: '${root}/board/answer/list',
+            type: "GET",
+            data: {
+                rno : replyNo,
             },
-            success : function(result){
-                console.log(result);
-                const x = JSON.parse(result);
-                console.log(x);
-
-                replyList.innerHTML = "";
-                let str = "";
-                for(let i = 0; i < x.length; i++){
-                    str += '<div class="reply_col">';
-                    str += '<span>' + x[i].writerNick +'</span>';
-                    str += '<span>' + x[i].replyContent + '</span>';
-
-                    if (loginMemberNo == x[i].writerNo) {
-                        str += '<input type="button" value="수정" onclick="edit();">'; 
+            success: function(data) {
+                console.log(data);
+                const y = JSON.parse(data);
+                console.log(y);
+                
+                    recomment.innerHTML="";
+                    let str = "";
+                    for(let i =0; i < y.length; i++){
+                        str += '<i class="bi bi-arrow-return-right"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">';
+                        str += '<path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>';
+                        str += '</svg>';
+                        str += '</i>';
+                        str += '<span>익명</span>';
+                        str += '<span>' + y[i].answerContent + '</span>';
+                        str += '<input type="button" value="수정">';
                         str += '<input type="button" value="삭제">';
-                    }else if(loginMemberNo != x[i].writerNo){
-                        str += '<div></div>'
-                        str += '<div></div>'
+                        str += '<span class="time">' + y[i].enrollDate + '</span>';
+                                    
                     }
-                    str += '<input type="button" value="답글" id="onDisplay">';
-                    str += '<span class="time">' + x[i].enrollDate + '</span>';
-                    str += '<div class="recomment"></div>'
-                    str += '</div>';
+    
+                    recomment.innerHTML+=str;
+                },
+                error: function(e){
+                    console.log(e);
+                },
+            });
+        }
 
-                }
-                replyList.innerHTML += str;
-                
+    loadComment();
+    loadAnswer();
 
-            },
-            error : function(e){
-                console.log(e);
-            },
-        });
+    // //댓글 수정
+    // function edit(replyNo, replyContent) {
 
-    }
+    //     console.log('전달받은 replyNo:', replyNo);
+    //     console.log('전달받은 replyContent:', replyContent);
+    //     document.querySelector('input[name=rC]').readOnly = false;
 
-    //댓글 수정
-    function edit() {
-        $.ajax({
-            url: '${root}/board/reply/edit',
-        })
-    }
+    //     const editReplyContent = document.querySelector('input[name=rC]').value;
+    //     console.log(editReplyContent);
+
+    //     // $.ajax({
+    //     //     url: '${root}/board/reply/edit',
+    //     //     data: {
+    //     //     replyNo: replyNo
+    //     //     },
+    //     // })
+    // }
+
+    
 
     
 
     //댓글 조회 호출
-    loadComment();
 
 </script>
 

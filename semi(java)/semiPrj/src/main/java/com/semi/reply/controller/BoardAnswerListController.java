@@ -16,8 +16,8 @@ import com.semi.board.service.BoardService;
 import com.semi.board.vo.AnswerVo;
 import com.semi.board.vo.ReplyVo;
 
-@WebServlet("/board/reply/list")
-public class BoardReplyListController extends HttpServlet{
+@WebServlet("/board/answer/list")
+public class BoardAnswerListController extends HttpServlet{
 	
 	
 	//댓글 목록 조회
@@ -26,25 +26,22 @@ public class BoardReplyListController extends HttpServlet{
 		
 		try {
 			
-			String bno = req.getParameter("bno");
-//			String rno = req.getParameter("rno");
+			String rno = req.getParameter("rno");
 			
 			BoardService bs = new BoardService();
-			//댓글 조회
-			List<ReplyVo> revoList = bs.getBoardReplyList(bno);
 			
 			//답글 조회
-//			List<AnswerVo> answerList = bs.getReplyAnswerList(rno);
+			List<AnswerVo> answerList = bs.getReplyAnswerList(rno);
 			
 			Gson gson = new Gson();
-			String jsonStr = gson.toJson(revoList);
+			String jsonStr = gson.toJson(answerList);
 			
 			resp.setCharacterEncoding("UTF-8");
 			PrintWriter out = resp.getWriter();
 			out.write(jsonStr);
 			
 		} catch (Exception e) {
-			System.out.println("[ERROR] reply list error");
+			System.out.println("[ERROR] answer list error");
 			e.printStackTrace();
 		}
 		
