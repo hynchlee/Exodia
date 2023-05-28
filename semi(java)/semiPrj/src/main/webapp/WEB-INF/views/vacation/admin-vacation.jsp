@@ -35,7 +35,8 @@
                             <div>피곤</div>
                         </div>
                         <div id="buttonDiv">
-                            <button id="deleteButton" onclick="delButton();">삭제하기</button>
+                            <button id="approval">승인</button>
+                            <button id="refuse" onclick="delButton();">거절</button>
                         </div>
                         <div id="pageDiv">
                             <button onclick="pageMove('${pageVo.startPage}');"><<</button>

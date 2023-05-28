@@ -36,21 +36,12 @@ input[type=checkbox]{
     text-align: center;
 }
 
-#content>div:first-child {
-    flex-basis: 5%;
+.lectureName{
+    width: 30%;
+}
+
+#content>div{
     text-align: center;
-}
-
-#content>div>input[type="checkbox"] {
-    margin: auto;
-}
-
-#content:last-child {
-    border-bottom: none;
-}
-
-#buttonDiv{
-    text-align: right;
 }
 
 #pageDiv{

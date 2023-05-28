@@ -9,7 +9,7 @@ import com.semi.vacation.dao.VacationDao;
 import com.semi.vacation.vo.VacationVo;
 
 
-public class VacationServic {
+public class VacationService {
 
 	private final VacationDao dao = new VacationDao();
 	

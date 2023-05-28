@@ -14,7 +14,7 @@ import com.semi.attendance.service.AttendanceService;
 import com.semi.attendance.vo.AttendanceVo;
 import com.semi.common.page.PageVo;
 import com.semi.member.vo.MemberVo;
-import com.semi.vacation.service.VacationServic;
+import com.semi.vacation.service.VacationService;
 import com.semi.vacation.vo.VacationVo;
 
 @WebServlet("/vacation/list")
@@ -36,7 +36,7 @@ public class ListVacationController extends HttpServlet {
 
 			String no = loginMember.getMemberNo();
 
-			VacationServic vs = new VacationServic();
+			VacationService vs = new VacationService();
 
 			int listCount = vs.getVacationCnt(no);
 			String page = req.getParameter("page");

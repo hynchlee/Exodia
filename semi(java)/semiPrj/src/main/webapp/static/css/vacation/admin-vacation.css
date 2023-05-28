@@ -62,18 +62,13 @@ input[type=checkbox]{
     border: none;
 }
 
-#buttonDiv button:hover{
-background-color: #B53232;
-    color: white;
-}
-
 #approval{
-    background-color: #2E4686;
+    background-color: #4998D1;
     border-radius: 29.5px;
     color: #FFFFFF;
     width: 80px;
     height: 40px;
-    font-family: 'Noto Sans';
+    font-family: 'Spoqa Han Sans Neo';
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -81,17 +76,20 @@ background-color: #B53232;
 }
 
 #refuse{
-    background-color: #B53232;
     border: none;
     border-radius: 29.5px;
     color: #FFFFFF;
     width: 80px;
     height: 40px;
-    font-family: 'Noto Sans';
+    font-family: 'Spoqa Han Sans Neo';
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
     line-height: 27px;
+}
+
+#approval:hover{
+    background-color: #4998D1;
 }
 
 #pageDiv{
