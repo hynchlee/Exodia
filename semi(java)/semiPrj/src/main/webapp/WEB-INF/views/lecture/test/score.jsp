@@ -4,6 +4,7 @@
 		<html>
 
 		<head>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 			<meta charset="UTF-8">
 			<title>Insert title here</title>
 			<c:set var="root" value="${pageContext.request.contextPath}"></c:set>
@@ -25,13 +26,14 @@
 
 					<% int i=1; %>
 						<c:forEach items="${submitAnswerList}" var="vo">
+							<input class="en" type="text" hidden value="${vo.examProblemNo}">
 							<div class="problem">
 								<div>
 									<%= i%>. ${vo.problem} (${vo.problemPoint}점)
 								</div>
 								<br>
 								<div class="hi">
-									<textarea style="resize: none;" name="answer">${vo.submitAnswer}</textarea>
+									<textarea readonly style="resize: none;" name="answer">${vo.submitAnswer}</textarea>
 									<input class="scoreInput" type="text" value="" placeholder="점수입력">
 								</div>
 								<br><br><br>
@@ -40,15 +42,9 @@
 						</c:forEach>
 						<br>
 
-						<form action="${root}/lecture/test/scoreList" method="post">
-							<input hidden type="text" name="examCategoryNo" value="${submitAnswerList[0].examCategoryNo}">
-							<input hidden type="text" name="examSubject" value="${submitAnswerList[0].examSubject}">
-							<input hidden type="text" name="memberNo" value="${submitAnswerList[0].memberNo}">
-							<input hidden type="text" name="totalScore" value="0" class="ts">
-							<div class="finish">
-								<input class="finish-btn" type="submit" value="채점">
-							</div>
-						</form>
+						<div class="finish">
+							<button class="finish-btn" onclick="scoreButton();">채점</button>
+						</div>
 				</main>
 				<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 		</body>
@@ -58,28 +54,57 @@
 		<script>
 			const title = document.querySelector('.title');
 			const score = document.querySelector('.score');
-			const ts = document.querySelector('.ts');
+			const enArr = document.querySelectorAll('.en');
 
 			title.innerHTML = "채점";
 
 			var totalScore = 0;
+			var scoreList = [];
 
 			function scoreUpdate() {
+				scoreList = [];
 				totalScore = 0;
 				const scoreInputList = document.querySelectorAll('.scoreInput');
 				for (const si of scoreInputList) {
 					let v = 0;
-					if (si.value == "") {
-						v = 0;
-					} else {
+					if (si.value != "") {
+						scoreList.push(si.value);
 						v = parseInt(si.value);
 					}
 					totalScore += v;
 				}
 				score.innerText = totalScore;
-				ts.value = totalScore;
+			}
+
+			function scoreButton() {
+				const params = [];
+				const proNoList = [];
+				params.push('${submitAnswerList[0].examCategoryNo}');
+				params.push('${submitAnswerList[0].memberNo}');
+				params.push('${submitAnswerList[0].examSubject}');
+				params.push(score.innerText);
+
+				for (const en of enArr) {
+					proNoList.push(en.value);
+				}
+
+				$.ajax({
+					url: '/semi/lecture/test/score',
+					type: 'post',
+					data: {
+						params : JSON.stringify(params),
+						proNoList : JSON.stringify(proNoList),
+						scoreList : JSON.stringify(scoreList)
+					},
+					success: function () {
+						alert("채점완료");
+						location.href = "${root}/lecture/test/scoreList?examCategoryNo=" + params[0] + "&examSubject=" + params[2];
+					},
+					error: function () {
+						alert("에러");
+					}
+				});
 			}
 
 			setInterval(scoreUpdate, 100);
-
 		</script>

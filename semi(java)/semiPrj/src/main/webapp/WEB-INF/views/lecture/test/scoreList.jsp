@@ -27,7 +27,7 @@
 						<tbody>
 							<% int i=1; %>
 								<c:forEach items="${memberList}" var="vo">
-									<form action="${root}/lecture/test/score" method="post">
+									<form action="${root}/lecture/test/score" method="get">
 										<input hidden type="text" name="memberNo" value="${vo.memberNo}">
 										<input hidden type="text" name="examCategoryNo"
 											value="${problemBankVo.examCategoryNo}">
