@@ -24,19 +24,24 @@
                             <div>신청기간</div>
                             <div>일수</div>
                             <div>사유</div>
+                            <div>상태</div>
                         </div>
-                        <div id="content">
-                            <div><input type="checkbox"></div>
-                            <div>심원용(1dragon)</div>
-                            <div>반응형</div>
-                            <div>심원용</div>
-                            <div>2023-12-12 ~ 2023-12-12</div>
-                            <div>n</div>
-                            <div>피곤</div>
-                        </div>
+                        <c:forEach items="${list}" var="vacation">
+                            <div id="content">
+                                <div>${vacation.vacationRequestListNo}</div>
+                                <div><input type="checkbox" class="checkbox" value="${vacation.vacationRequestListNo}"></div>
+                                <div>${vacation.studentName}(${vacation.studentId})</div>
+                                <div>${vacation.lectureName}</div>
+                                <div>${vacation.teacherName}</div>
+                                <div>${vacation.vacationStart} - ${vacation.vacationEnd}</div>
+                                <div>${vacation.day}</div>
+                                <div>${vacation.reason}</div>
+                                <div>${vacation.status}</div>
+                            </div>
+                        </c:forEach>
                         <div id="buttonDiv">
-                            <button id="approval">승인</button>
-                            <button id="refuse" onclick="delButton();">거절</button>
+                            <button id="approval" onclick="approval();">승인</button>
+                            <button id="refuse" onclick="refuse();">거절</button>
                         </div>
                         <div id="pageDiv">
                             <button onclick="pageMove('${pageVo.startPage}');"><<</button>
@@ -61,7 +66,7 @@
             const pageBtn = document.querySelectorAll('.pageBtn');
 
 			function pageMove(i) {
-				location.href = "${root}/vacation/list?page=" + i;
+				location.href = "${root}/vacation/admin?page=" + i;
 			}
 
 			for (let btn of pageBtn) {
@@ -70,4 +75,33 @@
 					btn.style.color = 'white';
 				}
 			}
+
+            function approval() {
+				const checkboxes = document.querySelectorAll('.checkbox');
+				var boxList = [];
+
+				for (const checkbox of checkboxes) {
+					if (checkbox.checked) {
+						boxList.push(checkbox.value);
+					}
+				}
+
+				$.ajax({
+                    url: '/semi/approval/vacationn',
+                    type: 'post',
+                    data: JSON.stringify(boxList),
+                    contentType: "application/json",
+                    success: function () {
+                        alert("승인 완료");
+                        location.reload();
+                    },
+                    error: function (xhr, status, error) {
+                        // 에러 발생 시 콘솔에 출력
+                        console.log("error: " + error);
+                        alert("에러");
+                    }
+                });
+
+			}
+
         </script>

@@ -36,4 +36,27 @@ public class VacationService {
 		return list;
 	}
 
+	public int getAdminVacationCnt() throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+
+		int cnt = dao.getVacationCnt(conn);
+
+		JDBCTemplate.close(conn);
+
+		return cnt;
+		
+	}
+
+	public List<VacationVo> getAdminVacationList(PageVo pv) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+
+		List<VacationVo> list = dao.getAdminVacationList(conn, pv);
+
+		JDBCTemplate.close(conn);
+
+		return list;
+	}
+
 }
