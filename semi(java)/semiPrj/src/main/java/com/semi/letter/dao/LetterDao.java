@@ -106,7 +106,7 @@ public class LetterDao {
 
 		if (searchType.equals("writer")) {
 			// SQL (작성자)
-			sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT * FROM MEMBER M JOIN LETTER L ON (M.MEMBER_NO = L.SEND_MEMBER_NO) WHERE L.STATUS = 'O' AND M.MEMBER_NICK LIKE '%'||?||'%' AND RECEIVE_MEMBER_NO = ? ORDER BY M.MEMBER_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
+			sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT M.MEMBER_NICK, L.* FROM MEMBER M JOIN LETTER L ON M.MEMBER_NO = L.SEND_MEMBER_NO WHERE L.STATUS = 'O' AND L.RECEIVE_MEMBER_NO IN (SELECT MEMBER_NO FROM MEMBER WHERE M.MEMBER_NICK LIKE '%'||?||'%' AND L.STATUS = 'O') ORDER BY ENROLL_DATE ) T ) WHERE RECEIVE_MEMBER_NO = ? AND RNUM BETWEEN ? AND ?";
 		} else if (searchType.equals("title")) {
 			// SQL (내용)
 			 sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT * FROM MEMBER M JOIN LETTER L ON (M.MEMBER_NO = L.SEND_MEMBER_NO) WHERE L.STATUS = 'O' AND L.LETTER_TITLE LIKE '%'||?||'%' ORDER BY M.MEMBER_NO DESC ) T ) WHERE RECEIVE_MEMBER_NO = ? AND RNUM BETWEEN ? AND ?";
@@ -127,9 +127,7 @@ public class LetterDao {
 
 			String no = rs.getString("LETTER_NO");
 			String sendMemberNo = rs.getString("SEND_MEMBER_NO");
-			String sendMemberName = rs.getString("SEND_MEMBER_NAME");			
-			String receiveNo = rs.getString("RECEIVE_MEMBER_NO");
-			String receiveName = rs.getString("RECEIVE_MEMBER_NAME");
+			String sendMemberName = rs.getString("MEMBER_NICK");			
 			String letterTitle = rs.getString("LETTER_TITLE");
 			String letterContent = rs.getString("LETTER_CONTENT");
 			String enrollDate = rs.getString("ENROLL_DATE");
@@ -138,8 +136,6 @@ public class LetterDao {
 			LetterVo vo = new LetterVo();
 			vo.setSendMemberName(sendMemberName);
 			vo.setSendMemberNo(sendMemberNo);
-			vo.setReceiveMemberNo(receiveNo);
-			vo.setReceiveMemberName(receiveName);
 			vo.setLetterTitle(letterTitle);
 			vo.setEnrollDate(enrollDate);
 			vo.setLetterNo(no);
@@ -302,7 +298,7 @@ public class LetterDao {
 
 	    if (searchType.equals("writer")) {
 	        // SQL (작성자 검색)
-	        sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT M.MEMBER_NICK RECEIVE_MEMBER_NAME, L.* FROM MEMBER M JOIN LETTER L ON M.MEMBER_NO = L.RECEIVE_MEMBER_NO WHERE L.STATUS = 'O' AND L.RECEIVE_MEMBER_NO IN (SELECT MEMBER_NO FROM MEMBER WHERE MEMBER_NICK LIKE ?) ORDER BY ENROLL_DATE ) T ) WHERE SEND_MEMBER_NO = ? AND RNUM BETWEEN ? AND ?";
+	        sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT M.MEMBER_NICK RECEIVE_MEMBER_NAME, L.* FROM MEMBER M JOIN LETTER L ON M.MEMBER_NO = L.RECEIVE_MEMBER_NO WHERE L.STATUS = 'O' AND L.LETTER_TITLE IN (SELECT LETTER_TITLE FROM LETTER WHERE MEMBER_NICK LIKE ? ) ORDER BY ENROLL_DATE ) T ) WHERE SEND_MEMBER_NO = ? AND RNUM BETWEEN ? AND ?";
 	    } else if (searchType.equals("title")) {
 	        // SQL (내용 검색)
 	        sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT M.MEMBER_NICK RECEIVE_MEMBER_NAME, L.* FROM MEMBER M JOIN LETTER L ON M.MEMBER_NO = L.RECEIVE_MEMBER_NO WHERE L.STATUS = 'O' AND L.LETTER_TITLE IN (SELECT LETTER_TITLE FROM LETTER WHERE LETTER_TITLE LIKE ? ) ORDER BY ENROLL_DATE ) T ) WHERE SEND_MEMBER_NO = ? AND RNUM BETWEEN ? AND ?";

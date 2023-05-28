@@ -13,16 +13,16 @@
             <%@ include file="/WEB-INF/views/common/header.jsp" %>
                 <main>
                     <div id="target">
-                        <div id="selectDiv">
-                            <select name="searchType">
-                                <option value="student">수강생</option>
-                                <option value="date">일자</option>
-                                <option value="status">출결상태</option>
-                            </select>
-                            <input type="text" class="searchValueElem" name="searchValue"
-                            value="" placeholder="검색할내용">
-                            <input type="submit" id="searchButton" value="검색하기">
-                        </div>
+                        <form action="${root}/attendance/manage" method="post">
+                            <div id="selectDiv">
+                                <select name="searchType">
+                                    <option value="student">수강생</option>
+                                </select>
+                                <input type="text" class="searchValueElem" name="searchValue"
+                                value="" placeholder="검색할 학생">
+                                <input type="submit" id="searchButton" value="검색하기">
+                            </div>
+                        </form>
                         <div id="content">
                             <div>수강생</div>
                             <div>일자</div>
@@ -32,19 +32,21 @@
                             <div>실수업시간</div>
                             <div>출결상태</div>
                         </div>
-                        <div id="content">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
+                        <c:forEach items="${voList}" var="vo">
+							<div id="content">
+                            <div>${vo.studentMemberName}</div>
+                            <div>${vo.attendanceDate}</div>
+                            <div>${vo.checkInTime}</div>
+                            <div>${vo.checkOutTime}</div>
+                            <div>${vo.inLectureMinutes}</div>
+                            <div>${vo.totalLectureMinutes}</div>
+                            <div>${vo.status }</div>
                         </div>
+                        </c:forEach>
                         <div id="pageDiv">
                             <td id="pageTd" colspan="4">
-                                <button onclick="pageMove('${pageVo.startPage}');"><<</button> <c:forEach
-                                    begin="${pageVo.startPage}" end="${pageVo.endPage}" var="i">
+                                <button onclick="pageMove('${pageVo.startPage}');"><<</button>
+                                <c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" var="i">
                                     <button class="pageBtn" onclick="pageMove('${i}');">${i}</button>
                                 </c:forEach>
                                 <button onclick="pageMove('${pageVo.endPage}');">>></button>
@@ -75,7 +77,7 @@
 				}
 			}
 
-            			const searchType = '${searchVo.searchType}';
+            const searchType = '${searchVo.searchType}';
 			const searchValue = '${searchVo.searchValue}';
 
 			const searchValueSelectTag = document.querySelector("select[name='searchValue']");
@@ -110,4 +112,5 @@
 			}
 
 			setSearchValueTag();
+
         </script>

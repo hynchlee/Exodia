@@ -65,7 +65,7 @@
 									</tr>
 									<tr id="trHead">
 										<td id="shortTd" style="width: 10%;"></td>
-										<td>작성자</td>
+										<td>보낸사람</td>
 										<td>제목</td>
 										<td>날짜</td>
 									</tr>
