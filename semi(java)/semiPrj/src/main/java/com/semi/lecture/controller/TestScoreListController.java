@@ -13,7 +13,6 @@ import com.semi.lecture.service.LectureService;
 import com.semi.lecture.vo.LectureMemberVo;
 import com.semi.lecture.vo.LectureVo;
 import com.semi.lecture.vo.ProblemBankVo;
-import com.semi.lecture.vo.SubmitAnswerVo;
 import com.semi.member.vo.MemberVo;
 
 @WebServlet("/lecture/test/scoreList")
@@ -33,18 +32,6 @@ public class TestScoreListController extends HttpServlet {
 
 			String examCategoryNo = req.getParameter("examCategoryNo");
 			String examSubject = req.getParameter("examSubject");
-			String memberNo = req.getParameter("memberNo");
-			String totalScore = req.getParameter("totalScore");
-
-			if (memberNo != null) {
-				int result = ls.scoreOne(examCategoryNo, memberNo, totalScore);
-
-				if (result != 1) {
-					throw new Exception();
-				}
-			} else {
-				totalScore = "0";
-			}
 
 			ProblemBankVo pbv = new ProblemBankVo();
 			pbv.setExamCategoryNo(examCategoryNo);

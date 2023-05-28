@@ -28,7 +28,7 @@ public class TestStartController extends HttpServlet {
 			String examCategoryNo = req.getParameter("examCategoryNo");
 			String[] examProblemNoArr = req.getParameterValues("examProblemNo");
 			String[] answerArr = req.getParameterValues("answer");
-
+			
 			int result = ls.submitAnswers(loginMember.getMemberNo(), examCategoryNo, examProblemNoArr, answerArr);
 
 			if (result == 1) {

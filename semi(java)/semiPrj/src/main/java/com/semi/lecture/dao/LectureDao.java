@@ -429,7 +429,7 @@ public class LectureDao {
 	}
 
 	public List<MemberVo> getMemberList(Connection conn, String lectureNo) throws SQLException {
-		String sql = "SELECT * FROM MEMBER M JOIN STUDENT S ON M.MEMBER_NO = S.STUDENT_MEMBER_NO JOIN EXAM_LIST EL ON EL.MEMBER_NO = M.MEMBER_NO WHERE LECTURE_NO = ?";
+		String sql = "SELECT * FROM MEMBER M JOIN STUDENT S ON M.MEMBER_NO = S.STUDENT_MEMBER_NO WHERE LECTURE_NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, lectureNo);
 		ResultSet rs = pstmt.executeQuery();
@@ -503,7 +503,7 @@ public class LectureDao {
 
 	public List<SubmitAnswerVo> getSubmitAnswerList(Connection conn, ProblemBankVo pbv, String memberNo)
 			throws SQLException {
-		String sql = "SELECT * FROM EXAM_LIST EL JOIN SUBMIT_ANSWER SA ON SA.EXAM_SCORE_NO = EL.EXAM_SCORE_NO JOIN PROBLEM_BANK PB ON PB.EXAM_PROBLEM_NO = SA.EXAM_PROBLEM_NO JOIN MEMBER M ON M.MEMBER_NO = EL.MEMBER_NO WHERE EL.MEMBER_NO = ? AND EL.EXAM_CATEGORY_NO = ? ORDER BY SA.EXAM_PROBLEM_NO";
+		String sql = "SELECT * FROM EXAM_LIST EL JOIN SUBMIT_ANSWER SA ON SA.EXAM_SCORE_NO = EL.EXAM_SCORE_NO JOIN PROBLEM_BANK PB ON PB.EXAM_PROBLEM_NO = SA.EXAM_PROBLEM_NO JOIN MEMBER M ON M.MEMBER_NO = EL.MEMBER_NO WHERE EL.MEMBER_NO = ? AND EL.EXAM_CATEGORY_NO = ? ORDER BY PROBLEM_POINT";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, memberNo);
 		pstmt.setString(2, pbv.getExamCategoryNo());
@@ -579,7 +579,7 @@ public class LectureDao {
 
 	public int insertAnswer(Connection conn, String memberNo, String examCategoryNo, String examProblemNo,
 			String answer) throws SQLException {
-		String sql = "INSERT INTO SUBMIT_ANSWER VALUES(SEQ_SUBMIT_ANSWER_NO.NEXTVAL, (SELECT EXAM_SCORE_NO FROM EXAM_LIST WHERE EXAM_CATEGORY_NO = ? AND MEMBER_NO = ?), ?, ?)";
+		String sql = "INSERT INTO SUBMIT_ANSWER VALUES(SEQ_SUBMIT_ANSWER_NO.NEXTVAL, (SELECT EXAM_SCORE_NO FROM EXAM_LIST WHERE EXAM_CATEGORY_NO = ? AND MEMBER_NO = ?), ?, ?, '')";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, examCategoryNo);
 		pstmt.setString(2, memberNo);
@@ -614,14 +614,14 @@ public class LectureDao {
 
 		return result;
 	}
-	
+
 	public int deleteProblem(Connection conn, int number) throws SQLException {
 		String sql = "UPDATE PROBLEM_BANK SET STATUS = 'X' WHERE EXAM_PROBLEM_NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, number);
 		int result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
-		
+
 		return result;
 	}
 
@@ -643,7 +643,7 @@ public class LectureDao {
 
 		return result;
 	}
-	
+
 	public int modifyTestOne(Connection conn, String[] params) throws SQLException {
 		String sql = "UPDATE PROBLEM_BANK SET PROBLEM = ?, ANSWER = ? WHERE EXAM_PROBLEM_NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -674,7 +674,7 @@ public class LectureDao {
 
 		return result;
 	}
-	
+
 	public int insertProblemOne(Connection conn, String[] params) throws SQLException {
 		String sql = "INSERT INTO PROBLEM_BANK VALUES(SEQ_PROBLEM_BANK_NO.NEXTVAL, ?, ?, ?, ?, 'O')";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -700,6 +700,35 @@ public class LectureDao {
 		JDBCTemplate.close(pstmt);
 
 		return result;
+	}
+
+	public int insertSubmitAnswer(Connection conn, int problemNo) throws SQLException {
+		String sql = "INSERT INTO SUBMIT_ANSWER(SUBMIT_ANSWER_NO, EXAM_SCORE_NO, EXAM_PROBLEM_NO) VALUES(SEQ_SUBMIT_ANSWER_NO.NEXTVAL, SEQ_EXAM_LIST_NO.CURRVAL, ?)";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, problemNo);
+
+		int result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+
+		return result;
+	}
+
+	public int getProblemNo(Connection conn, int problemPoint, String examCategoryNo) throws SQLException {
+		String sql = "SELECT EXAM_PROBLEM_NO FROM ( SELECT * FROM PROBLEM_BANK WHERE PROBLEM_POINT = ? AND STATUS = 'O' AND EXAM_CATEGORY_NO = ? ORDER BY DBMS_RANDOM.VALUE ) WHERE ROWNUM = 1";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, problemPoint);
+		pstmt.setString(2, examCategoryNo);
+		ResultSet rs = pstmt.executeQuery();
+
+		int cnt = 0;
+		if (rs.next()) {
+			cnt = rs.getInt(1);
+		}
+
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+
+		return cnt;
 	}
 
 	public int testEnd(Connection conn, String examCategoryNo, String lectureNo) throws SQLException {
@@ -746,6 +775,22 @@ public class LectureDao {
 		arr[1] = enrollDate;
 		arr[2] = score;
 
+		JDBCTemplate.close(pstmt);
+		JDBCTemplate.close(rs);
 		return arr;
+	}
+
+	public int scoreAnswerOne(Connection conn, String examCategoryNo, String memberNo, String proNo, String score)
+			throws SQLException {
+		String sql = "UPDATE SUBMIT_ANSWER SET SCORE_POINT = ? WHERE EXAM_SCORE_NO = (SELECT EXAM_SCORE_NO FROM EXAM_LIST WHERE EXAM_CATEGORY_NO = ? AND MEMBER_NO = ?) AND EXAM_PROBLEM_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, score);
+		pstmt.setString(2, examCategoryNo);
+		pstmt.setString(3, memberNo);
+		pstmt.setString(4, proNo);
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		return result;
 	}
 }

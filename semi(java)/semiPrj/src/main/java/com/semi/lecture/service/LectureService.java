@@ -241,7 +241,7 @@ public class LectureService {
 		for (int i = 0; i < examProblemNoArr.length; i++) {
 			int cnt = dao.selectAnswerCnt(conn, memberNo, examCategoryNo, memberNo, examCategoryNo);
 
-			if (cnt == 1) {
+			if (cnt > 0) {
 				result2 = dao.updateAnswer(conn, memberNo, examCategoryNo, examProblemNoArr[i], answerArr[i]);
 			} else {
 				result2 = dao.insertAnswer(conn, memberNo, examCategoryNo, examProblemNoArr[i], answerArr[i]);
@@ -356,13 +356,29 @@ public class LectureService {
 
 	public int testStart(String examCategoryNo, String lectureNo) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
-
 		List<MemberVo> studentList = dao.getMemberList(conn, lectureNo);
-
 		int result = 1;
+		int[] pointArr = {10, 20, 30, 40};
+		int[] problemNoArr = new int[4];
+		
+		for (int i = 0; i < pointArr.length; i++) {
+			problemNoArr[i] = dao.getProblemNo(conn, pointArr[i], examCategoryNo);
+		}
+		
 		for (MemberVo lmv : studentList) {
-			int temp = dao.insertExamList(conn, examCategoryNo, lmv.getMemberNo());
-			if (temp == 1) {
+			int temp1 = dao.insertExamList(conn, examCategoryNo, lmv.getMemberNo());
+			for (int problemNo : problemNoArr) {
+				int temp2 = dao.insertSubmitAnswer(conn, problemNo);
+				
+				if (temp2 == 1) {
+					JDBCTemplate.commit(conn);
+				} else {
+					JDBCTemplate.rollback(conn);
+					result = 0;
+				}
+			}
+			
+			if (temp1 == 1) {
 				JDBCTemplate.commit(conn);
 			} else {
 				JDBCTemplate.rollback(conn);
@@ -416,5 +432,23 @@ public class LectureService {
 
 		JDBCTemplate.close(conn);
 		return updatedList;
+	}
+
+	public int scoreAnswers(String examCategoryNo, String memberNo, String[] proNoArr, String[] scoreArr) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = 1;
+		for (int i = 0; i < proNoArr.length; i++) {
+			int result2 = dao.scoreAnswerOne(conn, examCategoryNo, memberNo, proNoArr[i], scoreArr[i]);
+			if (result2 > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+				result = 0;
+			}
+		}
+		
+		JDBCTemplate.close(conn);
+		return result;
 	}
 }
