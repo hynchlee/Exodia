@@ -23,20 +23,20 @@
 			</select>
 		</div>
 
-		<div class="member-info">
-			<div id="check-area">
-				<input type="checkbox" name="manageMember" value="">
+		${memberList}
+		<c:forEach items="${memberList}" var="member">
+			<div class="member-info">
+				<div id="check-area">
+					<input type="checkbox" name="manageMember" value="">
+				</div>
+				<div>
+					<img id="profile-img" src="${root}/static/img/introduce/___7.png" alt="profile" id="profile_img_1" class="profile_img">
+				</div>
+				<div id="info">
+					<textarea>${member.memberId}</textarea> 
+				</div>
 			</div>
-			<div>
-				<img id="profile-img" src="${root}/static/img/introduce/___7.png" alt="profile" id="profile_img_1" class="profile_img">
-			</div>
-			<!-- <div id="name">이름</div> -->
-			<div id="info">
-				<c:forEach items="${memberList}" var="member">
-					<input type="text" value="${member.memberNo}" disabled> 
-				</c:forEach>
-			</div>
-		</div>
+		</c:forEach>
 
 		
 

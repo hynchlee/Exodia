@@ -19,25 +19,25 @@ import com.semi.member.vo.MemberVo;
 public class AdminMemberController extends HttpServlet{
 	
 	//회원관리 화면
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		req.getRequestDispatcher("/WEB-INF/views/admin/memberManage.jsp").forward(req, resp);
-		
-//		AdminVo loginAdmin = (AdminVo) req.getSession().getAttribute("loginAdmin");
+//	@Override
+//	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //		
-//		if(loginAdmin != null) {
-//			req.getRequestDispatcher("/WEB-INF/views/admin/memberManage.jsp").forward(req, resp);
-//		}else {
-//			req.getSession().setAttribute("alertMsg", "관리자 권한 필요");
-//			resp.sendRedirect(req.getContextPath() + "/main");
-//		}
-		
-	}
+//		req.getRequestDispatcher("/WEB-INF/views/admin/memberManage.jsp").forward(req, resp);
+//		
+////		AdminVo loginAdmin = (AdminVo) req.getSession().getAttribute("loginAdmin");
+////		
+////		if(loginAdmin != null) {
+////			req.getRequestDispatcher("/WEB-INF/views/admin/memberManage.jsp").forward(req, resp);
+////		}else {
+////			req.getSession().setAttribute("alertMsg", "관리자 권한 필요");
+////			resp.sendRedirect(req.getContextPath() + "/main");
+////		}
+//		
+//	}
 	
 	//회원관리
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		try {
 			
@@ -54,7 +54,7 @@ public class AdminMemberController extends HttpServlet{
 			//서비스
 			AdminService as = new AdminService();
 			List<MemberVo> memberList = as.getMemberList(pv);
-			
+			System.out.println(1);
 			//화면
 			req.setAttribute("pv", pv);
 			req.setAttribute("memberList", memberList);

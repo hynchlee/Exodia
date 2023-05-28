@@ -56,12 +56,14 @@ public class AdminDao {
 		//sql
 		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM , T.* FROM ( SELECT M.*, S.MILEAGE FROM MEMBER M LEFT OUTER JOIN STUDENT S ON (M.MEMBER_NO = S.STUDENT_MEMBER_NO) ORDER BY MEMBER_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
+		System.out.println(pv.getBeginRow());
+		System.out.println(pv.getLastRow());
 		pstmt.setInt(1, pv.getBeginRow());
 		pstmt.setInt(2, pv.getLastRow());
 		ResultSet rs = pstmt.executeQuery();
 		
 		//tx||rs
-		List<MemberVo> memberList = null;
+		List<MemberVo> memberList = new ArrayList<>();
 		
 		while(rs.next()) {
 			String memberNo = rs.getString("MEMBER_NO");
@@ -90,10 +92,7 @@ public class AdminDao {
 			vo.setIdentity(identity);
 			vo.setLeftVacation(leftVacation);
 			vo.setMileage(mileage);
-			
-			System.out.println(vo);
-			
-			memberList = new ArrayList<>();
+						
 			memberList.add(vo);
 		}
 		
