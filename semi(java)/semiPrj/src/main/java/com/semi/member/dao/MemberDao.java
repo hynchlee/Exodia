@@ -286,5 +286,25 @@ public class MemberDao {
 		return result;
 	
 	}
+	
+	//회원 수 세기
+	public int countMember(Connection conn) throws Exception {
+		//SQL
+		String sql = "SELECT COUNT(*) FROM MEMBER WHERE STATUS = 'O'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		
+		//tx || rs
+		int listCount = 0;
+		if(rs.next()) {
+			listCount = rs.getInt(1);
+		}
+		
+		//close
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return listCount;
+	}
 
 }

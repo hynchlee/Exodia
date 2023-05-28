@@ -173,5 +173,17 @@ public class MemberService {
 		return result;
 	}
 
+	//회원 수 세기
+	public int countMember() throws Exception {
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		//sql
+		int listCount = dao.countMember(conn);
+		//close
+		JDBCTemplate.close(conn);
+		
+		return listCount;
+	}
+
 
 }

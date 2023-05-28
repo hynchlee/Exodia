@@ -12,14 +12,18 @@ public class MemberVo {
 	private String profile;
 	private String identity;
 	private String leftVacation;
+	private String mileage;
 	
+
+
 	public MemberVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
 	public MemberVo(String memberNo, String memberId, String memberPwd, String memberNick, String birthNum,
-			String status, String phoneNo, String signDate, String profile, String identity, String leftVacation) {
+			String status, String phoneNo, String signDate, String profile, String identity, String leftVacation,
+			String mileage) {
 		super();
 		this.memberNo = memberNo;
 		this.memberId = memberId;
@@ -32,6 +36,7 @@ public class MemberVo {
 		this.profile = profile;
 		this.identity = identity;
 		this.leftVacation = leftVacation;
+		this.mileage = mileage;
 	}
 	
 	public String getMemberNo() {
@@ -100,12 +105,18 @@ public class MemberVo {
 	public void setLeftVacation(String leftVacation) {
 		this.leftVacation = leftVacation;
 	}
+	public String getMileage() {
+		return mileage;
+	}
+	public void setMileage(String mileage) {
+		this.mileage = mileage;
+	}
 
 	@Override
 	public String toString() {
 		return "MemberVo [memberNo=" + memberNo + ", memberId=" + memberId + ", memberPwd=" + memberPwd
 				+ ", memberNick=" + memberNick + ", birthNum=" + birthNum + ", status=" + status + ", phoneNo="
 				+ phoneNo + ", signDate=" + signDate + ", profile=" + profile + ", identity=" + identity
-				+ ", leftVacation=" + leftVacation + "]";
+				+ ", leftVacation=" + leftVacation + ", mileage=" + mileage + "]";
 	}
 }
