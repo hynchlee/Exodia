@@ -8,7 +8,7 @@
 <title>회원 관리</title>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <link href="${root}/static/css/admin/memberManage.css" rel="stylesheet">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
@@ -31,107 +31,14 @@
 				<img id="profile-img" src="${root}/static/img/introduce/___7.png" alt="profile" id="profile_img_1" class="profile_img">
 			</div>
 			<!-- <div id="name">이름</div> -->
-			<div id="info">이름 아이디 닉네임 반 가입일자 마일리지 출석률 등등등</div>
+			<div id="info">
+				<c:forEach items="${memberList}" var="member">
+					<input type="text" value="${member.memberNo}" disabled> 
+				</c:forEach>
+			</div>
 		</div>
 
-		<div class="member-info">
-			<div id="check-area">
-				<input type="checkbox" name="manageMember" value="">
-			</div>
-			<div>
-				<img id="profile-img" src="${root}/static/img/introduce/___7.png" alt="profile" id="profile_img_1" class="profile_img">
-			</div>
-			<!-- <div id="name">이름</div> -->
-			<div id="info">이름 아이디 닉네임 반 가입일자 마일리지 출석률 등등등</div>
-		</div>
-
-		<div class="member-info">
-			<div id="check-area">
-				<input type="checkbox" name="manageMember" value="">
-			</div>
-			<div>
-				<img id="profile-img" src="${root}/static/img/introduce/___7.png" alt="profile" id="profile_img_1" class="profile_img">
-			</div>
-			<!-- <div id="name">이름</div> -->
-			<div id="info">이름 아이디 닉네임 반 가입일자 마일리지 출석률 등등등</div>
-		</div>
-
-		<div class="member-info">
-			<div id="check-area">
-				<input type="checkbox" name="manageMember" value="">
-			</div>
-			<div>
-				<img id="profile-img" src="${root}/static/img/introduce/___7.png" alt="profile" id="profile_img_1" class="profile_img">
-			</div>
-			<!-- <div id="name">이름</div> -->
-			<div id="info">이름 아이디 닉네임 반 가입일자 마일리지 출석률 등등등</div>
-		</div>
-
-		<div class="member-info">
-			<div id="check-area">
-				<input type="checkbox" name="manageMember" value="">
-			</div>
-			<div>
-				<img id="profile-img" src="${root}/static/img/introduce/___7.png" alt="profile" id="profile_img_1" class="profile_img">
-			</div>
-			<!-- <div id="name">이름</div> -->
-			<div id="info">이름 아이디 닉네임 반 가입일자 마일리지 출석률 등등등</div>
-		</div>
-
-		<div class="member-info">
-			<div id="check-area">
-				<input type="checkbox" name="manageMember" value="">
-			</div>
-			<div>
-				<img id="profile-img" src="${root}/static/img/introduce/___7.png" alt="profile" id="profile_img_1" class="profile_img">
-			</div>
-			<!-- <div id="name">이름</div> -->
-			<div id="info">이름 아이디 닉네임 반 가입일자 마일리지 출석률 등등등</div>
-		</div>
-
-		<div class="member-info">
-			<div id="check-area">
-				<input type="checkbox" name="manageMember" value="">
-			</div>
-			<div>
-				<img id="profile-img" src="${root}/static/img/introduce/___7.png" alt="profile" id="profile_img_1" class="profile_img">
-			</div>
-			<!-- <div id="name">이름</div> -->
-			<div id="info">이름 아이디 닉네임 반 가입일자 마일리지 출석률 등등등</div>
-		</div>
-
-		<div class="member-info">
-			<div id="check-area">
-				<input type="checkbox" name="manageMember" value="">
-			</div>
-			<div>
-				<img id="profile-img" src="${root}/static/img/introduce/___7.png" alt="profile" id="profile_img_1" class="profile_img">
-			</div>
-			<!-- <div id="name">이름</div> -->
-			<div id="info">이름 아이디 닉네임 반 가입일자 마일리지 출석률 등등등</div>
-		</div>
-
-		<div class="member-info">
-			<div id="check-area">
-				<input type="checkbox" name="manageMember" value="">
-			</div>
-			<div>
-				<img id="profile-img" src="${root}/static/img/introduce/___7.png" alt="profile" id="profile_img_1" class="profile_img">
-			</div>
-			<!-- <div id="name">이름</div> -->
-			<div id="info">이름 아이디 닉네임 반 가입일자 마일리지 출석률 등등등</div>
-		</div>
-
-		<div class="member-info">
-			<div id="check-area">
-				<input type="checkbox" name="manageMember" value="">
-			</div>
-			<div>
-				<img id="profile-img" src="${root}/static/img/introduce/___7.png" alt="profile" id="profile_img_1" class="profile_img">
-			</div>
-			<!-- <div id="name">이름</div> -->
-			<div id="info">이름 아이디 닉네임 반 가입일자 마일리지 출석률 등등등</div>
-		</div>
+		
 
 
 		<div class="btn-area">
@@ -153,5 +60,14 @@
 	</main>
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
+	<script>
+
+		// const div = document.querySelector('#info');
+		// div.innerText = "${memberList}";
+		// console.log("${memberList}");
+
+
+	</script>
 </body>
 </html>
