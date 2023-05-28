@@ -38,7 +38,7 @@ public class ListAttendenceController extends HttpServlet {
 			
 			AttendanceService as = new AttendanceService();
 			
-			int listCount = as.selectCnt();
+			int listCount = as.selectCnt(no);
 			String page = req.getParameter("page");
 			if (page == null)
 				page = "1";

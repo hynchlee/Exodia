@@ -14,7 +14,9 @@
             <%@ include file="/WEB-INF/views/common/header.jsp" %>
                 <main>
                     <div id="target">
-                        <div id="content">
+                        <div id="content" style="border: none;
+                        background-color: #F0F0F0;
+                        height: 40px;">
                             <div></div>
                             <div>신청자(아이디)</div>
                             <div>수강강의</div>
