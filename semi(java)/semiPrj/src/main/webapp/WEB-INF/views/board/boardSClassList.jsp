@@ -17,6 +17,10 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 
 		<main>
+            <%@ page import="javax.servlet.http.HttpServletRequest" %>
+
+
+
 			<c:if test="${not empty loginMember}">
 				<div class="myClass">
 	                <ul>
@@ -52,7 +56,7 @@
                 </div> -->
 
 
-            <table class="board">
+            <table class="board" style="margin-top: 90px;">
                 <thead>
                     <tr>
                         <th style="width: 8%;">No</th>
@@ -89,18 +93,18 @@
             
 			<div class="board_page">
 				<c:if test="${pv.currentPage > 1}">
-					<a href="${root}/class/slist?page=${pv.currentPage-1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button><<</button></a>
+					<a href="${root}/class/slist?page=${pv.currentPage-1}"><button><<</button></a>
 				</c:if>
 				<c:forEach begin="${pv.startPage}" end="${pv.endPage}" var="i">
 					<c:if test="${pv.currentPage ne i}">
-						<a href="${root}/class/slist?page=${i}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>${i}</button></a>
+						<a href="${root}/class/slist?page=${i}"><button>${i}</button></a>
 					</c:if>
 					<c:if test="${pv.currentPage eq i}">
 						<a><button class="active">${i}</button></a>
 					</c:if>
 				</c:forEach>
 				<c:if test="${pv.currentPage < pv.maxPage}">
-					<a href="${root}/class/slist?page=${pv.currentPage+1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>>></button></a>
+					<a href="${root}/class/slist?page=${pv.currentPage+1}"><button>>></button></a>
 				</c:if>
             </div>
            

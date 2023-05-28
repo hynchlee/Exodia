@@ -26,7 +26,7 @@
 	            </div>
 			</c:if>
 
-            <div class="board_search">
+            <!-- <div class="board_search">
                 <form action="${root}/review/list" method="get" name="searchBoard">
                     <input type="hidden" name="page" value="1">
                     <select class="searchType" name="searchCategory">
@@ -40,9 +40,9 @@
                     </select>
                     <input type="button" value="검색" class="searchBtn">
                 </form>
-            </div>
+            </div> -->
 
-            <table class="board">
+            <table class="board" style="margin-top: 90px;">
                 <thead>
                     <tr>
                         <th style="width: 5%;">No</th>

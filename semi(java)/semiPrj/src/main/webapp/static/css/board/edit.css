@@ -288,7 +288,7 @@ table{
 
 .comment_list .comment_col .reply_col{
     display: grid;
-    grid-template-columns: 80px 700px 50px 50px 50px 150px;
+    grid-template-columns: 80px 700px 50px 50px 50px 150px 5px;
     column-gap: 5px;
     justify-content: center;
     align-items: first baseline;
@@ -331,9 +331,10 @@ table{
     column-gap: 5px;
     justify-content: center;
     align-items: first baseline;
-    padding: 10px 10px 10px;
     color: #424242;
     margin-left: 50px;
+    row-gap: 10px;
+
 }
 
 .recomment input{
@@ -355,14 +356,13 @@ table{
     margin-top: 5px;
     width: 1005px;
     display: grid;
-    grid-template-columns: 0.5fr 8fr 0.5fr 0.5fr;
+    grid-template-columns: 0.5fr 5fr 0.5fr;
     column-gap: 5px;
 
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
+    align-items: start;
     padding: 10px 10px 10px;
     color: #424242;
-    margin-left: 80px;
     margin-bottom: 5px;
 }
 
