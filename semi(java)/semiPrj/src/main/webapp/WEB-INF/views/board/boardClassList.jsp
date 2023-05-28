@@ -52,7 +52,7 @@
                 </div> -->
 
 
-            <table class="board">
+            <table class="board" style="margin-top: 90px;">
                 <thead>
                     <tr>
                         <th style="width: 8%;">No</th>
@@ -89,18 +89,18 @@
             
 			<div class="board_page">
 				<c:if test="${pv.currentPage > 1}">
-					<a href="${root}/class/tlist?page=${pv.currentPage-1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button><<</button></a>
+					<a href="${root}/class/tlist?page=${pv.currentPage-1}"><button><<</button></a>
 				</c:if>
 				<c:forEach begin="${pv.startPage}" end="${pv.endPage}" var="i">
 					<c:if test="${pv.currentPage ne i}">
-						<a href="${root}/class/tlist?page=${i}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>${i}</button></a>
+						<a href="${root}/class/tlist?page=${i}"><button>${i}</button></a>
 					</c:if>
 					<c:if test="${pv.currentPage eq i}">
 						<a><button class="active">${i}</button></a>
 					</c:if>
 				</c:forEach>
 				<c:if test="${pv.currentPage < pv.maxPage}">
-					<a href="${root}/class/tlist?page=${pv.currentPage+1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>>></button></a>
+					<a href="${root}/class/tlist?page=${pv.currentPage+1}"><button>>></button></a>
 				</c:if>
             </div>
            
@@ -116,14 +116,14 @@
 <script>
     // const lnArr = document.querySelectorAll('.tvoNo');
 
-    // 서버에서 searchType 값을 JavaScript 변수로 설정
-    const searchType = "${searchVo.searchType}";
+    // // 서버에서 searchType 값을 JavaScript 변수로 설정
+    // const searchType = "${searchVo.searchType}";
     
-    // 검색 타입
-    const nc = document.querySelector(`select > option[value="${searchVo.searchType}"]`);
-    if (nc) {
-    nc.selected = true;
-    }
+    // // 검색 타입
+    // const nc = document.querySelector(`select > option[value="${searchVo.searchType}"]`);
+    // if (nc) {
+    // nc.selected = true;
+    // }
 
     $(".board tbody tr").click(function(){
         //글번호 가져오기

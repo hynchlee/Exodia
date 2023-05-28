@@ -51,11 +51,11 @@ public class BoardTClassListController extends HttpServlet {
             }
 
             List<MemberVo> volist = ls.getMemberList(lectureVo.getLectureNo());
+//
+//            String searchType = req.getParameter("searchType");
+//            String searchValue = req.getParameter("searchValue");
 
-            String searchType = req.getParameter("searchType");
-            String searchValue = req.getParameter("searchValue");
-
-            int cnt = bs.getBoardClassListCnt(searchType, searchValue, lectureVo.getLectureNo());
+            int cnt = bs.getBoardClassListCnt(lectureVo.getLectureNo());
             int page = Integer.parseInt(req.getParameter("page")); // 현재 페이지 받아오기
             PageVo pv = new PageVo(cnt, page, 5, 10);
 
@@ -67,13 +67,13 @@ public class BoardTClassListController extends HttpServlet {
 //                tcvoList = bs.getBoardTClassList(pv, searchType, searchValue, lectureVo.getLectureNo());
 //            }
 
-            Map<String, String> map = new HashMap<>();
-            map.put("searchType", searchType);
-            map.put("searchValue", searchValue);
+//            Map<String, String> map = new HashMap<>();
+//            map.put("searchType", searchType);
+//            map.put("searchValue", searchValue);
 
             req.setAttribute("volist", volist);
             req.setAttribute("tvolist", tvolist);
-            req.setAttribute("searchVo", map);
+//            req.setAttribute("searchVo", map);
             req.setAttribute("pv", pv);
             req.setAttribute("tcvoList", tcvoList);
             req.getRequestDispatcher("/WEB-INF/views/board/boardClassList.jsp").forward(req, resp);

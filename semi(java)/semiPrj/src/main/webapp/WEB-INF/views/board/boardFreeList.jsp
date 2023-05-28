@@ -17,6 +17,8 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 
 		<main>
+
+			
 			<c:if test="${not empty loginMember}">
 				<div class="myClass">
 	                <ul>

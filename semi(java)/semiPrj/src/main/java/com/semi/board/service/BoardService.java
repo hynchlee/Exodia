@@ -22,11 +22,11 @@ public class BoardService {
 	private final BoardDao dao = new BoardDao();
 
 	//우리반 페이징
-	public int getBoardClassListCnt(String searchType, String searchValue, String lno) throws Exception {
+	public int getBoardClassListCnt(String lno) throws Exception {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		
-		int cnt = dao.getBoardClassListCnt(conn, searchType, searchValue, lno);
+		int cnt = dao.getBoardClassListCnt(conn,lno);
 		
 		JDBCTemplate.close(conn);
 		
@@ -34,11 +34,11 @@ public class BoardService {
 	}
 
 //	//우리반 목록 조회
-	public List<BoardVo> getBoardClassList(PageVo pv, String memberNo) throws Exception {
+	public List<BoardVo> getBoardClassList(PageVo pv, String studentMemberNo) throws Exception {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		
-		List<BoardVo> cvoList = dao.getBoardClassList(conn,pv,memberNo);
+		List<BoardVo> cvoList = dao.getBoardClassList(conn,pv,studentMemberNo);
 		
 		JDBCTemplate.close(conn);
 		
@@ -276,16 +276,16 @@ public class BoardService {
 		return tcvoList;
 	}
 
-	public List<BoardVo> getBoardTClassList(PageVo pv, String searchType, String searchValue, String lno) throws Exception {
-
-		Connection conn = JDBCTemplate.getConnection();
-		
-		List<BoardVo> tcvoList = dao.getBoardTClassList(conn,pv,searchType, searchValue, lno);
-		
-		JDBCTemplate.close(conn);
-		
-		return tcvoList;
-	}
+//	public List<BoardVo> getBoardTClassList(PageVo pv, String searchType, String searchValue, String lno) throws Exception {
+//
+//		Connection conn = JDBCTemplate.getConnection();
+//		
+//		List<BoardVo> tcvoList = dao.getBoardTClassList(conn,pv,searchType, searchValue, lno);
+//		
+//		JDBCTemplate.close(conn);
+//		
+//		return tcvoList;
+//	}
 
 //	public List<BoardVo> getBoardSClassList(PageVo pv, String memberNo) throws Exception {
 //		Connection conn = JDBCTemplate.getConnection();
@@ -297,14 +297,57 @@ public class BoardService {
 //		return scvoList;
 //	}
 
-	public int getBoardSClassListCnt(String searchType, String searchValue, String memberNo) throws Exception {
+	public int getBoardSClassListCnt(String studentMemberNo) throws Exception {
 		Connection conn = JDBCTemplate.getConnection();
 		
-		int cnt = dao.getBoardSClassListCnt(conn, searchType, searchValue, memberNo);
+		int cnt = dao.getBoardSClassListCnt(conn,studentMemberNo);
 		
 		JDBCTemplate.close(conn);
 		
 		return cnt;
+	}
+
+	public String getStudentMemberNo(String memberNo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		String studentMemberNo = dao.getStudentMemberNo(conn, memberNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return studentMemberNo;
+	}
+
+	public int replyDelete(String rno) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.replyDelete(conn, rno);
+		
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+	public int answerWrite(AnswerVo avo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.answerWrite(conn, avo);
+		
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		return result;
 	}
 
 
