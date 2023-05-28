@@ -71,8 +71,16 @@
 					</div>
 				</td>
 				<td class="td01">
-					<div class="todo">
-						schedule Info
+					<div class="todo" style="overflow: auto">
+						<span class="teamlisttitle">팀 일정</span>
+						<hr>
+						<br>
+						<ul>
+							<c:forEach items="${todoList}" var="todoList">
+								<li class="list02">(${todoList.teamName}) ${todoList.meetingDate}</li>	
+								<li class="list03">${todoList.meetingContent}</li>				
+							</c:forEach>							
+						</ul>
 					</div>
 				</td>
 				<td class="td01">

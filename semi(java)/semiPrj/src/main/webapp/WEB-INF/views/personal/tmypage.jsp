@@ -71,8 +71,16 @@
 					</div>
 				</td>
 				<td class="td01 td08">
-					<div class="todo">
-						schedule Info
+					<div class="todo" style="overflow: auto">
+						<span class="teamlisttitle">일정</span>
+						<hr>
+						<br>
+						<ul>
+							<c:forEach items="${ttodoList}" var="ttodoList">
+								<li class="list02">${ttodoList.meetingDate}</li>	
+								<li class="list03">${ttodoList.meetingContent}</li>				
+							</c:forEach>							
+						</ul>
 					</div>
 				</td>
 				<td class="td01 td09">
@@ -104,19 +112,24 @@
 					<td class="classboard">
 						<div class="innercb">
 							<table class="innertable02">
-							<tr>
-								<td colspan="2" class="line00">우리반 게시판</td>
-								<td class="plus01">
-								<a href="${root}/class/list?page=1" class="plus02">더보기</a>
-								</td>
-							</tr>
-							<c:forEach items="${freeList}" var="freeList">
+							<thead>
 								<tr>
-									<td class="line01">${freeList.writerNick}</td>
-									<td class="line01">${freeList.boardTitle}</td>
-									<td class="line01">${freeList.enrollDate}</td>
+									<td colspan="3" class="line00">우리반 게시판</td>
+									<td class="plus01">
+									<a href="${root}/class/list?page=1" class="plus02">더보기</a>
+									</td>
 								</tr>
-							</c:forEach>
+							</thead>
+							<tbody>
+								<c:forEach items="${tcvoList}" var="tcvoList">
+									<tr style="cursor: pointer;">									
+										<td class="line01">${tcvoList.boardNo}</td>
+										<td class="line01">${tcvoList.writerNick}</td>
+										<td class="line01">${tcvoList.boardTitle}</td>
+										<td class="line01">${tcvoList.enrollDate}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
 						</table>
 						</div>
 					</td>
@@ -184,6 +197,20 @@
 	      
 	        // 페이지 이동을 위한 URL 구성
 	        const url = '${root}/notice/detail?nno=' + nno;
+	        
+	        // 페이지 이동
+	        window.location.href = url;
+
+	    });
+</script>
+<script>
+	 $(".innertable02 tbody tr").click(function(){
+	        //글번호 가져오기 
+	        const bno = $(this).find('td:first-child').text();
+	        // const boardTitle = $(this).find('.board_title').text();
+	      
+	        // 페이지 이동을 위한 URL 구성
+	        const url = '${root}/board/detail?bno=' + bno;
 	        
 	        // 페이지 이동
 	        window.location.href = url;

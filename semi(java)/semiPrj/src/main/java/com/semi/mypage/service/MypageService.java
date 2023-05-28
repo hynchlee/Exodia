@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.semi.attendance.vo.AttendanceVo;
 import com.semi.board.vo.BoardVo;
+import com.semi.calender.vo.CalenderVo;
 import com.semi.common.db.JDBCTemplate;
 import com.semi.lecture.vo.LectureVo;
 import com.semi.letter.vo.LetterVo;
@@ -30,19 +31,6 @@ public class MypageService {
 		
 		return volist;
 		
-	}
-
-	public List<BoardVo> freeboard() throws Exception {
-		
-		Connection conn = JDBCTemplate.getConnection();
-		
-		MypageDao mdao = new MypageDao();
-		List<BoardVo> freeList = mdao.freeBoard(conn);
-		
-		JDBCTemplate.close(conn);
-		
-		return freeList;
-	
 	}
 
 	public List<NoticeVo> showNotice02() throws Exception {
@@ -262,6 +250,45 @@ public class MypageService {
 		JDBCTemplate.close(conn);
 		
 		return notList;
+	}
+
+	public List<BoardVo> getBoardTClassList(String lno) throws Exception {
+	
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();	
+		List<BoardVo> tcvoList = mdao.getBoardTClassList(conn, lno);
+		
+		JDBCTemplate.close(conn);
+		
+		return tcvoList;
+		
+	}
+
+	public List<CalenderVo> todoList(String memberNo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		List<CalenderVo> todoList = mdao.todoList(conn, memberNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return todoList;
+		
+	}
+
+	public List<CalenderVo> ttodoList(String memberNo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		List<CalenderVo> ttodoList = mdao.ttodoList(conn, memberNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return ttodoList;
+	
 	}
 
 }

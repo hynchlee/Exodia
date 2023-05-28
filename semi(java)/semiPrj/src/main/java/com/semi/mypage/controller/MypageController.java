@@ -2,6 +2,7 @@ package com.semi.mypage.controller;
 
 import java.io.IOException;
 import java.nio.channels.IllegalSelectorException;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.semi.attendance.vo.AttendanceVo;
 import com.semi.board.vo.BoardVo;
+import com.semi.calender.vo.CalenderVo;
 import com.semi.lecture.vo.LectureVo;
 import com.semi.member.vo.MemberVo;
 import com.semi.mypage.service.MypageService;
@@ -51,6 +53,7 @@ public class MypageController extends HttpServlet{
 			String earlyDate = ms.earlyDate(memberNo);
 			String getoutDate = ms.getoutDate(memberNo);
 			int percentage = 156 * Integer.parseInt(checkDate) / 100;
+			List<CalenderVo> todoList = ms.todoList(memberNo);
 			
 			req.setAttribute("snotList", snotList);
 			req.setAttribute("letterCount", letterCount);
@@ -66,6 +69,7 @@ public class MypageController extends HttpServlet{
 			req.setAttribute("earlyDate", earlyDate);
 			req.setAttribute("getoutDate", getoutDate);
 			req.setAttribute("percentage", percentage);			
+			req.setAttribute("todoList", todoList);			
 			req.getRequestDispatcher("/WEB-INF/views/personal/mypage.jsp").forward(req, resp);
 			
 			} catch (Exception e) {
