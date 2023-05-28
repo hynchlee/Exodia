@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.semi.attendance.vo.AttendanceVo;
 import com.semi.board.vo.BoardVo;
+import com.semi.calender.vo.CalenderVo;
 import com.semi.common.db.JDBCTemplate;
 import com.semi.lecture.vo.LectureVo;
 import com.semi.mypage.vo.TeamVo;
@@ -41,51 +42,6 @@ public class MypageDao {
 		JDBCTemplate.close(pstmt);
 		
 		return volist;
-	}
-
-	public List<BoardVo> freeBoard(Connection conn) throws Exception {
-		
-		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM ,T.* FROM ( SELECT B.BOARD_NO, B.BOARD_CATEGORY_NO, B.MEMBER_NO, B.BOARD_TITLE, B.BOARD_CONTENT, TO_CHAR(B.ENROLL_DATE,'YYYY.MM.DD') AS ENROLL_DATE, TO_CHAR(B.MODIFY_DATE,'YYYY.MM.DD') AS MODIFY_DATE, B.STATUS, B.HIT, M.MEMBER_NICK, C.BOARD_CATEGORY_TYPE, COUNT(R.REPLY_NO) AS TOTAL_REPLIES FROM BOARD B JOIN MEMBER M ON (B.MEMBER_NO = M.MEMBER_NO) JOIN BOARD_CATEGORY C ON (B.BOARD_CATEGORY_NO = C.BOARD_CATEGORY_NO) LEFT JOIN REPLY R ON (B.BOARD_NO = R.BOARD_NO) WHERE B.STATUS = 'O' AND C.BOARD_CATEGORY_NO = 1 GROUP BY B.BOARD_NO, B.BOARD_CATEGORY_NO, B.MEMBER_NO, B.BOARD_TITLE, B.BOARD_CONTENT, B.ENROLL_DATE, B.MODIFY_DATE, B.STATUS, B.HIT, M.MEMBER_NICK, C.BOARD_CATEGORY_TYPE ORDER BY B.BOARD_NO DESC ) T ) WHERE RNUM BETWEEN 1 AND 3";
-		PreparedStatement pstmt = conn.prepareStatement(sql);
-		ResultSet rs = pstmt.executeQuery();
-		
-		List<BoardVo> freeList = new ArrayList<>();
-		while (rs.next()) {
-			
-			String boardNo = rs.getString("BOARD_NO");
-			String boardCategoryNo = rs.getString("BOARD_CATEGORY_NO");
-			String memberNo = rs.getString("MEMBER_NO");
-			String boardTitle = rs.getString("BOARD_TITLE");
-			String boardContent = rs.getString("BOARD_CONTENT");
-			String enrollDate = rs.getString("ENROLL_DATE");
-			String modifyDate = rs.getString("MODIFY_DATE");
-			String status = rs.getString("STATUS");
-			String hit = rs.getString("HIT");
-			String writerNick = rs.getString("MEMBER_NICK");
-			String boardCategoryType = rs.getString("BOARD_CATEGORY_TYPE");
-			String totalReplies = rs.getString("TOTAL_REPLIES");
-			
-			BoardVo bv = new BoardVo();
-			bv.setBoardNo(boardNo);
-			bv.setBoardCategoryNo(boardCategoryNo);
-			bv.setMemberNo(memberNo);
-			bv.setBoardTitle(boardTitle);
-			bv.setBoardContent(boardContent);
-			bv.setEnrollDate(enrollDate);
-			bv.setModifyDate(modifyDate);
-			bv.setStatus(status);
-			bv.setHit(hit);
-			bv.setWriterNick(writerNick);
-			bv.setBoardCategoryType(boardCategoryType);
-			bv.setTotalReplies(totalReplies);
-			
-			freeList.add(bv);
-		}
-		
-		JDBCTemplate.close(rs);
-		JDBCTemplate.close(pstmt);
-		
-		return freeList;
 	}
 
 	public List<NoticeVo> showNotice02(Connection conn) throws Exception {
@@ -495,6 +451,125 @@ public class MypageDao {
 		JDBCTemplate.close(pstmt);
 		
 		return notList;
+		
+	}
+
+	public List<BoardVo> getBoardTClassList(Connection conn, String lno) throws Exception {
+		
+		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT B.BOARD_NO, B.BOARD_CATEGORY_NO, B.MEMBER_NO, B.BOARD_TITLE, B.BOARD_CONTENT, TO_CHAR(B.ENROLL_DATE, 'YYYY.MM.DD') AS ENROLL_DATE, TO_CHAR(B.MODIFY_DATE, 'YYYY.MM.DD') AS MODIFY_DATE, B.STATUS, B.HIT, M.MEMBER_NICK, C.BOARD_CATEGORY_TYPE, COUNT(R.REPLY_NO) AS TOTAL_REPLIES FROM BOARD B JOIN MEMBER M ON (B.MEMBER_NO = M.MEMBER_NO) JOIN BOARD_CATEGORY C ON (B.BOARD_CATEGORY_NO = C.BOARD_CATEGORY_NO) LEFT JOIN REPLY R ON (B.BOARD_NO = R.BOARD_NO) WHERE B.STATUS = 'O' AND C.BOARD_CATEGORY_NO = 3 AND B.MEMBER_NO IN ( SELECT STUDENT_MEMBER_NO FROM STUDENT WHERE LECTURE_NO = ? ) GROUP BY B.BOARD_NO, B.BOARD_CATEGORY_NO, B.MEMBER_NO, B.BOARD_TITLE, B.BOARD_CONTENT, B.ENROLL_DATE, B.MODIFY_DATE, B.STATUS, B.HIT, M.MEMBER_NICK, C.BOARD_CATEGORY_TYPE ORDER BY B.BOARD_NO DESC ) T ) WHERE RNUM BETWEEN 1 AND 3";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, lno);
+		ResultSet rs = pstmt.executeQuery();
+		
+		List<BoardVo> tcvoList = new ArrayList<>();
+		while (rs.next()) {
+			
+			String boardNo = rs.getString("BOARD_NO");
+			String boardCategoryNo = rs.getString("BOARD_CATEGORY_NO");
+			String memberNo = rs.getString("MEMBER_NO");
+			String boardTitle = rs.getString("BOARD_TITLE");
+			String boardContent = rs.getString("BOARD_CONTENT");
+			String enrollDate = rs.getString("ENROLL_DATE");
+			String modifyDate = rs.getString("MODIFY_DATE");
+			String status = rs.getString("STATUS");
+			String hit = rs.getString("HIT");
+			String writerNick = rs.getString("MEMBER_NICK");
+			String boardCategoryType = rs.getString("BOARD_CATEGORY_TYPE");
+			String totalReplies = rs.getString("TOTAL_REPLIES");
+			
+			BoardVo bv = new BoardVo();
+			bv.setBoardNo(boardNo);
+			bv.setBoardCategoryNo(boardCategoryNo);
+			bv.setMemberNo(memberNo);
+			bv.setBoardTitle(boardTitle);
+			bv.setBoardContent(boardContent);
+			bv.setEnrollDate(enrollDate);
+			bv.setModifyDate(modifyDate);
+			bv.setStatus(status);
+			bv.setHit(hit);
+			bv.setWriterNick(writerNick);
+			bv.setBoardCategoryType(boardCategoryType);
+			bv.setTotalReplies(totalReplies);
+			
+			tcvoList.add(bv);
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return tcvoList;
+		
+	}
+
+	public List<CalenderVo> todoList(Connection conn, String memberNo) throws Exception {
+		
+		String sql = "SELECT T.TEAM_NO, T.TEAM_NAME, S.STUDENT_MEMBER_NO, C.TEAM_CALENDER_NO, C.MEETING_DATE, C.MEETING_CONTENT FROM STUDENT S JOIN MEMBER M ON (S.STUDENT_MEMBER_NO = M.MEMBER_NO) JOIN TEAM T ON (S.TEAM_NO = T.TEAM_NO) JOIN TEAM_CALENDER C ON (C.TEAM_NO = T.TEAM_NO) WHERE MEMBER_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		List<CalenderVo> todoList = new ArrayList<>();
+		while (rs.next()) {
+			
+			String teamNo = rs.getString("TEAM_NO");
+			String teamName = rs.getString("TEAM_NAME");
+			String studentMemberNo = rs.getString("STUDENT_MEMBER_NO");
+			String teamCalenderNo = rs.getString("TEAM_CALENDER_NO");
+			String meetingDate = rs.getString("MEETING_DATE");
+			String meetingContent = rs.getString("MEETING_CONTENT");
+			
+			CalenderVo cv = new CalenderVo();
+			cv.setTeamNo(teamNo);
+			cv.setTeamName(teamName);
+			cv.setTeamCalenderNo(teamCalenderNo);
+			cv.setStudentMemberNo(studentMemberNo);
+			cv.setMeetingDate(meetingDate);
+			cv.setMeetingContent(meetingContent);
+			
+			todoList.add(cv);
+			
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return todoList;
+		
+	}
+
+	public List<CalenderVo> ttodoList(Connection conn, String memberNo) throws Exception {
+		
+		String sql = "SELECT T.TEAM_NO, T.TEAM_NAME, S.STUDENT_MEMBER_NO, C.TEAM_CALENDER_NO, C.MEETING_DATE, C.MEETING_CONTENT FROM STUDENT S JOIN MEMBER M ON (S.STUDENT_MEMBER_NO = M.MEMBER_NO) JOIN TEAM T ON (S.TEAM_NO = T.TEAM_NO) JOIN TEAM_CALENDER C ON (C.TEAM_NO = T.TEAM_NO) WHERE MEMBER_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		List<CalenderVo> ttodoList = new ArrayList<>();
+		while (rs.next()) {
+			
+			String teamNo = rs.getString("TEAM_NO");
+			String teamName = rs.getString("TEAM_NAME");
+			String studentMemberNo = rs.getString("STUDENT_MEMBER_NO");
+			String teamCalenderNo = rs.getString("TEAM_CALENDER_NO");
+			String meetingDate = rs.getString("MEETING_DATE");
+			String meetingContent = rs.getString("MEETING_CONTENT");
+			
+			CalenderVo cv = new CalenderVo();
+			cv.setTeamNo(teamNo);
+			cv.setTeamName(teamName);
+			cv.setTeamCalenderNo(teamCalenderNo);
+			cv.setStudentMemberNo(studentMemberNo);
+			cv.setMeetingDate(meetingDate);
+			cv.setMeetingContent(meetingContent);
+			
+			ttodoList.add(cv);
+			
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return ttodoList;
 		
 	}
 

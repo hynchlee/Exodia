@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.semi.board.service.BoardService;
 import com.semi.board.vo.BoardVo;
+import com.semi.calender.vo.CalenderVo;
 import com.semi.common.page.PageVo;
 import com.semi.lecture.service.LectureService;
 import com.semi.lecture.vo.LectureVo;
@@ -50,17 +51,20 @@ public class tMypageController extends HttpServlet {
 			}
 			
 			List<MemberVo> volist = ls.getMemberList(lectureVo.getLectureNo());
+			
 			List<NoticeVo> notList = ms.showNotice();
-			List<BoardVo> freeList = ms.freeboard(); //  // 수정 필요
 			String letterCount = ms.countLetter01(memberNo);
 			String countMyWrite = ms.countMyWrite(memberNo);
+			List<BoardVo> tcvoList = ms.getBoardTClassList(lectureVo.getLectureNo());
+			List<CalenderVo> ttodoList = ms.ttodoList(memberNo);
 
 			req.setAttribute("volist", volist);
 			req.setAttribute("tvolist", tvolist);
 			req.setAttribute("notList", notList);
-			req.setAttribute("freeList", freeList);
+			req.setAttribute("tcvoList", tcvoList);
 			req.setAttribute("letterCount", letterCount);
 			req.setAttribute("countMyWrite", countMyWrite);
+			req.setAttribute("ttodoList", ttodoList);	
 			req.getRequestDispatcher("/WEB-INF/views/personal/tmypage.jsp").forward(req, resp);
 
 		} catch (Exception e) {

@@ -15,6 +15,7 @@
 }
 .td08{
 	width: 30%;
+	height: 500px;
 }
 .td09{
 	width: 40%;
@@ -51,12 +52,13 @@
     border: 2px solid rgba(202,202,202,1);
 }
 .todo{
-    height: 100%;
+    height: 88%;
     background: rgba(255,255,255,1);
     border: 2px solid rgba(202,202,202,1);
+    padding: 30px;
 }
 .team{
-    height: 100%;
+    height: 500px;
     background: rgba(255,255,255,1);
     border: 2px solid rgba(202,202,202,1);
 }
@@ -255,6 +257,20 @@
 	height: 85%; 
 	background: white;
 }
+.teamlist::-webkit-scrollbar {
+    width: 10px;
+  }
+.teamlist::-webkit-scrollbar-thumb {
+	background-color: #2f3542;
+	border-radius: 10px;
+	background-clip: padding-box;
+	border: 2px solid transparent;
+ }
+.teamlist::-webkit-scrollbar-track {
+	background-color: grey;
+	border-radius: 10px;
+	box-shadow: inset 0px 0px 5px white;
+}
 .list01{
 	width: 100%;
 	height: 100%;
@@ -274,4 +290,18 @@
 .teamlisttitle{
 	font-size: 40px;
 	font-weight: bold;
+}
+.todo::-webkit-scrollbar {
+    width: 10px;
+ }
+.todo::-webkit-scrollbar-thumb {
+	background-color: #2f3542;
+	border-radius: 10px;
+	background-clip: padding-box;
+	border: 2px solid transparent;
+ }
+.todo::-webkit-scrollbar-track {
+	background-color: grey;
+	border-radius: 10px;
+	box-shadow: inset 0px 0px 5px white;
 }

@@ -45,6 +45,7 @@
     height: 100%;
     background: rgba(255,255,255,1);
     border: 2px solid rgba(202,202,202,1);
+    padding: 20px;
 }
 .team{
     height: 100%;
@@ -379,6 +380,20 @@
 	border: 2px solid transparent;
  }
 .detail01::-webkit-scrollbar-track {
+	background-color: grey;
+	border-radius: 10px;
+	box-shadow: inset 0px 0px 5px white;
+}
+.todo::-webkit-scrollbar {
+    width: 10px;
+ }
+.todo::-webkit-scrollbar-thumb {
+	background-color: #2f3542;
+	border-radius: 10px;
+	background-clip: padding-box;
+	border: 2px solid transparent;
+ }
+.todo::-webkit-scrollbar-track {
 	background-color: grey;
 	border-radius: 10px;
 	box-shadow: inset 0px 0px 5px white;
