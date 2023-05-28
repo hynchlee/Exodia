@@ -34,144 +34,15 @@
                             <div>n</div>
                             <div>피곤</div>
                         </div>
-                        <div id="content">
-                            <div><input type="checkbox"></div>
-                            <div>심원용(1dragon)</div>
-                            <div>반응형</div>
-                            <div>심원용</div>
-                            <div>2023-12-12 ~ 2023-12-12</div>
-                            <div>n</div>
-                            <div>피곤</div>
-                        </div>
-                        <div id="content">
-                            <div><input type="checkbox"></div>
-                            <div>심원용(1dragon)</div>
-                            <div>반응형</div>
-                            <div>심원용</div>
-                            <div>2023-12-12 ~ 2023-12-12</div>
-                            <div>n</div>
-                            <div>피곤</div>
-                        </div>
-                        <div id="content">
-                            <div><input type="checkbox"></div>
-                            <div>심원용(1dragon)</div>
-                            <div>반응형</div>
-                            <div>심원용</div>
-                            <div>2023-12-12 ~ 2023-12-12</div>
-                            <div>n</div>
-                            <div>피곤</div>
-                        </div>
-                        <div id="content">
-                            <div><input type="checkbox"></div>
-                            <div>심원용(1dragon)</div>
-                            <div>반응형</div>
-                            <div>심원용</div>
-                            <div>2023-12-12 ~ 2023-12-12</div>
-                            <div>n</div>
-                            <div>피곤</div>
-                        </div>
-                        <div id="content">
-                            <div><input type="checkbox"></div>
-                            <div>심원용(1dragon)</div>
-                            <div>반응형</div>
-                            <div>심원용</div>
-                            <div>2023-12-12 ~ 2023-12-12</div>
-                            <div>n</div>
-                            <div>피곤</div>
-                        </div>
-                        <div id="content">
-                            <div><input type="checkbox"></div>
-                            <div>심원용(1dragon)</div>
-                            <div>반응형</div>
-                            <div>심원용</div>
-                            <div>2023-12-12 ~ 2023-12-12</div>
-                            <div>n</div>
-                            <div>피곤</div>
-                        </div>
-                        <div id="content">
-                            <div><input type="checkbox"></div>
-                            <div>심원용(1dragon)</div>
-                            <div>반응형</div>
-                            <div>심원용</div>
-                            <div>2023-12-12 ~ 2023-12-12</div>
-                            <div>n</div>
-                            <div>피곤</div>
-                        </div>
-                        <div id="content">
-                            <div><input type="checkbox"></div>
-                            <div>심원용(1dragon)</div>
-                            <div>반응형</div>
-                            <div>심원용</div>
-                            <div>2023-12-12 ~ 2023-12-12</div>
-                            <div>n</div>
-                            <div>피곤</div>
-                        </div>
-                        <div id="content">
-                            <div><input type="checkbox"></div>
-                            <div>심원용(1dragon)</div>
-                            <div>반응형</div>
-                            <div>심원용</div>
-                            <div>2023-12-12 ~ 2023-12-12</div>
-                            <div>n</div>
-                            <div>피곤</div>
-                        </div>
-                        <div id="content">
-                            <div><input type="checkbox"></div>
-                            <div>심원용(1dragon)</div>
-                            <div>반응형</div>
-                            <div>심원용</div>
-                            <div>2023-12-12 ~ 2023-12-12</div>
-                            <div>n</div>
-                            <div>피곤</div>
-                        </div>
-                        <div id="content">
-                            <div><input type="checkbox"></div>
-                            <div>심원용(1dragon)</div>
-                            <div>반응형</div>
-                            <div>심원용</div>
-                            <div>2023-12-12 ~ 2023-12-12</div>
-                            <div>n</div>
-                            <div>피곤</div>
-                        </div>
-                        <div id="content">
-                            <div><input type="checkbox"></div>
-                            <div>심원용(1dragon)</div>
-                            <div>반응형</div>
-                            <div>심원용</div>
-                            <div>2023-12-12 ~ 2023-12-12</div>
-                            <div>n</div>
-                            <div>피곤</div>
-                        </div>
-                        <div id="content">
-                            <div><input type="checkbox"></div>
-                            <div>심원용(1dragon)</div>
-                            <div>반응형</div>
-                            <div>심원용</div>
-                            <div>2023-12-12 ~ 2023-12-12</div>
-                            <div>n</div>
-                            <div>피곤</div>
-                        </div>
-                        <div id="content">
-                            <div><input type="checkbox"></div>
-                            <div>심원용(1dragon)</div>
-                            <div>반응형</div>
-                            <div>심원용</div>
-                            <div>2023-12-12 ~ 2023-12-12</div>
-                            <div>n</div>
-                            <div>피곤</div>
-                        </div>
                         <div id="buttonDiv">
-                            <button id="approval">승인</button>
-                            <button id="refuse">거절</button>
+                            <button id="deleteButton" onclick="delButton();">삭제하기</button>
                         </div>
                         <div id="pageDiv">
-                            <button><</button>
-                            <button>1</button>
-                            <button>2</button>
-                            <button>3</button>
-                            <button>4</button>
-                            <button>5</button>
-                            <button>></button>
+                            <button onclick="pageMove('${pageVo.startPage}');"><<</button>
+                                <c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" var="i">
+                                    <button class="pageBtn" onclick="pageMove('${i}');">${i}</button>
+                                </c:forEach>
+                            <button onclick="pageMove('${pageVo.endPage}');">>></button>
                         </div>
                     </div>
                     <div style="height: 30px;"></div>
@@ -185,4 +56,17 @@
         <script>
             const title = document.querySelector(".title");
             title.innerHTML = "휴가 관리";
+
+            const pageBtn = document.querySelectorAll('.pageBtn');
+
+			function pageMove(i) {
+				location.href = "${root}/vacation/list?page=" + i;
+			}
+
+			for (let btn of pageBtn) {
+				if (btn.innerHTML == '${pageVo.currentPage}') {
+					btn.style.backgroundColor = '#4998D1';
+					btn.style.color = 'white';
+				}
+			}
         </script>
