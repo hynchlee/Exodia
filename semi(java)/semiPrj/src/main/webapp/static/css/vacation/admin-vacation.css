@@ -90,6 +90,12 @@ input[type=checkbox]{
 
 #approval:hover{
     background-color: #4998D1;
+    color: white;
+}
+
+#refuse:hover{
+    background-color: #B53232;
+    color: white;
 }
 
 #pageDiv{

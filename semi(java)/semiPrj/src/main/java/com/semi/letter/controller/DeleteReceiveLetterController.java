@@ -26,7 +26,7 @@ public class DeleteReceiveLetterController extends HttpServlet {
 		
 		try {
 			String json = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-			
+						
 			String [] strNumbers = json.replaceAll("\\s","")
 					.replace("[", "")
 					.replace("]", "")

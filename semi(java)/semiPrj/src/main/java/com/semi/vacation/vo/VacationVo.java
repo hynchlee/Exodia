@@ -5,6 +5,8 @@ public class VacationVo {
 	private String vacationRequestListNo;
 	private String memberNo;
 	private String teacherName;
+	private String studentName;
+	private String studentId;
 	private String lectureName;
 	private String day;
 	private String vacationStart;
@@ -28,6 +30,18 @@ public class VacationVo {
 	}
 	public void setTeacherName(String teacherName) {
 		this.teacherName = teacherName;
+	}
+	public String getStudentName() {
+		return studentName;
+	}
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
+	public String getStudentId() {
+		return studentId;
+	}
+	public void setStudentId(String studentId) {
+		this.studentId = studentId;
 	}
 	public String getLectureName() {
 		return lectureName;
@@ -69,12 +83,15 @@ public class VacationVo {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public VacationVo(String vacationRequestListNo, String memberNo, String teacherName, String lectureName, String day,
-			String vacationStart, String vacationEnd, String status, String reason) {
+	public VacationVo(String vacationRequestListNo, String memberNo, String teacherName, String studentName,
+			String studentId, String lectureName, String day, String vacationStart, String vacationEnd, String status,
+			String reason) {
 		super();
 		this.vacationRequestListNo = vacationRequestListNo;
 		this.memberNo = memberNo;
 		this.teacherName = teacherName;
+		this.studentName = studentName;
+		this.studentId = studentId;
 		this.lectureName = lectureName;
 		this.day = day;
 		this.vacationStart = vacationStart;
@@ -85,10 +102,10 @@ public class VacationVo {
 	@Override
 	public String toString() {
 		return "VacationVo [vacationRequestListNo=" + vacationRequestListNo + ", memberNo=" + memberNo
-				+ ", teacherName=" + teacherName + ", lectureName=" + lectureName + ", day=" + day + ", vacationStart="
-				+ vacationStart + ", vacationEnd=" + vacationEnd + ", status=" + status + ", reason=" + reason + "]";
+				+ ", teacherName=" + teacherName + ", studentName=" + studentName + ", studentId=" + studentId
+				+ ", lectureName=" + lectureName + ", day=" + day + ", vacationStart=" + vacationStart
+				+ ", vacationEnd=" + vacationEnd + ", status=" + status + ", reason=" + reason + "]";
 	}
-	
 	
 	
 }
