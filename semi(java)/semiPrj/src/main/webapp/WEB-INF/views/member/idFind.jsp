@@ -33,12 +33,12 @@
                 </tr>
                 <tr>
                     <th>휴대폰 번호</th>
-                    <td><input type="text" name="phoneNo"></td>
+                    <td><input type="text" name="phoneNo" placeholder="숫자 11자리 입력"></td>
                 </tr>
             </table>
 
             <div id="submit-box">
-                <input type="submit" value="아이디 찾기">
+                <input type="submit" value="아이디 찾기" onclick="return validate();">
             </div>
 
         </form>
@@ -47,5 +47,29 @@
 
 </body>
 </html>
+
+<script>
+
+    //제약조건
+    function validate() {
+        let memberNick = document.querySelector('input[name=memberNick]').value;
+        let phoneNo = document.querySelector('input[name=phoneNo]').value;
+
+        // 이름이 빈칸인지 확인
+        if (memberNick.trim().length === 0) {
+            alert("이름을 입력해주세요.");
+            return false;
+        }
+
+        //전번 - 숫자 11자리
+        if (!/^\d{11}$/.test(phoneNo)) {
+            alert("유효한 휴대폰 번호를 입력해주세요.");
+            return false;
+        }
+
+        return true;
+    }
+
+</script>
 
 

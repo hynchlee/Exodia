@@ -48,4 +48,31 @@
 </body>
 </html>
 
+<script>
+
+    // //제약조건
+    // function validate() {
+    //     let memberPwd = document.querySelector('input[name=memberPwd]').value;
+    //     let memberPwd2 = document.querySelector('input[name=memberPwd2]').value;
+        
+    //     // 비번 제약조건 - 영어소문자/숫자/특수문자 조합 8~15자리
+    //     if(!(/^[\w!@#$%^&*-]{8,15}$/.test(memberPwd))) {
+    //         alert('유효한 비밀번호를 입력해주세요.');
+            
+    //         return false;
+    //     }
+
+    //     // 비밀번호 확인
+    //     if(memberPwd !== memberPwd2) {
+    //         alert("동일한 비밀번호 값을 입력해주세요.")
+    //         memberPwd2.value = '';
+    //         memberPwd2.focus();
+
+    //         return false;
+    //     }
+
+    //     return true;
+    // }
+
+</script>
 
