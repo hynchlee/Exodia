@@ -59,6 +59,7 @@ public class NoticeDao {
 			String hit = rs.getString("HIT");
 			String status = rs.getString("STATUS");
 			String adminNick = rs.getString("ADMIN_NICK");
+			//String pin = rs.getString("PIN");
 			
 			NoticeVo vo = new NoticeVo();
 			vo.setNoticeNo(noticeNo);
@@ -70,6 +71,7 @@ public class NoticeDao {
 			vo.setHit(hit);
 			vo.setStatus(status);
 			vo.setAdminNick(adminNick);
+			//vo.setPin(pin);
 			
 			nvoList.add(vo);
 		}
@@ -81,10 +83,14 @@ public class NoticeDao {
 		
 	}
 	
+	//String sql = "SELET * FROM NOTICE ORDER BY PIN DESC, NOTICE_NO DESC";
+	String pin = "ALTER INTO NOTICE ADD PIN CHAR(1) DEFAULT N NOT NULL";
+	
 	//검색해서 목록 조회
 	public List<NoticeVo> getNoticeList(Connection conn, PageVo pv, String SearchType, String searchValue) throws Exception {
 		
 		String sql ="";
+		
 		
 		if (SearchType.equals("noticeTitle")) {
 			//제목 검색
@@ -113,6 +119,7 @@ public class NoticeDao {
 			String hit = rs.getString("HIT");
 			String status = rs.getString("STATUS");
 			String adminNick = rs.getString("ADMIN_NICK");
+			//String pin = rs.getString("PIN");
 			
 			NoticeVo vo = new NoticeVo();
 			vo.setNoticeNo(noticeNo);
@@ -124,6 +131,7 @@ public class NoticeDao {
 			vo.setHit(hit);
 			vo.setStatus(status);
 			vo.setAdminNick(adminNick);
+			//vo.setPin(pin);
 			
 			nvoList.add(vo);
 		}

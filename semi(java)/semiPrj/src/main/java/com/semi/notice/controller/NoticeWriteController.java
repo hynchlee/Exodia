@@ -48,12 +48,15 @@ public class NoticeWriteController extends HttpServlet{
 			String boardTitle = req.getParameter("boardTitle");
             String boardContent = req.getParameter("boardContent");
             String boardWriterNo = loginAdmin.getAdminNo();
+            //String pin = req.getParameter("pin");
 			
 			//데뭉
             NoticeVo nvo = new NoticeVo();
             nvo.setNoticeTitle(boardTitle);
             nvo.setNoticeContent(boardContent);
             nvo.setAdminNo(boardWriterNo);
+            //nvo.setPin(pin);
+            
             
             NoticeService ns = new NoticeService();
             int result = ns.noticeWrite(nvo);

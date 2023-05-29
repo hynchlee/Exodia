@@ -31,7 +31,7 @@
 
                 <!-- 관리자에게만 보이는 체크박스 -->
                 <div class="checked">
-                    <input type="checkbox" name="" id=""><span>상단고정</span>
+                    <input type="checkbox" name="pin" id="pin" value="Y"><span>상단고정</span>
                 </div>
 
                 <div class="write_wrap">
@@ -107,6 +107,28 @@
                 },
             });
         }
+
+        //상단고정
+        $('#pin').is(':checked');
+        const pin = document.querySelector('#pin').value;
+
+        if($('#pin').is(':checked')){
+            $.ajax({
+                url: '${root}/notice/write',
+                type: "post",
+                data: {
+                    pin : pin,
+                },
+                success: (x)=>{
+                    console.log(x);
+                },
+                error: (e)=>{
+                    console.log(e);
+                },
+
+            });
+        };
+        
     </script>
 </body>
 </html>
