@@ -81,4 +81,24 @@ public class AdminService {
 		return result;
 	}
 
+	//마일리지 차감
+	public int minusMileage(String[] noArr) throws Exception {
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		//sql
+		int result = dao.minusMileage(conn, noArr);
+		
+		//tx||rs
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		//close
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
 }

@@ -132,4 +132,18 @@ public class AdminDao {
 		return result;
 	}
 
+	public int minusMileage(Connection conn, String[] noArr) throws Exception {
+		
+		String str = String.join("," , noArr);
+
+		//sql
+		String sql = "UPDATE STUDENT SET MILEAGE = MILEAGE-10 WHERE STUDENT_MEMBER_NO IN (" + str + ")";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	}
+
 }
