@@ -26,7 +26,7 @@
 		<c:forEach items="${memberList}" var="member">
 			<div class="member-info">
 				<div id="check-area">
-					<input type="checkbox" name="manageMember" value="">
+					<input type="checkbox" name="manageMember" value="${member.memberNo}">
 				</div>
 				<div>
 					<img id="profile-img" src="${root}/static/img/introduce/___7.png" alt="profile" id="profile_img_1" class="profile_img">
@@ -101,13 +101,11 @@
 			</div>
 		</c:forEach>
 
-		
-
 
 		<div class="btn-area">
-			<button>마일리지 차감</button>
-			<button>계정정지</button>
-			<button>탈퇴처리</button>
+			<button id="mileage-btn" onclick="minusMileage();">마일리지 차감</button>
+			<button id="stop-btn" onclick="stopMember();">계정정지</button>
+			<button id="quit-btn">탈퇴처리</button>
 		</div>
 
 		<div class="page-area">
@@ -141,6 +139,77 @@
 		
 		const caption = document.querySelector(".caption");
 		caption.innerText = '';
+
+		//선택한 행 번호 가져오기
+		function getCheckedBox() {
+			const noArr = [];
+			const cbArr = document.querySelectorAll('input[type="checkbox"]');
+			for(let cb of cbArr){
+				if(cb.checked == true){
+					console.log(cb.value);
+					noArr.push(cb.value);
+				}
+			}
+			return noArr;
+		};
+
+
+		//회원 정지
+		function stopMember() {
+			const noArr = getCheckedBox();
+
+			const result = confirm("선택한 회원을 정지하시겠습니까?");
+			if(result) {
+				$.ajax({
+					url : '/semi/admin/member/stop',
+					type : 'post',
+					data : {
+						noArr : JSON.stringify(noArr)
+					},
+					success : function(data){
+						alert("회원 정지 완료");
+						location.reload();
+					},
+					error : function(error) {
+						console.log(error);
+					},
+				})
+			}
+		};
+
+
+		//회원 탈퇴
+		function quitMember() {
+
+		};
+		
+		
+		// 마일리지 차감
+		function minusMileage() {
+			const noArr = getCheckedBox();
+			console.log(noArr);
+
+			const result = confirm("선택한 회원의 마일리지를 차감하시겠습니까?");
+			if(result) {
+				$.ajax({
+					url : '/semi/admin/member/mileage',
+					type : 'post',
+					data : {
+						noArr : JSON.stringify(noArr)
+					},
+					success : function(data){
+						alert("차감 완료");
+						location.reload();
+					},
+					error : function(error) {
+						console.log(error);
+					},
+				})
+			}
+		};
+
+
+
 
 
 	</script>

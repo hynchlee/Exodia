@@ -273,7 +273,7 @@ public class MemberDao {
 	//휴가신청
 	public int requestVacation(Connection conn, VacationVo vo) throws Exception {
 
-		String sql = "INSERT INTO VACATION_REQUEST_LIST (VACATION_REQUEST_LIST_NO, MEMBER_NO, REASON, VACATION_START, VACATION_END, STATUS) VALUES (SEQ_VACATION_REQUEST_LIST_NO.NEXTVAL, ?, ?, ?, ?, 'X')";
+		String sql = "INSERT INTO VACATION_REQUEST_LIST (VACATION_REQUEST_LIST_NO, MEMBER_NO, REASON, VACATION_START, VACATION_END) VALUES (SEQ_VACATION_REQUEST_LIST_NO.NEXTVAL, ?, ?, ?, ?)";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, vo.getMemberNo());
 		pstmt.setString(2, vo.getReason());
