@@ -13,6 +13,7 @@ import com.semi.common.db.JDBCTemplate;
 import com.semi.lecture.vo.LectureVo;
 import com.semi.mypage.vo.TeamVo;
 import com.semi.notice.vo.NoticeVo;
+import com.semi.teamCalendar.vo.TeamCalendarVo;
 import com.semi.vacation.vo.VacationVo;
 
 public class MypageDao {
@@ -500,30 +501,30 @@ public class MypageDao {
 		
 	}
 
-	public List<CalenderVo> todoList(Connection conn, String memberNo) throws Exception {
+	public List<TeamCalendarVo> todoList(Connection conn, String memberNo) throws Exception {
 		
-		String sql = "SELECT T.TEAM_NO, T.TEAM_NAME, S.STUDENT_MEMBER_NO, C.TEAM_CALENDER_NO, C.MEETING_CONTENT FROM STUDENT S JOIN MEMBER M ON (S.STUDENT_MEMBER_NO = M.MEMBER_NO) JOIN TEAM T ON (S.TEAM_NO = T.TEAM_NO) JOIN TEAM_CALENDER C ON (C.TEAM_NO = T.TEAM_NO) WHERE MEMBER_NO = ?";
+		String sql = "SELECT T.TEAM_NO, C.TEAM_CALENDAR_NO, TO_CHAR(TO_DATE(C.START_DATE), 'MM/DD') SD, TO_CHAR(TO_DATE(C.END_DATE), 'MM/DD') ED, C.MEETING_CONTENT FROM STUDENT S JOIN MEMBER M ON (S.STUDENT_MEMBER_NO = M.MEMBER_NO) JOIN TEAM T ON (S.TEAM_NO = T.TEAM_NO) JOIN TEAM_CALENDAR C ON (C.TEAM_NO = T.TEAM_NO) WHERE MEMBER_NO = ? ";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, memberNo);
 		ResultSet rs = pstmt.executeQuery();
 		
-		List<CalenderVo> todoList = new ArrayList<>();
+		List<TeamCalendarVo> todoList = new ArrayList<>();
 		while (rs.next()) {
 			
 			String teamNo = rs.getString("TEAM_NO");
-			String teamName = rs.getString("TEAM_NAME");
-			String studentMemberNo = rs.getString("STUDENT_MEMBER_NO");
-			String teamCalenderNo = rs.getString("TEAM_CALENDER_NO");
+			String teamCalendarNo = rs.getString("TEAM_CALENDAR_NO");
+			String startDate = rs.getString("SD");
+			String endDate = rs.getString("ED");
 			String meetingContent = rs.getString("MEETING_CONTENT");
 			
-			CalenderVo cv = new CalenderVo();
-			cv.setTeamNo(teamNo);
-			cv.setTeamName(teamName);
-			cv.setTeamCalenderNo(teamCalenderNo);
-			cv.setStudentMemberNo(studentMemberNo);
-			cv.setMeetingContent(meetingContent);
+			TeamCalendarVo tv = new TeamCalendarVo();
+			tv.setTeamNo(teamNo);
+			tv.setTeamCalendarNo(teamCalendarNo);
+			tv.setStartDate(startDate);
+			tv.setEndDate(endDate);
+			tv.setMeetingContent(meetingContent);
 			
-			todoList.add(cv);
+			todoList.add(tv);
 			
 		}
 		

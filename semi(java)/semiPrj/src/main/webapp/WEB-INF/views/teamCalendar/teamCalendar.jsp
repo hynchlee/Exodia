@@ -19,11 +19,13 @@
 				/* body 스타일 */
 				html,
 				body {
-					overflow: hidden;
 					font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
 					font-size: 14px;
 				}
-
+				.fc-sticky{
+					color: white;
+				}
+				
 				/* 캘린더 위의 해더 스타일(날짜가 있는 부분) */
 				.fc-header-toolbar {
 					padding-top: 1em;
@@ -33,7 +35,7 @@
 			</style>
 		</head>
 
-		<body style="padding:30px;">
+		<body>
 			<!-- calendar 태그 -->
 			<div id='calendar-container'>
 				<div id='calendar'></div>

@@ -21,7 +21,7 @@
 		
 		<table class="table01">
 			<tr>
-				<td colspan="2" class="td01">
+				<td colspan="2" class="td01 boardtd">
 					<div class="board">
 						<table class="innertable01">
 							<thead>
@@ -65,25 +65,25 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="td01">
+				<td class="td01 calendar">
 					<div class="date">
-						date Info
+						<%@ include file="/WEB-INF/views/teamCalendar/teamCalendar.jsp" %>
 					</div>
 				</td>
-				<td class="td01">
+				<td class="td01 todos">
 					<div class="todo" style="overflow: auto">
 						<span class="teamlisttitle">팀 일정</span>
 						<hr>
 						<br>
 						<ul>
 							<c:forEach items="${todoList}" var="todoList">
-								<li class="list02">(${todoList.teamName}) ${todoList.meetingDate}</li>	
+								<li class="list02">${todoList.startDate} ~ ${todoList.endDate}</li>	
 								<li class="list03">${todoList.meetingContent}</li>				
 							</c:forEach>							
 						</ul>
 					</div>
 				</td>
-				<td class="td01">
+				<td class="td01 teamLists">
 					<div class="teamlist">
 						<div class="teamdiv" style="overflow: auto">
 							<span class="teamlisttitle">팀 목록</span>
@@ -210,7 +210,7 @@
 </body>
 </html>
 <script>
-	const title = document.querySelector('td:first-child');
+	const title = document.querySelector('.title');
 	title.innerHTML = "마이페이지";
 </script>
 <script>

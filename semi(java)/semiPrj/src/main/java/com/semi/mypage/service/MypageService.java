@@ -16,6 +16,7 @@ import com.semi.letter.vo.LetterVo;
 import com.semi.mypage.dao.MypageDao;
 import com.semi.mypage.vo.TeamVo;
 import com.semi.notice.vo.NoticeVo;
+import com.semi.teamCalendar.vo.TeamCalendarVo;
 import com.semi.vacation.vo.VacationVo;
 
 public class MypageService {
@@ -265,12 +266,12 @@ public class MypageService {
 		
 	}
 
-	public List<CalenderVo> todoList(String memberNo) throws Exception {
+	public List<TeamCalendarVo> todoList(String memberNo) throws Exception {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		
 		MypageDao mdao = new MypageDao();
-		List<CalenderVo> todoList = mdao.todoList(conn, memberNo);
+		List<TeamCalendarVo> todoList = mdao.todoList(conn, memberNo);
 		
 		JDBCTemplate.close(conn);
 		
