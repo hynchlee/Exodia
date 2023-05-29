@@ -3,7 +3,6 @@ package com.semi.mypage.dao;
 import java.sql.Connection; 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -503,7 +502,7 @@ public class MypageDao {
 
 	public List<CalenderVo> todoList(Connection conn, String memberNo) throws Exception {
 		
-		String sql = "SELECT T.TEAM_NO, T.TEAM_NAME, S.STUDENT_MEMBER_NO, C.TEAM_CALENDER_NO, C.MEETING_DATE, C.MEETING_CONTENT FROM STUDENT S JOIN MEMBER M ON (S.STUDENT_MEMBER_NO = M.MEMBER_NO) JOIN TEAM T ON (S.TEAM_NO = T.TEAM_NO) JOIN TEAM_CALENDER C ON (C.TEAM_NO = T.TEAM_NO) WHERE MEMBER_NO = ?";
+		String sql = "SELECT T.TEAM_NO, T.TEAM_NAME, S.STUDENT_MEMBER_NO, C.TEAM_CALENDER_NO, C.MEETING_CONTENT FROM STUDENT S JOIN MEMBER M ON (S.STUDENT_MEMBER_NO = M.MEMBER_NO) JOIN TEAM T ON (S.TEAM_NO = T.TEAM_NO) JOIN TEAM_CALENDER C ON (C.TEAM_NO = T.TEAM_NO) WHERE MEMBER_NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, memberNo);
 		ResultSet rs = pstmt.executeQuery();
@@ -515,7 +514,6 @@ public class MypageDao {
 			String teamName = rs.getString("TEAM_NAME");
 			String studentMemberNo = rs.getString("STUDENT_MEMBER_NO");
 			String teamCalenderNo = rs.getString("TEAM_CALENDER_NO");
-			String meetingDate = rs.getString("MEETING_DATE");
 			String meetingContent = rs.getString("MEETING_CONTENT");
 			
 			CalenderVo cv = new CalenderVo();
@@ -523,7 +521,6 @@ public class MypageDao {
 			cv.setTeamName(teamName);
 			cv.setTeamCalenderNo(teamCalenderNo);
 			cv.setStudentMemberNo(studentMemberNo);
-			cv.setMeetingDate(meetingDate);
 			cv.setMeetingContent(meetingContent);
 			
 			todoList.add(cv);
@@ -539,7 +536,7 @@ public class MypageDao {
 
 	public List<CalenderVo> ttodoList(Connection conn, String memberNo) throws Exception {
 		
-		String sql = "SELECT T.TEAM_NO, T.TEAM_NAME, S.STUDENT_MEMBER_NO, C.TEAM_CALENDER_NO, C.MEETING_DATE, C.MEETING_CONTENT FROM STUDENT S JOIN MEMBER M ON (S.STUDENT_MEMBER_NO = M.MEMBER_NO) JOIN TEAM T ON (S.TEAM_NO = T.TEAM_NO) JOIN TEAM_CALENDER C ON (C.TEAM_NO = T.TEAM_NO) WHERE MEMBER_NO = ?";
+		String sql = "SELECT T.TEAM_NO, T.TEAM_NAME, S.STUDENT_MEMBER_NO, C.TEAM_CALENDAR_NO, C.MEETING_CONTENT FROM STUDENT S JOIN MEMBER M ON (S.STUDENT_MEMBER_NO = M.MEMBER_NO) JOIN TEAM T ON (S.TEAM_NO = T.TEAM_NO) JOIN TEAM_CALENDAR C ON (C.TEAM_NO = T.TEAM_NO) WHERE MEMBER_NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, memberNo);
 		ResultSet rs = pstmt.executeQuery();
@@ -550,8 +547,7 @@ public class MypageDao {
 			String teamNo = rs.getString("TEAM_NO");
 			String teamName = rs.getString("TEAM_NAME");
 			String studentMemberNo = rs.getString("STUDENT_MEMBER_NO");
-			String teamCalenderNo = rs.getString("TEAM_CALENDER_NO");
-			String meetingDate = rs.getString("MEETING_DATE");
+			String teamCalenderNo = rs.getString("TEAM_CALENDAR_NO");
 			String meetingContent = rs.getString("MEETING_CONTENT");
 			
 			CalenderVo cv = new CalenderVo();
@@ -559,7 +555,6 @@ public class MypageDao {
 			cv.setTeamName(teamName);
 			cv.setTeamCalenderNo(teamCalenderNo);
 			cv.setStudentMemberNo(studentMemberNo);
-			cv.setMeetingDate(meetingDate);
 			cv.setMeetingContent(meetingContent);
 			
 			ttodoList.add(cv);
