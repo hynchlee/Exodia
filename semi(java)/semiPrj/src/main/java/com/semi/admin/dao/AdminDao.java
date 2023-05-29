@@ -101,7 +101,7 @@ public class AdminDao {
 	
 	}
 
-	//회원 정지
+	//회원 제재
 	public int stopMember(Connection conn, String[] noArr) throws Exception {
 
 		String str = String.join("," , noArr);
@@ -115,6 +115,21 @@ public class AdminDao {
 		
 		return result;
 	
+	}
+
+	//회원 탈퇴처리
+	public int quitMember(Connection conn, String[] noArr) throws Exception {
+		
+		String str = String.join("," , noArr);
+		
+		//sql
+		String sql = "UPDATE MEMBER SET STATUS = 'X' WHERE MEMBER_NO IN (" + str + ")";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
 	}
 
 }
