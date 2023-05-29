@@ -50,7 +50,7 @@
 
 					<br><br><br>
 					<div class="finish">
-						<form action="${root}/lecture/test/scoreList" method="post">
+						<form action="${root}/lecture/test/scoreList" method="post" onsubmit="return confirm('채점을 완료하시겠습니까?');">
 							<input type="text" hidden value="${memberList.get(0).examCategoryNo}" name="examCategoryNo">
 							<input type="submit" value="채점 완료" class="finish-btn">
 						</form>
