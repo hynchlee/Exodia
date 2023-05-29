@@ -12,18 +12,6 @@ import com.semi.teamCalendar.vo.TeamCalendarVo;
 
 public class TeamCalendarDao {
 
-	public int writeCalendar(Connection conn, String memberNo, String[] paramsArr) throws SQLException {
-		String sql = "INSERT INTO TEAM_CALENDAR VALUES(SEQ_TEAM_CALENDAR_NO.NEXTVAL, (SELECT TEAM_NO FROM STUDENT WHERE STUDENT_MEMBER_NO = ?), ?, ?, ?)";
-		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, memberNo);
-		pstmt.setString(2, paramsArr[1].substring(0, 10).replaceAll("-", ""));
-		pstmt.setString(3, paramsArr[2].substring(0, 10).replaceAll("-", ""));
-		pstmt.setString(4, paramsArr[0]);
-		int result = pstmt.executeUpdate();
-		JDBCTemplate.close(pstmt);
-		
-		return result;
-	}
 
 	public List<TeamCalendarVo> getTeamCalendar(Connection conn, String memberNo) throws SQLException {
 		String sql = "SELECT * FROM TEAM_CALENDAR WHERE TEAM_NO = (SELECT TEAM_NO FROM STUDENT WHERE STUDENT_MEMBER_NO = ?)";
@@ -42,8 +30,61 @@ public class TeamCalendarDao {
 			
 			voList.add(vo);
 		}
+		JDBCTemplate.close(pstmt);
+		JDBCTemplate.close(rs);
 		
 		return voList;
+	}
+
+	public int writeCalendar(Connection conn, String memberNo, String[] paramsArr) throws SQLException {
+		String sql = "INSERT INTO TEAM_CALENDAR VALUES(SEQ_TEAM_CALENDAR_NO.NEXTVAL, (SELECT TEAM_NO FROM STUDENT WHERE STUDENT_MEMBER_NO = ?), ?, ?, ?)";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+
+		int startDate = Integer.parseInt(paramsArr[2].substring(0, 10).replaceAll("-", "")) + 1;
+		int endDate = Integer.parseInt(paramsArr[3].substring(0, 10).replaceAll("-", "")) + 1;
+
+		pstmt.setString(1, memberNo);
+		pstmt.setString(2, Integer.toString(startDate));
+		pstmt.setString(3, Integer.toString(endDate));
+		pstmt.setString(4, paramsArr[1]);
+		int result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+
+		return result;
+	}
+
+	public int modifyCalendar(Connection conn, String memberNo, String[] paramsArr) throws SQLException {
+		String sql = "UPDATE TEAM_CALENDAR SET START_DATE = ?, END_DATE = ? WHERE TEAM_NO = (SELECT TEAM_NO FROM STUDENT WHERE STUDENT_MEMBER_NO = ?) AND MEETING_CONTENT = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+
+		int startDate = Integer.parseInt(paramsArr[2].substring(0, 10).replaceAll("-", "")) + 1;
+		int endDate = Integer.parseInt(paramsArr[3].substring(0, 10).replaceAll("-", "")) + 1;
+
+		pstmt.setString(1, Integer.toString(startDate));
+		pstmt.setString(2, Integer.toString(endDate));
+		pstmt.setString(3, memberNo);
+		pstmt.setString(4, paramsArr[1]);
+		int result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+
+		return result;
+	}
+
+	public int deleteCalendar(Connection conn, String memberNo, String[] paramsArr) throws SQLException {
+		String sql = "DELETE TEAM_CALENDAR WHERE START_DATE = ? AND END_DATE = ? AND TEAM_NO = (SELECT TEAM_NO FROM STUDENT WHERE STUDENT_MEMBER_NO = ?) AND MEETING_CONTENT = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+
+		int startDate = Integer.parseInt(paramsArr[2].substring(0, 10).replaceAll("-", "")) + 1;
+		int endDate = Integer.parseInt(paramsArr[3].substring(0, 10).replaceAll("-", "")) + 1;
+
+		pstmt.setString(1, Integer.toString(startDate));
+		pstmt.setString(2, Integer.toString(endDate));
+		pstmt.setString(3, memberNo);
+		pstmt.setString(4, paramsArr[1]);
+		int result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+
+		return result;
 	}
 
 }

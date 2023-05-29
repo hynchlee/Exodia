@@ -1,7 +1,6 @@
 package com.semi.lecture.controller;
 
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.ServletException;

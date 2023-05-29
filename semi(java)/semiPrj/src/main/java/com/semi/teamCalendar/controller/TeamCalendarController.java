@@ -46,9 +46,17 @@ public class TeamCalendarController extends HttpServlet {
 			String params = req.getParameter("params");
 			String[] paramsArr = gson.fromJson(params, String[].class);
 
-			int result = fcs.writeCalendar(loginMember.getMemberNo(), paramsArr);
+			int result = 0;
+			
+			if(paramsArr[0].equals("write")) {
+				result = fcs.writeCalendar(loginMember.getMemberNo(), paramsArr);				
+			} else if(paramsArr[0].equals("modify")) {
+				result = fcs.modifyCalendar(loginMember.getMemberNo(), paramsArr);
+			} else if(paramsArr[0].equals("delete")) {
+				result = fcs.deleteCalendar(loginMember.getMemberNo(), paramsArr);
+			}
 
-			if (result != 1) {
+			if (result == 0) {
 				throw new Exception();
 			}
 		} catch (Exception e) {
