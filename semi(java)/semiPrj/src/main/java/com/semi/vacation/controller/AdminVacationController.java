@@ -21,14 +21,14 @@ public class AdminVacationController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-//		HttpSession session = req.getSession();
-//		AdminVo loginAdmin = (AdminVo) session.getAttribute("loginAdmin");
-//		
-//		if (loginAdmin == null) {
-//			req.setAttribute("errorMsg", "관리자 로그인을 먼저 해주세요");
-//			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
-//			return;
-//		}
+		HttpSession session = req.getSession();
+		AdminVo loginAdmin = (AdminVo) session.getAttribute("loginAdmin");
+		
+		if (loginAdmin == null) {
+			req.setAttribute("errorMsg", "관리자 로그인을 먼저 해주세요");
+			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+			return;
+		}
 		
 		try {
 

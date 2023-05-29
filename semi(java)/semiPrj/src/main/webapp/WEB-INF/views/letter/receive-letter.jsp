@@ -76,7 +76,7 @@
 									<tr onclick="detail();">
 										<td id="letterNo" hidden>${vo.letterNo}</td>
 										<td style="width: 50px;">
-											<input type="checkbox" class="checkbox" value="${vo.letterNo}">
+											<input type="checkbox" class="checkbox" value="${vo.letterNo}" style="width: 20px; height: 20px;">
 										</td>
 										<td style="width: 150px;">${vo.sendMemberName}</td>
 										<td>${vo.letterTitle}</td>
@@ -92,11 +92,17 @@
 								</tr>
 								<tr>
 									<td id="pageTd" colspan="4">
-										<button onclick="pageMove('${pageVo.startPage}');"><<</button>
+										<c:if test="${pageVo.currentPage > 1 }">
+											<button onclick="pageMove('${pageVo.startPage}');">
+												<<</button>
+										</c:if>
 										<c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" var="i">
 											<button class="pageBtn" onclick="pageMove('${i}');">${i}</button>
 										</c:forEach>
-										<button onclick="pageMove('${pageVo.endPage}');">>></button>
+										<c:if test="${pageVo.currentPage < pageVo.maxPage }">
+											<button onclick="pageMove('${pageVo.endPage}');">>></button>
+										</c:if>
+
 									</td>
 								</tr>
 							</tfoot>
@@ -194,10 +200,10 @@
 
 			setSearchValueTag();
 
-			function detail(){
+			function detail() {
 				const bno = event.target.parentElement.querySelector("#letterNo").innerText;
-				location.href = "${root}/letter/receive/detail?bno="+bno;
-				
+				location.href = "${root}/letter/receive/detail?bno=" + bno;
+
 			};
 
 		</script>

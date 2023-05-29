@@ -93,12 +93,17 @@
 								</tr>
 								<tr>
 									<td id="pageTd" colspan="4">
-										<button onclick="pageMove('${pageVo.startPage}');">
-											<<</button>
-												<c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" var="i">
-													<button class="pageBtn" onclick="pageMove('${i}');">${i}</button>
-												</c:forEach>
-												<button onclick="pageMove('${pageVo.endPage}');">>></button>
+										<c:if test="${pageVo.currentPage > 1 }">
+											<button onclick="pageMove('${pageVo.startPage}');">
+												<<</button>
+										</c:if>
+										<c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" var="i">
+											<button class="pageBtn" onclick="pageMove('${i}');">${i}</button>
+										</c:forEach>
+										<c:if test="${pageVo.currentPage < pageVo.maxPage }">
+											<button onclick="pageMove('${pageVo.endPage}');">>></button>
+										</c:if>
+
 									</td>
 								</tr>
 							</tfoot>

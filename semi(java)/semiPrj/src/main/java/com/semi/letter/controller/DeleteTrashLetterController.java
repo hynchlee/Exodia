@@ -12,13 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 import com.semi.letter.service.LetterService;
 
 @WebServlet("/letter/delete/trash")
-public class DeleteTrashLetter extends HttpServlet{
-	
+public class DeleteTrashLetterController extends HttpServlet{
+
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	
 		try {
 			String json = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+			
+			System.out.println(json);
 			
 			String [] strNumbers = json.replaceAll("\\s","")
 					.replace("[", "")
@@ -49,5 +51,5 @@ public class DeleteTrashLetter extends HttpServlet{
 		
 		
 	}
-
+	
 }

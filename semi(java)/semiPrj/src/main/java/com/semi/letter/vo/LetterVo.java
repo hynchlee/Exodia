@@ -5,13 +5,14 @@ public class LetterVo {
 	private String letterNo;
 	private String sendMemberNo;
 	private String sendMemberName;
+	private String sendMemberId;
 	private String receiveMemberNo;
 	private String receiveMemberName;
+	private String receiveMemberId;
 	private String letterTitle;
 	private String letterContent;
 	private String enrollDate;
 	private String status;
-	
 	public String getLetterNo() {
 		return letterNo;
 	}
@@ -30,6 +31,12 @@ public class LetterVo {
 	public void setSendMemberName(String sendMemberName) {
 		this.sendMemberName = sendMemberName;
 	}
+	public String getSendMemberId() {
+		return sendMemberId;
+	}
+	public void setSendMemberId(String sendMemberId) {
+		this.sendMemberId = sendMemberId;
+	}
 	public String getReceiveMemberNo() {
 		return receiveMemberNo;
 	}
@@ -41,6 +48,12 @@ public class LetterVo {
 	}
 	public void setReceiveMemberName(String receiveMemberName) {
 		this.receiveMemberName = receiveMemberName;
+	}
+	public String getReceiveMemberId() {
+		return receiveMemberId;
+	}
+	public void setReceiveMemberId(String receiveMemberId) {
+		this.receiveMemberId = receiveMemberId;
 	}
 	public String getLetterTitle() {
 		return letterTitle;
@@ -70,14 +83,17 @@ public class LetterVo {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public LetterVo(String letterNo, String sendMemberNo, String sendMemberName, String receiveMemberNo,
-			String receiveMemberName, String letterTitle, String letterContent, String enrollDate, String status) {
+	public LetterVo(String letterNo, String sendMemberNo, String sendMemberName, String sendMemberId,
+			String receiveMemberNo, String receiveMemberName, String receiveMemberId, String letterTitle,
+			String letterContent, String enrollDate, String status) {
 		super();
 		this.letterNo = letterNo;
 		this.sendMemberNo = sendMemberNo;
 		this.sendMemberName = sendMemberName;
+		this.sendMemberId = sendMemberId;
 		this.receiveMemberNo = receiveMemberNo;
 		this.receiveMemberName = receiveMemberName;
+		this.receiveMemberId = receiveMemberId;
 		this.letterTitle = letterTitle;
 		this.letterContent = letterContent;
 		this.enrollDate = enrollDate;
@@ -86,9 +102,12 @@ public class LetterVo {
 	@Override
 	public String toString() {
 		return "LetterVo [letterNo=" + letterNo + ", sendMemberNo=" + sendMemberNo + ", sendMemberName="
-				+ sendMemberName + ", receiveMemberNo=" + receiveMemberNo + ", receiveMemberName=" + receiveMemberName
-				+ ", letterTitle=" + letterTitle + ", letterContent=" + letterContent + ", enrollDate=" + enrollDate
-				+ ", status=" + status + "]";
+				+ sendMemberName + ", sendMemberId=" + sendMemberId + ", receiveMemberNo=" + receiveMemberNo
+				+ ", receiveMemberName=" + receiveMemberName + ", receiveMemberId=" + receiveMemberId + ", letterTitle="
+				+ letterTitle + ", letterContent=" + letterContent + ", enrollDate=" + enrollDate + ", status=" + status
+				+ "]";
 	}
+	
+	
 	
 }
