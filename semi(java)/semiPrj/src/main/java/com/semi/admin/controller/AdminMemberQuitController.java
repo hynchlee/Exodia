@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.semi.admin.service.AdminService;
 
-@WebServlet("/admin/member/stop")
-public class AdminMemberStopController extends HttpServlet{
+@WebServlet("/admin/member/quit")
+public class AdminMemberQuitController extends HttpServlet{
 
 	@Override
 	protected void doPost (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,20 +26,20 @@ public class AdminMemberStopController extends HttpServlet{
 			
 			//서비스
 			AdminService as = new AdminService();
-			int result = as.stopMember(noArr);
+			int result = as.quitMember(noArr);
 			
 			//결과
 			if(result <= 0) {
-				resp.getWriter().write("회원 제재 실패 ...");
+				resp.getWriter().write("회원 탈퇴처리 실패 ...");
 				throw new Exception();
 			}
-			resp.getWriter().write("회원 제재 성공!");
+			resp.getWriter().write("회원 탈퇴처리 성공!");
 			
 		}catch(Exception e) {
-			System.out.println("[ERROR] stop member fail ...");
+			System.out.println("[ERROR] quit member fail ...");
 			e.printStackTrace();
 			
-			req.setAttribute("errorMsg", "회원 제재 실패 ...");
+			req.setAttribute("errorMsg", "회원 탈퇴처리 실패 ...");
 			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
 		}
 		

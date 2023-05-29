@@ -89,7 +89,7 @@
 									정상
 								</c:if>
 								<c:if test="${member.status == 'S'}">
-									정지
+									제한
 								</c:if>
 								<c:if test="${member.status == 'X'}">
 									탈퇴
@@ -105,7 +105,7 @@
 		<div class="btn-area">
 			<button id="mileage-btn" onclick="minusMileage();">마일리지 차감</button>
 			<button id="stop-btn" onclick="stopMember();">계정정지</button>
-			<button id="quit-btn">탈퇴처리</button>
+			<button id="quit-btn" onclick="quitMember();">탈퇴처리</button>
 		</div>
 
 		<div class="page-area">
@@ -158,7 +158,7 @@
 		function stopMember() {
 			const noArr = getCheckedBox();
 
-			const result = confirm("선택한 회원을 정지하시겠습니까?");
+			const result = confirm("선택한 회원을 제재처리 하시겠습니까?");
 			if(result) {
 				$.ajax({
 					url : '/semi/admin/member/stop',
@@ -167,7 +167,7 @@
 						noArr : JSON.stringify(noArr)
 					},
 					success : function(data){
-						alert("회원 정지 완료");
+						alert("회원 제재 처리 완료");
 						location.reload();
 					},
 					error : function(error) {
@@ -180,7 +180,25 @@
 
 		//회원 탈퇴
 		function quitMember() {
+			const noArr = getCheckedBox();
 
+			const result = confirm("선택한 회원을 탈퇴처리 하시겠습니까?");
+			if(result) {
+				$.ajax({
+					url : '/semi/admin/member/quit',
+					type : 'post',
+					data : {
+						noArr : JSON.stringify(noArr)
+					},
+					success : function(data){
+						alert("회원 탈퇴 처리 완료");
+						location.reload();
+					},
+					error : function(error) {
+						console.log(error);
+					},
+				})
+			}
 		};
 		
 		
