@@ -53,7 +53,6 @@
 			<form action="/semi/letter/write" id="writeTable" method="post"
 				onsubmit="return showErrorOnSubmit();">
 				<table>
-					${memberList}
 					<thead>
 						<tr>
 							<th id="title">받는 사람</th>
@@ -97,18 +96,7 @@
 	const caption = document.querySelector(".caption1");
 	caption.style.marginTop = 0;
 
-	async function checkNickname(receiver) {
-    const response = await fetch('/api/check_nickname', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nickname: receiver }),
-    	});
-
-		const data = await response.json();
-		return data.success;
-	}
-
-	async function showErrorOnSubmit() {
+	function showErrorOnSubmit() {
 		const receiver = document.querySelector('#receiver');
 		const alertInput = document.querySelector('#alertInput');
 
@@ -116,17 +104,7 @@
 			alertInput.value = '!오류: 받는 사람이 본인입니다.';
 			alertInput.style.display = 'inline';
 			return false;
-		} else {
-			alertInput.value = '';
-			alertInput.style.display = 'none'; 
-		}
-
-		const isNicknameValid = await checkNickname(receiver.value);
-		if (!isNicknameValid) {
-			alertInput.value = '!오류: 받는 사람의 닉네임이 데이터베이스에 없습니다.';
-			alertInput.style.display = 'inline';
-			return false;
-		}
+		} 
 
 		alert('작성 완료');
 		return true;

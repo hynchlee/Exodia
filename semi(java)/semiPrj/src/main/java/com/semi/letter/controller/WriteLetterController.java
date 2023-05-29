@@ -22,14 +22,14 @@ public class WriteLetterController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-//		HttpSession session = req.getSession();
-//		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
-//		
-//		if(loginMember == null) {
-//			req.setAttribute("errorMsg", "로그인을 먼저 해주세요");
-//			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
-//			return;
-//		}
+		HttpSession session = req.getSession();
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		
+		if(loginMember == null) {
+			req.setAttribute("errorMsg", "로그인을 먼저 해주세요");
+			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+			return;
+		}
 		
 		req.getRequestDispatcher("/WEB-INF/views/letter/write-letter.jsp").forward(req, resp);
 	}
@@ -39,12 +39,12 @@ public class WriteLetterController extends HttpServlet{
 		
 		HttpSession session = req.getSession();
 		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
-//		
-//		if(loginMember == null) {
-//			req.setAttribute("errorMsg", "로그인을 먼저 해주세요");
-//			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
-//			return;
-//		}
+		
+		if(loginMember == null) {
+			req.setAttribute("errorMsg", "로그인을 먼저 해주세요");
+			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+			return;
+		}
 		
 		String sendMemberName = loginMember.getMemberNick();
 		
@@ -57,12 +57,10 @@ public class WriteLetterController extends HttpServlet{
 			vo.setReceiveMemberName(receiver);
 			vo.setLetterTitle(title);
 			vo.setLetterContent(content);
-			
+						
 			LetterService ms = new LetterService();
 			List<MemberVo> memberList = ms.getMemberList();
-			
-			System.out.println(memberList);
-			
+						
 			int result = ms.writeLetter(vo, sendMemberName);
 			
 			if(result == 1) {
