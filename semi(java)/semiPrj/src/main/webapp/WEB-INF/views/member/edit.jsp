@@ -33,7 +33,7 @@
                 </tr>
                 <tr>
                     <th>비밀번호</th>
-                    <td><input type="password" name="memberPwd"></td>
+                    <td><input type="password" name="memberPwd" placeholder="영어소문자/숫자/특수문자 조합 8~15자리"></td>
                 </tr>
                 <tr>
                     <th>비밀번호 확인</th>
@@ -49,11 +49,11 @@
                 </tr>
                 <tr>
                     <th>휴대폰 번호</th>
-                    <td><input type="text" name="phoneNo" value="${loginMember.phoneNo}"></td>
+                    <td><input type="text" name="phoneNo" placeholder="숫자 11자리 입력" value="${loginMember.phoneNo}"></td>
                 </tr>
                 <tr>
                     <th>프로필 사진</th>
-                    <td><input type="text" id="fileName-zone" value="${loginMember.profile}" disabled></td>
+                    <td><input type="text" id="fileName-zone" value="${loginMember.profile}" placeholder="*선택사항" disabled></td>
                     <td>
                         <div id="dup-check">
                             <label for="profile-file">파일첨부</label>

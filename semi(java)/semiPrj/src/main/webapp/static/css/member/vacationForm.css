@@ -66,11 +66,15 @@ table input {
 #vac-days {
     width: 50px;
     font-size: 16px;
+    text-align: center;
+    background-color: rgb(139, 136, 136);
+    color: rgba(255,255,255,1);
 }
 
 #start-date , #end-date {
     width: 155px;
     font-size: 16px;
+    text-align: center;
 }
 
 input[type="text"] { font-size: 16px; }

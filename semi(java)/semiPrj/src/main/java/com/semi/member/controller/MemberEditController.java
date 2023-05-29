@@ -40,15 +40,22 @@ public class MemberEditController extends HttpServlet{
 			HttpSession session = req.getSession();
 			MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
 			
-			//파일 처리
-			Part f = req.getPart("profile");
-			String path = req.getServletContext().getRealPath("/static/img/profile/");
-			AttachmentVo attachmentVo = FileUploader.saveFile(path, f);
+//			//파일 처리
+//			Part f = req.getPart("profile");
+//			String path = req.getServletContext().getRealPath("/static/img/profile/");
+//			AttachmentVo attachmentVo = FileUploader.saveFile(path, f);
 			
 			//데꺼
 			String memberNo = loginMember.getMemberNo();
 			String memberPwd = req.getParameter("memberPwd");
 			String phoneNo = req.getParameter("phoneNo");
+			//프로필 변경 시, 반영
+			AttachmentVo attachmentVo = new AttachmentVo();
+			String path = req.getServletContext().getRealPath("/static/img/profile/");
+			Part profile = req.getPart("profile");
+			if(profile != null) {
+				attachmentVo = FileUploader.saveFile(path, profile);
+			}
 			
 			//데뭉
 			MemberVo editVo = new MemberVo();

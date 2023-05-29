@@ -34,11 +34,6 @@ public class MemberJoinController extends HttpServlet{
 		
 		try {
 			
-			//파일 처리
-			Part f = req.getPart("profile");
-			String path = req.getServletContext().getRealPath("/static/img/profile/");
-			AttachmentVo attachmentVo = FileUploader.saveFile(path, f);
-			
 			//데꺼
 			String identity = req.getParameter("identity");
 			String memberId = req.getParameter("memberId");
@@ -46,7 +41,14 @@ public class MemberJoinController extends HttpServlet{
 			String memberNick = req.getParameter("memberNick");
 			String birthNum = req.getParameter("birthNum");
 			String phoneNo = req.getParameter("phoneNo");
-//			String profile = req.getParameter("profile");
+			//파일처리 (프사)
+			Part profile = req.getPart("profile");
+			//사진 첨부해야 지정된 경로에 사진 저장 
+			AttachmentVo attachmentVo = new AttachmentVo();
+			String path = req.getServletContext().getRealPath("/static/img/profile/");
+			if(profile.getSize() > 0) {
+				attachmentVo = FileUploader.saveFile(path, profile);
+			}
 			
 			//데뭉
 			MemberVo vo = new MemberVo();

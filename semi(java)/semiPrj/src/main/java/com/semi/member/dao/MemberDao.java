@@ -18,6 +18,14 @@ public class MemberDao {
 	public int join(Connection conn, MemberVo vo) throws Exception {
 
 		String sql = "INSERT INTO MEMBER (MEMBER_NO, MEMBER_ID, MEMBER_PWD, MEMBER_NICK, BIRTH_NUM, PHONE_NO, IDENTITY, PROFILE) VALUES (SEQ_MEMBER_NO.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
+		
+//		String sql = "";
+//		if (vo.getProfile() != null) {
+//			sql = "INSERT INTO MEMBER (MEMBER_NO, MEMBER_ID, MEMBER_PWD, MEMBER_NICK, BIRTH_NUM, PHONE_NO, IDENTITY, PROFILE) VALUES (SEQ_MEMBER_NO.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
+//		}else {
+//			sql = "INSERT INTO MEMBER (MEMBER_NO, MEMBER_ID, MEMBER_PWD, MEMBER_NICK, BIRTH_NUM, PHONE_NO, IDENTITY) VALUES (SEQ_MEMBER_NO.NEXTVAL, ?, ?, ?, ?, ?, ?)";
+//		}
+		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, vo.getMemberId());
 		pstmt.setString(2, vo.getMemberPwd());
@@ -25,7 +33,9 @@ public class MemberDao {
 		pstmt.setString(4, vo.getBirthNum());
 		pstmt.setString(5, vo.getPhoneNo());
 		pstmt.setString(6, vo.getIdentity());
-		pstmt.setString(7, vo.getProfile());
+//		if (vo.getProfile() != null) {
+			pstmt.setString(7, vo.getProfile());
+//		}
 		int result = pstmt.executeUpdate();
 		
 		//학생 테이블 칼럼 추가

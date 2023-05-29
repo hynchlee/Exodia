@@ -24,7 +24,7 @@
             </a>
         </div>
 
-        <form action="${root}/member/join" method="post" enctype="multipart/form-data">
+        <form action="${root}/member/join" method="post" enctype="multipart/form-data" onsubmit="return validateRadio();">
             
             <div class="radio-area">
                 <div class="identity-box">
@@ -42,12 +42,12 @@
             <table>
                 <tr>
                     <th>아이디</th>
-                    <td><input type="text" name="memberId" placeholder="영어/숫자 조합 n자리"></td>
+                    <td><input type="text" name="memberId" placeholder="영어소문자/숫자 조합 4~12자리"></td>
                     <td><button id="dup-check">중복검사</button></td>
                 </tr>
                 <tr>
                     <th>비밀번호</th>
-                    <td><input type="password" name="memberPwd" placeholder="영어/숫자 조합 n자리"></td>
+                    <td><input type="password" name="memberPwd" placeholder="영어소문자/숫자/특수문자 조합 8~15자리"></td>
                 </tr>
                 <tr>
                     <th>비밀번호 확인</th>
@@ -67,7 +67,7 @@
                 </tr>
                 <tr>
                     <th>프로필 사진</th>
-                    <td><input type="text" id="fileName-zone" disabled></td>
+                    <td><input type="text" id="fileName-zone" placeholder="*선택사항" disabled></td>
                     <td>
                         <div id="file-attachment">
                             <label for="profile-file">파일첨부</label>
@@ -78,7 +78,7 @@
             </table>
 
             <div>
-                <input type="submit" value="회원가입">
+                <input type="submit" value="회원가입" onclick="return validate();">
             </div>
 
         </form>
@@ -103,5 +103,66 @@
         fileNameZone.value = fileName;
         console.log(fileName);
     };
+
+
+    //신분 선택 필수 조건
+    function validateRadio() {
+        const radioStudent = document.querySelector('input[name="identity"][value="S"]');
+        const radioTeacher = document.querySelector('input[name="identity"][value="T"]');
+
+        if (radioStudent.checked === false && radioTeacher.checked === false) {
+            alert('학생 또는 강사를 선택해주세요.');
+            return false;
+        }
+        return true;
+    }
+
+
+    //제약조건
+    function validate() {
+        let memberId = document.querySelector('input[name=memberId]').value;
+        let memberPwd = document.querySelector('input[name=memberPwd]').value;
+        let memberPwd2 = document.querySelector('input[name=memberPwd2]').value;
+        let memberNick = document.querySelector('input[name=memberNick]').value;
+        let birthNum = document.querySelector('input[name=birthNum]').value;
+        let phoneNo = document.querySelector('input[name=phoneNo]').value;
+
+        // 아이디 제약조건 - 영어소문자/숫자 조합 4~12자리
+        if(!(/^[a-z\d]{4,12}$/.test(memberId))) {
+            alert('유효한 아이디를 입력해주세요.');
+            
+            return false;
+        }
+        
+        // 비번 제약조건 - 영어소문자/숫자/특수문자 조합 8~15자리
+        if(!(/^[\w!@#$%^&*-]{8,15}$/.test(memberPwd))) {
+            alert('유효한 비밀번호를 입력해주세요.');
+            
+            return false;
+        }
+
+        // 비밀번호 확인
+        if(memberPwd !== memberPwd2) {
+            alert("동일한 비밀번호 값을 입력해주세요.")
+            memberPwd2.value = '';
+            memberPwd2.focus();
+
+            return false;
+        }
+
+        //생일 - 숫자 8자리
+        if (!/^\d{8}$/.test(birthNum)) {
+            alert("유효한 생년월일을 입력해주세요.");
+            return false;
+        }
+        
+        //전번 - 숫자 11자리
+        if (!/^\d{11}$/.test(phoneNo)) {
+            alert("유효한 휴대폰 번호를 입력해주세요.");
+            return false;
+        }
+
+        return true;
+    }
 
 </script>

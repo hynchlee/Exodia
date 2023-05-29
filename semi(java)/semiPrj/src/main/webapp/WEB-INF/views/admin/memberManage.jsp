@@ -142,8 +142,8 @@
 		const title = document.querySelector(".title");
 		title.innerText = '회원 관리';
 		
-		const caption = document.querySelector(".caption");
-		caption.innerText = '';
+		// const caption = document.querySelector(".caption");
+		// caption.innerText = '';
 
 		//선택한 회원 번호 가져오기
 		function getCheckedBox() {
@@ -230,8 +230,6 @@
 				})
 			}
 		};
-
-		const searchType
 
 
 		//셀렉트

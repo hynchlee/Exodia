@@ -31,7 +31,7 @@
             <table>
                 <tr>
                     <th>휴가일수</th>
-                    <td><input id="vac-days" type="number">&nbsp; 일</td>
+                    <td><input id="vac-days" type="number" disabled>&nbsp; 일</td>
                 </tr>
                 <tr>
                     <th>휴가기간</th>
@@ -46,7 +46,7 @@
             </table>
 
             <div id="submit-box">
-                <input type="submit" value="제출">
+                <input type="submit" value="제출" onclick="return validate();">
             </div>
 
         </form>
@@ -56,4 +56,62 @@
 </body>
 </html>
 
+<script>
 
+    //달력 가공
+    const endDate = document.querySelector('#end-date');
+    const vacDays = document.querySelector('#vac-days');
+    const startDate = document.querySelector('#start-date');
+
+    const today = new Date();
+    today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+    const nowISOString = today.toISOString().split('T')[0];
+
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    const tomorrowISOString = tomorrow.toISOString().split('T')[0];
+
+    startDate.min = tomorrowISOString;
+    startDate.value = tomorrowISOString;
+    endDate.min = tomorrowISOString;
+    endDate.value = tomorrowISOString;
+
+    const updateVacDays = () => {
+        const days = (new Date(endDate.value) - new Date(startDate.value)) / (1000 * 60 * 60 * 24) + 1;
+        vacDays.value = (!isNaN(days) && days >= 0) ? days : '';
+    };
+
+    const validateEndDate = () => {
+        if (new Date(endDate.value) < new Date(startDate.value)) {
+            endDate.value = startDate.value;
+        }
+    };
+
+    startDate.addEventListener('input', () => {
+        endDate.min = startDate.value;
+        validateEndDate();
+        updateVacDays();
+    });
+
+    endDate.addEventListener('input', () => {
+        validateEndDate();
+        updateVacDays();
+    });
+
+    updateVacDays();
+
+
+    //사유 빈칸이면 제출 불가
+    function validate() {
+        let reason = document.querySelector('input[name=reason]').value;
+
+        if (reason.trim().length === 0) {
+            alert("사유를 입력해주세요.");
+            return false;
+        }
+
+        return true;
+    };
+
+  </script>
+  
