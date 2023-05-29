@@ -92,8 +92,8 @@
 								<c:forEach items="${tvolist}" var="tvo">
 									<ul class="choiceLecture">
 										<input hidden type="text" value="${tvo.lectureNo}">
-										<li class="list02">${tvo.lectureCategoryName}</li>	
-										<li class="list03">${tvo.teacherMemberName}</li>				
+										<li class="list03">${tvo.lectureCategoryName}</li>	
+									<!--<li class="list02">${tvo.teacherMemberName}</li>-->				
 									</ul>
 									<hr>			
 								</c:forEach>
@@ -116,7 +116,7 @@
 								<tr>
 									<td colspan="3" class="line00">우리반 게시판</td>
 									<td class="plus01">
-									<a href="${root}/class/list?page=1" class="plus02">더보기</a>
+									<a href="${root}/class/tlist?page=1" class="plus02">더보기</a>
 									</td>
 								</tr>
 							</thead>
