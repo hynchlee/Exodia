@@ -31,11 +31,16 @@
                         </div>                        
                         </c:forEach>
                         <div id="pageDiv">
-                            <button onclick="pageMove('${pageVo.startPage}');"><<</button>
-                                <c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" var="i">
-                                    <button class="pageBtn" onclick="pageMove('${i}');">${i}</button>
-                                </c:forEach>
-                            <button onclick="pageMove('${pageVo.endPage}');">>></button>
+                            <c:if test="${pv.currentPage > 1 }">
+                                <button onclick="pageMove('${pv.startPage}');"><<</button>
+                            </c:if>
+                            <c:forEach begin="${pv.startPage}" end="${pv.endPage}"
+                                var="i">
+                                <button class="pageBtn" onclick="pageMove('${i}');">${i}</button>
+                            </c:forEach>
+                            <c:if test="${pv.currentPage < pv.maxPage }">
+                                <button onclick="pageMove('${pv.endPage}');">>></button>
+                            </c:if>
                         </div>
                     </div>
                     <div style="height: 30px;"></div>
@@ -57,7 +62,7 @@
 			}
 
 			for (let btn of pageBtn) {
-				if (btn.innerHTML == '${pageVo.currentPage}') {
+				if (btn.innerHTML == '${pv.currentPage}') {
 					btn.style.backgroundColor = '#4998D1';
 					btn.style.color = 'white';
 				}

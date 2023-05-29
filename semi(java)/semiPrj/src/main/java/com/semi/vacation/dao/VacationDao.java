@@ -34,7 +34,7 @@ public class VacationDao {
 
 	public List<VacationVo> getVacationList(Connection conn, PageVo pv, String no) throws Exception {
 		
-		String sql = "SELECT * FROM ( SELECT RNUM, VACATION_REQUEST_LIST_NO, DAY, LECTURE_NAME, MEMBER_NICK, MEMBER_NO, REASON, VACATION_START, VACATION_END FROM ( SELECT ROWNUM RNUM, VACATION_REQUEST_LIST_NO, (TO_DATE(VACATION_END, 'YYYYMMDD') - TO_DATE(VACATION_START, 'YYYYMMDD') + 1) AS DAY, LECTURE_NAME, T.MEMBER_NICK MEMBER_NICK, VRL.MEMBER_NO, REASON, VACATION_START, VACATION_END FROM VACATION_REQUEST_LIST VRL JOIN MEMBER M ON M.MEMBER_NO = VRL.MEMBER_NO JOIN STUDENT S ON S.STUDENT_MEMBER_NO = M.MEMBER_NO JOIN LECTURE L ON L.LECTURE_NO = S.LECTURE_NO JOIN LECTURE_CATEGORY LG ON L.LECTURE_CATEGORY_NO = LG.LECTURE_CATEGORY_NO JOIN (SELECT DISTINCT MEMBER_NICK, MEMBER_NO FROM MEMBER) T ON L.TEACHER_MEMBER_NO = T.MEMBER_NO WHERE VRL.MEMBER_NO = ? AND IDENTITY = 'S' ORDER BY VACATION_REQUEST_LIST_NO DESC ) WHERE RNUM BETWEEN ? AND ? )";
+		String sql = "SELECT * FROM ( SELECT RNUM, VACATION_REQUEST_LIST_NO, DAY, LECTURE_NAME, MEMBER_NICK, MEMBER_NO, REASON, VACATION_START, VACATION_END FROM ( SELECT ROWNUM RNUM, VACATION_REQUEST_LIST_NO, (TO_DATE(VACATION_END, 'YYYYMMDD') - TO_DATE(VACATION_START, 'YYYYMMDD') + 1) AS DAY, LECTURE_NAME, T.MEMBER_NICK MEMBER_NICK, VRL.MEMBER_NO, REASON, VACATION_START, VACATION_END FROM VACATION_REQUEST_LIST VRL JOIN MEMBER M ON M.MEMBER_NO = VRL.MEMBER_NO JOIN STUDENT S ON S.STUDENT_MEMBER_NO = M.MEMBER_NO JOIN LECTURE L ON L.LECTURE_NO = S.LECTURE_NO JOIN LECTURE_CATEGORY LG ON L.LECTURE_CATEGORY_NO = LG.LECTURE_CATEGORY_NO JOIN (SELECT DISTINCT MEMBER_NICK, MEMBER_NO FROM MEMBER) T ON L.TEACHER_MEMBER_NO = T.MEMBER_NO WHERE VRL.MEMBER_NO = ? AND IDENTITY = 'S' AND VRL.STATUS = 'O' ORDER BY VACATION_REQUEST_LIST_NO DESC ) WHERE RNUM BETWEEN ? AND ? )";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, no);
 		pstmt.setInt(2, pv.getBeginRow());
@@ -135,6 +135,44 @@ public class VacationDao {
 		
 		return voList;
 		
+	}
+
+	public int updateVacationApproval(Connection conn, int number) throws Exception {
+		
+		String sql ="UPDATE VACATION_REQUEST_LIST SET STATUS = 'O' WHERE VACATION_REQUEST_LIST_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, number);
+		
+		int result = pstmt.executeUpdate();
+
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+
+		JDBCTemplate.close(pstmt);
+
+		return result;
+	}
+
+	public int updateVacationRefuse(Connection conn, int number) throws Exception {
+		
+		String sql ="UPDATE VACATION_REQUEST_LIST SET STATUS = 'X' WHERE VACATION_REQUEST_LIST_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, number);
+		
+		int result = pstmt.executeUpdate();
+
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+
+		JDBCTemplate.close(pstmt);
+
+		return result;
 	}
 
 }

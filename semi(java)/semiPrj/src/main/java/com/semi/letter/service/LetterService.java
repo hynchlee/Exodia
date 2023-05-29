@@ -9,6 +9,7 @@ import com.semi.common.db.JDBCTemplate;
 import com.semi.common.page.PageVo;
 import com.semi.letter.dao.LetterDao;
 import com.semi.letter.vo.LetterVo;
+import com.semi.member.vo.MemberVo;
 
 public class LetterService {
 
@@ -158,21 +159,6 @@ public class LetterService {
 
 	}
 
-	public List<LetterVo> getLetterTrashList(String searchSR, PageVo pv, String searchType, String searchValue,
-			String memberNo) throws SQLException {
-
-		// conn
-		Connection conn = JDBCTemplate.getConnection();
-
-		List<LetterVo> voList = dao.getLetterTrashList(searchSR, conn, pv, searchType, searchValue, memberNo);
-
-		// close
-		JDBCTemplate.close(conn);
-
-		return voList;
-
-	}
-
 	public int deleteTrashLetter(int[] letterNo) throws Exception {
 
 		Connection conn = JDBCTemplate.getConnection();
@@ -198,7 +184,7 @@ public class LetterService {
 		Connection conn = JDBCTemplate.getConnection();
 
 		LetterVo vo = dao.selectSendOneByNo(bno, conn);
-		
+
 		JDBCTemplate.close(conn);
 
 		return vo;
@@ -206,15 +192,69 @@ public class LetterService {
 	}
 
 	public LetterVo selectReceiveOneByNo(String bno) throws Exception {
-		
+
 		Connection conn = JDBCTemplate.getConnection();
 
 		LetterVo vo = dao.selectReceiveOneByNo(bno, conn);
-		
+
 		JDBCTemplate.close(conn);
 
 		return vo;
-		
+
+	}
+
+	public int getLetterTrashListCnt(String searchType, String searchValue, String memberNo) throws Exception {
+
+		Connection conn = JDBCTemplate.getConnection();
+
+		int cnt = dao.getLetterTrashListCnt(conn, searchType, searchValue, memberNo);
+
+		JDBCTemplate.close(conn);
+
+		return cnt;
+
+	}
+
+	public List<LetterVo> getLetterTrashList(PageVo pv, String memberNo) throws Exception {
+
+		// conn
+		Connection conn = JDBCTemplate.getConnection();
+
+		List<LetterVo> voList = dao.getLetterTrashList(conn, pv, memberNo);
+
+		// close
+		JDBCTemplate.close(conn);
+
+		return voList;
+
+	}
+
+	public List<LetterVo> getLetterTrashList(PageVo pv, String searchType, String searchValue, String memberNo)
+			throws Exception {
+
+		// conn
+		Connection conn = JDBCTemplate.getConnection();
+
+		List<LetterVo> voList = dao.getLetterTrashList(conn, pv, searchType, searchValue, memberNo);
+
+		// close
+		JDBCTemplate.close(conn);
+
+		return voList;
+
+	}
+
+	public List<MemberVo> getMemberList() throws Exception {
+
+		// conn
+		Connection conn = JDBCTemplate.getConnection();
+		// sql
+		List<MemberVo> memberList = dao.getMemberList(conn);
+		// close
+		JDBCTemplate.close(conn);
+
+		return memberList;
+
 	}
 
 }

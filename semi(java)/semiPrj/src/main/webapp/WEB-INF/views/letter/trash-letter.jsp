@@ -1,119 +1,129 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-	<!DOCTYPE html>
-	<html>
-	<head>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-		<c:set var="root" value="${pageContext.request.contextPath}"></c:set>
-		<meta charset="UTF-8">
-		<title>Insert title here</title>
-		<link href="${root}/static/css/letter/trash-letter.css" rel="stylesheet">
-		
-	</head>
-	<body>
-		<%@ include file="/WEB-INF/views/common/header.jsp" %>
-			<main>
-				<div id="side-bar">
-					<div>
-						<form action="${root}/letter/write" method="get">
-							<div id="select-button">
-								<img src="${root}/static/img/letter/쪽지 쓰기.png">
-								<input type="submit" value="쪽지 쓰기" id="write-letter">
-							</div>
-						</form>
-					</div>
-					<div>
-						<form action="${root}/letter/sent" method="get">
-							<div id="select-button">
-								<img src="${root}/static/img/letter/보낸 쪽지.png">
-								<input type="submit" value="보낸 쪽지" id="sent-letter">
-							</div>
-						</form>
-					</div>
-					<div>
-						<form action="${root}/letter/receive" method="get">
-							<div id="select-button">
-								<img src="${root}/static/img/letter/받은 쪽지.png">
-								<input type="submit" value="받은 쪽지" id="receive-letter">
-							</div>
-						</form>
-					</div>
-					<div>
-						<form action="${root}/letter/trash" method="get">
-							<div id="select-button">
-								<img src="${root}/static/img/letter/휴지통.png">
-								<input type="submit" value="휴지통" id="trash-can" disabled>
-							</div>
-						</form>
-					</div>
-				</div>
-				<div id="letter-list">
-					<table>
-						<form action="${root}/letter/trash" method="get">
-							<thead>
-								<tr>
-									<td colspan="5" style="text-align: right;">
-										<select name="searchSR" id="changeOpt">
-											<option value="receiveLetter">받은메세지</option>
-											<option value="sendLetter">보낸메세지</option>
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<td colspan="5">
-										<select name="searchType">
-											<option value="writer">작성자</option>
-											<option value="title">내용</option>
-										</select>
-										<input type="text" name="searchValue" class="searchValueElem"
-										value="${searchVo.searchValue}" placeholder="검색할내용">
-										<input type="submit" value="검색하기">
-									</td>
-								</tr>
-								<tr id="trHead">
-									<td id="shortTd" style="width: 10%;"></td>
-									<td>받은사람</td>
-									<td>작성자</td>
-									<td>내용내용내용</td>
-									<td>날짜</td>
-								</tr>
-							</thead>
-						</form>
-						<tbody>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>받은 편지</td>
-								<td>작성자</td>
-								<td>내용내용내용</td>
-								<td>날짜</td>
-							</tr>
-						</tbody>
-						<tfoot>
-							<tr>
-								<td id="deleteTd" colspan="5">
-									<button id="deleteButton" onclick="delButton();">삭제하기</button>
-								</td>
-							</tr>
-							<tr>
-								<td id="pageTd" colspan="5">
-									<button onclick="pageMove('${pageVo.startPage}');"><<</button>
-									<c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" var="i">
-										<button class="pageBtn" onclick="pageMove('${i}');">${i}</button>
-									</c:forEach>
-									<button onclick="pageMove('${pageVo.endPage}');">>></button>
-								</td>
-							</tr>
-						</tfoot>
-					</table>
-				</div>
-			</main>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<c:set var="root" value="${pageContext.request.contextPath}"></c:set>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="${root}/static/css/letter/trash-letter.css" rel="stylesheet">
 
-			<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+</head>
+<body>
+	<%@ include file="/WEB-INF/views/common/header.jsp"%>
+	<main>
+		<div id="side-bar">
+			<div>
+				<form action="${root}/letter/write" method="get">
+					<div id="select-button">
+						<img src="${root}/static/img/letter/쪽지 쓰기.png"> <input
+							type="submit" value="쪽지 쓰기" id="write-letter">
+					</div>
+				</form>
+			</div>
+			<div>
+				<form action="${root}/letter/sent" method="get">
+					<div id="select-button">
+						<img src="${root}/static/img/letter/보낸 쪽지.png"> <input
+							type="submit" value="보낸 쪽지" id="sent-letter">
+					</div>
+				</form>
+			</div>
+			<div>
+				<form action="${root}/letter/receive" method="get">
+					<div id="select-button">
+						<img src="${root}/static/img/letter/받은 쪽지.png"> <input
+							type="submit" value="받은 쪽지" id="receive-letter">
+					</div>
+				</form>
+			</div>
+			<div>
+				<form action="${root}/letter/trash" method="get">
+					<div id="select-button">
+						<img src="${root}/static/img/letter/휴지통.png"> <input
+							type="submit" value="휴지통" id="trash-can" disabled>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div id="letter-list">
+			<table>
+				<form action="${root}/letter/trash" method="get">
+					<thead>
+						<tr>
+							<td colspan="5"><select name="searchType">
+									<option value="writer">작성자</option>
+									<option value="title">제목</option>
+							</select> <input type="text" name="searchValue" class="searchValueElem"
+								value="${searchVo.searchValue}" placeholder="검색할내용"> <input
+								type="submit" value="검색하기"></td>
+						</tr>
+						<tr id="trHead">
+							<td id="shortTd" style="width: 10%;"></td>
+							<td>보낸사람</td>
+							<td>받은사람</td>
+							<td>제목</td>
+							<td>날짜</td>
+						</tr>
+					</thead>
+				</form>
+				<tbody>
+					<c:forEach items="${voList}" var="vo">
+						<tr>
+							<td><input type="checkbox" class="checkbox" value="${vo.letterNo}"> </td>
+							<td><c:choose>
+									<c:when test="${vo.sendMemberName == loginMember.memberNick}">
+											*${loginMember.memberNick}*
+						                </c:when>
+									<c:otherwise>
+						                    ${vo.sendMemberName}(${vo.sendMemberId})
+						                </c:otherwise>
+								</c:choose></td>
+							<td><c:choose>
+									<c:when test="${vo.receiveMemberName == loginMember.memberNick}">
+						                    *${loginMember.memberNick}*
+						                </c:when>
+									<c:otherwise>
+						                    ${vo.receiveMemberName}(${vo.receiveMemberId})
+						                </c:otherwise>
+								</c:choose></td>
+							<td>${vo.letterTitle}</td>
+							<td>${vo.enrollDate}</td>
+						</tr>
+					</c:forEach>
 
-	</body>
-	</html>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td id="deleteTd" colspan="5">
+							<button id="deleteButton" onclick="delButton();">삭제하기</button>
+						</td>
+					</tr>
+					<tr>
+						<td id="pageTd" colspan="5"><c:if
+								test="${pageVo.currentPage > 1 }">
+								<button onclick="pageMove('${pageVo.startPage}');"><<</button>
+							</c:if> <c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}"
+								var="i">
+								<button class="pageBtn" onclick="pageMove('${i}');">${i}</button>
+							</c:forEach> <c:if test="${pageVo.currentPage < pageVo.maxPage }">
+								<button onclick="pageMove('${pageVo.endPage}');">>></button>
+							</c:if></td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</main>
 
-	<script>
+	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+
+</body>
+</html>
+
+<script>
 		const title = document.querySelector(".title");
 		title.innerHTML = "휴지통";
 
@@ -146,7 +156,7 @@
 				}
 			}
 			$.ajax({
-				url: '/semi/letter/delete/receive',
+				url: '/semi/letter/delete/trash',
 				type: 'post',
 				data: JSON.stringify(boxList),
 				contentType: "application/json",
@@ -161,23 +171,6 @@
 
 		}
 
-		const opt = document.querySelector("#changeOpt");
-		opt.addEventListener("change",function(){
-			$.ajax({
-				url: '/semi/letter/trash',
-				type: 'post',
-				data:JSON.stringify(data),
-				contentType: "application/json; charset=utf-8",
-				success:function(){
-					alert("변경 완료")
-				},
-				error: function(){
-					alert("변경 실패")
-				}
-			});
-		});
-
-		const searchSR = '${searchVo.searchSR}'
 		const searchType = '${searchVo.searchType}';
 		const searchValue = '${searchVo.searchValue}';
 

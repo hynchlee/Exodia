@@ -16,8 +16,6 @@ import com.semi.admin.vo.AdminVo;
 import com.semi.attendance.service.AttendanceService;
 import com.semi.attendance.vo.AttendanceVo;
 import com.semi.common.page.PageVo;
-import com.semi.letter.vo.LetterVo;
-import com.semi.member.vo.MemberVo;
 
 @WebServlet("/attendance/manage")
 public class ManageAttendenceController extends HttpServlet{
