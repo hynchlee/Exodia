@@ -16,7 +16,7 @@
 	<main>
 
 		<div class="select-area">
-			<select>
+			<select name="searchType">
 				<option value="all">전체</option>
 				<option value="student">학생</option>
 				<option value="teacher">강사</option>
@@ -24,7 +24,7 @@
 		</div>
 
 		<c:forEach items="${memberList}" var="member">
-			<div class="member-info">
+			<div class="member-info" data-member-identity="${member.identity}">
 				<div id="check-area">
 					<input type="checkbox" name="manageMember" value="${member.memberNo}">
 				</div>
@@ -69,7 +69,7 @@
 						</tr>
 						<tr>
 							<th>잔여휴가</th>
-							<td>${member.leftVacation}일</td>
+							<td>${member.leftVacation} 일</td>
 						</tr>
 						<tr>
 							<th>마일리지</th>
@@ -120,7 +120,12 @@
 				<a href="${pageContext.request.contextPath}/admin/member/manage?page=${pv.currentPage-1}"><button><<</button></a>
 			</c:if>
 			<c:forEach begin="${pv.startPage}" end="${pv.endPage}" var="i">
-				<a href="${pageContext.request.contextPath}/admin/member/manage?page=${i}"><button>${i}</button></a>
+				<c:if test="${pv.currentPage ne i}">
+					<a href="${pageContext.request.contextPath}/admin/member/manage?page=${i}"><button>${i}</button></a>
+				</c:if>
+				<c:if test="${pv.currentPage eq i}">
+					<a><button class="active">${i}</button></a>
+				</c:if>
 			</c:forEach>
 			<c:if test="${ pv.currentPage < pv.maxPage }">
 				<a href="${pageContext.request.contextPath}/admin/member/manage?page=${pv.currentPage+1}"><button>>></button></a>
@@ -140,7 +145,7 @@
 		const caption = document.querySelector(".caption");
 		caption.innerText = '';
 
-		//선택한 행 번호 가져오기
+		//선택한 회원 번호 가져오기
 		function getCheckedBox() {
 			const noArr = [];
 			const cbArr = document.querySelectorAll('input[type="checkbox"]');
@@ -225,6 +230,21 @@
 				})
 			}
 		};
+
+		const searchType
+
+
+		//셀렉트
+		document.getElementById("memberFilter").addEventListener("change", function () {
+  var identity = this.value;
+  var memberInfos = document.getElementsByClassName("member-info");
+
+  for (var i = 0; i < memberInfos.length; i++) {
+    var memberIdentity = memberInfos[i].getAttribute("data-member-identity");
+    memberInfos[i].style.display = (identity === "all" || identity === memberIdentity) ? "" : "none";
+  }
+});
+		
 
 
 
