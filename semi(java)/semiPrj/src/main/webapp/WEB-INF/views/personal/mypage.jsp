@@ -184,7 +184,7 @@
 						<table class="innertable03">
 							<tr class="tr030">
 								<td colspan="2" class="td030">휴가 내역</td>
-								<td class="plus01"><a href="/" class="plus02">더보기</a></td>
+								<td class="plus01"><a href="${root}/vacation/list?page=1" class="plus02">더보기</a></td>
 							</tr>
 							<c:forEach items="${restList}" var="restList">
 								<tr class="tr03">

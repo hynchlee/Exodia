@@ -190,7 +190,7 @@
           		<div class="logout"><a href="${root}/member/logout">로그아웃</a></div>
 				<div class="photo01"></div>
 				<div class="identity"><a href="${root}/tmypage">${loginMember.memberNick}님(강사)</a></div>
-				<div class="class01"><a href="${root}/lecture/apply">강의 목록 보기</a></div>
+				<div class="class01"><a href="${root}/lecture/apply"></a></div>
 				<div class="change"><a href="${root}/member/edit">내 정보 수정</a></div>
 				<div class="letter"><a href="${root}/letter/receive">쪽지 ${letterCount}</a></div>
 				<div class="mywrite"><a href="${root}/my/list">내가 쓴 글 ${countMyWrite}</a></div>
