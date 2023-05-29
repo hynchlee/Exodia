@@ -44,7 +44,7 @@
                     <td><input type="text" name="memberNick" value="${loginMember.memberNick}" disabled></td>
                 </tr>
                 <tr>
-                    <th>주민등록번호</th>
+                    <th>생년월일</th>
                     <td><input type="text" name="birthNum" value="${loginMember.birthNum}" disabled></td>
                 </tr>
                 <tr>

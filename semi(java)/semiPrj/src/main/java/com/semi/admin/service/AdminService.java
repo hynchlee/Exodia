@@ -39,8 +39,26 @@ public class AdminService {
 		JDBCTemplate.close(conn);
 		
 		return memberList;
+	}
+
+	//회원 정지
+	public int stopMember(String[] noArr) throws Exception {
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		//sql
+		int result = dao.stopMember(conn, noArr);
 		
-	
+		//tx||rs
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		//close
+		JDBCTemplate.close(conn);
+		
+		return result;
 	}
 
 }

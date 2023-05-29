@@ -58,12 +58,12 @@
                     <td><input type="text" name="memberNick"></td>
                 </tr>
                 <tr>
-                    <th>주민등록번호</th>
-                    <td><input type="text" name="birthNum" placeholder="숫자 13자리 입력"></td>
+                    <th>생년월일</th>
+                    <td><input type="text" name="birthNum" placeholder="숫자 8자리 입력"></td>
                 </tr>
                 <tr>
                     <th>휴대폰 번호</th>
-                    <td><input type="phone" name="phoneNo"></td>
+                    <td><input type="phone" name="phoneNo" placeholder="숫자 11자리 입력"></td>
                 </tr>
                 <tr>
                     <th>프로필 사진</th>

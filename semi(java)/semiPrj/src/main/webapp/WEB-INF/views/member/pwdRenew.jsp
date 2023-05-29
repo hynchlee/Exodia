@@ -29,7 +29,7 @@
             <table>
                 <tr>
                     <th>새 비밀번호</th>
-                    <td><input type="password" name="memberPwd"></td>
+                    <td><input type="password" name="memberPwd" placeholder="영어/숫자 조합 n자리"></td>
                 </tr>
                 <tr>
                     <th>비밀번호 확인</th>
