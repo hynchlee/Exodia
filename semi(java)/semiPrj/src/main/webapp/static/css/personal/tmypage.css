@@ -58,7 +58,7 @@
     padding: 30px;
 }
 .team{
-    height: 500px;
+    height: 700px;
     background: rgba(255,255,255,1);
     border: 2px solid rgba(202,202,202,1);
 }
@@ -254,7 +254,7 @@
 .teamlist{
 	padding: 30px;
 	width: 91%;
-	height: 85%; 
+	height: 90%; 
 	background: white;
 }
 .teamlist::-webkit-scrollbar {

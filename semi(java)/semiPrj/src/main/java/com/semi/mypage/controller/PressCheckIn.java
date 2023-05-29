@@ -45,7 +45,7 @@ public class PressCheckIn extends HttpServlet{
 			e.printStackTrace();
 			
 			req.setAttribute("errorMsg", "입실 실패");
-			req.getRequestDispatcher("/WEB-INF/views/common/error-page.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
 		}
 	 	
 	 	
