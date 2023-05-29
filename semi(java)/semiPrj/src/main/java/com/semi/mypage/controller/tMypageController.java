@@ -23,10 +23,13 @@ import com.semi.letter.vo.LetterVo;
 import com.semi.member.vo.MemberVo;
 import com.semi.mypage.service.MypageService;
 import com.semi.notice.vo.NoticeVo;
+import com.semi.teamCalendar.service.TeamCalendarService;
+import com.semi.teamCalendar.vo.TeamCalendarVo;
 
 @WebServlet(urlPatterns = "/tmypage")
 public class tMypageController extends HttpServlet {
-
+	private static TeamCalendarService fcs = new TeamCalendarService();
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -57,7 +60,9 @@ public class tMypageController extends HttpServlet {
 			String countMyWrite = ms.countMyWrite(memberNo);
 			List<BoardVo> tcvoList = ms.getBoardTClassList(lectureVo.getLectureNo());
 			List<CalenderVo> ttodoList = ms.ttodoList(memberNo);
-
+			List<TeamCalendarVo> voList = fcs.getFullCalendar(loginMember.getMemberNo());
+			
+			req.setAttribute("voList", voList);
 			req.setAttribute("volist", volist);
 			req.setAttribute("tvolist", tvolist);
 			req.setAttribute("notList", notList);

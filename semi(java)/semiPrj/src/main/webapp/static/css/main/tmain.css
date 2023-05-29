@@ -6,6 +6,9 @@
 body {
   font-size: 14px;
 }
+html{
+	overflow: scroll;
+}
 .v54_2 {
   width: 100%;
   height: 2828px;

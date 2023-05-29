@@ -67,7 +67,7 @@
 			<tr>
 				<td class="td01 td07">
 					<div class="date">
-						date Info
+						<%@ include file="/WEB-INF/views/teamCalendar/teamCalendar.jsp" %>
 					</div>
 				</td>
 				<td class="td01 td08">

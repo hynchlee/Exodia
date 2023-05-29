@@ -3,18 +3,21 @@
 * {
   box-sizing: border-box;
 }
+html{
+	overflow: scroll;
+}
 body {
   font-size: 14px;
+  overflow: auto;
 }
 .v54_2 {
-  width: 100%;
+  width: 1920px;
   height: 2828px;
   background: rgba(255,255,255,1);
   opacity: 1;
   position: absolute;
   top: 0px;
   left: 0px;
-  overflow: hidden;
 }
 .v76_71 {
   width: 800px;
