@@ -33,7 +33,7 @@
 						</li>
 						<li class="menu2"></li>
 						<li class="menu3"><a class="profileImg" href="${root}/mypage"><img
-									src="/semi/static/img/header/___7.png" id="profile_img"></a></li>
+									src="/semi/static/img/header/defaultProfile.png" id="profile_img"></a></li>
 						<li class="menu3"><a href="${root}/introduce/greet"> KH소개 </a></li>
 						<li class="menu3"><a href="${root}/my/list?page=1"> 게시판 </a></li>
 						<li class="menu3"><a href="${root}/introduce/lecture?subject=1">
