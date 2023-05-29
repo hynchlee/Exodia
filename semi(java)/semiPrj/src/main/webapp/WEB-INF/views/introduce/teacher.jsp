@@ -27,8 +27,14 @@
 			<div class="bigMenu">
 				<div class="menu_1">
 					<div class="pfl">
+						<% if(teacherList.get(i).getProfile() == null) { %>
 						<img src="${root}/static/img/introduce/___7.png" alt="logo"
 							id="profile_img_1" class="profile_img">
+						<% } else {%>
+							<% String profile = "/semi/static/img/profile/" + teacherList.get(i).getProfile(); %>
+								<img src = <%=profile%> alt="logo"
+								id="profile_img_1" class="profile_img">
+						<% } %>
 						<div id="e98_1481" class="profile_name"><%=teacherList.get(i).getMemberNick() %></div>
 					</div>
 
@@ -40,8 +46,14 @@
 				<% if(i + 1 < teacherList.size()) {%>
 				<div class="menu_1">
 					<div class="pfl">
-						<img src="${root}/static/img/introduce/___7.png" alt="logo"
-							id="profile_img_1" class="profile_img">
+						<% if(teacherList.get(i+1).getProfile() == null) { %>
+							<img src="${root}/static/img/introduce/___7.png" alt="logo"
+								id="profile_img_1" class="profile_img">
+							<% } else {%>
+								<% String profile = "/semi/static/img/profile/" + teacherList.get(i+1).getProfile(); %>
+								<img src= <%= profile%> alt="logo"
+								id="profile_img_1" class="profile_img">
+							<% } %>
 						<div id="e98_1481" class="profile_name"><%=teacherList.get(i+1).getMemberNick() %></div>
 					</div>
 
