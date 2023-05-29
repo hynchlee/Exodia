@@ -236,16 +236,9 @@ public class LectureService {
 			throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = 1;
-		int result2 = 0;
 
 		for (int i = 0; i < examProblemNoArr.length; i++) {
-			int cnt = dao.selectAnswerCnt(conn, memberNo, examCategoryNo, memberNo, examCategoryNo);
-
-			if (cnt > 0) {
-				result2 = dao.updateAnswer(conn, memberNo, examCategoryNo, examProblemNoArr[i], answerArr[i]);
-			} else {
-				result2 = dao.insertAnswer(conn, memberNo, examCategoryNo, examProblemNoArr[i], answerArr[i]);
-			}
+			int result2 = dao.updateAnswer(conn, memberNo, examCategoryNo, examProblemNoArr[i], answerArr[i]);
 
 			if (result2 == 1) {
 				JDBCTemplate.commit(conn);

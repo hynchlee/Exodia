@@ -33,7 +33,7 @@
 						</li>
 						<li class="menu2"></li>
 						<li class="menu3"><a class="profileImg" href="${root}/mypage"><img
-									src="" alt="사진x" id="profile_img"></a></li>
+									src="/semi/static/img/header/___7.png" id="profile_img"></a></li>
 						<li class="menu3"><a href="${root}/introduce/greet"> KH소개 </a></li>
 						<li class="menu3"><a href="${root}/my/list?page=1"> 게시판 </a></li>
 						<li class="menu3"><a href="${root}/introduce/lecture?subject=1">
@@ -75,7 +75,7 @@
 				</div>
 			</header>
 			<section class="banner">
-				<p class="title">공지사항</p>
+				<p class="title"></p>
 				<p class="caption">연중 무휴 | 전국 대표 문의 전화 1544-9970</p>
 			</section>
 		</body>
@@ -85,7 +85,6 @@
 		<script>
 			const logo = document.querySelector('.logo');
 			const profileImg = document.querySelector('.profileImg');
-			const profile_img = document.querySelector('#profile_img');
 
 			function consolePrint() {
 				if ('${loginMember}' != '' && '${loginMember}' != null) {
@@ -106,10 +105,11 @@
 			}
 
 			function loginShow() {
-				if ("${empty loginMember.profile}" == true) {
-					profile_img.src = "/semi/static/img/header/___7.png";
-				} else {
-					profile_img.src = "/semi/static/img/profile/${loginMember.profile}";
+				const profile_img = document.querySelector('#profile_img');
+				if ("${loginMember.profile}" != "") {
+					console.log("hi");
+					var txt = "/semi/static/img/profile/${loginMember.profile}";
+					profile_img.src = txt;
 				}
 				
 				if ('${loginMember.identity}' == 'S') {

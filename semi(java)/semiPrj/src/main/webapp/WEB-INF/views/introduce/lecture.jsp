@@ -40,7 +40,6 @@
 							</div>
 						</div>
 					</div>
-					</div>
 					<br><br><br><br>
 				</main>
 				<%@ include file="/WEB-INF/views/common/footer.jsp" %>
