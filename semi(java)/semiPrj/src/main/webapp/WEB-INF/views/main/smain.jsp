@@ -198,7 +198,7 @@
 				<div class="point"><a href="/">마일리지</a></div>
 				<div class="test"><a href="${root}/lecture/test/list" class="a01">시험 응시</a></div>
 				<div class="vacation"><a href="${root}/member/vacation/form" class="a01">휴가 신청</a></div>
-				<div class="exit"><a href="/" class="a01">퇴실 하기</a></div>
+				<div class="exit"><a href="${root}/mypage" class="a01">마이페이지</a></div>
 			</div>
           </div>
           <div class="v75_31">

@@ -20,11 +20,14 @@ import com.semi.member.vo.MemberVo;
 import com.semi.mypage.service.MypageService;
 import com.semi.mypage.vo.TeamVo;
 import com.semi.notice.vo.NoticeVo;
+import com.semi.teamCalendar.service.TeamCalendarService;
+import com.semi.teamCalendar.vo.TeamCalendarVo;
 import com.semi.vacation.vo.VacationVo;
 
 @WebServlet(urlPatterns = "/mypage")
 public class MypageController extends HttpServlet{
-
+	private static TeamCalendarService fcs = new TeamCalendarService();
+	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -53,8 +56,10 @@ public class MypageController extends HttpServlet{
 			String earlyDate = ms.earlyDate(memberNo);
 			String getoutDate = ms.getoutDate(memberNo);
 			int percentage = 156 * Integer.parseInt(checkDate) / 100;
-			List<CalenderVo> todoList = ms.todoList(memberNo);
+			List<TeamCalendarVo> todoList = ms.todoList(memberNo);
+			List<TeamCalendarVo> voList = fcs.getFullCalendar(loginMember.getMemberNo());
 			
+			req.setAttribute("voList", voList);
 			req.setAttribute("snotList", snotList);
 			req.setAttribute("letterCount", letterCount);
 			req.setAttribute("countMyWrite", countMyWrite);
