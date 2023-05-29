@@ -63,22 +63,51 @@
 							nowIndicator: true, // 현재 시간 마크
 							dayMaxEvents: true, // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
 							locale: 'ko', // 한국어 설정
-							eventAdd: function (obj) { // 이벤트가 추가되면 발생하는 이벤트
-								console.log(obj);
+							eventAdd: function (obj) { // 이벤트 추가(드래그))
+								const params = [];
+								params.push("write")
+								params.push(obj.event.title);
+								params.push(obj.event.start);
+								params.push(obj.event.end);
+
+								$.ajax({
+									url: '/semi/teamCalendar',
+									type: 'post',
+									data: {
+										params: JSON.stringify(params)
+									},
+									error: function () {
+										alert("error");
+									}
+								});
 							},
-							eventChange: function (obj) { // 이벤트가 수정되면 발생하는 이벤트
-								console.log(obj);
+							eventChange: function (obj) { // 이벤트 수정(이벤트 드래그)
+								const params = [];
+								params.push("modify")
+								params.push(obj.event.title);
+								params.push(obj.event.start);
+								params.push(obj.event.end);
+
+								$.ajax({
+									url: '/semi/teamCalendar',
+									type: 'post',
+									data: {
+										params: JSON.stringify(params)
+									},
+									error: function () {
+										alert("error");
+									}
+								});
 							},
-							eventRemove: function (obj) { // 이벤트가 삭제되면 발생하는 이벤트
-								console.log(obj);
-							},
-							select: function (arg) { // 캘린더에서 드래그로 이벤트를 생성할 수 있다.
-								var title = prompt('Event Title:');
-								if (title) {
+							eventClick: function (obj) { // 이벤트 삭제 (이벤트 클릭)
+								var result = confirm('이 일정을 삭제하시겠습니까?');
+
+								if (result == true) {
 									const params = [];
-									params.push(title);
-									params.push(arg.start);
-									params.push(arg.end);
+									params.push("delete")
+									params.push(obj.event.title);
+									params.push(obj.event.start);
+									params.push(obj.event.end);
 
 									$.ajax({
 										url: '/semi/teamCalendar',
@@ -86,49 +115,41 @@
 										data: {
 											params: JSON.stringify(params)
 										},
-										success: function () {
-											alert("success");
-											calendar.addEvent({
-												title: title,
-												start: arg.start,
-												end: arg.end,
-												allDay: arg.allDay
-											});
+										success: function() {
+											location.reload();
 										},
 										error: function () {
 											alert("error");
 										}
 									});
 								}
+							},
+							select: function (arg) { // 드래그 or 클릭으로 이벤트 생성
+								var title = prompt('일정을 입력해주세요');
+								if (title) {
+									calendar.addEvent({
+										title: title,
+										start: arg.start,
+										end: arg.end,
+										allDay: arg.allDay
+									});
+								}
 								calendar.unselect()
 							},
 							// 이벤트 
 							events: [
-								{
-									title: 'All Day Event',
-									start: '20230521',
-								},
-								{
-									title: 'Long Event',
-									start: '2021-07-07',
-									end: '2021-07-10'
-								},
-								{
-									groupId: 999,
-									title: 'hihi',
-									start: '2021-07-09T16:00:00'
-								}
+								<c:forEach items="${voList}" var="vo">
+									{
+										title: '${vo.meetingContent}',
+									start: '${vo.startDate}',
+									end: '${vo.endDate}'
+									},
+								</c:forEach>
 							]
 						});
-						
-						<c:forEach items="${voList}" var="vo">
-							calendar.addEvent({
-								title: '${vo.meetingContent}',
-								start: '${vo.startDate}',
-								end: '${vo.endDate}'
-							});
-						</c:forEach>
-						
+
+
+
 						// 캘린더 랜더링
 						calendar.render();
 					});
