@@ -32,7 +32,7 @@
                 <!-- 관리자에게만 보이는 체크박스 -->
                 <!-- <c:if test="${not empty loginAdmin }">
 	                <div class="checked">
-	                    <input type="checkbox" name="" id=""><span>상단고정</span>
+	                    <input type="checkbox" name="" id="" value="${nvNo.noticeNo}"><span>상단고정</span>
 	                </div>
                 </c:if> -->
     

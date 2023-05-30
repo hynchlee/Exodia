@@ -42,7 +42,7 @@ public class NoticeDao {
 	//목록 조회
 	public List<NoticeVo> getNoticeList(Connection conn, PageVo pv) throws Exception {
 		
-		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT N.NOTICE_NO ,N.ADMIN_NO ,N.NOTICE_TITLE ,N.NOTICE_CONTENT ,TO_CHAR(N.ENROLL_DATE, 'YYYY.MM.DD') AS ENROLL_DATE ,TO_CHAR(N.MODIFY_DATE, 'YYYY.MM.DD') AS MODIFY_DATE ,N.HIT ,N.STATUS ,A.ADMIN_NICK FROM NOTICE N JOIN ADMIN A ON(N.ADMIN_NO = A.ADMIN_NO) WHERE N.STATUS='O' ORDER BY NOTICE_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
+		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT N.NOTICE_NO, N.ADMIN_NO, N.NOTICE_TITLE, N.NOTICE_CONTENT, TO_CHAR(N.ENROLL_DATE, 'YYYY.MM.DD') AS ENROLL_DATE, TO_CHAR(N.MODIFY_DATE, 'YYYY.MM.DD') AS MODIFY_DATE, N.HIT, N.STATUS, N.PIN, A.ADMIN_NICK FROM NOTICE N JOIN ADMIN A ON (N.ADMIN_NO = A.ADMIN_NO) WHERE N.STATUS = 'O' ORDER BY PIN DESC, NOTICE_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, pv.getBeginRow());
 		pstmt.setInt(2, pv.getLastRow());
@@ -59,6 +59,7 @@ public class NoticeDao {
 			String hit = rs.getString("HIT");
 			String status = rs.getString("STATUS");
 			String adminNick = rs.getString("ADMIN_NICK");
+			String pin = rs.getString("PIN");
 			
 			NoticeVo vo = new NoticeVo();
 			vo.setNoticeNo(noticeNo);
@@ -70,6 +71,7 @@ public class NoticeDao {
 			vo.setHit(hit);
 			vo.setStatus(status);
 			vo.setAdminNick(adminNick);
+			vo.setPin(pin);
 			
 			nvoList.add(vo);
 		}
@@ -190,11 +192,12 @@ public class NoticeDao {
 	//글 작성하기
 	public int noticeWrite(Connection conn, NoticeVo nvo) throws Exception {
 		
-		String sql = "INSERT INTO NOTICE(NOTICE_NO,ADMIN_NO,NOTICE_TITLE,NOTICE_CONTENT) VALUES(SEQ_NOTICE_NO.NEXTVAL, ?, ?, ?)";
+		String sql = "INSERT INTO NOTICE(NOTICE_NO,ADMIN_NO,NOTICE_TITLE,NOTICE_CONTENT, PIN) VALUES(SEQ_NOTICE_NO.NEXTVAL, ?, ?, ?, ?)";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, nvo.getAdminNo());
 		pstmt.setString(2, nvo.getNoticeTitle());
 		pstmt.setString(3, nvo.getNoticeContent());
+		pstmt.setString(4, nvo.getPin());
 		int result = pstmt.executeUpdate();
 		
 		JDBCTemplate.close(pstmt);

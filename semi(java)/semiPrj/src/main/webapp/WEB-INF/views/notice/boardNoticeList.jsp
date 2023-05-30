@@ -17,8 +17,7 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 
 		<main>
-			
-			
+
 			<c:if test="${not empty loginMember}">
                 <div class="myClass">
                     <ul>
@@ -60,7 +59,6 @@
                     	<tr>
 	                        <td>${nvo.noticeNo}</td>
 	                        <td class="board_title">${nvo.noticeTitle}
-		                    	<!-- <span class="new_btn">New</span> -->
 	                        </td>
 	                        <td>${nvo.adminNick}</td>
 	                        <td>${nvo.enrollDate}</td>
@@ -194,6 +192,11 @@
 
     function refreshPage() {
     location.reload();
+    }
+
+    const tr = document.querySelector('.board tbody tr');
+    if('${nvoList.pin == 1}'){
+        tr.style.backgroundColor = "#F0F0F0";
     }
 
 </script>
