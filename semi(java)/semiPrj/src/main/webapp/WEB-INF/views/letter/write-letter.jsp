@@ -51,20 +51,18 @@
 				</form>
 			</div>
 		</div>
-		<div id="writeDiv">
-		<c:forEach items="${memberList}" var="member">
-			${member.memberNick}
-		</c:forEach>
-			
+		<div id="writeDiv">			
 			<form action="/semi/letter/write" id="writeTable" method="post"
 				onsubmit="return showErrorOnSubmit();">
 				<table>
 					<thead>
 						<tr>
 							<th id="title">받는 사람</th>
-							<th><input type="text" name="receiver" id="receiver">
+							<th>
+								<input type="text" name="receiver" id="receiver">
 								<input type="text" id="alertInput"
-								style="padding-left: 10px; display: none; border: none; width: 30%; color: red;"></th>
+								style="padding-left: 10px; display: none; border: none; width: 30%; color: red;" disabled readonly>
+							</th>
 						</tr>
 						<tr>
 							<th id="title">제목</th>
@@ -107,22 +105,26 @@
   	</c:forEach>];
 	
 	function showErrorOnSubmit() {
-		  const receiver = document.querySelector('#receiver');
-		  const alertInput = document.querySelector('#alertInput');
-		  const memberNicks = memberList; // memberNick을 배열로 집어넣기
+		const receiver = document.querySelector('#receiver');
+		const alertInput = document.querySelector('#alertInput');
+		const memberNicks = memberList; // memberNick을 배열로 집어넣기
 
-		  if (receiver.value == '${loginMember.memberNick}') {
-		    alertInput.value = '!오류: 받는 사람이 본인입니다.';
-		    alertInput.style.display = 'inline';
-		    return false;
-		  } else if (!memberNicks.includes(receiver.value)) { // memberNickExists 대신 memberNicks.includes() 사용
-		    alertInput.value = '!오류 : 받는 사람의 ID가 존재하지 않습니다.';
-		    alertInput.style.display = 'inline';
-		    return false;
-		  }
-		  alert('작성 완료');
-		  return true;
+		if (receiver.value == '${loginMember.memberNick}') {
+			alertInput.value = '!오류: 받는 사람이 본인입니다.';
+			alertInput.style.display = 'inline';
+			return false;
+
+		} else if (!memberNicks.includes(receiver.value)) { // memberNickExists 대신 memberNicks.includes() 사용
+			alertInput.value = '!오류 : 받는 사람의 ID가 존재하지 않습니다.';
+			alertInput.style.display = 'inline';
+			return false;
+
 		}
+
+		alert('작성 완료');
+		return true;
+
+	}
 		
 	
 </script>

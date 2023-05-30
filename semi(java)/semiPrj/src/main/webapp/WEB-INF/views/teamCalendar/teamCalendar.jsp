@@ -32,7 +32,21 @@
 					padding-left: 1em;
 					padding-right: 1em;
 				}
+
+				/* 일요일 날짜 빨간색 */
+				.fc-day-sun a {
+				color: red;
+				text-decoration: none;
+				}
+
+				/* 토요일 날짜 파란색 */
+				.fc-day-sat a {
+				color: blue;
+				text-decoration: none;
+				}
+
 			</style>
+			
 		</head>
 
 		<body>
@@ -41,6 +55,21 @@
 				<div id='calendar'></div>
 			</div>
 			<script>
+				
+				function getRandomColor() {
+					var letters = '0123456789ABCDEF';
+					var color = '#';
+					for (var i = 0; i < 6; i++) {
+						color += letters[Math.floor(Math.random() * 16)];
+						if(color == '#ffffff'){
+							return color;
+						}
+					}
+					return color;
+				}
+
+				var randomColor = getRandomColor(); // 랜덤 색상 생성
+
 				(function () {
 					$(function () {
 						// calendar element 취득
@@ -65,6 +94,7 @@
 							nowIndicator: true, // 현재 시간 마크
 							dayMaxEvents: true, // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
 							locale: 'ko', // 한국어 설정
+							
 							eventAdd: function (obj) { // 이벤트 추가(드래그))
 								const params = [];
 								params.push("write")
@@ -126,6 +156,8 @@
 									});
 								}
 							},
+
+							
 							select: function (arg) { // 드래그 or 클릭으로 이벤트 생성
 								var title = prompt('일정을 입력해주세요');
 								if (title) {
@@ -133,7 +165,8 @@
 										title: title,
 										start: arg.start,
 										end: arg.end,
-										allDay: arg.allDay
+										allDay: arg.allDay,
+										backgroundColor: randomColor // 배경색 지정
 									});
 								}
 								calendar.unselect()
@@ -142,9 +175,10 @@
 							events: [
 								<c:forEach items="${voList}" var="vo">
 									{
-										title: '${vo.meetingContent}',
+									title: '${vo.meetingContent}',
 									start: '${vo.startDate}',
-									end: '${vo.endDate}'
+									end: '${vo.endDate}',
+									backgroundColor: getRandomColor()
 									},
 								</c:forEach>
 							]
