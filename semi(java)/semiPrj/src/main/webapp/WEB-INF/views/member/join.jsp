@@ -8,6 +8,7 @@
 <title>회원가입</title>
 <c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <link href="${root}/static/css/member/join.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <style>
     #logo-img {
         width: 300px;
@@ -43,7 +44,7 @@
                 <tr>
                     <th>아이디</th>
                     <td><input type="text" name="memberId" placeholder="영어소문자/숫자 조합 4~12자리"></td>
-                    <td><button id="dup-check">중복검사</button></td>
+                    <td><button id="dup-check" onclick="checkId();">중복검사</button></td>
                 </tr>
                 <tr>
                     <th>비밀번호</th>
@@ -89,6 +90,48 @@
 </html>
 
 <script>
+
+    //중복검사 여부 확인
+    let idChecked = false;
+    let isIdAvailable = false;
+
+    //아이디 중복검사
+    function checkId() {
+        const memberId = document.querySelector('input[name=memberId]');
+
+        event.preventDefault();
+
+        if (!memberId.value) {
+            alert("아이디를 입력해주세요.");
+            return;
+        }
+
+        $.ajax({
+            url : '/semi/member/join/idcheck',
+            type : 'post' ,
+            data : {
+                memberId : memberId.value
+            },
+            success : function(data) {
+                if (data == "ok"){
+                    alert("사용 가능한 아이디 입니다.");
+                    idChecked = true;
+                    isIdAvailable = true;
+                }else {
+                    alert("사용 불가능한 아이디 입니다.");
+                    idChecked = true;
+                    isIdAvailable = false;
+                    memberId.value = '';
+                    memberId.focus();
+                }
+            },
+            error : function(error) {
+                alert("중복확인 에러 발생 ...");
+                console.log(error);
+                idChecked = false;
+            },
+        })
+    }
 
     //첨부파일 이름 출력
     function printName() {
