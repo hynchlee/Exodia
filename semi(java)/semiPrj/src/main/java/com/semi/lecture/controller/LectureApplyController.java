@@ -1,6 +1,8 @@
 package com.semi.lecture.controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -21,19 +23,22 @@ public class LectureApplyController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
+			LocalDate currentDate = LocalDate.now();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+			String formattedDate = currentDate.format(formatter);
+			
 			String page = req.getParameter("page");
 			String searchType = req.getParameter("searchType");
 			String searchValue = req.getParameter("searchValue");
 
-			int cnt = ls.getLectureListCnt(searchType, searchValue);
-
+			int cnt = ls.getLectureListCnt(searchType, searchValue, formattedDate);
 			int pageInt = 1;
 			if (page != null) {
 				pageInt = Integer.parseInt(page);
 			}
 
 			PageVo pageVo = new PageVo(cnt, pageInt, 5, 10);
-			List<LectureVo> lectureList = ls.getLectureList(pageVo, searchType, searchValue);
+			List<LectureVo> lectureList = ls.getLectureList(pageVo, searchType, searchValue, formattedDate);
 
 			req.setAttribute("lectureList", lectureList);
 			req.setAttribute("pageVo", pageVo);

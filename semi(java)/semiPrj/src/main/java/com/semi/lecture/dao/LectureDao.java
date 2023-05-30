@@ -35,13 +35,19 @@ public class LectureDao {
 			vo.setLectureNo(rs.getString("LECTURE_NO"));
 			vo.setTeacherMemberNo(rs.getString("TEACHER_MEMBER_NO"));
 			vo.setLectureCategoryNo(rs.getString("LECTURE_CATEGORY_NO"));
-			vo.setLectureStartTime(rs.getString("LECTURE_START_TIME"));
+			
+			String data = rs.getString("LECTURE_START_TIME");
+			if (data.equals("900")) {
+			    data = String.format("%04d", Integer.parseInt(data));
+			}
+			vo.setLectureStartTime(data);
 			vo.setLectureFinishTime(rs.getString("LECTURE_FINISH_TIME"));
 			vo.setLectureOpenDate(rs.getString("LECTURE_OPEN_DATE"));
 			vo.setLectureCloseDate(rs.getString("LECTURE_CLOSE_DATE"));
 			vo.setStatus(rs.getString("STATUS"));
 			vo.setLectureCategoryName(rs.getString("LECTURE_NAME"));
 			vo.setTeacherMemberName(rs.getString("MEMBER_NICK"));
+			vo.setPlace(rs.getString("PLACE"));
 			lectureList.add(vo);
 		}
 
@@ -77,7 +83,61 @@ public class LectureDao {
 			vo.setLectureNo(rs.getString("LECTURE_NO"));
 			vo.setTeacherMemberNo(rs.getString("TEACHER_MEMBER_NO"));
 			vo.setLectureCategoryNo(rs.getString("LECTURE_CATEGORY_NO"));
-			vo.setLectureStartTime(rs.getString("LECTURE_START_TIME"));
+			
+			String data = rs.getString("LECTURE_START_TIME");
+			if (data.equals("900")) {
+			    data = String.format("%04d", Integer.parseInt(data));
+			}
+			vo.setLectureStartTime(data);
+			vo.setLectureFinishTime(rs.getString("LECTURE_FINISH_TIME"));
+			vo.setLectureOpenDate(rs.getString("LECTURE_OPEN_DATE"));
+			vo.setLectureCloseDate(rs.getString("LECTURE_CLOSE_DATE"));
+			vo.setStatus(rs.getString("STATUS"));
+			vo.setLectureCategoryName(rs.getString("LECTURE_NAME"));
+			vo.setTeacherMemberName(rs.getString("MEMBER_NICK"));
+			vo.setPlace(rs.getString("PLACE"));
+			lectureList.add(vo);
+		}
+
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+
+		return lectureList;
+	}
+	
+	public List<LectureVo> getLectureList(Connection conn, PageVo pageVo, String searchType, String searchValue, String currentDate)
+			throws SQLException {
+		String sql = "SELECT * FROM (SELECT ROWNUM AS RNUM, A.* FROM ( SELECT * FROM LECTURE L JOIN LECTURE_CATEGORY LC ON L.LECTURE_CATEGORY_NO = LC.LECTURE_CATEGORY_NO JOIN MEMBER M ON L.TEACHER_MEMBER_NO = M.MEMBER_NO WHERE L.STATUS = 'O' AND LECTURE_OPEN_DATE >= ? ORDER BY L.LECTURE_OPEN_DATE ) A ) WHERE RNUM BETWEEN ? AND ?";
+
+		if ("lectureOpenDate".equals(searchType)) {
+			sql += "AND LECTURE_OPEN_DATE LIKE '%" + searchValue + "%'";
+		} else if ("teacher".equals(searchType)) {
+			sql += "AND MEMBER_NICK LIKE '%" + searchValue + "%'";
+		} else if ("lectureCategoryName".equals(searchType)) {
+			sql += "AND LECTURE_NAME LIKE '%" + searchValue + "%'";
+		} else if ("lectureStartTime".equals(searchType)) {
+			sql += "AND LECTURE_START_TIME LIKE '%" + searchValue + "%'";
+		}
+
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, currentDate);
+		pstmt.setInt(2, pageVo.getBeginRow());
+		pstmt.setInt(3, pageVo.getLastRow());
+		ResultSet rs = pstmt.executeQuery();
+
+		List<LectureVo> lectureList = new ArrayList();
+
+		while (rs.next()) {
+			LectureVo vo = new LectureVo();
+			vo.setLectureNo(rs.getString("LECTURE_NO"));
+			vo.setTeacherMemberNo(rs.getString("TEACHER_MEMBER_NO"));
+			vo.setLectureCategoryNo(rs.getString("LECTURE_CATEGORY_NO"));
+			
+			String data = rs.getString("LECTURE_START_TIME");
+			if (data.equals("900")) {
+			    data = String.format("%04d", Integer.parseInt(data));
+			}
+			vo.setLectureStartTime(data);
 			vo.setLectureFinishTime(rs.getString("LECTURE_FINISH_TIME"));
 			vo.setLectureOpenDate(rs.getString("LECTURE_OPEN_DATE"));
 			vo.setLectureCloseDate(rs.getString("LECTURE_CLOSE_DATE"));
@@ -292,6 +352,36 @@ public class LectureDao {
 
 		return cnt;
 	}
+	
+	public int getLectureListCnt(Connection conn, String searchType, String searchValue, String currentDate) throws SQLException {
+		String sql = "SELECT COUNT(*) FROM LECTURE WHERE STATUS = 'O' AND LECTURE_OPEN_DATE >= ?";
+
+		if ("lectureOpenDate".equals(searchType)) {
+			sql = "SELECT COUNT(*) FROM LECTURE WHERE STATUS = 'O' AND LECTURE_OPEN_DATE LIKE '%" + searchValue + "%'";
+		} else if ("teacher".equals(searchType)) {
+			sql = "SELECT COUNT(*) FROM LECTURE L JOIN MEMBER M ON M.MEMBER_NO = L.TEACHER_MEMBER_NO WHERE L.STATUS = 'O' AND L.TEACHER_MEMBER_NO IN (SELECT MEMBER_NO FROM MEMBER WHERE MEMBER_NICK LIKE '%"
+					+ searchValue + "%')";
+		} else if ("lectureCategoryName".equals(searchType)) {
+			sql = "SELECT COUNT(*) FROM LECTURE L JOIN LECTURE_CATEGORY LC ON LC.LECTURE_CATEGORY_NO = L.LECTURE_CATEGORY_NO WHERE L.STATUS = 'O' AND LECTURE_NAME LIKE '%"
+					+ searchValue + "%'";
+		} else if ("lectureStartTime".equals(searchType)) {
+			sql = "SELECT COUNT(*) FROM LECTURE WHERE STATUS = 'O' AND lectureStartTime LIKE '%" + searchValue + "%'";
+		}
+
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, currentDate);
+		ResultSet rs = pstmt.executeQuery();
+
+		int cnt = 0;
+		if (rs.next()) {
+			cnt = rs.getInt(1);
+		}
+
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+
+		return cnt;
+	}
 
 	public int getExamCategoryListCnt(Connection conn) throws SQLException {
 		String sql = "SELECT COUNT(*) FROM EXAM_CATEGORY";
@@ -373,13 +463,19 @@ public class LectureDao {
 			vo.setLectureNo(rs.getString("LECTURE_NO"));
 			vo.setTeacherMemberNo(rs.getString("TEACHER_MEMBER_NO"));
 			vo.setLectureCategoryNo(rs.getString("LECTURE_CATEGORY_NO"));
-			vo.setLectureStartTime(rs.getString("LECTURE_START_TIME"));
+			
+			String data = rs.getString("LECTURE_START_TIME");
+			if (data.equals("900")) {
+			    data = String.format("%04d", Integer.parseInt(data));
+			}
+			vo.setLectureStartTime(data);
 			vo.setLectureFinishTime(rs.getString("LECTURE_FINISH_TIME"));
 			vo.setLectureOpenDate(rs.getString("LECTURE_OPEN_DATE"));
 			vo.setLectureCloseDate(rs.getString("LECTURE_CLOSE_DATE"));
 			vo.setStatus(rs.getString("STATUS"));
 			vo.setTeacherMemberName(rs.getString("MEMBER_NICK"));
 			vo.setLectureCategoryName(rs.getString("LECTURE_NAME"));
+			vo.setPlace(rs.getString("PLACE"));
 		}
 
 		JDBCTemplate.close(rs);
@@ -400,13 +496,19 @@ public class LectureDao {
 			vo.setLectureNo(rs.getString("LECTURE_NO"));
 			vo.setTeacherMemberNo(rs.getString("TEACHER_MEMBER_NO"));
 			vo.setLectureCategoryNo(rs.getString("LECTURE_CATEGORY_NO"));
-			vo.setLectureStartTime(rs.getString("LECTURE_START_TIME"));
+			
+			String data = rs.getString("LECTURE_START_TIME");
+			if (data.equals("900")) {
+			    data = String.format("%04d", Integer.parseInt(data));
+			}
+			vo.setLectureStartTime(data);
 			vo.setLectureFinishTime(rs.getString("LECTURE_FINISH_TIME"));
 			vo.setLectureOpenDate(rs.getString("LECTURE_OPEN_DATE"));
 			vo.setLectureCloseDate(rs.getString("LECTURE_CLOSE_DATE"));
 			vo.setStatus(rs.getString("STATUS"));
 			vo.setTeacherMemberName(rs.getString("MEMBER_NICK"));
 			vo.setLectureCategoryName(rs.getString("LECTURE_NAME"));
+			vo.setPlace(rs.getString("PLACE"));
 		}
 
 		JDBCTemplate.close(rs);

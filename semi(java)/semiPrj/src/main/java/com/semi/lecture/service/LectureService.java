@@ -32,6 +32,14 @@ public class LectureService {
 		JDBCTemplate.close(conn);
 		return lectureList;
 	}
+	
+	public List<LectureVo> getLectureList(PageVo pageVo, String searchType, String searchValue, String currentDate) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		List<LectureVo> lectureList = dao.getLectureList(conn, pageVo, searchType, searchValue, currentDate);
+
+		JDBCTemplate.close(conn);
+		return lectureList;
+	}
 
 	public List<ExamCategoryVo> getExamCategoryList(PageVo pageVo) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
@@ -85,10 +93,10 @@ public class LectureService {
 		return result;
 	}
 
-	public int getLectureListCnt(String searchType, String searchValue) throws SQLException {
+	public int getLectureListCnt(String searchType, String searchValue, String currentDate) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
 
-		int result = dao.getLectureListCnt(conn, searchType, searchValue);
+		int result = dao.getLectureListCnt(conn, searchType, searchValue, currentDate);
 
 		JDBCTemplate.close(conn);
 		return result;
