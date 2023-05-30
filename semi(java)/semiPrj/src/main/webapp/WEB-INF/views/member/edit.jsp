@@ -24,7 +24,7 @@
             </a>
         </div>
 
-        <form action="${root}/member/edit" method="post" enctype="multipart/form-data">
+        <form action="${root}/member/edit" method="post" enctype="multipart/form-data" onsubmit="return validate();">
 
             <table>
                 <tr>
@@ -55,7 +55,7 @@
                     <th>프로필 사진</th>
                     <td><input type="text" id="fileName-zone" value="${loginMember.profile}" placeholder="*선택사항" disabled></td>
                     <td>
-                        <div id="dup-check">
+                        <div id="file-attachment">
                             <label for="profile-file">파일첨부</label>
                             <input id="profile-file" type="file" name="profile" onchange="printName()">
                         </div>
@@ -91,21 +91,43 @@
         console.log(fileName);
     };
 
-    // //비번 입력해야 수정하기 활성
-	// function checkValidation(){
-	// 	const memberPwd = document.querySelector("input[name=memberPwd]").value;
-    //     if(memberPwd.length >= 1){
-    //         return true;
-    //     }
-    //     return false;
-	// }
-
     //탈퇴
     function quit(){
         result = confirm('정말로 탈퇴하시겠습니까?');
         if(result) {
             location.href='${root}/member/quit';
         }
+    }
+
+    //제약조건
+    function validate() {
+        let memberPwd = document.querySelector('input[name=memberPwd]');
+        let memberPwd2 = document.querySelector('input[name=memberPwd2]');
+        let phoneNo = document.querySelector('input[name=phoneNo]');
+        
+        // 비번 제약조건 - 영어소문자/숫자/특수문자 조합 8~15자리
+        if( memberPwd.value && (!(/^[\w!@#$%^&*-]{8,15}$/.test(memberPwd.value))) ) {
+            alert('유효한 비밀번호를 입력해주세요.');
+            
+            return false;
+        }
+
+        // 비밀번호 확인
+        if( memberPwd.value && (!memberPwd2.value || memberPwd.value !== memberPwd2.value) ) {
+            alert("비밀번호 일치여부를 확인해주세요.")
+            memberPwd2.value = '';
+            memberPwd2.focus();
+
+            return false;
+        }
+        
+        //전번 - 숫자 11자리
+        if ( phoneNo.value && (!/^\d{11}$/.test(phoneNo.value)) ) {
+            alert("유효한 휴대폰 번호를 입력해주세요.");
+            return false;
+        }
+
+        return true;
     }
 
 </script>

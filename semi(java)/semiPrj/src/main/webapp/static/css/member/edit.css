@@ -58,7 +58,7 @@ th, td {
     padding-right: 30px;
 }
 
-#dup-check {
+#dup-check, #file-attachment {
     width: 120px;
     height: 45px;
     background: rgba(0,0,0,1);
@@ -71,6 +71,7 @@ th, td {
     font-family: Noto Sans;
     font-weight: Regular;
     font-size: 24px;
+    border: none;
     text-align: center;
     display: flex;
     justify-content: center;
