@@ -24,7 +24,7 @@
             </a>
         </div>
 
-        <form action="${root}/member/id/find" method="POST">
+        <form action="${root}/member/id/find" method="POST" onsubmit="return validate();">
 
             <table>
                 <tr>
@@ -38,7 +38,7 @@
             </table>
 
             <div id="submit-box">
-                <input type="submit" value="아이디 찾기" onclick="return validate();">
+                <input type="submit" value="아이디 찾기">
             </div>
 
         </form>
@@ -52,17 +52,17 @@
 
     //제약조건
     function validate() {
-        let memberNick = document.querySelector('input[name=memberNick]').value;
-        let phoneNo = document.querySelector('input[name=phoneNo]').value;
+        let memberNick = document.querySelector('input[name=memberNick]');
+        let phoneNo = document.querySelector('input[name=phoneNo]');
 
         // 이름이 빈칸인지 확인
-        if (memberNick.trim().length === 0) {
+        if (memberNick.value.trim().length === 0) {
             alert("이름을 입력해주세요.");
             return false;
         }
-
+        
         //전번 - 숫자 11자리
-        if (!/^\d{11}$/.test(phoneNo)) {
+        if (!/^\d{11}$/.test(phoneNo.value)) {
             alert("유효한 휴대폰 번호를 입력해주세요.");
             return false;
         }

@@ -24,7 +24,7 @@
             </a>
         </div>
 
-        <form action="${root}/member/pwd/find" method="post">
+        <form action="${root}/member/pwd/find" method="post" onsubmit="return validate();">
             
             <table>
                 <tr>
@@ -46,7 +46,7 @@
             </table>
 
             <div id="submit-box">
-                <input type="submit" value="비밀번호 찾기" onclick="return validate();">
+                <input type="submit" value="비밀번호 찾기">
                 <!-- <a href="${root}/member/pwd/find2"><button>비밀번호 찾기</button></a> -->
             </div>
 
@@ -60,39 +60,39 @@
 <script>
 
     //제약조건
-    // function validate() {
-    //     let memberId = document.querySelector('input[name=memberId]').value;
-    //     let memberNick = document.querySelector('input[name=memberNick]').value;
-    //     let birthNum = document.querySelector('input[name=birthNum]').value;
-    //     let phoneNo = document.querySelector('input[name=phoneNo]').value;
+    function validate() {
+        let memberId = document.querySelector('input[name=memberId]');
+        let memberNick = document.querySelector('input[name=memberNick]');
+        let birthNum = document.querySelector('input[name=birthNum]');
+        let phoneNo = document.querySelector('input[name=phoneNo]');
 
-    //     // 아이디 제약조건 - 영어소문자/숫자 조합 4~12자리
-    //     if(!(/^[a-z\d]{4,12}$/.test(memberId))) {
-    //         alert('유효한 아이디를 입력해주세요.');
+        // 아이디 제약조건 - 영어소문자/숫자 조합 4~12자리
+        if(!(/^[a-z\d]{4,12}$/.test(memberId.value))) {
+            alert('유효한 아이디를 입력해주세요.');
             
-    //         return false;
-    //     }
+            return false;
+        }
 
-    //      // 이름이 빈칸인지 확인
-    //      if (memberNick.trim().length === 0) {
-    //         alert("이름을 입력해주세요.");
-    //         return false;
-    //     }
+        // 이름이 빈칸인지 확인
+        if (memberNick.value.trim().length === 0) {
+            alert("이름을 입력해주세요.");
+            return false;
+        }
 
-    //     //생일 - 숫자 8자리
-    //     if (!/^\d{8}$/.test(birthNum)) {
-    //         alert("유효한 생년월일을 입력해주세요.");
-    //         return false;
-    //     }
+        //생일 - 숫자 8자리
+        if (!/^\d{8}$/.test(birthNum.value)) {
+            alert("유효한 생년월일을 입력해주세요.");
+            return false;
+        }
+        
+        //전번 - 숫자 11자리
+        if (!/^\d{11}$/.test(phoneNo.value)) {
+            alert("유효한 휴대폰 번호를 입력해주세요.");
+            return false;
+        }
 
-    //     //전번 - 숫자 11자리
-    //     if (!/^\d{11}$/.test(phoneNo)) {
-    //         alert("유효한 휴대폰 번호를 입력해주세요.");
-    //         return false;
-    //     }
-
-    //     return true;
-    // }
+        return true;
+    }
 
 </script>
 

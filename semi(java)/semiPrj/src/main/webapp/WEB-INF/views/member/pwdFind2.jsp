@@ -29,7 +29,7 @@
                 <th id="ment1">회원님의 비밀번호는</th>
             </tr>
             <tr>
-                <td><input type="text" value="${pwdFind.memberPwd}" disabled></td>
+                <td><input type="text" value="${pwdFind.memberPwd.substring(0, pwdFind.memberPwd.length() - 4)}****" disabled></td>
             </tr>
             <tr>
                 <th id="ment2">입니다</th>
@@ -51,5 +51,6 @@
 
 </body>
 </html>
+
 
 
