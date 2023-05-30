@@ -318,7 +318,7 @@ public class MemberDao {
 	
 	}
 	
-	//회원 수 세기
+	//회원 수 세기 (그냥 조회)
 	public int countMember(Connection conn) throws Exception {
 		//SQL
 		String sql = "SELECT COUNT(*) FROM MEMBER WHERE STATUS = 'O'";
@@ -336,6 +336,35 @@ public class MemberDao {
 		JDBCTemplate.close(pstmt);
 		
 		return listCount;
+		
+	}
+
+	//회원 수 세기 (검색해서 조회)
+	public int getMemberListCnt(Connection conn, String searchType, String searchValue) throws Exception {
+
+		String sql = "SELECT COUNT(*) FROM MEMBER WHERE STATUS = 'O'";
+		if("student".equals(searchType)) {
+			sql += "AND IDENTITY = 'S' AND MEMBER_NICK LIKE '%" + searchValue + "%'";
+		}else if("teacher".equals(searchType)) {
+			sql += "AND IDENTITY = 'T' AND MEMBER_NICK LIKE '%" + searchValue + "%'";
+		}else if("all".equals(searchType)) {
+			sql += "AND MEMBER_NICK LIKE '%" + searchValue + "%'";
+		}
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		
+		//tx || rs
+		int cnt = 0;
+		if(rs.next()) {
+			cnt = rs.getInt(1);
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return cnt;
+		
 	}
 
 }

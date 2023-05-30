@@ -50,7 +50,7 @@ public class AdminDao {
 	
 	}
 
-	//회원 목록 조회
+	//회원 목록 조회 (그냥)
 	public List<MemberVo> getMemberList(Connection conn, PageVo pv) throws Exception {
 
 		//sql
@@ -58,6 +58,71 @@ public class AdminDao {
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, pv.getBeginRow());
 		pstmt.setInt(2, pv.getLastRow());
+		ResultSet rs = pstmt.executeQuery();
+		
+		//tx||rs
+		List<MemberVo> memberList = new ArrayList<>();
+		
+		while(rs.next()) {
+			String memberNo = rs.getString("MEMBER_NO");
+			String memberId = rs.getString("MEMBER_ID");
+			String memberPwd = rs.getString("MEMBER_PWD");
+			String memberNick = rs.getString("MEMBER_NICK");
+			String birthNum = rs.getString("BIRTH_NUM");
+			String status = rs.getString("STATUS");
+			String phoneNo = rs.getString("PHONE_NO");
+			String signDate = rs.getString("SIGN_DATE");
+			String profile = rs.getString("PROFILE");
+			String identity = rs.getString("IDENTITY");
+			String leftVacation = rs.getString("LEFT_VACATION");
+			String mileage = rs.getString("MILEAGE");
+			
+			MemberVo vo = new MemberVo();
+			vo.setMemberNo(memberNo);
+			vo.setMemberId(memberId);
+			vo.setMemberPwd(memberPwd);
+			vo.setMemberNick(memberNick);
+			vo.setBirthNum(birthNum);
+			vo.setStatus(status);
+			vo.setPhoneNo(phoneNo);
+			vo.setSignDate(signDate);
+			vo.setProfile(profile);
+			vo.setIdentity(identity);
+			vo.setLeftVacation(leftVacation);
+			vo.setMileage(mileage);
+						
+			memberList.add(vo);
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return memberList;
+	
+	}
+	
+	//회원 목록 조회 (검색)
+	public List<MemberVo> getMemberList(Connection conn, PageVo pv, String searchType, String searchValue) throws Exception {
+
+		String sql = "";
+
+		if(searchType.equals("student")) {
+			//학생검색
+			sql = "SELECT * FROM ( SELECT ROWNUM RNUM , T.* FROM ( SELECT M.*, S.MILEAGE FROM MEMBER M LEFT OUTER JOIN STUDENT S ON (M.MEMBER_NO = S.STUDENT_MEMBER_NO) WHERE IDENTITY = 'S' AND M.MEMBER_NICK LIKE ? ORDER BY MEMBER_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
+		}else if(searchType.equals("teacher")) {
+			//강사검색
+			sql = "SELECT * FROM ( SELECT ROWNUM RNUM , T.* FROM ( SELECT M.*, S.MILEAGE FROM MEMBER M LEFT OUTER JOIN STUDENT S ON (M.MEMBER_NO = S.STUDENT_MEMBER_NO) WHERE IDENTITY = 'T' AND M.MEMBER_NICK LIKE ? ORDER BY MEMBER_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
+		}else {
+			//전체검색(기본목록조회)
+			sql = "SELECT * FROM ( SELECT ROWNUM RNUM , T.* FROM ( SELECT M.*, S.MILEAGE FROM MEMBER M LEFT OUTER JOIN STUDENT S ON (M.MEMBER_NO = S.STUDENT_MEMBER_NO) WHERE M.MEMBER_NICK LIKE ? ORDER BY MEMBER_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
+		}
+		
+		String newSearchValue = "%" + searchValue + "%";
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, newSearchValue);
+		pstmt.setInt(2, pv.getBeginRow());
+		pstmt.setInt(3, pv.getLastRow());
 		ResultSet rs = pstmt.executeQuery();
 		
 		//tx||rs
@@ -132,6 +197,7 @@ public class AdminDao {
 		return result;
 	}
 
+	//마일리지 차감
 	public int minusMileage(Connection conn, String[] noArr) throws Exception {
 		
 		String str = String.join("," , noArr);

@@ -29,12 +29,24 @@ public class AdminService {
 		return loginAdmin;
 	}
 
-	//회원 목록 조회
+	//회원 목록 조회 (그냥)
 	public List<MemberVo> getMemberList(PageVo pv) throws Exception {
 		//conn
 		Connection conn = JDBCTemplate.getConnection();
 		//sql
 		List<MemberVo> memberList = dao.getMemberList(conn, pv);
+		//close
+		JDBCTemplate.close(conn);
+		
+		return memberList;
+	}
+	
+	//회원 목록 조회 (검색)
+	public List<MemberVo> getMemberList(PageVo pv, String searchType, String searchValue) throws Exception {
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		//sql
+		List<MemberVo> memberList = dao.getMemberList(conn , pv , searchType, searchValue);
 		//close
 		JDBCTemplate.close(conn);
 		
