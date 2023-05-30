@@ -32,6 +32,7 @@ public class BoardAnswerWriteController extends HttpServlet{
 			AnswerVo avo = new AnswerVo();
 			avo.setReplyNo2(rno);
 			avo.setAnswerContent(answerContent);
+			avo.setMemberNo(writerNo);
 			
 			BoardService bs = new BoardService();
 			int result = bs.answerWrite(avo);

@@ -111,4 +111,22 @@ public class ReviewService {
 		
 	}
 
+	//관리자 일괄 삭제
+	public int adminBoardDelete(String[] bnoArr) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.adminBoardDelete(conn, bnoArr);
+		
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
 }

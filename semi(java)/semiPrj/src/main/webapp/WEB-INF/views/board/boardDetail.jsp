@@ -255,10 +255,11 @@
     }
 
 
- // 답글 조회
-function loadAnswer(replyNo, parentElement) {
+  // 답글 조회
+  function loadAnswer(replyNo, parentElement) {
   const recomment = parentElement.querySelector('.recomment');
   const recommentWrite = parentElement.querySelector('.recomment_write');
+  const loginMemberNo = '${loginMember.memberNo}';
 
   if (recomment.style.display === 'grid') {
     recomment.style.display = 'none';
@@ -281,10 +282,14 @@ function loadAnswer(replyNo, parentElement) {
           str += '<path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>';
           str += '</svg>';
           str += '</i>';
-          str += '<span>익명</span>';
+          str += '<span>' + x[i].answerWriterNick + '</span>';
           str += '<span>' + x[i].answerContent + '</span>';
           str += '<div></div>';
-          str += '<div></div>';
+          if(loginMemberNo == x[i].memberNo){
+            str += '<input type="button" value="삭제" onclick="deleteAnswer(' + x[i].answerNo + ');">';
+          }else{
+            str += '<div></div>';
+          }
           str += '<span class="time">' + x[i].enrollDate + '</span>';
         }
 
@@ -319,6 +324,24 @@ function deleteComment(replyNo) {
     },
     error: function(e) {
       alert('댓글 삭제 실패');
+    },
+  });
+}
+
+//답글 삭제
+function deleteAnswer(answerNo) {
+  $.ajax({
+    url: '${root}/board/answer/delete',
+    type: 'POST',
+    data: {
+      ano: answerNo,
+    },
+    success: function(result){
+      alert("답글 삭제 성공");
+      loadComment();
+    },
+    error: function(e){
+      alert('답글 삭제 실패');
     },
   });
 }

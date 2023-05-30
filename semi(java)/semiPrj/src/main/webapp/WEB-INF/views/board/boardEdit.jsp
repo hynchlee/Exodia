@@ -19,12 +19,18 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 
 		<main>
-			<div class="myClass">
-                <ul>
-                    <li class="loginName">${loginMember.memberNick} 님 환영합니다</li>
-                    <li class="class">${memberLecture[0].lectureName}</li>
-                </ul>
-            </div>
+			<<c:if test="${not empty loginMember}">
+                <div class="myClass">
+                    <ul>
+                        <li class="loginName">${loginMember.memberNick} 
+                            <c:if test="${loginMember.identity eq 'S'}">
+                                [${memberLecture[0].lectureName}]
+                            </c:if>
+                            님 환영합니다</li>
+                        <li class="class">*통신예절에 어긋나는 글 등은 관리자에 의해 사전 통보없이 삭제 될 수 있습니다.</li>
+                    </ul>
+                </div>
+            </c:if>
 
             <hr>
 
