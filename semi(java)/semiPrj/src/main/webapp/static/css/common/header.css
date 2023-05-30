@@ -12,6 +12,11 @@ body {
   color: #000;
 }
 
+input[type=checkbox] {
+	width: 20px;
+	height: 20px;
+}
+
 #wrap {
   width: 100%;
 }

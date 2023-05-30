@@ -47,12 +47,12 @@
 									<th>수강신청</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody class="tbd">
 								<c:forEach items="${lectureList}" var="vo">
 									<form action="${root}/lecture/apply" method="post">
 										<tr>
 											<input hidden type="text" name="lectureNo" value="${vo.lectureNo}">
-											<td>강남</td>
+											<td>${vo.place}</td>
 											<td>${vo.lectureOpenDate}</td>
 											<td>${vo.lectureCloseDate}</td>
 											<td>${vo.teacherMemberName}</td>

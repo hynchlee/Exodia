@@ -18,6 +18,7 @@
 	<main>
 		<%
 		List<MemberVo> teacherList = (List<MemberVo>) request.getAttribute("teacherList");
+		List<String> commentList = (List<String>) request.getAttribute("commentList");
 		%>
 
 		<%
@@ -28,7 +29,7 @@
 				<div class="menu_1">
 					<div class="pfl">
 						<% if(teacherList.get(i).getProfile() == null) { %>
-						<img src="${root}/static/img/introduce/___7.png" alt="logo"
+						<img src="${root}/static/img/header/defaultProfile.png" alt="logo"
 							id="profile_img_1" class="profile_img">
 						<% } else {%>
 							<% String profile = "/semi/static/img/profile/" + teacherList.get(i).getProfile(); %>
@@ -39,15 +40,14 @@
 					</div>
 
 					<div id="e98_1" class="intro_div">
-						現) KH정보교육원 강사 <br> 일단 해보자! <br> 할까 말까 고민이시라면 일단 해보세요. <br>
-						시도하지 않으면 무조건 0, 일단 시작하면 1~99 입니다!
+						<%= commentList.get(i)%>
 					</div>
 				</div>
 				<% if(i + 1 < teacherList.size()) {%>
 				<div class="menu_1">
 					<div class="pfl">
 						<% if(teacherList.get(i+1).getProfile() == null) { %>
-							<img src="${root}/static/img/introduce/___7.png" alt="logo"
+							<img src="${root}/static/img/header/defaultProfile.png" alt="logo"
 								id="profile_img_1" class="profile_img">
 							<% } else {%>
 								<% String profile = "/semi/static/img/profile/" + teacherList.get(i+1).getProfile(); %>
@@ -58,8 +58,7 @@
 					</div>
 
 					<div id="e98_1" class="intro_div">
-						現) KH정보교육원 강사 <br> 일단 해보자! <br> 할까 말까 고민이시라면 일단 해보세요. <br>
-						시도하지 않으면 무조건 0, 일단 시작하면 1~99 입니다!
+						<%= commentList.get(i + 1)%>
 					</div>
 				</div>
 				<% } %>

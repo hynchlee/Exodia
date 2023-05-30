@@ -130,6 +130,6 @@ table button:hover {
 	 color: white;
  }
 
-table tbody tr:hover{
+.tbd tr:hover{
     background-color:  #F0F0F0;
 }

@@ -29,8 +29,9 @@ public class TeacherIntroduceController extends HttpServlet {
 			
 			PageVo pageVo = new PageVo(cnt, pageInt, 5, 10);
 			List<MemberVo> teacherList = is.getTeacherList(pageVo);
-
+			List<String> commentList = is.getCommentList();
 			req.setAttribute("teacherList", teacherList);
+			req.setAttribute("commentList", commentList);
 			req.setAttribute("pageVo", pageVo);
 			req.getRequestDispatcher("/WEB-INF/views/introduce/teacher.jsp").forward(req, resp);
 		} catch (Exception e) {

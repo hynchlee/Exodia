@@ -11,26 +11,11 @@ public class LectureVo {
 	private String status;
 	private String teacherMemberName;
 	private String lectureCategoryName;
+	private String place;
 
 	public LectureVo() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-	public LectureVo(String lectureNo, String teacherMemberNo, String lectureCategoryNo, String lectureStartTime,
-			String lectureFinishTime, String lectureOpenDate, String lectureCloseDate, String status,
-			String teacherMemberName, String lectureCategoryName) {
-		super();
-		this.lectureNo = lectureNo;
-		this.teacherMemberNo = teacherMemberNo;
-		this.lectureCategoryNo = lectureCategoryNo;
-		this.lectureStartTime = lectureStartTime;
-		this.lectureFinishTime = lectureFinishTime;
-		this.lectureOpenDate = lectureOpenDate;
-		this.lectureCloseDate = lectureCloseDate;
-		this.status = status;
-		this.teacherMemberName = teacherMemberName;
-		this.lectureCategoryName = lectureCategoryName;
 	}
 
 	public String getLectureNo() {
@@ -113,13 +98,21 @@ public class LectureVo {
 		this.lectureCategoryName = lectureCategoryName;
 	}
 
+	public String getPlace() {
+		return place;
+	}
+
+	public void setPlace(String place) {
+		this.place = place;
+	}
+
 	@Override
 	public String toString() {
 		return "LectureVo [lectureNo=" + lectureNo + ", teacherMemberNo=" + teacherMemberNo + ", lectureCategoryNo="
 				+ lectureCategoryNo + ", lectureStartTime=" + lectureStartTime + ", lectureFinishTime="
 				+ lectureFinishTime + ", lectureOpenDate=" + lectureOpenDate + ", lectureCloseDate=" + lectureCloseDate
 				+ ", status=" + status + ", teacherMemberName=" + teacherMemberName + ", lectureCategoryName="
-				+ lectureCategoryName + "]";
+				+ lectureCategoryName + ", place=" + place + "]";
 	}
 
 }

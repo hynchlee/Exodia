@@ -73,7 +73,7 @@
 			const title = document.querySelector('.title');
 			const addss = document.querySelector('.e112_1077');
 			const e112_List = document.querySelectorAll('.e112');
-			title.innerHTML = "시설 소개";
+			title.innerHTML = "찾아오는 길";
 
 			var address;
 
