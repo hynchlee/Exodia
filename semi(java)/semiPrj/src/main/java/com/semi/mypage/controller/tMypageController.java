@@ -25,6 +25,8 @@ import com.semi.mypage.service.MypageService;
 import com.semi.notice.vo.NoticeVo;
 import com.semi.teamCalendar.service.TeamCalendarService;
 import com.semi.teamCalendar.vo.TeamCalendarVo;
+import com.semi.vacation.dao.VacationDao;
+import com.semi.vacation.vo.VacationVo;
 
 @WebServlet(urlPatterns = "/tmypage")
 public class tMypageController extends HttpServlet {
@@ -59,6 +61,7 @@ public class tMypageController extends HttpServlet {
 			String letterCount = ms.countLetter01(memberNo);
 			String countMyWrite = ms.countMyWrite(memberNo);
 			List<BoardVo> tcvoList = ms.getBoardTClassList(lectureVo.getLectureNo());
+			List<VacationVo> vaList = ms.watchingStudent(lectureVo.getLectureNo());
 			List<CalenderVo> ttodoList = ms.ttodoList(memberNo);
 			List<TeamCalendarVo> voList = fcs.getFullCalendar(loginMember.getMemberNo());
 			
@@ -70,6 +73,7 @@ public class tMypageController extends HttpServlet {
 			req.setAttribute("letterCount", letterCount);
 			req.setAttribute("countMyWrite", countMyWrite);
 			req.setAttribute("ttodoList", ttodoList);	
+			req.setAttribute("vaList", vaList);				
 			req.getRequestDispatcher("/WEB-INF/views/personal/tmypage.jsp").forward(req, resp);
 
 		} catch (Exception e) {
