@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.semi.common.db.JDBCTemplate;
+import com.semi.common.page.PageVo;
 import com.semi.lecture.vo.LectureCategoryVo;
 import com.semi.member.dao.MemberDao;
 import com.semi.member.vo.MemberVo;
@@ -185,7 +186,7 @@ public class MemberService {
 		return result;
 	}
 
-	//회원 수 세기
+	//회원 수 세기 (그냥 조회)
 	public int countMember() throws Exception {
 		//conn
 		Connection conn = JDBCTemplate.getConnection();
@@ -195,6 +196,18 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 		
 		return listCount;
+	}
+
+	//회원 수 세기 (검색해서 조회)
+	public int getMemberListCnt(String searchType, String searchValue) throws Exception {
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		//sql
+		int cnt = dao.getMemberListCnt(conn , searchType , searchValue);
+		//close
+		JDBCTemplate.close(conn);
+		
+		return cnt;
 	}
 
 }

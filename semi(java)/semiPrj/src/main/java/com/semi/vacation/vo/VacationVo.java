@@ -13,6 +13,9 @@ public class VacationVo {
 	private String vacationEnd;
 	private String status;
 	private String reason;
+	private String leftVacation;
+	
+	
 	public String getVacationRequestListNo() {
 		return vacationRequestListNo;
 	}
@@ -79,13 +82,27 @@ public class VacationVo {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
-	public VacationVo() {
-		super();
-		// TODO Auto-generated constructor stub
+	public String getLeftVacation() {
+		return leftVacation;
 	}
+	public void setLeftVacation(String leftVacation) {
+		this.leftVacation = leftVacation;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "VacationVo [vacationRequestListNo=" + vacationRequestListNo + ", memberNo=" + memberNo
+				+ ", teacherName=" + teacherName + ", studentName=" + studentName + ", studentId=" + studentId
+				+ ", lectureName=" + lectureName + ", day=" + day + ", vacationStart=" + vacationStart
+				+ ", vacationEnd=" + vacationEnd + ", status=" + status + ", reason=" + reason + ", leftVacation="
+				+ leftVacation + "]";
+	}
+	
+	
 	public VacationVo(String vacationRequestListNo, String memberNo, String teacherName, String studentName,
 			String studentId, String lectureName, String day, String vacationStart, String vacationEnd, String status,
-			String reason) {
+			String reason, String leftVacation) {
 		super();
 		this.vacationRequestListNo = vacationRequestListNo;
 		this.memberNo = memberNo;
@@ -98,14 +115,13 @@ public class VacationVo {
 		this.vacationEnd = vacationEnd;
 		this.status = status;
 		this.reason = reason;
-	}
-	@Override
-	public String toString() {
-		return "VacationVo [vacationRequestListNo=" + vacationRequestListNo + ", memberNo=" + memberNo
-				+ ", teacherName=" + teacherName + ", studentName=" + studentName + ", studentId=" + studentId
-				+ ", lectureName=" + lectureName + ", day=" + day + ", vacationStart=" + vacationStart
-				+ ", vacationEnd=" + vacationEnd + ", status=" + status + ", reason=" + reason + "]";
+		this.leftVacation = leftVacation;
 	}
 	
+	
+	public VacationVo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 }

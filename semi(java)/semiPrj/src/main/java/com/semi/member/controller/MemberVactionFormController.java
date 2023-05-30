@@ -44,6 +44,7 @@ public class MemberVactionFormController extends HttpServlet{
 			String originVacationStart = req.getParameter("vacationStart");
 			String originVacationEnd = req.getParameter("vacationEnd");
 			String reason = req.getParameter("reason");
+			String leftVacation = loginMember.getLeftVacation();
 			
 			String vacationStart = originVacationStart.replace("-", "");
 			String vacationEnd = originVacationEnd.replace("-", "");
@@ -54,6 +55,7 @@ public class MemberVactionFormController extends HttpServlet{
 			vo.setVacationStart(vacationStart);
 			vo.setVacationEnd(vacationEnd);
 			vo.setReason(reason);
+			vo.setLeftVacation(leftVacation);
 			
 			//서비스
 			MemberService ms = new MemberService();
@@ -61,8 +63,9 @@ public class MemberVactionFormController extends HttpServlet{
 			
 			//화면
 			if(result == 1) {
-				String root = req.getContextPath();
+				//req.getSession().setAttribute("vo", vo);
 				req.getSession().setAttribute("alertMsg", "휴가신청 성공!");
+				String root = req.getContextPath();
 				resp.sendRedirect(root + "/main");
 			}else {
 				throw new Exception();

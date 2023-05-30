@@ -15,12 +15,17 @@
 
 	<main>
 
-		<div class="select-area">
-			<select name="searchType">
-				<option value="all">전체</option>
-				<option value="student">학생</option>
-				<option value="teacher">강사</option>
-			</select>
+		<div class="search-area">
+			<form action="${root}/admin/member/manage" method="get">
+				<input type="hidden" name="page" value="1">
+				<select name="searchType">
+					<option value="all">전체</option>
+					<option value="student">학생</option>
+					<option value="teacher">강사</option>
+				</select>
+				<input type="text" class="searchValueElem" name="searchValue" value="${searchVo.searchValue}" placeholder="회원이름을 검색하세요">
+				<input type="submit" value="검색" class="searchBtn">
+			</form>
 		</div>
 
 		<c:forEach items="${memberList}" var="member">
@@ -29,7 +34,7 @@
 					<input type="checkbox" name="manageMember" value="${member.memberNo}">
 				</div>
 				<div>
-					<img id="profile-img" src="${root}/static/img/introduce/___7.png" alt="profile" id="profile_img_1" class="profile_img">
+					<img id="profile-img" src="${root}/static/img/profile/${member.profile}" alt="프사" id="profile_img_1" class="profile_img">
 				</div>
 				<div id="info">
 					<table>
@@ -117,18 +122,18 @@
 			<button>5</button>
 			<button>>></button> -->
 			<c:if test="${ pv.currentPage > 1 }">
-				<a href="${pageContext.request.contextPath}/admin/member/manage?page=${pv.currentPage-1}"><button><<</button></a>
+				<a href="${root}/admin/member/manage?page=${pv.currentPage-1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button><<</button></a>
 			</c:if>
 			<c:forEach begin="${pv.startPage}" end="${pv.endPage}" var="i">
 				<c:if test="${pv.currentPage ne i}">
-					<a href="${pageContext.request.contextPath}/admin/member/manage?page=${i}"><button>${i}</button></a>
+					<a href="${root}/admin/member/manage?page=${i}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>${i}</button></a>
 				</c:if>
 				<c:if test="${pv.currentPage eq i}">
 					<a><button class="active">${i}</button></a>
 				</c:if>
 			</c:forEach>
 			<c:if test="${ pv.currentPage < pv.maxPage }">
-				<a href="${pageContext.request.contextPath}/admin/member/manage?page=${pv.currentPage+1}"><button>>></button></a>
+				<a href="${root}/admin/member/manage?page=${pv.currentPage+1}&searchType=${searchVo.searchType}&searchValue=${searchVo.searchValue}"><button>>></button></a>
 			</c:if>
 
 		</div>
@@ -139,11 +144,9 @@
 
 	<script>
 
+		//페이지 이름 변경
 		const title = document.querySelector(".title");
 		title.innerText = '회원 관리';
-		
-		// const caption = document.querySelector(".caption");
-		// caption.innerText = '';
 
 		//선택한 회원 번호 가져오기
 		function getCheckedBox() {
@@ -157,7 +160,6 @@
 			}
 			return noArr;
 		};
-
 
 		//회원 정지
 		function stopMember() {
@@ -182,7 +184,6 @@
 			}
 		};
 
-
 		//회원 탈퇴
 		function quitMember() {
 			const noArr = getCheckedBox();
@@ -205,7 +206,6 @@
 				})
 			}
 		};
-		
 		
 		// 마일리지 차감
 		function minusMileage() {
@@ -232,20 +232,44 @@
 		};
 
 
-		//셀렉트
-		document.getElementById("memberFilter").addEventListener("change", function () {
-  var identity = this.value;
-  var memberInfos = document.getElementsByClassName("member-info");
 
-  for (var i = 0; i < memberInfos.length; i++) {
-    var memberIdentity = memberInfos[i].getAttribute("data-member-identity");
-    memberInfos[i].style.display = (identity === "all" || identity === memberIdentity) ? "" : "none";
-  }
-});
+		/////////////검색 코드/////////////
+
+		const searchType = '${searchVo.searchType}';
+		const searchValue = '${searchVo.searchValue}';
 		
+		const searchValueSelectTag = document.querySelector("select[name='searchValue']");
+		const searchValueInputTag = document.querySelector("input[name='searchValue']");
+		
+		if(searchType.length > 1){
+			initSearchType();
+		}
+		
+		// 검색 타입 초기셋팅
+		function initSearchType(){
+			const x = document.querySelector('select > option[value="' + searchType + '"]');
+			x.selected = true;
+		}
+		
+		//서치타입 변경 시 함수 실행
+		const searchTypeTag = document.querySelector('select[name="searchType"]');
+		searchTypeTag.addEventListener("change" , setSearchValueTag);
 
+		function setSearchValueTag(){
+			const searchType = searchTypeTag.value;
+			setSearchValueTagInput();
+		}
 
-
+		//검색값 영역을 인풋이 보이게
+		function setSearchValueTagInput(){
+			searchValueInputTag.classList.add("active");
+			searchValueInputTag.disabled = false;
+			// searchValueSelectTag.classList.remove("active");
+			// searchValueSelectTag.disabled = true;
+		}
+		
+		setSearchValueTag();
+		initSearchValueSelect();
 
 
 	</script>
