@@ -153,7 +153,7 @@ public class MypageDao {
 
 	public List<TeamVo> teamList(Connection conn) throws Exception {
 
-		String sql = "SELECT M.MEMBER_NICK, T.TEAM_NAME, TR.ROLE, TR.PROJECT_DIVISION FROM TEAM T JOIN STUDENT S ON(S.TEAM_NO = T.TEAM_NO) JOIN TEAM_ROLE TR ON (TR.STUDENT_MEMBER_NO = S.STUDENT_MEMBER_NO) JOIN MEMBER M ON (M.MEMBER_NO = S.STUDENT_MEMBER_NO) WHERE IDENTITY = 'S' ";
+		String sql = "SELECT M.MEMBER_NICK, T.TEAM_NAME, TR.ROLE, TR.PROJECT_DIVISION, TR.STATUS FROM TEAM T JOIN STUDENT S ON(S.TEAM_NO = T.TEAM_NO) JOIN TEAM_ROLE TR ON (TR.STUDENT_MEMBER_NO = S.STUDENT_MEMBER_NO) JOIN MEMBER M ON (M.MEMBER_NO = S.STUDENT_MEMBER_NO) WHERE M.IDENTITY = 'S' AND TR.STATUS = 'O' ";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
 		
@@ -650,6 +650,37 @@ public class MypageDao {
 		
 		return secuList;
 		
+	}
+
+	public List<VacationVo> watchingStudent(Connection conn, String lectureNo) throws Exception {
+
+		String sql = " SELECT M.MEMBER_NICK, V.reason, TO_CHAR(TO_DATE(VACATION_START), 'MM/DD') VACATION_START, TO_CHAR(TO_DATE(VACATION_END), 'MM/DD') VACATION_END FROM VACATION_REQUEST_LIST V JOIN STUDENT S ON (S.STUDENT_MEMBER_NO = V.MEMBER_NO) JOIN MEMBER M ON (M.MEMBER_NO = V.MEMBER_NO) WHERE V.STATUS = 'O' AND M.STATUS = 'O'  AND M.IDENTITY = 'S' AND LECTURE_NO = ? ";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, lectureNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		List<VacationVo> vaList = new ArrayList<>();
+		while (rs.next()) {
+			String memberNick = rs.getString("MEMBER_NICK");
+			String reason = rs.getString("REASON");
+			String vacationStart = rs.getString("VACATION_START");
+			String vacationEnd = rs.getString("VACATION_END");
+			
+			VacationVo vv = new VacationVo();
+			vv.setStudentName(memberNick);
+			vv.setReason(reason);
+			vv.setVacationStart(vacationStart);
+			vv.setVacationEnd(vacationEnd);
+			
+			vaList.add(vv);
+			
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return vaList;
+	
 	}
 		
 	

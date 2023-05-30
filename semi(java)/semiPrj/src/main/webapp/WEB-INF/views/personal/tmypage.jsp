@@ -72,13 +72,13 @@
 				</td>
 				<td class="td01 td08">
 					<div class="todo" style="overflow: auto">
-						<span class="teamlisttitle">일정</span>
+						<span class="teamlisttitle">학생 휴가 내역</span>
 						<hr>
 						<br>
 						<ul>
-							<c:forEach items="${ttodoList}" var="ttodoList">
-								<li class="list02">${ttodoList.meetingDate}</li>	
-								<li class="list03">${ttodoList.meetingContent}</li>				
+							<c:forEach items="${vaList}" var="vaList">
+								<li class="list02">${vaList.studentName}, 날짜 : (${vaList.vacationStart}) ~ (${vaList.vacationEnd})</li>	
+								<li class="list03"> 사유 : ${vaList.reason}</li>				
 							</c:forEach>							
 						</ul>
 					</div>

@@ -318,4 +318,17 @@ public class MypageService {
 		
 	}
 
+	public List<VacationVo> watchingStudent(String lectureNo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();	
+		List<VacationVo> vaList = mdao.watchingStudent(conn, lectureNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return vaList;
+		
+	}
+
 }
