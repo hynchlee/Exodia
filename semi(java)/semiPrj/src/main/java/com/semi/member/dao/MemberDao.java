@@ -54,6 +54,27 @@ public class MemberDao {
 		return result;
 				
 	}
+	
+	//아이디 중복검사
+	public int checkId(Connection conn, String memberId) throws Exception {
+
+		//sql
+		String sql = "SELECT COUNT(*) FROM MEMBER WHERE MEMBER_ID = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberId);
+		ResultSet rs = pstmt.executeQuery();
+		
+		//tx||rs
+		int result = 0;
+		if(rs.next()) {
+			result = rs.getInt(1);
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	}
 
 	//로그인
 	public MemberVo login(Connection conn, MemberVo vo) throws Exception {
@@ -315,27 +336,6 @@ public class MemberDao {
 		JDBCTemplate.close(pstmt);
 		
 		return listCount;
-	}
-
-	//아이디 중복검사
-	public int checkId(Connection conn, String memberId) throws Exception {
-
-		//sql
-		String sql = "SELECT COUNT(*) FROM MEMBER WHERE MEMBER_ID = ?";
-		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, memberId);
-		ResultSet rs = pstmt.executeQuery();
-		
-		//tx||rs
-		int result = 0;
-		if(rs.next()) {
-			result = rs.getInt(1);
-		}
-		
-		JDBCTemplate.close(rs);
-		JDBCTemplate.close(pstmt);
-		
-		return result;
 	}
 
 }

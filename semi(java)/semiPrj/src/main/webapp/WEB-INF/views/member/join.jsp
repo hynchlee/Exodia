@@ -101,8 +101,10 @@
 
         event.preventDefault();
 
-        if (!memberId.value) {
-            alert("아이디를 입력해주세요.");
+        // 아이디 제약조건 - 영어소문자/숫자 조합 4~12자리
+        if (!(/^[a-z\d]{4,12}$/.test(memberId.value))) {
+            alert('유효한 아이디를 입력해주세요.');
+            memberId.focus();
             return;
         }
 
@@ -173,14 +175,18 @@
         // 아이디 제약조건 - 영어소문자/숫자 조합 4~12자리
         if(!(/^[a-z\d]{4,12}$/.test(memberId.value))) {
             alert('유효한 아이디를 입력해주세요.');
-            
+            return false;
+        }
+
+        //아이디 중복확인 여부
+        if(!idChecked || !isIdAvailable) {
+            alert("아이디 중복검사를 해주세요.");
             return false;
         }
         
         // 비번 제약조건 - 영어소문자/숫자/특수문자 조합 8~15자리
         if(!(/^[\w!@#$%^&*-]{8,15}$/.test(memberPwd.value))) {
             alert('유효한 비밀번호를 입력해주세요.');
-            
             return false;
         }
 
