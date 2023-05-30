@@ -18,6 +18,14 @@ public class TeamCalendarService {
 		JDBCTemplate.close(conn);
 		return voList;
 	}
+	
+	public List<TeamCalendarVo> tgetFullCalendar(String lectureNo) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		List<TeamCalendarVo> voList = dao.tgetTeamCalendar(conn, lectureNo);
+		
+		JDBCTemplate.close(conn);
+		return voList;
+	}
 
 	public int writeCalendar(String memberNo, String[] paramsArr) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
