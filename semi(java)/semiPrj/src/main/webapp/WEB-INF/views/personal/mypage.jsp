@@ -55,7 +55,8 @@
 							<div class="change"><a href="${root}/member/edit">내 정보 수정</a></div>
 							<div class="letter"><a href="${root}/letter/receive">쪽지 ${letterCount}</a></div>
 							<div class="mywrite"><a href="${root}/my/list?page=1">내가 쓴 글 ${countMyWrite}</a></div>
-							<div class="point"><a href="/">마일리지</a></div>
+							<div class="point"><a href="${root}/vacation/list?page=1">마일리지</a></div>
+							<div class="vacations"><a href="${root}/vacation/list?page=1">남은 휴가 ${leftVacation} </a></div>
 							<div class="test"><a href="${root}/lecture/test/list" class="a01">시험 응시</a></div>
 							<div class="vacation"><a href="${root}/member/vacation/form" class="a01">휴가 신청</a></div>
 							<div class="checkin"><a href="${root}/mypage/checkin" class="a01">입실하기</a></div>
