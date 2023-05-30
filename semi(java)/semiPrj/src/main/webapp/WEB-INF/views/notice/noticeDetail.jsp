@@ -30,11 +30,11 @@
             <form action="${root}/notice/detail" method="post" enctype="multipart/form-data">
 
                 <!-- 관리자에게만 보이는 체크박스 -->
-                <c:if test="${not empty loginAdmin }">
+                <!-- <c:if test="${not empty loginAdmin }">
 	                <div class="checked">
 	                    <input type="checkbox" name="" id=""><span>상단고정</span>
 	                </div>
-                </c:if>
+                </c:if> -->
     
                 <table class="board_view">
                     <colgroup>
@@ -56,7 +56,12 @@
                             <td>${nvNo.adminNick}</td>
                             <th>작성일</th>
                             <td>${nvNo.enrollDate}</td>
-                            <td class="edit_date">${nvNo.modifyDate}</td>
+                            <c:if test="${empty nvNo.modifyDate}">
+                            	<td></td>
+                            </c:if>
+                            <c:if test="${not empty nvNo.modifyDate }">
+	                            <td class="edit_date">${nvNo.modifyDate}</td>
+                            </c:if>
                         </tr>
                         <tr>
                             <th>내용</th>

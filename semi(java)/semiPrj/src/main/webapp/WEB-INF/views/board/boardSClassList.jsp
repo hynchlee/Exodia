@@ -87,11 +87,11 @@
                 </tbody>
             </table>
             
-            <c:if test="${not empty loginMember || not empty loginAdmin}">
-	            <div class="board_bt">
+            <div class="board_bt" style="justify-content: flex-end;">
+                <c:if test="${not empty loginMember || not empty loginAdmin}">
 	                <a href="${root}/board/write" class="bt1">글 등록</a>
-	            </div>
-            </c:if>
+                </c:if>
+            </div>
             
 			<div class="board_page">
 				<c:if test="${pv.currentPage > 1}">

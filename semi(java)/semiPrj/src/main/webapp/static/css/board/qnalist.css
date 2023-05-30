@@ -115,6 +115,10 @@ table{
     color: white;
 }
 
+.board tbody tr:hover{
+    cursor: pointer;
+}
+
 .board_page{
     text-align: center;
     margin-top: 20px;

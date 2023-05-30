@@ -78,9 +78,9 @@
                     <!-- 관리자 기능 - 게시글 삭제 -->
                     <c:if test="${not empty loginAdmin }">
 	                    <a class="bt1" id="btred" onclick="adminBoardDelete();">일괄 삭제</a>
-		                <a href="${root}/board/write" class="bt1">글 등록</a>
+                        <div></div>
                     </c:if>
-		            <c:if test="${not empty loginMember || not empty loginAdmin}">
+		            <c:if test="${not empty loginMember}">
 		            	<div></div>
 		                <a href="${root}/board/write" class="bt1">글 등록</a>
 		            </c:if>
