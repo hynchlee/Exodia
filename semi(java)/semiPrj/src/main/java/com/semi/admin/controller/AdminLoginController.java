@@ -18,7 +18,14 @@ public class AdminLoginController extends HttpServlet{
 	//관리자 로그인 화면
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/admin/adminLogin.jsp").forward(req, resp);
+		AdminVo loginAdmin = (AdminVo) req.getSession().getAttribute("loginAdmin");
+		
+		if(loginAdmin == null) {
+			req.getRequestDispatcher("/WEB-INF/views/admin/adminLogin.jsp").forward(req, resp);
+		}else {
+			req.getSession().setAttribute("alertMsg", "이미 관리자 로그인 상태입니다.");
+			resp.sendRedirect(req.getContextPath() + "/main");
+		}
 	}
 	
 	//관리자 로그인

@@ -24,16 +24,16 @@
             </a>
         </div>
 
-        <form action="${root}/member/join" method="post" enctype="multipart/form-data" onsubmit="return validateRadio();">
+        <form action="${root}/member/join" method="post" enctype="multipart/form-data" onsubmit="return (validateRadio() && validate());">
             
             <div class="radio-area">
                 <div class="identity-box">
                     <div id="radio-student">
-                        <input type="radio" name="identity" value="S">
+                        <input type="radio" id="student" name="identity" value="S">
                         <label for="student">학생</label>
                     </div>
                     <div id="radio-teacher">
-                        <input type="radio" name="identity" value="T">
+                        <input type="radio" id="teacher" name="identity" value="T">
                         <label for="teacher">강사</label>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
             </table>
 
             <div>
-                <input type="submit" value="회원가입" onclick="return validate();">
+                <input type="submit" value="회원가입">
             </div>
 
         </form>
@@ -107,8 +107,8 @@
 
     //신분 선택 필수 조건
     function validateRadio() {
-        const radioStudent = document.querySelector('input[name="identity"][value="S"]');
-        const radioTeacher = document.querySelector('input[name="identity"][value="T"]');
+        const radioStudent = document.querySelector('input[value="S"]');
+        const radioTeacher = document.querySelector('input[value="T"]');
 
         if (radioStudent.checked === false && radioTeacher.checked === false) {
             alert('학생 또는 강사를 선택해주세요.');
@@ -120,44 +120,50 @@
 
     //제약조건
     function validate() {
-        let memberId = document.querySelector('input[name=memberId]').value;
-        let memberPwd = document.querySelector('input[name=memberPwd]').value;
-        let memberPwd2 = document.querySelector('input[name=memberPwd2]').value;
-        let memberNick = document.querySelector('input[name=memberNick]').value;
-        let birthNum = document.querySelector('input[name=birthNum]').value;
-        let phoneNo = document.querySelector('input[name=phoneNo]').value;
+        let memberId = document.querySelector('input[name=memberId]');
+        let memberPwd = document.querySelector('input[name=memberPwd]');
+        let memberPwd2 = document.querySelector('input[name=memberPwd2]');
+        let memberNick = document.querySelector('input[name=memberNick]');
+        let birthNum = document.querySelector('input[name=birthNum]');
+        let phoneNo = document.querySelector('input[name=phoneNo]');
 
         // 아이디 제약조건 - 영어소문자/숫자 조합 4~12자리
-        if(!(/^[a-z\d]{4,12}$/.test(memberId))) {
+        if(!(/^[a-z\d]{4,12}$/.test(memberId.value))) {
             alert('유효한 아이디를 입력해주세요.');
             
             return false;
         }
         
         // 비번 제약조건 - 영어소문자/숫자/특수문자 조합 8~15자리
-        if(!(/^[\w!@#$%^&*-]{8,15}$/.test(memberPwd))) {
+        if(!(/^[\w!@#$%^&*-]{8,15}$/.test(memberPwd.value))) {
             alert('유효한 비밀번호를 입력해주세요.');
             
             return false;
         }
 
         // 비밀번호 확인
-        if(memberPwd !== memberPwd2) {
-            alert("동일한 비밀번호 값을 입력해주세요.")
+        if(memberPwd.value != memberPwd2.value) {
+            alert("비밀번호 일치여부를 확인해주세요.")
             memberPwd2.value = '';
             memberPwd2.focus();
 
             return false;
         }
 
+        // 이름이 빈칸인지 확인
+        if (memberNick.value.trim().length === 0) {
+            alert("이름을 입력해주세요.");
+            return false;
+        }
+
         //생일 - 숫자 8자리
-        if (!/^\d{8}$/.test(birthNum)) {
+        if (!/^\d{8}$/.test(birthNum.value)) {
             alert("유효한 생년월일을 입력해주세요.");
             return false;
         }
         
         //전번 - 숫자 11자리
-        if (!/^\d{11}$/.test(phoneNo)) {
+        if (!/^\d{11}$/.test(phoneNo.value)) {
             alert("유효한 휴대폰 번호를 입력해주세요.");
             return false;
         }

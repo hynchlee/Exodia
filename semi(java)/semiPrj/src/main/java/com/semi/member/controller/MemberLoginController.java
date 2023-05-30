@@ -20,7 +20,14 @@ public class MemberLoginController extends HttpServlet{
 	//로그인 화면
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/member/login.jsp").forward(req, resp);
+		MemberVo loginMember = (MemberVo) req.getSession().getAttribute("loginMember");
+		
+		if(loginMember == null) {
+			req.getRequestDispatcher("/WEB-INF/views/member/login.jsp").forward(req, resp);
+		}else {
+			req.getSession().setAttribute("alertMsg", "이미 로그인 상태입니다.");
+			resp.sendRedirect(req.getContextPath() + "/main");
+		}
 	}
 	
 	//로그인
@@ -35,7 +42,7 @@ public class MemberLoginController extends HttpServlet{
 			
 			//관리자 로그인 창 이동
 			if("admin".equals(memberId) && "admin".equals(memberPwd)) {
-				req.getRequestDispatcher("/WEB-INF/views/admin/adminLogin.jsp").forward(req, resp);
+				resp.sendRedirect(req.getContextPath() + "/admin/login");
 				return;
 			}
 			

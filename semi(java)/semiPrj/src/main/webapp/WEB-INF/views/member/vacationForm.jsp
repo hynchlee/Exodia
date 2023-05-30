@@ -24,7 +24,7 @@
             </a>
         </div>
 
-        <form action="${root}/member/vacation/form" method="post">
+        <form action="${root}/member/vacation/form" method="post" onsubmit="return (validate() && submitCheck())">
             
             <span><h1>휴 가 원</h1></span>
 
@@ -46,7 +46,7 @@
             </table>
 
             <div id="submit-box">
-                <input type="submit" value="제출" onclick="return validate();">
+                <input type="submit" value="제출">
             </div>
 
         </form>
@@ -111,7 +111,17 @@
         }
 
         return true;
-    };
+    }
+
+    function submitCheck() {
+        if (confirm('제출 시 수정 및 취소 불가능합니다. 정말 제출하시겠습니까?')) {
+            alert('제출되었습니다.');
+            return true;
+        } else {
+            alert('제출이 취소되었습니다.');
+            return false;
+        }
+    }
 
   </script>
   
