@@ -3,6 +3,7 @@ package com.semi.mypage.dao;
 import java.sql.Connection; 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -568,6 +569,90 @@ public class MypageDao {
 		return ttodoList;
 		
 	}
+
+	public List<LectureVo> showLecture(Connection conn) throws Exception {
+		
+		String sql = "SELECT L.LECTURE_NO, L.TEACHER_MEMBER_NO, L.LECTURE_CATEGORY_NO, L.LECTURE_START_TIME, L.LECTURE_FINISH_TIME, TO_CHAR(TO_DATE(L.LECTURE_OPEN_DATE), 'MM/DD') LECTURE_OPEN_DATE, TO_CHAR(TO_DATE(L.LECTURE_CLOSE_DATE), 'MM/DD') LECTURE_CLOSE_DATE, L.STATUS, L.PLACE, LC.LECTURE_CATEGORY_NO, LC.LECTURE_NAME FROM LECTURE L JOIN LECTURE_CATEGORY LC ON (L.LECTURE_CATEGORY_NO = LC.LECTURE_CATEGORY_NO) WHERE L.LECTURE_CATEGORY_NO = 1 AND STATUS = 'O' ORDER BY LECTURE_OPEN_DATE DESC ";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		
+		List<LectureVo> lvoList = new ArrayList<>();
+		while (rs.next()) {
+			
+			String lectureNo = rs.getString("LECTURE_NO");
+			String teacherMemberNo = rs.getString("TEACHER_MEMBER_NO");
+			String lectureCategoryNo = rs.getString("LECTURE_CATEGORY_NO");
+			String lectureStartTime = rs.getString("LECTURE_START_TIME");
+			String lectureFinishTime = rs.getString("LECTURE_FINISH_TIME");
+			String lectureOpenDate = rs.getString("LECTURE_OPEN_DATE");
+			String lectureCloseDate = rs.getString("LECTURE_CLOSE_DATE");
+			String place = rs.getString("PLACE");
+			String lectureName = rs.getString("LECTURE_NAME");
+			
+			LectureVo lv = new LectureVo();
+			lv.setLectureNo(lectureNo);
+			lv.setTeacherMemberNo(teacherMemberNo);
+			lv.setLectureCategoryNo(lectureCategoryNo);
+			lv.setLectureStartTime(lectureStartTime);
+			lv.setLectureFinishTime(lectureFinishTime);
+			lv.setLectureOpenDate(lectureOpenDate);
+			lv.setLectureCloseDate(lectureCloseDate);
+			lv.setPlace(place);
+			lv.setLectureCategoryName(lectureName);
+			
+			lvoList.add(lv);
+			
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return lvoList;
+		
+	}
+
+	public List<LectureVo> showSecuLecture(Connection conn) throws Exception {
+		
+		String sql = "SELECT L.LECTURE_NO, L.TEACHER_MEMBER_NO, L.LECTURE_CATEGORY_NO, L.LECTURE_START_TIME, L.LECTURE_FINISH_TIME, TO_CHAR(TO_DATE(L.LECTURE_OPEN_DATE), 'MM/DD') LECTURE_OPEN_DATE, TO_CHAR(TO_DATE(L.LECTURE_CLOSE_DATE), 'MM/DD') LECTURE_CLOSE_DATE, L.STATUS, L.PLACE, LC.LECTURE_CATEGORY_NO, LC.LECTURE_NAME FROM LECTURE L JOIN LECTURE_CATEGORY LC ON (L.LECTURE_CATEGORY_NO = LC.LECTURE_CATEGORY_NO) WHERE L.LECTURE_CATEGORY_NO = 2 AND STATUS = 'O' ORDER BY LECTURE_OPEN_DATE DESC ";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		
+		List<LectureVo> secuList = new ArrayList<>();
+		while (rs.next()) {
+			
+			String lectureNo = rs.getString("LECTURE_NO");
+			String teacherMemberNo = rs.getString("TEACHER_MEMBER_NO");
+			String lectureCategoryNo = rs.getString("LECTURE_CATEGORY_NO");
+			String lectureStartTime = rs.getString("LECTURE_START_TIME");
+			String lectureFinishTime = rs.getString("LECTURE_FINISH_TIME");
+			String lectureOpenDate = rs.getString("LECTURE_OPEN_DATE");
+			String lectureCloseDate = rs.getString("LECTURE_CLOSE_DATE");
+			String place = rs.getString("PLACE");
+			String lectureName = rs.getString("LECTURE_NAME");
+			
+			LectureVo lv = new LectureVo();
+			lv.setLectureNo(lectureNo);
+			lv.setTeacherMemberNo(teacherMemberNo);
+			lv.setLectureCategoryNo(lectureCategoryNo);
+			lv.setLectureStartTime(lectureStartTime);
+			lv.setLectureFinishTime(lectureFinishTime);
+			lv.setLectureOpenDate(lectureOpenDate);
+			lv.setLectureCloseDate(lectureCloseDate);
+			lv.setPlace(place);
+			lv.setLectureCategoryName(lectureName);
+			
+			secuList.add(lv);
+			
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return secuList;
+		
+	}
+		
+	
 
 	
 	
