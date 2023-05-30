@@ -1,3 +1,5 @@
+<%@page import="com.semi.member.vo.MemberVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -50,6 +52,10 @@
 			</div>
 		</div>
 		<div id="writeDiv">
+		<c:forEach items="${memberList}" var="member">
+			${member.memberNick}
+		</c:forEach>
+			
 			<form action="/semi/letter/write" id="writeTable" method="post"
 				onsubmit="return showErrorOnSubmit();">
 				<table>
@@ -96,17 +102,27 @@
 	const caption = document.querySelector(".caption1");
 	caption.style.marginTop = 0;
 
+	const memberList = [<c:forEach items="${memberList}" var="member">
+    '<c:out value="${member.memberNick}"/>',
+  	</c:forEach>];
+	
 	function showErrorOnSubmit() {
-		const receiver = document.querySelector('#receiver');
-		const alertInput = document.querySelector('#alertInput');
+		  const receiver = document.querySelector('#receiver');
+		  const alertInput = document.querySelector('#alertInput');
+		  const memberNicks = memberList; // memberNick을 배열로 집어넣기
 
-		if (receiver.value == '${loginMember.memberNick}') {
-			alertInput.value = '!오류: 받는 사람이 본인입니다.';
-			alertInput.style.display = 'inline';
-			return false;
-		} 
-
-		alert('작성 완료');
-		return true;
-	}
+		  if (receiver.value == '${loginMember.memberNick}') {
+		    alertInput.value = '!오류: 받는 사람이 본인입니다.';
+		    alertInput.style.display = 'inline';
+		    return false;
+		  } else if (!memberNicks.includes(receiver.value)) { // memberNickExists 대신 memberNicks.includes() 사용
+		    alertInput.value = '!오류 : 받는 사람의 ID가 존재하지 않습니다.';
+		    alertInput.style.display = 'inline';
+		    return false;
+		  }
+		  alert('작성 완료');
+		  return true;
+		}
+		
+	
 </script>
