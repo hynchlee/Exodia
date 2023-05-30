@@ -178,6 +178,15 @@
     left: 225px;
     bottom: 155px;
 }
+.vacations{
+	font-size: 20px;
+	font-family: Noto Sans;
+    position: relative;
+    width: 100px;
+    height: 50px;
+    left: 425px;
+    bottom: 205px;
+}
 .test{
 	display: flex;
 	align-items: center;
@@ -186,7 +195,7 @@
     width: 160px;
     height: 40px;
     left: 75px;
-    bottom: 135px;
+    bottom: 185px;
     border-radius: 35px;
     background: rgba(217,217,217,1);
     font-family: Noto Sans;
@@ -201,7 +210,7 @@
     width: 160px;
     height: 40px;
     left: 375px;
-    bottom: 175px;
+    bottom: 225px;
     border-radius: 35px;
     background: rgba(245,190,107,1);
     font-family: Noto Sans;
@@ -216,7 +225,7 @@
     width: 160px;
     height: 40px;
     left: 375px;
-    bottom: 190px;
+    bottom: 240px;
     border-radius: 35px;
     background: green;
     font-family: Noto Sans;
@@ -230,7 +239,7 @@
     position: relative;
     width: 160px;
     height: 40px;
-    bottom: 150px;
+    bottom: 200px;
     left: 75px;
     border-radius: 35px;
     background: rgba(32,103,167,1);

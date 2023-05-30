@@ -682,6 +682,25 @@ public class MypageDao {
 		return vaList;
 	
 	}
+
+	public String leftVacation(Connection conn, String memberNo) throws Exception {
+		
+		String sql = "SELECT LEFT_VACATION FROM MEMBER WHERE MEMBER_NO = ? ";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		String leftVacation = null;
+		while(rs.next()) {
+			leftVacation = rs.getString("LEFT_VACATION");			
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return leftVacation;
+	
+	}
 		
 	
 

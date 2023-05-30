@@ -331,4 +331,17 @@ public class MypageService {
 		
 	}
 
+	public String leftVacation(String memberNo) throws Exception {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		String leftVacation = mdao.leftVacation(conn, memberNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return leftVacation;
+		
+	}
+
 }
