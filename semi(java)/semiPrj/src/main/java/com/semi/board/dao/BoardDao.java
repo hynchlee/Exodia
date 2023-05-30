@@ -574,7 +574,7 @@ public class BoardDao {
 
 		//답글 조회
 		public List<AnswerVo> getReplyAnswerList(Connection conn, String rno) throws Exception {
-		    String sql = "SELECT A.ANSWER_NO, A.REPLY_NO2, A.ANSWER_CONTENT, TO_CHAR(A.ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DATE, TO_CHAR(A.MODIFY_DATE, 'YYYY-MM-DD HH24:MI:SS') AS MODIFY_DATE, A.STATUS FROM ANSWER A JOIN REPLY R ON (A.REPLY_NO2 = R.REPLY_NO) WHERE A.STATUS = 'O' AND A.REPLY_NO2 = ? ORDER BY A.ANSWER_NO DESC";
+		    String sql = "SELECT A.ANSWER_NO, A.REPLY_NO2, A.ANSWER_CONTENT, TO_CHAR(A.ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DATE, TO_CHAR(A.MODIFY_DATE, 'YYYY-MM-DD HH24:MI:SS') AS MODIFY_DATE, A.STATUS, A.MEMBER_NO, M.MEMBER_NICK FROM ANSWER A JOIN REPLY R ON (A.REPLY_NO2 = R.REPLY_NO) JOIN MEMBER M ON (A.MEMBER_NO = M.MEMBER_NO) WHERE A.STATUS = 'O' AND A.REPLY_NO2 = ? ORDER BY A.ANSWER_NO DESC";
 		    PreparedStatement pstmt = conn.prepareStatement(sql);
 		    pstmt.setString(1, rno);
 		    ResultSet rs = pstmt.executeQuery();
@@ -586,6 +586,8 @@ public class BoardDao {
 		        String enrollDate = rs.getString("ENROLL_DATE");
 		        String modifyDate = rs.getString("MODIFY_DATE");
 		        String status = rs.getString("STATUS");
+		        String answerWriterNo = rs.getString("MEMBER_NO");
+		        String answerWriterNick = rs.getString("MEMBER_NICK");
 
 		        AnswerVo av = new AnswerVo();
 		        av.setAnswerNo(answerNo);
@@ -593,6 +595,9 @@ public class BoardDao {
 		        av.setEnrollDate(enrollDate);
 		        av.setModifyDate(modifyDate);
 		        av.setStatus(status);
+		        av.setMemberNo(answerWriterNo);
+		        av.setAnswerWriterNick(answerWriterNick);
+		        
 
 		        answerList.add(av);
 		    }
@@ -861,10 +866,39 @@ public class BoardDao {
 		//답글 작성
 		public int answerWrite(Connection conn, AnswerVo avo) throws Exception {
 			
-			String sql = "INSERT INTO ANSWER (ANSWER_NO, REPLY_NO2, ANSWER_CONTENT) VALUES(SEQ_ANSWER_NO.NEXTVAL, ?, ?)";
+			String sql = "INSERT INTO ANSWER (ANSWER_NO, REPLY_NO2, ANSWER_CONTENT, MEMBER_NO) VALUES(SEQ_ANSWER_NO.NEXTVAL, ?, ?, ?)";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, avo.getReplyNo2());
 			pstmt.setString(2, avo.getAnswerContent());
+			pstmt.setString(3, avo.getMemberNo());
+			int result = pstmt.executeUpdate();
+			
+			JDBCTemplate.close(pstmt);
+			
+			return result;
+		}
+
+		public int adminBoardDelete(Connection conn, String[] bnoArr) throws Exception {
+		    if (bnoArr == null || bnoArr.length == 0) {
+		        throw new IllegalArgumentException("bnoArr is empty");
+		    }
+		    
+		    String str = String.join(",", bnoArr);
+		    
+		    String sql = "UPDATE BOARD SET STATUS = 'X' WHERE BOARD_NO IN(" + str + ")";
+		    PreparedStatement pstmt = conn.prepareStatement(sql);
+		    int result = pstmt.executeUpdate();
+		    
+		    JDBCTemplate.close(pstmt);
+		    
+		    return result;
+		}
+
+		public int answerDelete(Connection conn, String ano) throws Exception {
+			
+			String sql = "UPDATE ANSWER SET STATUS='X' WHERE ANSWER_NO=?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ano);
 			int result = pstmt.executeUpdate();
 			
 			JDBCTemplate.close(pstmt);

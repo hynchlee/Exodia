@@ -18,13 +18,17 @@
 
 		<main>
 			<c:if test="${not empty loginMember}">
-				<div class="myClass">
-	                <ul>
-	                    <li class="loginName">${loginMember.memberNick} 님 환영합니다</li>
-	                    <li class="class">${memberLecture[0].lectureName}</li>
-	                </ul>
-	            </div>
-			</c:if>
+                <div class="myClass">
+                    <ul>
+                        <li class="loginName">${loginMember.memberNick} 
+                            <c:if test="${loginMember.identity eq 'S'}">
+                                [${memberLecture[0].lectureName}]
+                            </c:if>
+                            님 환영합니다</li>
+                        <li class="class">*통신예절에 어긋나는 글 등은 관리자에 의해 사전 통보없이 삭제 될 수 있습니다.</li>
+                    </ul>
+                </div>
+            </c:if>
 
             <!-- <div class="board_search">
                 <form action="${root}/review/list" method="get" name="searchBoard">
@@ -50,6 +54,7 @@
                         <th style="width: 25%;">강좌명</th>
                         <th style="width: 8%;">작성자</th>
                         <th style="width: 10%;">작성일</th>
+                        <th style="display: none;"><input type="checkbox"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,16 +65,24 @@
 	                        <td>${rvo.lectureName}</td>
 	                        <td>${rvo.writerNick}</td>
 	                        <td>${rvo.enrollDate}</td>
+                            <td style="display: none;"><input type="checkbox" value="${rvo.reviewNo}"></td>
 	                    </tr>
                 	</c:forEach>
                 </tbody>
             </table>
             
-            <c:if test="${not empty loginMember && loginMember.identity eq 'S'}">
-	            <div class="board_bt">
-	                <a href="${root}/review/write" class="bt1">후기 등록</a>
-	            </div>
-            </c:if>
+           
+            <div class="board_bt">
+                <!-- 관리자 기능 - 게시글 삭제 -->
+                <c:if test="${not empty loginAdmin }">
+                    <a class="bt1" id="btred" onclick="adminBoardDelete();">일괄 삭제</a>
+                    <div></div>
+                </c:if>
+                <c:if test="${not empty loginMember && loginMember.identity eq 'S'}">
+                    <div></div>
+                    <a href="${root}/review/write" class="bt1">후기 등록</a>
+                </c:if>
+            </div>
             
 			<div class="board_page">
 				<c:if test="${pv.currentPage > 1}">
@@ -117,4 +130,74 @@
         window.location.href = url;
 
     });
+
+    //체크박스 이동 막기
+    $(".board tbody tr input[type='checkbox']").click(function(event) {
+    event.stopPropagation();
+    });
+
+    document.querySelector(".board th:last-child").addEventListener('change', setAllcheckbox);
+
+    //체크박스 전체 선택
+    function setAllcheckbox(){
+        //가장 위 체크박스의 체크 상태 가져오기
+        const v = document.querySelector(".board thead th input[type='checkbox']").checked;
+        //모든 체크박스 가져오기
+        const cbArr = document.querySelectorAll(".board tbody tr input[type='checkbox']");
+        //checked 값 변경
+        for(let cb of cbArr){
+            cb.checked = v;
+
+        }
+    }
+
+
+    //체크박스 열 나타내기
+    function adminBoardDelete() {
+
+        var checkboxHeaders = document.querySelectorAll(".board th:last-child");
+        var checkboxColumns = document.querySelectorAll(".board td:last-child");
+
+        const bnoArr = [];
+        const cbArr = document.querySelectorAll(".board tbody tr input[type='checkbox']");
+        for(let cb of cbArr){
+            if(cb.checked == true){
+                bnoArr.push(cb.value);
+            }
+        }
+
+        //번호 넘기기
+        $.ajax({
+            url: '${root}/review/delete',
+            type: 'post',
+            data: {
+                bnoArr : JSON.stringify(bnoArr)
+            },
+            success: function(data){
+                console.log(data);
+                if (data === "success") {
+                    alert("게시글 삭제 성공");
+                    refreshPage();
+                } else {
+                    console.log("Deletion failed");
+                }
+            },
+            error: function(error){
+                console.log(error);
+            },
+        });
+
+        checkboxHeaders.forEach(function(header) {
+            header.style.display = "table-cell";
+        });
+
+        checkboxColumns.forEach(function(column) {
+            column.style.display = "table-cell";
+        });
+
+    }
+
+    function refreshPage() {
+    location.reload();
+    }
 </script>

@@ -267,5 +267,21 @@ public class QnaDao {
 		
 	}
 
+	public int adminBoardDelete(Connection conn, String[] bnoArr) throws Exception {
+	    if (bnoArr == null || bnoArr.length == 0) {
+	        throw new IllegalArgumentException("bnoArr is empty");
+	    }
+	    
+	    String str = String.join(",", bnoArr);
+	    
+	    String sql = "UPDATE QNA SET STATUS = 'X' WHERE QNA_NO IN(" + str + ")";
+	    PreparedStatement pstmt = conn.prepareStatement(sql);
+	    int result = pstmt.executeUpdate();
+	    
+	    JDBCTemplate.close(pstmt);
+	    
+	    return result;
+	}
+
 	
 }

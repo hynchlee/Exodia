@@ -8,6 +8,8 @@ public class AnswerVo {
 	private String enrollDate;
 	private String modifyDate;
 	private String status;
+	private String memberNo;
+	private String answerWriterNick;
 	public String getAnswerNo() {
 		return answerNo;
 	}
@@ -44,13 +46,26 @@ public class AnswerVo {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public String getMemberNo() {
+		return memberNo;
+	}
+	public void setMemberNo(String memberNo) {
+		this.memberNo = memberNo;
+	}
+	public String getAnswerWriterNick() {
+		return answerWriterNick;
+	}
+	public void setAnswerWriterNick(String answerWriterNick) {
+		this.answerWriterNick = answerWriterNick;
+	}
 	@Override
 	public String toString() {
 		return "AnswerVo [answerNo=" + answerNo + ", replyNo2=" + replyNo2 + ", answerContent=" + answerContent
-				+ ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", status=" + status + "]";
+				+ ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", status=" + status + ", memberNo="
+				+ memberNo + ", answerWriterNick=" + answerWriterNick + "]";
 	}
 	public AnswerVo(String answerNo, String replyNo2, String answerContent, String enrollDate, String modifyDate,
-			String status) {
+			String status, String memberNo, String answerWriterNick) {
 		super();
 		this.answerNo = answerNo;
 		this.replyNo2 = replyNo2;
@@ -58,11 +73,14 @@ public class AnswerVo {
 		this.enrollDate = enrollDate;
 		this.modifyDate = modifyDate;
 		this.status = status;
+		this.memberNo = memberNo;
+		this.answerWriterNick = answerWriterNick;
 	}
 	public AnswerVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	
 	
 
