@@ -76,7 +76,9 @@
 					</tbody>
 					<tfoot>
 						<tr>
-							<td colspan="2"><input type="submit" value="보내기"></td>
+							<td colspan="2">
+								<input type="submit" value="보내기">
+							</td>
 						</tr>
 					</tfoot>
 				</table>
@@ -101,24 +103,23 @@
 	caption.style.marginTop = 0;
 
 	const memberList = [<c:forEach items="${memberList}" var="member">
-    '<c:out value="${member.memberNick}"/>',
+    '<c:out value="${member.memberId}"/>',
   	</c:forEach>];
 	
 	function showErrorOnSubmit() {
 		const receiver = document.querySelector('#receiver');
 		const alertInput = document.querySelector('#alertInput');
-		const memberNicks = memberList; // memberNick을 배열로 집어넣기
+		const memberIds = memberList; // memberNick을 배열로 집어넣기
 
-		if (receiver.value == '${loginMember.memberNick}') {
+		if (receiver.value == '${loginMember.memberId}') {
 			alertInput.value = '!오류: 받는 사람이 본인입니다.';
 			alertInput.style.display = 'inline';
 			return false;
 
-		} else if (!memberNicks.includes(receiver.value)) { // memberNickExists 대신 memberNicks.includes() 사용
+		} else if (!memberIds.includes(receiver.value)) { // memberNickExists 대신 memberNicks.includes() 사용
 			alertInput.value = '!오류 : 받는 사람의 ID가 존재하지 않습니다.';
 			alertInput.style.display = 'inline';
 			return false;
-
 		}
 
 		alert('작성 완료');
