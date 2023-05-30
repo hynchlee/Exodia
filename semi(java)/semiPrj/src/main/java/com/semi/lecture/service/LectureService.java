@@ -92,6 +92,15 @@ public class LectureService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+	
+	public int getLectureListCnt(String searchType, String searchValue) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+
+		int result = dao.getLectureListCnt(conn, searchType, searchValue);
+
+		JDBCTemplate.close(conn);
+		return result;
+	}
 
 	public int getLectureListCnt(String searchType, String searchValue, String currentDate) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();
