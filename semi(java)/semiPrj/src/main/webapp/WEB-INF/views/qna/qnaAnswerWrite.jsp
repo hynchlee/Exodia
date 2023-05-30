@@ -82,7 +82,7 @@
 					</div>
 		
 					<div class="board_bt">
-						<input type="reset" value="작성취소" class="bt1">
+						<input type="button" class="bt1" value="작성취소" onClick=" location.href='${root}/qna/detail?qno=${qvNo.qnaNo}'">
 						<input type="submit" value="답변완료" class="bt1">
 					</div>
 				</form>
