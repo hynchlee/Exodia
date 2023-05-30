@@ -282,7 +282,7 @@ public class BoardDao {
 
 		public int boardWrite(Connection conn, BoardVo bvo) throws Exception {
 			
-			String sql = "INSERT INTO BOARD ( BOARD_NO ,BOARD_CATEGORY_NO ,MEMBER_NO ,BOARD_TITLE ,BOARD_CONTENT ) VALUES ( SEQ_BOARD_NO.NEXTVAL ,? ,? ,? ,? )";
+			String sql = "INSERT INTO BOARD ( BOARD_NO ,BOARD_CATEGORY_NO ,MEMBER_NO ,BOARD_TITLE ,BOARD_CONTENT) VALUES ( SEQ_BOARD_NO.NEXTVAL ,? ,? ,? ,?)";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, bvo.getBoardCategoryNo());
 			pstmt.setString(2, bvo.getMemberNo());

@@ -25,7 +25,7 @@
                                 [${memberLecture[0].lectureName}]
                             </c:if>
                             님 환영합니다</li>
-                        <!-- <li class="class">*통신예절에 어긋나는 글 등은 관리자에 의해 사전 통보없이 삭제 될 수 있습니다.</li> -->
+                        <li class="class">*통신예절에 어긋나는 글 등은 관리자에 의해 사전 통보없이 삭제 될 수 있습니다.</li>
                     </ul>
                 </div>
             </c:if>
@@ -83,11 +83,11 @@
                 </tbody>
             </table>
             
-            <c:if test="${not empty loginMember || not empty loginAdmin}">
-	            <div class="board_bt">
+            <div class="board_bt" style="justify-content: flex-end;">
+                <c:if test="${not empty loginMember || not empty loginAdmin}">
 	                <a href="${root}/board/write" class="bt1">글 등록</a>
-	            </div>
-            </c:if>
+                </c:if>
+            </div>
             
 			<div class="board_page">
 				<c:if test="${pv.currentPage > 1}">

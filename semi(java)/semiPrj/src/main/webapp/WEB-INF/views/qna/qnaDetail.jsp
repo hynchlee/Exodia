@@ -44,7 +44,12 @@
                             <td>${qvNo.writerNick}</td>
                             <th>작성일</th>
                             <td>${qvNo.enrollDate}</td>
-                            <td class="edit_date">${qvNo.modifyDate}</td>
+                            <c:if test="${empty qvNo.modifyDate}">
+                            	<td></td>
+                            </c:if>
+                            <c:if test="${not empty qvNo.modifyDate }">
+	                            <td class="edit_date">${qvNo.modifyDate}</td>
+                            </c:if>
                         </tr>
                         <!-- 후기게시판과 큐엔에이 게시판에만 보임 -->
                         <c:if test="${qvNo.identity eq 'S'}">

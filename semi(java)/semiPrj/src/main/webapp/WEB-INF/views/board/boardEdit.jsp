@@ -37,9 +37,9 @@
             <form action="${root}/board/edit?bno=${cvNo.boardNo}" method="post">
 
                 <!-- 관리자에게만 보이는 체크박스 -->
-                <div class="checked">
+                <!-- <div class="checked">
                     <input type="checkbox" name="" id=""><span>상단고정</span>
-                </div>
+                </div> -->
 
                 <div class="write_wrap">
                     <input type="text" name="boardTitle" value="${cvNo.boardTitle}" required>
@@ -49,7 +49,7 @@
                     </select>
 
                     <textarea name="boardContent" id="summernote">${cvNo.boardContent}</textarea>
-                    <input type="file" name="select_file">
+                    <!-- <input type="file" name="select_file"> -->
                 </div>
     
                 <div class="board_bt">

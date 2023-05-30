@@ -35,8 +35,9 @@ public class BoardMyListController extends HttpServlet{
 		    mno = loginMember.getMemberNo();
 		} else {
 		    // 로그인되지 않은 경우에 대한 처리
-		    req.setAttribute("errorMsg", "접근 권한 없음; 로그인해주세요");
-		    req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+//		    req.setAttribute("errorMsg", "접근 권한 없음; 로그인해주세요");
+//		    req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+			resp.sendRedirect(req.getContextPath() + "/member/login");
 		}
 		
 		try {

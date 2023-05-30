@@ -35,9 +35,9 @@
 
     <form action="${root}/board/write" method="post">
         <!-- 관리자에게만 보이는 체크박스 -->
-        <div class="checked">
+        <!-- <div class="checked">
             <input type="checkbox" name="" id=""><span>상단고정</span>
-        </div>
+        </div> -->
 
         <div class="write_wrap">
             <input type="text" name="boardTitle" placeholder="제목을 입력해주세요." required>

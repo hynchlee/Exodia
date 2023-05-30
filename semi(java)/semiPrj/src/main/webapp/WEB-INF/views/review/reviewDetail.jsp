@@ -44,7 +44,12 @@
                             <td>${rvNo.writerNick}</td>
                             <th>작성일</th>
                             <td>${rvNo.enrollDate}</td>
-                            <td class="edit_date">${rvNo.modifyDate}</td>
+                            <c:if test="${empty rvNo.modifyDate}">
+                            	<td></td>
+                            </c:if>
+                            <c:if test="${not empty rvNo.modifyDate }">
+	                            <td class="edit_date">${rvNo.modifyDate}</td>
+                            </c:if>
                         </tr>
                         <!-- 후기게시판과 큐엔에이 게시판에만 보임 -->
                         <tr>

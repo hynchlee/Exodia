@@ -23,6 +23,9 @@ public class BoardReplyWriteController extends HttpServlet{
 		try {
 			HttpSession session = req.getSession();
 			MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+			
+			
+			
 			String writerNo = loginMember.getMemberNo();
 			
 			String bno = req.getParameter("bno");
@@ -47,10 +50,11 @@ public class BoardReplyWriteController extends HttpServlet{
 			if (result == 1) {
 				out.write("success");
 			}
-			
 		} catch (Exception e) {
 			System.out.println("[ERROR] board reply error");
 			e.printStackTrace();
+			
+			
 		}
 		
 	}
