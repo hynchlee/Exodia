@@ -14,11 +14,11 @@ import com.semi.member.vo.MemberVo;
 
 public class LetterDao {
 
-	public int writeLetter(LetterVo vo, Connection conn, String sendMemberName) throws Exception {
+	public int writeLetter(LetterVo vo, Connection conn, String sendMemberId) throws Exception {
 
-		String sql = "INSERT INTO LETTER (LETTER_NO, SEND_MEMBER_NO, RECEIVE_MEMBER_NO, LETTER_TITLE, LETTER_CONTENT, STATUS) VALUES (SEQ_LETTER_NO.NEXTVAL, (SELECT MEMBER_NO FROM (SELECT MEMBER_NO, ROW_NUMBER() OVER(ORDER BY ROWNUM DESC) AS RN FROM MEMBER WHERE MEMBER_NICK = ?) WHERE RN = 1), (SELECT MEMBER_NO FROM (SELECT MEMBER_NO, ROW_NUMBER() OVER(ORDER BY ROWNUM DESC) AS RN FROM MEMBER WHERE MEMBER_NICK = ?) WHERE RN = 1), ?, ?, 'O')";
+		String sql = "INSERT INTO LETTER (LETTER_NO, SEND_MEMBER_NO, RECEIVE_MEMBER_NO, LETTER_TITLE, LETTER_CONTENT, STATUS) VALUES (SEQ_LETTER_NO.NEXTVAL, (SELECT MEMBER_NO FROM (SELECT MEMBER_NO, ROW_NUMBER() OVER(ORDER BY ROWNUM DESC) AS RN FROM MEMBER WHERE MEMBER_ID = ?) WHERE RN = 1), (SELECT MEMBER_NO FROM (SELECT MEMBER_NO, ROW_NUMBER() OVER(ORDER BY ROWNUM DESC) AS RN FROM MEMBER WHERE MEMBER_ID = ?) WHERE RN = 1), ?, ?, 'O')";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, sendMemberName);
+		pstmt.setString(1, sendMemberId);
 		pstmt.setString(2, vo.getReceiveMemberName());
 		pstmt.setString(3, vo.getLetterTitle());
 		pstmt.setString(4, vo.getLetterContent());

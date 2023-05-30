@@ -1,10 +1,13 @@
 main {
     display: grid;
     grid-template-columns: 1.5fr 5fr;
-}
 
-.banner{
-    margin-bottom: 0;
+    font-family: 'Spoqa Han Sans Neo';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    text-align: center;
 }
 
 #side-bar {
@@ -13,25 +16,33 @@ main {
     flex-direction: column;
     align-items: center;    
     width: 80%;
+    position: relative;
 }
 
 #side-bar div{
     display: flex;
     width: 100%;
+    height: 100px;
     align-items: center;
     justify-content: center;
+    margin-bottom: 10px;
 }
 
 #side-bar form{
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
 }
 
 #side-bar input {
     border: none;
-    background-color:  #F0F0F0 ;
-    margin-top: 20px;
+    background-color: #F0F0F0; /* 버튼 색상 변경 */
+    margin-top: 10px;
     height: 80px;
     width: 40%;
+    cursor: pointer; /* 마우스 커서가 버튼 위에 올라왔을 때 변경 */
 
     font-family: 'Spoqa Han Sans Neo';
     font-style: normal;
@@ -44,9 +55,14 @@ main {
 #side-bar img {
     display: inline-block;
     vertical-align: middle;
-    width: 48px;
-    height: 48px;
+    width: 60px;
+    height: 60px;
     margin-right: 8px;
+}
+
+#select-button {
+    height: 60px;
+    cursor: pointer; /* 마우스 커서가 버튼 위에 올라왔을 때 변경 */
 }
 
 #writeDiv {
