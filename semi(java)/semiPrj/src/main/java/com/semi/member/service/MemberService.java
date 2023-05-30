@@ -40,6 +40,18 @@ public class MemberService {
 		return result;
 	}
 	
+	//아이디 중복검사
+	public int checkId(String memberId) throws Exception {
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		//sql
+		int result = dao.checkId(conn, memberId);
+		//close
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+	
 	//로그인
 	public MemberVo login(MemberVo vo) throws Exception {
 		//conn
@@ -184,17 +196,5 @@ public class MemberService {
 		
 		return listCount;
 	}
-
-	public int checkId(String memberId) throws Exception {
-		//conn
-		Connection conn = JDBCTemplate.getConnection();
-		//sql
-		int result = dao.checkId(conn, memberId);
-		//close
-		JDBCTemplate.close(conn);
-		
-		return result;
-	}
-
 
 }
