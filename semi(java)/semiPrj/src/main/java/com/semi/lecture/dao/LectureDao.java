@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.semi.common.db.JDBCTemplate;
 import com.semi.common.page.PageVo;
@@ -221,10 +223,11 @@ public class LectureDao {
 
 		for (String point : ProblemPointList) {
 			List<ProblemBankVo> problemBank = new ArrayList<>();
-			String sql = "SELECT * FROM PROBLEM_BANK WHERE PROBLEM_POINT = ? AND STATUS = 'O'";
+			String sql = "SELECT * FROM PROBLEM_BANK WHERE PROBLEM_POINT = ? AND EXAM_CATEGORY_NO = ? AND STATUS = 'O'";
 
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, point);
+			pstmt.setString(2, pbv.getExamCategoryNo());
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -627,9 +630,8 @@ public class LectureDao {
 	}
 
 	public int modifyLectureOne(Connection conn, String[] params) throws SQLException {
-		String sql = "UPDATE LECTURE SET PLACE = ?, LECTURE_OPEN_DATE = ? , LECTURE_CLOSE_DATE = ? , TEACHER_MEMBER_NO = ? , LECTURE_CATEGORY_NO = ? , LECTURE_START_TIME = ? , LECTURE_FINISH_TIME = ? WHERE LECTURE_NO = ?";
+		String sql = "UPDATE LECTURE SET PLACE = ?, LECTURE_OPEN_DATE = ? , LECTURE_CLOSE_DATE = ? , TEACHER_MEMBER_NO = ? , LECTURE_CATEGORY_NO = (SELECT LECTURE_CATEGORY_NO FROM LECTURE_CATEGORY WHERE LECTURE_NAME = ?) , LECTURE_START_TIME = ? , LECTURE_FINISH_TIME = ? WHERE LECTURE_NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-
 		String[] split = params[7].split("~");
 		pstmt.setString(1, params[2]);
 		pstmt.setString(2, params[3].replaceAll("-", ""));
@@ -639,7 +641,6 @@ public class LectureDao {
 		pstmt.setString(6, split[0]);
 		pstmt.setString(7, split[1]);
 		pstmt.setString(8, params[1]);
-
 		int result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
 
@@ -660,16 +661,17 @@ public class LectureDao {
 	}
 
 	public int insertLectureOne(Connection conn, String[] params) throws SQLException {
-		String sql = "INSERT INTO LECTURE VALUES (SEQ_LECTURE_NO.NEXTVAL , ? , ? , ? , ? , ? , ? , 'O', '강남')";
+		String sql = "INSERT INTO LECTURE VALUES (SEQ_LECTURE_NO.NEXTVAL , ? , (SELECT LECTURE_CATEGORY_NO FROM LECTURE_CATEGORY WHERE LECTURE_NAME = ?) , ? , ? , ? , ? , 'O', ?)";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 
-		String[] split = params[5].split("~");
-		pstmt.setString(1, params[3]);
-		pstmt.setString(2, params[4]);
+		String[] split = params[6].split("~");
+		pstmt.setString(1, params[4]);
+		pstmt.setString(2, params[5]);
 		pstmt.setString(3, split[0]);
 		pstmt.setString(4, split[1]);
-		pstmt.setString(5, params[1]);
-		pstmt.setString(6, params[2]);
+		pstmt.setString(5, params[1].replaceAll("-", ""));
+		pstmt.setString(6, params[2].replaceAll("-", ""));
+		pstmt.setString(7, params[3]);
 
 		int result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
@@ -791,8 +793,28 @@ public class LectureDao {
 		pstmt.setString(3, memberNo);
 		pstmt.setString(4, proNo);
 		int result = pstmt.executeUpdate();
-		
+
 		JDBCTemplate.close(pstmt);
 		return result;
+	}
+
+	public List<MemberVo> getTeacherList(Connection conn) throws SQLException {
+		String sql = "SELECT * FROM MEMBER WHERE IDENTITY = 'T' ORDER BY MEMBER_NICK";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+
+		List<MemberVo> teacherList = new ArrayList<>();
+		while (rs.next()) {
+			MemberVo vo = new MemberVo();
+			vo.setMemberNo(rs.getString("MEMBER_NO"));
+			vo.setMemberId(rs.getString("MEMBER_ID"));
+			vo.setMemberNick(rs.getString("MEMBER_NICK"));
+			teacherList.add(vo);
+		}
+
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+
+		return teacherList;
 	}
 }

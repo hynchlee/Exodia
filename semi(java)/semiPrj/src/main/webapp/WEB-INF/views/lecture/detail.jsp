@@ -48,7 +48,7 @@
 
 					<div class="cate2">커리큘럼</div>
 					<div class="wrap_1">
-						<% if(Integer.parseInt(vo.getLectureCategoryNo()) < 7) { %>
+						<% if(Integer.parseInt(vo.getLectureCategoryNo()) == 1) { %>
 						<img src="${root}/static/img/introduce/curr1.png" alt="logo" class="currImg" onclick="showImageInNewWindow(this)">
 						<% } else {%> 
 						<img src="${root}/static/img/introduce/curr2.png" alt="logo" class="currImg" onclick="showImageInNewWindow(this)">

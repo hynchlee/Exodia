@@ -13,8 +13,8 @@
 
 		<body>
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
-				<main>
-					<form action="${root}/lecture/manage" method="get">
+			<main>
+				<form action="${root}/lecture/manage" method="get">
 						<div class="wrap_1">
 							<div class="menu_1">
 								<select name="searchType">
@@ -75,7 +75,8 @@
 								<button class="modbtn1" onclick="modButton1();">수정</button>
 								<button class="modbtn2" hidden onclick="modButton2();">저장</button>
 								<button onclick="delButton();">삭제</button>
-								<button onclick="plusButton();">추가</button>
+								<button class="plusbtn1" onclick="plusButton();">추가</button>
+								<button class="plusbtn2" hidden onclick="plusSave();">저장</button>
 							</div>
 						</div>
 					</div>
@@ -84,12 +85,16 @@
 					<div class="wrap_1">
 						<div class="menu_2">
 							<div id="pageDiv">
-								<button onclick="pageMove('${pageVo.startPage}');">
-									<<</button>
-										<c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" var="i">
-											<button class="pageBtn" onclick="pageMove('${i}');">${i}</button>
-										</c:forEach>
-										<button onclick="pageMove('${pageVo.endPage}');">>></button>
+								<c:if test="${pageVo.currentPage > 1 }">
+									<button onclick="pageMove('${pageVo.startPage}');">
+										<<</button>
+								</c:if>
+								<c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" var="i">
+									<button class="pageBtn" onclick="pageMove('${i}');">${i}</button>
+								</c:forEach>
+								<c:if test="${pageVo.currentPage < pageVo.maxPage }">
+									<button onclick="pageMove('${pageVo.endPage}');">>></button>
+								</c:if>
 							</div>
 						</div>
 					</div>
@@ -105,6 +110,8 @@
 			const title = document.querySelector('.title');
 			const modbtn1 = document.querySelector('.modbtn1');
 			const modbtn2 = document.querySelector('.modbtn2');
+			const plusbtn1 = document.querySelector('.plusbtn1');
+			const plusbtn2 = document.querySelector('.plusbtn2');
 			const checkboxes = document.querySelectorAll('.checkbox');
 			const tbd = document.querySelector('.tbd');
 			title.innerHTML = "강의 관리";
@@ -120,7 +127,7 @@
 			const pageBtn = document.querySelectorAll('.pageBtn');
 
 			function pageMove(i) {
-				location.href = "${root}/lecture/apply?page=" + i;
+				location.href = "${root}/lecture/manage?page=" + i;
 			}
 
 			for (let btn of pageBtn) {
@@ -146,13 +153,13 @@
 				for (const chbox of boxList) {
 					const tr = document.querySelector('.tr' + chbox);
 					const tds = tr.querySelectorAll('.td');
-					
-					tds[1].innerHTML = '<select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${lectureList}" var="vo"> <option value="${vo.place}">${vo.place}</option> </c:forEach> </select>';
+
+					tds[1].innerHTML = '<select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${placeSet}" var="vo"> <option value="${vo}">${vo}</option> </c:forEach> </select>';
 					tds[2].innerHTML = '<input style="text-align:center; width: 100%; height: 76px;" type="date">';
-					tds[3].innerHTML = '<input style="text-align:center; width: 100%; height: 76px;" type="date">';					
-					tds[4].innerHTML = '<select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${lectureList}" var="vo"> <option value="${vo.teacherMemberNo}">${vo.teacherMemberName}</option> </c:forEach> </select>';
-					tds[5].innerHTML = '<select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${lectureList}" var="vo"> <option value="${vo.lectureCategoryNo}">${vo.lectureCategoryName}</option> </c:forEach> </select>';
-					tds[6].innerHTML = '<select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${lectureList}" var="vo"> <option value="${vo.lectureStartTime}~${vo.lectureFinishTime}">${vo.lectureStartTime}~${vo.lectureFinishTime}</option> </c:forEach> </select>';
+					tds[3].innerHTML = '<input style="text-align:center; width: 100%; height: 76px;" type="date">';
+					tds[4].innerHTML = '<select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${teacherSet}" var="vo"> <option value="${vo.memberNo}">${vo.memberNick}</option> </c:forEach> </select>';
+					tds[5].innerHTML = '<select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${lectureSet}" var="vo"> <option value="${vo}">${vo}</option> </c:forEach> </select>';
+					tds[6].innerHTML = '<select style="text-align:center; width: 100%; height: 80px;"> <option value="0900~1530">0900~1530</option> <option value="1530~2200">1530~2200</option> <option value="0900~1800">0900~1800</option> </select>';
 				}
 
 				modbtn1.hidden = true;
@@ -179,6 +186,11 @@
 					bList.push(tds[4].querySelector('select').value);
 					bList.push(tds[5].querySelector('select').value);
 					bList.push(tds[6].querySelector('select').value);
+
+					if (bList[3] == "" || bList[4] == "") {
+						alert("입력값이 충분하지 않습니다");
+						return;
+					}
 
 					$.ajax({
 						url: '/semi/lecture/manage',
@@ -230,8 +242,11 @@
 
 			function plusButton() {
 				var txt = tbd.innerHTML;
-				var plusTxt = '<tr class="newTr"> <td>강남</td> <td><input type="text" style="text-align:center; width: 100%; height: 76px;"></td> <td><input type="text" style="text-align:center; width: 100%; height: 76px;"></td> <td><select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${lectureList}" var="vo"> <option value="${vo.teacherMemberNo}">${vo.teacherMemberName}</option> </c:forEach> </select></td> <td><select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${lectureList}" var="vo"> <option value="${vo.lectureCategoryNo}">${vo.lectureCategoryName}</option> </c:forEach> </select></td> <td><select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${lectureList}" var="vo"> <option value="${vo.lectureStartTime}~${vo.lectureFinishTime}">${vo.lectureStartTime}~${vo.lectureFinishTime}</option> </c:forEach> </select></td> <td>30</td> <td>국비지원</td> <td><button class="bbtn" onclick="goDetail(event, "${vo.lectureNo}")">상세조회</button></td> <td><button onclick="plusSave();">저장</button></td> </tr>';
+				var plusTxt = '<tr class="newTr"> <td><select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${placeSet}" var="vo"> <option value="${vo}">${vo}</option> </c:forEach> </select></td> <td><input style="text-align:center; width: 100%; height: 76px;" type="date"></td> <td><input style="text-align:center; width: 100%; height: 76px;" type="date"></td> <td><select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${teacherSet}" var="vo"> <option value="${vo.memberNo}">${vo.memberNick}</option> </c:forEach> </select></td> <td><select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${lectureSet}" var="vo"> <option value="${vo}">${vo}</option> </c:forEach> </select></td> <td><select style="text-align:center; width: 100%; height: 80px;"> <option value="0900~1530">0900~1530</option> <option value="1530~2200">1530~2200</option> <option value="0900~1800">0900~1800</option> </select></td> <td>30</td> <td>국비지원</td> <td><button class="bbtn" onclick="goDetail(event, "${vo.lectureNo}")">상세조회</button></td> <td></td> </tr>';
 				tbd.innerHTML = plusTxt + txt;
+
+				plusbtn1.hidden = true;
+				plusbtn2.hidden = false;
 			}
 
 			function plusSave() {
@@ -248,6 +263,25 @@
 					boxList.push(selectElement.value);
 				});
 
+				if (boxList[1] == "" || boxList[2] == "") {
+					alert("입력값이 충분하지 않습니다");
+					return;
+				}
+
+				var selectedDate1 = new Date(boxList[1]);
+				var selectedDate2 = new Date(boxList[2]);
+				var currentDate = new Date();
+
+
+				if (selectedDate1 < currentDate) {
+					alert("개강일 입력값이 잘못되었습니다");
+					return;
+				}
+				if (selectedDate1 >= selectedDate2) {
+					alert("종강일 입력값이 잘못되었습니다");
+					return;
+				}
+
 				$.ajax({
 					url: '/semi/lecture/manage',
 					type: 'post',
@@ -261,5 +295,8 @@
 						alert("에러");
 					}
 				});
+
+				plusbtn1.hidden = false;
+				plusbtn2.hidden = true;
 			}
 		</script>

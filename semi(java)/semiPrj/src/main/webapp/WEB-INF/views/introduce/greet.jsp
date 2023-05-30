@@ -24,7 +24,7 @@
 									누구나 신청하실 수 있습니다.
 								</div>
 							</div>
-							<img src="${root}/static/img/introduce/___7.png" alt="logo" id="master_img">
+							<img src="${root}/static/img/introduce/masterImg.jpg" alt="logo" id="master_img">
 						</div>
 					</div>
 					<br><br><br><br>
@@ -47,10 +47,15 @@
 								모델의 방향을 제시하고 신성장 동력을 발굴하는 데 게을리 하지 않겠습니다. 촘촘한 사업 포트폴리오를 바탕으로 건실한 경영을
 								해 나가겠습니다. <br><br> KH 그룹이 성장할 수 있었던 것은 주주와 고객 여러분의 큰 신뢰와 응원 덕분입니다.
 								그 신뢰와 응원에 보답하기 위해 전 임직원들은 행복을 나누는 기업의 모범이 되고자 최선을 다하겠습니다. 감사합니다.
-								
-								<br><br><br><br><br>
 
-								<img src="${root}/static/img/introduce/sign.PNG" alt="logo" id="sign_img">
+								<br><br><br><br><br>
+								<div class="hiih">
+									<div class="ababc">KH 정보대학원 대표이사</div>
+									<div class="afda">
+										<img src="${root}/static/img/introduce/masterSign.png" alt="logo" id="sign_img">
+										<img src="${root}/static/img/introduce/smallSign.png" alt="logo" id="sign_img2">
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

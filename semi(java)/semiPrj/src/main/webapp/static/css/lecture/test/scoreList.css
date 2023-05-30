@@ -95,7 +95,7 @@ table input {
 	text-align: center;
 }
 
-table input:hover {
+.list-tbl input:hover {
     background-color: #4998D1;
 	color: white;
 }

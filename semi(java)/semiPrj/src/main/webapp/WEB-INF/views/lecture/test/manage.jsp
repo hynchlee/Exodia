@@ -89,7 +89,7 @@
 				}
 
 				if (boxList.length == 0) {
-					alert("수정할 강의를 선택해주세요");
+					alert("수정할 문제를 선택해주세요");
 					return;
 				}
 
@@ -199,7 +199,7 @@
 					data: JSON.stringify(boxList),
 					contentType: "application/json",
 					success: function () {
-						alert("강의 추가 완료");
+						alert("문제 추가 완료");
 						location.reload();
 					},
 					error: function () {

@@ -1,5 +1,7 @@
 package com.semi.lecture.vo;
 
+import java.util.Objects;
+
 public class LectureVo {
 	private String lectureNo;
 	private String teacherMemberNo;
