@@ -50,8 +50,8 @@
 							<tbody class="tbd">
 								<c:forEach items="${lectureList}" var="vo">
 									<tr class="tr${vo.lectureNo}">
-										<td>강남</td>
 										<td class="td" hidden>${vo.lectureNo}</td>
+										<td class="td">${vo.place}</td>
 										<td class="td">${vo.lectureOpenDate}</td>
 										<td class="td">${vo.lectureCloseDate}</td>
 										<td class="td">${vo.teacherMemberName}</td>
@@ -146,14 +146,13 @@
 				for (const chbox of boxList) {
 					const tr = document.querySelector('.tr' + chbox);
 					const tds = tr.querySelectorAll('.td');
-
-					tds.forEach(td => {
-						const txt = td.innerText;
-						td.innerHTML = '<input style="text-align:center; width: 100%; height: 76px;" type="text" value="' + txt + '">';
-					});
-					tds[3].innerHTML = '<select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${lectureList}" var="vo"> <option value="${vo.teacherMemberNo}">${vo.teacherMemberName}</option> </c:forEach> </select>';
-					tds[4].innerHTML = '<select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${lectureList}" var="vo"> <option value="${vo.lectureCategoryNo}">${vo.lectureCategoryName}</option> </c:forEach> </select>';
-					tds[5].innerHTML = '<select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${lectureList}" var="vo"> <option value="${vo.lectureStartTime}~${vo.lectureFinishTime}">${vo.lectureStartTime}~${vo.lectureFinishTime}</option> </c:forEach> </select>';
+					
+					tds[1].innerHTML = '<select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${lectureList}" var="vo"> <option value="${vo.place}">${vo.place}</option> </c:forEach> </select>';
+					tds[2].innerHTML = '<input style="text-align:center; width: 100%; height: 76px;" type="date">';
+					tds[3].innerHTML = '<input style="text-align:center; width: 100%; height: 76px;" type="date">';					
+					tds[4].innerHTML = '<select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${lectureList}" var="vo"> <option value="${vo.teacherMemberNo}">${vo.teacherMemberName}</option> </c:forEach> </select>';
+					tds[5].innerHTML = '<select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${lectureList}" var="vo"> <option value="${vo.lectureCategoryNo}">${vo.lectureCategoryName}</option> </c:forEach> </select>';
+					tds[6].innerHTML = '<select style="text-align:center; width: 100%; height: 80px;"> <c:forEach items="${lectureList}" var="vo"> <option value="${vo.lectureStartTime}~${vo.lectureFinishTime}">${vo.lectureStartTime}~${vo.lectureFinishTime}</option> </c:forEach> </select>';
 				}
 
 				modbtn1.hidden = true;
@@ -173,12 +172,13 @@
 					const tds = tr.querySelectorAll('.td');
 					var bList = [];
 					bList.push('mod');
-					bList.push(tds[0].querySelector('input').value);
-					bList.push(tds[1].querySelector('input').value);
+					bList.push(tds[0].innerText);
+					bList.push(tds[1].querySelector('select').value);
 					bList.push(tds[2].querySelector('input').value);
-					bList.push(tds[3].querySelector('select').value);
+					bList.push(tds[3].querySelector('input').value);
 					bList.push(tds[4].querySelector('select').value);
 					bList.push(tds[5].querySelector('select').value);
+					bList.push(tds[6].querySelector('select').value);
 
 					$.ajax({
 						url: '/semi/lecture/manage',

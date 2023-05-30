@@ -55,7 +55,7 @@
 							<td><a href="${root}/lecture/apply">수강 신청</a></td>
 						</tr>
 						<tr>
-							<td><a href="${root}/introduce/facility?building=1">시설 소개</a></td>
+							<td><a href="${root}/introduce/facility?building=1">찾아오는 길</a></td>
 							<td><a href="${root}/qna/list?page=1">문의게시판</a></td>
 						</tr>
 						<tr>

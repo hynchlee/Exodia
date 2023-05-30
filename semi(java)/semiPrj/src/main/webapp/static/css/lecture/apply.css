@@ -93,3 +93,7 @@ main * {
     background-color: #4998D1;
 	color: white;
 }
+
+.tbd tr:hover{
+    background-color:  #F0F0F0;
+}

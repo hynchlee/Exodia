@@ -82,6 +82,7 @@ public class LectureDao {
 			vo.setStatus(rs.getString("STATUS"));
 			vo.setLectureCategoryName(rs.getString("LECTURE_NAME"));
 			vo.setTeacherMemberName(rs.getString("MEMBER_NICK"));
+			vo.setPlace(rs.getString("PLACE"));
 			lectureList.add(vo);
 		}
 
@@ -626,17 +627,18 @@ public class LectureDao {
 	}
 
 	public int modifyLectureOne(Connection conn, String[] params) throws SQLException {
-		String sql = "UPDATE LECTURE SET LECTURE_OPEN_DATE = ? , LECTURE_CLOSE_DATE = ? , TEACHER_MEMBER_NO = ? , LECTURE_CATEGORY_NO = ? , LECTURE_START_TIME = ? , LECTURE_FINISH_TIME = ? WHERE LECTURE_NO = ?";
+		String sql = "UPDATE LECTURE SET PLACE = ?, LECTURE_OPEN_DATE = ? , LECTURE_CLOSE_DATE = ? , TEACHER_MEMBER_NO = ? , LECTURE_CATEGORY_NO = ? , LECTURE_START_TIME = ? , LECTURE_FINISH_TIME = ? WHERE LECTURE_NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 
-		String[] split = params[6].split("~");
+		String[] split = params[7].split("~");
 		pstmt.setString(1, params[2]);
-		pstmt.setString(2, params[3]);
-		pstmt.setString(3, params[4]);
+		pstmt.setString(2, params[3].replaceAll("-", ""));
+		pstmt.setString(3, params[4].replaceAll("-", ""));
 		pstmt.setString(4, params[5]);
-		pstmt.setString(5, split[0]);
-		pstmt.setString(6, split[1]);
-		pstmt.setString(7, params[1]);
+		pstmt.setString(5, params[6]);
+		pstmt.setString(6, split[0]);
+		pstmt.setString(7, split[1]);
+		pstmt.setString(8, params[1]);
 
 		int result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);

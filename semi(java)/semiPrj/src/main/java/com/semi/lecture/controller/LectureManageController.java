@@ -61,7 +61,7 @@ public class LectureManageController extends HttpServlet {
 			String[] params = json.replaceAll("\\s", "").replace("[", "").replace("]", "").replace("\"", "").split(",");
 			String type = params[0];
 			int result = 0;
-
+			
 			if (type.equals("mod")) {
 				result = ls.modifyLectureOne(params);
 			} else if (type.equals("del")) {
