@@ -1,6 +1,7 @@
 package com.semi.main.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.semi.admin.vo.AdminVo;
+import com.semi.lecture.vo.LectureVo;
 import com.semi.member.vo.MemberVo;
 import com.semi.mypage.service.MypageService;
 
@@ -26,8 +28,12 @@ public class MainController extends HttpServlet {
 				MypageService ms = new MypageService();
 				String letterCount = ms.countLetter01(memberNo);
 				String countMyWrite = ms.countMyWrite(memberNo);
+				List<LectureVo> lvoList = ms.showLecture();
+				List<LectureVo> secuList = ms.showSecuLecture();
 				req.setAttribute("letterCount", letterCount);
 				req.setAttribute("countMyWrite", countMyWrite);
+				req.setAttribute("lvoList", lvoList);
+				req.setAttribute("secuList", secuList);
 				
 				if (loginMember.getIdentity().equals("S")) {
 					req.getRequestDispatcher("/WEB-INF/views/main/smain.jsp").forward(req, resp);

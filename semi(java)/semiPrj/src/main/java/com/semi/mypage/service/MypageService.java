@@ -292,4 +292,30 @@ public class MypageService {
 	
 	}
 
+	public List<LectureVo> showLecture() throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		List<LectureVo> lvoList = mdao.showLecture(conn);
+		
+		JDBCTemplate.close(conn);
+		
+		return lvoList;
+		
+	}
+
+	public List<LectureVo> showSecuLecture() throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		List<LectureVo> secuList = mdao.showSecuLecture(conn);
+		
+		JDBCTemplate.close(conn);
+		
+		return secuList;
+		
+	}
+
 }

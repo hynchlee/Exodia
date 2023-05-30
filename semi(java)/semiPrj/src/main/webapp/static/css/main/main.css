@@ -354,7 +354,6 @@ body {
   background-position: center center;
   background-size: cover;
   opacity: 1;
-  overflow: hidden;
   position: relative;
   bottom: 25px;
   left: 30px;
@@ -370,7 +369,6 @@ body {
   border-top-right-radius: 29px;
   border-bottom-left-radius: 29px;
   border-bottom-right-radius: 29px;
-  overflow: hidden;
   position: relative;
   top: 25px;
   left: 90px;
@@ -386,7 +384,6 @@ body {
   border-top-right-radius: 29px;
   border-bottom-left-radius: 29px;
   border-bottom-right-radius: 29px;
-  overflow: hidden;
   position: relative;
   top: 35px;
   left: 90px;
