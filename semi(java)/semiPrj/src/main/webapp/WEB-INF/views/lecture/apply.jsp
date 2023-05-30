@@ -15,8 +15,8 @@
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
 				<main>
 					<form action="${root}/lecture/apply" method="get">
-					<div class="wrap_1">
-						<div class="menu_1">
+						<div class="wrap_1">
+							<div class="menu_1">
 								<select name="searchType">
 									<option value="lectureOpenDate">개강일</option>
 									<option value="teacher">강사</option>
@@ -65,6 +65,7 @@
 											<td><input class="bbtn" type="submit" value="수강신청"></td>
 										</tr>
 									</form>
+
 								</c:forEach>
 							</tbody>
 						</table>
