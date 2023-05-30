@@ -50,5 +50,27 @@ hr{
 }
 
 #sign_img {
-    width: 100%;
+    width: 70%;
+}
+
+#sign_img2 {
+    width: 20%;
+}
+
+.hiih {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.afda {
+    display: flex;
+    justify-content: right;
+    align-items: baseline;
+}
+
+.ababc {
+    width: 150%;
+    font-size: 20px;
+    text-align: center;
 }

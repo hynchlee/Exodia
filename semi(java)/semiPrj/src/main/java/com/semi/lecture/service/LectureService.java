@@ -444,4 +444,14 @@ public class LectureService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+
+	public List<MemberVo> getTeacherList() throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+
+		List<MemberVo> teacherList = dao.getTeacherList(conn);
+
+		JDBCTemplate.close(conn);
+
+		return teacherList;
+	}
 }

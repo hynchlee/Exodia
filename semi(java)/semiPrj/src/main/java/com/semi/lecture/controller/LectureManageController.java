@@ -1,7 +1,9 @@
 package com.semi.lecture.controller;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
@@ -43,8 +45,19 @@ public class LectureManageController extends HttpServlet {
 
 			PageVo pageVo = new PageVo(cnt, pageInt, 5, 10);
 			List<LectureVo> lectureList = ls.getLectureList(pageVo, searchType, searchValue);
-
+			
+			Set<String> placeSet = new HashSet<>();
+			List<MemberVo> teacherSet = ls.getTeacherList();
+			Set<String> lectureSet = new HashSet<>();
+			for(LectureVo lecture : lectureList) {
+				placeSet.add(lecture.getPlace());
+				lectureSet.add(lecture.getLectureCategoryName());
+			}
+			
 			req.setAttribute("lectureList", lectureList);
+			req.setAttribute("placeSet", placeSet);
+			req.setAttribute("teacherSet", teacherSet);
+			req.setAttribute("lectureSet", lectureSet);
 			req.setAttribute("pageVo", pageVo);
 			req.getRequestDispatcher("/WEB-INF/views/lecture/manage.jsp").forward(req, resp);
 		} catch (Exception e) {
@@ -58,7 +71,7 @@ public class LectureManageController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			String json = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-			String[] params = json.replaceAll("\\s", "").replace("[", "").replace("]", "").replace("\"", "").split(",");
+			String[] params = json.replace("[", "").replace("]", "").replace("\"", "").split(",");
 			String type = params[0];
 			int result = 0;
 			
@@ -66,10 +79,10 @@ public class LectureManageController extends HttpServlet {
 				result = ls.modifyLectureOne(params);
 			} else if (type.equals("del")) {
 				int[] lectureNo = new int[params.length - 1];
-				for (int i = 0; i < lectureNo.length - 1; i++) {
+				for (int i = 0; i < lectureNo.length; i++) {
 					lectureNo[i] = Integer.parseInt(params[i + 1]);
+					result = ls.deleteLecture(lectureNo);
 				}
-				result = ls.deleteLecture(lectureNo);
 			} else if (type.equals("plus")) {
 				result = ls.insertLectureOne(params);
 			}
