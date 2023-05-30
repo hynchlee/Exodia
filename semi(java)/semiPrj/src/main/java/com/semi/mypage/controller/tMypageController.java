@@ -63,7 +63,7 @@ public class tMypageController extends HttpServlet {
 			List<BoardVo> tcvoList = ms.getBoardTClassList(lectureVo.getLectureNo());
 			List<VacationVo> vaList = ms.watchingStudent(lectureVo.getLectureNo());
 			List<CalenderVo> ttodoList = ms.ttodoList(memberNo);
-			List<TeamCalendarVo> voList = fcs.getFullCalendar(loginMember.getMemberNo());
+			List<TeamCalendarVo> voList = fcs.tgetFullCalendar(lectureVo.getLectureNo());
 			
 			req.setAttribute("voList", voList);
 			req.setAttribute("volist", volist);

@@ -87,4 +87,25 @@ public class TeamCalendarDao {
 		return result;
 	}
 
+	public List<TeamCalendarVo> tgetTeamCalendar(Connection conn, String lectureNo) throws SQLException {
+		String sql = "SELECT M.MEMBER_NICK, V.reason, VACATION_START, VACATION_END FROM VACATION_REQUEST_LIST V JOIN STUDENT S ON (S.STUDENT_MEMBER_NO = V.MEMBER_NO) JOIN MEMBER M ON (M.MEMBER_NO = V.MEMBER_NO) WHERE V.STATUS = 'O' AND M.STATUS = 'O'  AND M.IDENTITY = 'S' AND LECTURE_NO = ? ORDER BY VACATION_START DESC ";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, lectureNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		List<TeamCalendarVo> voList = new ArrayList<>();
+		while(rs.next()) {
+			TeamCalendarVo vo = new TeamCalendarVo();
+			vo.setStartDate(rs.getString("VACATION_START"));
+			vo.setEndDate(rs.getString("VACATION_END"));
+			vo.setMeetingContent(rs.getString("MEMBER_NICK"));
+			
+			voList.add(vo);
+		}
+		JDBCTemplate.close(pstmt);
+		JDBCTemplate.close(rs);
+		
+		return voList;
+	}
+
 }
