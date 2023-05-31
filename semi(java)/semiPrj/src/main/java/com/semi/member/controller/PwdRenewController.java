@@ -63,8 +63,8 @@ public class PwdRenewController extends HttpServlet{
 			System.out.println("[ERROR] renew pwd fail ...");
 			e.printStackTrace();
 			
-			req.setAttribute("errorMsg", "비밀번호 수정 실패 ...");
-			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+			req.setAttribute("alertMsg", "비밀번호 수정 실패 ...");
+			req.getRequestDispatcher("/WEB-INF/views/member/pwdRenew.jsp").forward(req, resp);
 		}
 	
 	}

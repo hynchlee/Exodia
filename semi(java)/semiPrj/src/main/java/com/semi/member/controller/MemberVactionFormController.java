@@ -75,8 +75,8 @@ public class MemberVactionFormController extends HttpServlet{
 			System.out.println("[ERROR] request vacation fail ...");
 			e.printStackTrace();
 			
-			req.setAttribute("errorMsg", "휴가신청 실패 ...");
-			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+			req.setAttribute("alertMsg", "휴가신청 실패 ...");
+			req.getRequestDispatcher("/WEB-INF/views/member/vacationForm.jsp").forward(req, resp);
 		}
 	
 	}

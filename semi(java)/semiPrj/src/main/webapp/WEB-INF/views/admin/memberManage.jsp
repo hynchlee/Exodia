@@ -13,6 +13,13 @@
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 
+	<c:if test="${ not empty alertMsg }">
+		<script>
+		   alert('${alertMsg}');
+		</script>
+	 </c:if>
+	 <c:remove var="alertMsg" scope="session" />
+
 	<main>
 
 		<div class="search-area">

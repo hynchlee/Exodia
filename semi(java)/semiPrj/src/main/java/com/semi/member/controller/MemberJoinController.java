@@ -77,8 +77,8 @@ public class MemberJoinController extends HttpServlet{
 			System.out.println("[ERROR] join fail ...");
 			e.printStackTrace();
 			
-			req.setAttribute("errorMsg", "회원가입 실패 ...");
-			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+			req.setAttribute("alertMsg", "회원가입 실패 ...");
+			req.getRequestDispatcher("/WEB-INF/views//member/join.jsp").forward(req, resp);
 		}
 	
 	}

@@ -39,8 +39,8 @@ public class AdminMemberRestoreController extends HttpServlet{
 			System.out.println("[ERROR] stop member fail ...");
 			e.printStackTrace();
 			
-			req.setAttribute("errorMsg", "회원 복구 실패 ...");
-			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+			req.setAttribute("alertMsg", "회원 복구 실패 ...");
+			req.getRequestDispatcher("/WEB-INF/views/admin/adminMenu.jsp").forward(req, resp);
 		}
 		
 	}

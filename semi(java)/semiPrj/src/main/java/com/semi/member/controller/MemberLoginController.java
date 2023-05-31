@@ -78,8 +78,8 @@ public class MemberLoginController extends HttpServlet{
 			System.out.println("[ERROR] login fail ...");
 			e.printStackTrace();
 			
-			req.setAttribute("errorMsg", "로그인 실패...");
-			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+			req.setAttribute("alertMsg", "로그인 실패...");
+			req.getRequestDispatcher("/WEB-INF/views/member/login.jsp").forward(req, resp);
 		}
 	
 	}

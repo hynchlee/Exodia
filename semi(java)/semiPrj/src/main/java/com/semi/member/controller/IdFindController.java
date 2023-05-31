@@ -51,8 +51,8 @@ public class IdFindController extends HttpServlet{
 			System.out.println("[ERROR] id find fail ...");
 			e.printStackTrace();
 			
-			req.setAttribute("errorMsg", "아이디 찾기 실패...");
-			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+			req.setAttribute("alertMsg", "아이디 찾기 실패...");
+			req.getRequestDispatcher("/WEB-INF/views/member/idFind.jsp").forward(req, resp);
 		}
 	
 	}

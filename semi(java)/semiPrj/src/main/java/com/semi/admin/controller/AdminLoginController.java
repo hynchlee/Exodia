@@ -60,8 +60,8 @@ public class AdminLoginController extends HttpServlet{
 			System.out.println("[ERROR] admin login fail ...");
 			e.printStackTrace();
 			
-			req.setAttribute("errorMsg", "관리자 로그인 실패 ...");
-			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+			req.setAttribute("alertMsg", "관리자 로그인 실패 ...");
+			req.getRequestDispatcher("/WEB-INF/views/admin/adminLogin.jsp").forward(req, resp);
 		}
 			
 	}
