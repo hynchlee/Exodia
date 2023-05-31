@@ -85,12 +85,12 @@ public class MypageService {
 	
 	}
 
-	public List<TeamVo> teamList() throws Exception {
+	public List<TeamVo> teamList(String memberNo) throws Exception {
 
 		Connection conn = JDBCTemplate.getConnection();
 		
 		MypageDao mdao = new MypageDao();
-		List<TeamVo> teamList = mdao.teamList(conn);
+		List<TeamVo> teamList = mdao.teamList(conn, memberNo);
 		
 		JDBCTemplate.close(conn);
 		
@@ -341,6 +341,45 @@ public class MypageService {
 		JDBCTemplate.close(conn);
 		
 		return leftVacation;
+		
+	}
+
+	public int inTimes(String memberNo) throws Exception {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		int inTimes = mdao.inTimes(conn, memberNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return inTimes;
+	
+	}
+
+	public int notCome(String memberNo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		int result = mdao.notCome(conn, memberNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+		
+	}
+
+	public int late(String memberNo) throws Exception {
+		
+Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		int result = mdao.late(conn, memberNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
 		
 	}
 

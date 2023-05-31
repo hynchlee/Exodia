@@ -92,7 +92,7 @@
 							<ul>
 								<c:forEach items="${teamList}" var="teamList">
 									<li class="list03">${teamList.memberNick} (${teamList.role})</li>	
-									<li class="list02">${teamList.teamName}_${teamList.projectDivision}</li>				
+									<li class="list02">${teamList.projectDivision}</li>				
 									<hr>			
 								</c:forEach>
 							</ul>	
