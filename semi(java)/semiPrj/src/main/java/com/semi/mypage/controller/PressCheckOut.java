@@ -31,6 +31,7 @@ public class PressCheckOut extends HttpServlet{
 			String memberNo = loginMember.getMemberNo();
 			
 			MypageService ms = new MypageService();
+			ms.firstcheck(memberNo);
 		 	int inTimes = ms.inTimes(memberNo);
 		 	
 		 	int result = 0;
