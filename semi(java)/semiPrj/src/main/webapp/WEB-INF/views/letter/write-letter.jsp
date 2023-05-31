@@ -21,8 +21,8 @@
 			<div>
 				<form action="${root}/letter/write" method="get">
 					<div id="select-button">
-						<img src="${root}/static/img/letter/쪽지 쓰기.png"> <input
-							type="submit" value="쪽지 쓰기" id="write-letter" disabled>
+						<img src="${root}/static/img/letter/쪽지 쓰기.png">
+						 <input type="submit" value="쪽지 쓰기" id="write-letter" disabled>
 					</div>
 				</form>
 			</div>

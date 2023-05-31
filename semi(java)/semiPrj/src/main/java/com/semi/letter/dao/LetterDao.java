@@ -35,7 +35,7 @@ public class LetterDao {
 		JDBCTemplate.close(pstmt);
 
 		return result;
-		
+
 	}
 
 	public List<LetterVo> letterList(Connection conn) throws Exception {
@@ -69,7 +69,7 @@ public class LetterDao {
 	// 그냥 목록 조회
 	public List<LetterVo> getLetterList(Connection conn, PageVo pv, String MemberNo) throws Exception {
 
-		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT L.LETTER_NO, L.LETTER_TITLE, L.LETTER_CONTENT, L.RECEIVE_MEMBER_NO, L.SEND_MEMBER_NO, L.ENROLL_DATE, L.STATUS, M.MEMBER_NICK FROM LETTER L JOIN MEMBER M ON (L.SEND_MEMBER_NO = M.MEMBER_NO) WHERE L.STATUS = 'O' AND L.RECEIVE_MEMBER_NO = ? ORDER BY L.ENROLL_DATE DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
+		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT L.LETTER_NO, L.LETTER_TITLE, L.LETTER_CONTENT, L.RECEIVE_MEMBER_NO, L.SEND_MEMBER_NO, L.ENROLL_DATE, L.STATUS, M.MEMBER_NICK, M.MEMBER_ID FROM LETTER L JOIN MEMBER M ON (L.SEND_MEMBER_NO = M.MEMBER_NO) WHERE L.STATUS = 'O' AND L.RECEIVE_MEMBER_NO = ? ORDER BY L.ENROLL_DATE DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, MemberNo);
 		pstmt.setInt(2, pv.getBeginRow());
@@ -81,11 +81,13 @@ public class LetterDao {
 
 			String no = rs.getString("LETTER_NO");
 			String memberNick = rs.getString("MEMBER_NICK");
+			String memberId = rs.getString("MEMBER_ID");
 			String letterTitle = rs.getString("LETTER_TITLE");
 			String enrollDate = rs.getString("ENROLL_DATE");
 
 			LetterVo vo = new LetterVo();
 			vo.setSendMemberName(memberNick);
+			vo.setSendMemberId(memberId);
 			vo.setLetterTitle(letterTitle);
 			vo.setEnrollDate(enrollDate);
 			vo.setLetterNo(no);
@@ -108,10 +110,10 @@ public class LetterDao {
 
 		if (searchType.equals("writer")) {
 			// SQL (작성자)
-			sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT M.MEMBER_NICK, L.* FROM MEMBER M JOIN LETTER L ON M.MEMBER_NO = L.SEND_MEMBER_NO WHERE L.STATUS = 'O' AND L.RECEIVE_MEMBER_NO IN (SELECT MEMBER_NO FROM MEMBER WHERE M.MEMBER_NICK LIKE '%'||?||'%' AND L.STATUS = 'O') ORDER BY ENROLL_DATE ) T ) WHERE RECEIVE_MEMBER_NO = ? AND RNUM BETWEEN ? AND ?";
+			sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT M.MEMBER_NICK, M.MEMBER_ID, L.* FROM MEMBER M JOIN LETTER L ON M.MEMBER_NO = L.SEND_MEMBER_NO WHERE L.STATUS = 'O' AND L.RECEIVE_MEMBER_NO IN (SELECT MEMBER_NO FROM MEMBER WHERE M.MEMBER_NICK LIKE '%'||?||'%' AND L.STATUS = 'O') ORDER BY ENROLL_DATE ) T ) WHERE RECEIVE_MEMBER_NO = ? AND RNUM BETWEEN ? AND ?";
 		} else if (searchType.equals("title")) {
 			// SQL (내용)
-			sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT * FROM MEMBER M JOIN LETTER L ON (M.MEMBER_NO = L.SEND_MEMBER_NO) WHERE L.STATUS = 'O' AND L.LETTER_TITLE LIKE '%'||?||'%' ORDER BY L.ENROLL_DATE DESC ) T ) WHERE RECEIVE_MEMBER_NO = ? AND RNUM BETWEEN ? AND ?";
+			sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT M.MEMBER_NICK, M.MEMBER_ID, L.* FROM MEMBER M JOIN LETTER L ON (M.MEMBER_NO = L.SEND_MEMBER_NO) WHERE L.STATUS = 'O' AND L.LETTER_TITLE LIKE '%'||?||'%' ORDER BY L.ENROLL_DATE DESC ) T ) WHERE RECEIVE_MEMBER_NO = ? AND RNUM BETWEEN ? AND ?";
 		} else {
 			//
 			return getLetterList(conn, pv, MemberNo);
@@ -130,6 +132,7 @@ public class LetterDao {
 			String no = rs.getString("LETTER_NO");
 			String sendMemberNo = rs.getString("SEND_MEMBER_NO");
 			String sendMemberName = rs.getString("MEMBER_NICK");
+			String sendMemberId = rs.getString("MEMBER_ID");
 			String letterTitle = rs.getString("LETTER_TITLE");
 			String letterContent = rs.getString("LETTER_CONTENT");
 			String enrollDate = rs.getString("ENROLL_DATE");
@@ -138,6 +141,7 @@ public class LetterDao {
 			LetterVo vo = new LetterVo();
 			vo.setSendMemberName(sendMemberName);
 			vo.setSendMemberNo(sendMemberNo);
+			vo.setSendMemberId(sendMemberId);
 			vo.setLetterTitle(letterTitle);
 			vo.setEnrollDate(enrollDate);
 			vo.setLetterNo(no);
@@ -252,7 +256,7 @@ public class LetterDao {
 
 	public List<LetterVo> getLetterSendList(Connection conn, PageVo pv, String MemberNo) throws SQLException {
 
-		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT L.LETTER_NO, L.LETTER_TITLE, L.LETTER_CONTENT, L.SEND_MEMBER_NO, L.RECEIVE_MEMBER_NO, L.ENROLL_DATE, L.STATUS, M1.MEMBER_NICK AS SEND_MEMBER_NAME, M2.MEMBER_NICK AS RECEIVE_MEMBER_NAME FROM LETTER L JOIN MEMBER M1 ON (L.SEND_MEMBER_NO = M1.MEMBER_NO) JOIN MEMBER M2 ON (L.RECEIVE_MEMBER_NO = M2.MEMBER_NO) WHERE L.STATUS = 'O' AND L.SEND_MEMBER_NO = ? ORDER BY L.ENROLL_DATE DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
+		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT L.LETTER_NO, L.LETTER_TITLE, L.LETTER_CONTENT, L.SEND_MEMBER_NO, L.RECEIVE_MEMBER_NO, L.ENROLL_DATE, L.STATUS, M1.MEMBER_NICK AS SEND_MEMBER_NAME, M2.MEMBER_NICK AS RECEIVE_MEMBER_NAME, M2.MEMBER_ID AS RECEIVE_MEMBER_ID FROM LETTER L JOIN MEMBER M1 ON (L.SEND_MEMBER_NO = M1.MEMBER_NO) JOIN MEMBER M2 ON (L.RECEIVE_MEMBER_NO = M2.MEMBER_NO) WHERE L.STATUS = 'O' AND L.SEND_MEMBER_NO = ? ORDER BY L.ENROLL_DATE DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, MemberNo);
 		pstmt.setInt(2, pv.getBeginRow());
@@ -267,6 +271,7 @@ public class LetterDao {
 			String sendMemberName = rs.getString("SEND_MEMBER_NAME");
 			String receiveNo = rs.getString("RECEIVE_MEMBER_NO");
 			String receiveName = rs.getString("RECEIVE_MEMBER_NAME");
+			String receiveId = rs.getString("RECEIVE_MEMBER_ID");
 			String letterTitle = rs.getString("LETTER_TITLE");
 			String letterContent = rs.getString("LETTER_CONTENT");
 			String enrollDate = rs.getString("ENROLL_DATE");
@@ -277,6 +282,7 @@ public class LetterDao {
 			vo.setSendMemberNo(sendMemberNo);
 			vo.setReceiveMemberNo(receiveNo);
 			vo.setReceiveMemberName(receiveName);
+			vo.setReceiveMemberId(receiveId);
 			vo.setLetterTitle(letterTitle);
 			vo.setEnrollDate(enrollDate);
 			vo.setLetterNo(no);
@@ -300,10 +306,10 @@ public class LetterDao {
 
 		if (searchType.equals("writer")) {
 			// SQL (작성자 검색)
-			sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT M.MEMBER_NICK RECEIVE_MEMBER_NAME, L.* FROM MEMBER M JOIN LETTER L ON M.MEMBER_NO = L.RECEIVE_MEMBER_NO WHERE L.STATUS = 'O' AND L.LETTER_TITLE IN (SELECT LETTER_TITLE FROM LETTER WHERE MEMBER_NICK LIKE ? ) ORDER BY ENROLL_DATE DESC) T ) WHERE SEND_MEMBER_NO = ? AND RNUM BETWEEN ? AND ?";
+			sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT M.MEMBER_NICK RECEIVE_MEMBER_NAME, M.MEMBER_ID RECEIVE_MEMBER_ID, L.* FROM MEMBER M JOIN LETTER L ON M.MEMBER_NO = L.RECEIVE_MEMBER_NO WHERE L.STATUS = 'O' AND L.LETTER_TITLE IN (SELECT LETTER_TITLE FROM LETTER WHERE MEMBER_NICK LIKE ? ) ORDER BY ENROLL_DATE DESC) T ) WHERE SEND_MEMBER_NO = ? AND RNUM BETWEEN ? AND ?";
 		} else if (searchType.equals("title")) {
 			// SQL (내용 검색)
-			sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT M.MEMBER_NICK RECEIVE_MEMBER_NAME, L.* FROM MEMBER M JOIN LETTER L ON M.MEMBER_NO = L.RECEIVE_MEMBER_NO WHERE L.STATUS = 'O' AND L.LETTER_TITLE IN (SELECT LETTER_TITLE FROM LETTER WHERE LETTER_TITLE LIKE ? ) ORDER BY ENROLL_DATE DESC) T ) WHERE SEND_MEMBER_NO = ? AND RNUM BETWEEN ? AND ?";
+			sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT M.MEMBER_NICK RECEIVE_MEMBER_NAME, M.MEMBER_ID RECEIVE_MEMBER_ID, L.* FROM MEMBER M JOIN LETTER L ON M.MEMBER_NO = L.RECEIVE_MEMBER_NO WHERE L.STATUS = 'O' AND L.LETTER_TITLE IN (SELECT LETTER_TITLE FROM LETTER WHERE LETTER_TITLE LIKE ? ) ORDER BY ENROLL_DATE DESC) T ) WHERE SEND_MEMBER_NO = ? AND RNUM BETWEEN ? AND ?";
 		} else {
 			// 값이 입력되지 않은 경우 => 기본 게시판 일반 목록 조회
 			return getLetterSendList(conn, pv, MemberNo);
@@ -319,11 +325,13 @@ public class LetterDao {
 		List<LetterVo> voList = new ArrayList<>();
 		while (rs.next()) {
 			String receiveMemberName = rs.getString("RECEIVE_MEMBER_NAME");
+			String receiveMemberId = rs.getString("RECEIVE_MEMBER_ID");
 			String letterTitle = rs.getString("LETTER_TITLE");
 			String enrollDate = rs.getString("ENROLL_DATE");
 
 			LetterVo vo = new LetterVo();
 			vo.setReceiveMemberName(receiveMemberName);
+			vo.setReceiveMemberId(receiveMemberId);
 			vo.setLetterTitle(letterTitle);
 			vo.setEnrollDate(enrollDate);
 
@@ -452,12 +460,15 @@ public class LetterDao {
 
 	public int getLetterTrashListCnt(Connection conn, String searchType, String searchValue, String memberNo)
 			throws Exception {
-		String sql = "SELECT COUNT(*) FROM ( SELECT L.LETTER_NO, L.LETTER_TITLE, L.LETTER_CONTENT, L.SEND_MEMBER_NO, L.ENROLL_DATE, L.STATUS, M.MEMBER_NICK FROM LETTER L JOIN MEMBER M ON (L.RECEIVE_MEMBER_NO = M.MEMBER_NO) WHERE L.STATUS = 'X' AND (L.RECEIVE_MEMBER_NO = ? OR L.SEND_MEMBER_NO = ?) )";
+		String sql = "SELECT COUNT(*) FROM ( SELECT L.LETTER_NO, L.LETTER_TITLE, L.LETTER_CONTENT, L.SEND_MEMBER_NO, L.ENROLL_DATE, L.STATUS, M.MEMBER_NICK FROM LETTER L JOIN MEMBER M ON (L.RECEIVE_MEMBER_NO = M.MEMBER_NO) WHERE L.STATUS = 'X' AND (L.RECEIVE_MEMBER_NO = ? OR L.SEND_MEMBER_NO = ?) ";
 
+		// Attach the search condition with proper parenthesis
 		if ("writer".equals(searchType)) {
-			sql += "AND M.MEMBER_NICK LIKE '%" + searchValue + "%'";
+			sql += "AND M.MEMBER_NICK LIKE '%" + searchValue + "%' )";
 		} else if ("title".equals(searchType)) {
-			sql += "AND L.LETTER_TITLE LIKE '%" + searchValue + "%'";
+			sql += "AND L.LETTER_TITLE LIKE '%" + searchValue + "%' )";
+		} else {
+			sql += " )"; // Closing parenthesis for COUNT(*) if no searchType matches
 		}
 
 		PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -530,12 +541,16 @@ public class LetterDao {
 
 		String sql = "";
 
-		if (searchType.equals("writer")) {
+		if (searchType.equals("sender")) {
 			// SQL (작성자)
-			sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT M.MEMBER_NICK, L.* FROM MEMBER M JOIN LETTER L ON M.MEMBER_NO = L.SEND_MEMBER_NO WHERE L.STATUS = 'X' AND L.RECEIVE_MEMBER_NO IN (SELECT MEMBER_NO FROM MEMBER WHERE M.MEMBER_NICK LIKE '%'||?||'%' AND L.STATUS = 'X') ORDER BY ENROLL_DATE DESC ) T ) WHERE (RECEIVE_MEMBER_NO = ? OR SEND_MEMBER_NO = ?) AND RNUM BETWEEN ? AND ?";
-		} else if (searchType.equals("title")) {
+			sql = "SELECT T.*, SENDER.MEMBER_ID AS SENDER_ID, SENDER.MEMBER_NICK AS SENDER_NICK, RECEIVER.MEMBER_ID AS RECEIVER_ID, RECEIVER.MEMBER_NICK AS RECEIVER_NICK FROM ( SELECT ROWNUM RNUM, L.* FROM ( SELECT L.* FROM MEMBER M JOIN LETTER L ON M.MEMBER_NO = L.SEND_MEMBER_NO WHERE L.STATUS = 'X' AND M.MEMBER_NICK LIKE '%'||?||'%' AND L.RECEIVE_MEMBER_NO IN ( SELECT MEMBER_NO FROM MEMBER WHERE L.STATUS = 'X' ) ORDER BY ENROLL_DATE DESC ) L ) T JOIN MEMBER SENDER ON T.SEND_MEMBER_NO = SENDER.MEMBER_NO JOIN MEMBER RECEIVER ON T.RECEIVE_MEMBER_NO = RECEIVER.MEMBER_NO WHERE (RECEIVE_MEMBER_NO = ? OR SEND_MEMBER_NO = ?) AND RNUM BETWEEN ? AND ?";
+		}
+		else if (searchType.equals("receiver")) {
+			sql = "SELECT T.*, SENDER.MEMBER_ID AS SENDER_ID, SENDER.MEMBER_NICK AS SENDER_NICK, RECEIVER.MEMBER_ID AS RECEIVER_ID, RECEIVER.MEMBER_NICK AS RECEIVER_NICK FROM ( SELECT ROWNUM RNUM, L.* FROM ( SELECT L.* FROM MEMBER M JOIN LETTER L ON M.MEMBER_NO = L.RECEIVE_MEMBER_NO WHERE L.STATUS = 'X' AND M.MEMBER_NICK LIKE '%'||?||'%' AND L.RECEIVE_MEMBER_NO IN ( SELECT MEMBER_NO FROM MEMBER WHERE L.STATUS = 'X' ) ORDER BY ENROLL_DATE DESC ) L ) T JOIN MEMBER SENDER ON T.SEND_MEMBER_NO = SENDER.MEMBER_NO JOIN MEMBER RECEIVER ON T.RECEIVE_MEMBER_NO = RECEIVER.MEMBER_NO WHERE (RECEIVE_MEMBER_NO = ? OR SEND_MEMBER_NO = ?) AND RNUM BETWEEN ? AND ?";
+		}
+		else if (searchType.equals("title")) {
 			// SQL (내용)
-			sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT M.MEMBER_NICK, L.* FROM MEMBER M JOIN LETTER L ON M.MEMBER_NO = L.SEND_MEMBER_NO WHERE L.STATUS = 'X' AND L.RECEIVE_MEMBER_NO IN (SELECT MEMBER_NO FROM MEMBER WHERE L.LETTER_TITLE LIKE '%'||?||'%' AND L.STATUS = 'X') ORDER BY ENROLL_DATE DESC ) T ) WHERE (RECEIVE_MEMBER_NO = ? OR SEND_MEMBER_NO = ?) AND RNUM BETWEEN ? AND ?";
+			sql = "SELECT T.*, SENDER.MEMBER_ID AS SENDER_ID, SENDER.MEMBER_NICK AS SENDER_NICK, RECEIVER.MEMBER_ID AS RECEIVER_ID, RECEIVER.MEMBER_NICK AS RECEIVER_NICK FROM ( SELECT ROWNUM RNUM, L.* FROM ( SELECT L.* FROM MEMBER M JOIN LETTER L ON M.MEMBER_NO = L.SEND_MEMBER_NO WHERE L.STATUS = 'X' AND L.RECEIVE_MEMBER_NO IN ( SELECT MEMBER_NO FROM MEMBER WHERE L.LETTER_TITLE LIKE '%'||?||'%' AND L.STATUS = 'X' ) ORDER BY ENROLL_DATE DESC ) L ) T JOIN MEMBER SENDER ON T.SEND_MEMBER_NO = SENDER.MEMBER_NO JOIN MEMBER RECEIVER ON T.RECEIVE_MEMBER_NO = RECEIVER.MEMBER_NO WHERE (RECEIVE_MEMBER_NO = ? OR SEND_MEMBER_NO = ?) AND RNUM BETWEEN ? AND ?";
 		} else {
 			//
 			return getLetterTrashList(conn, pv, memberNo);
@@ -553,8 +568,10 @@ public class LetterDao {
 		while (rs.next()) {
 
 			String no = rs.getString("LETTER_NO");
-			String sendMemberNo = rs.getString("SEND_MEMBER_NO");
-			String sendMemberName = rs.getString("MEMBER_NICK");
+			String sendMemberName = rs.getString("SENDER_NICK");
+			String sendMemberId = rs.getString("SENDER_ID");
+			String receivememberName = rs.getString("RECEIVER_NICK");
+			String receiveMemberId = rs.getString("RECEIVER_ID");
 			String letterTitle = rs.getString("LETTER_TITLE");
 			String letterContent = rs.getString("LETTER_CONTENT");
 			String enrollDate = rs.getString("ENROLL_DATE");
@@ -562,12 +579,14 @@ public class LetterDao {
 
 			LetterVo vo = new LetterVo();
 			vo.setSendMemberName(sendMemberName);
-			vo.setSendMemberNo(sendMemberNo);
 			vo.setLetterTitle(letterTitle);
 			vo.setEnrollDate(enrollDate);
 			vo.setLetterNo(no);
 			vo.setLetterContent(letterContent);
 			vo.setStatus(status);
+			vo.setSendMemberId(sendMemberId);
+			vo.setReceiveMemberId(receiveMemberId);
+			vo.setReceiveMemberName(receivememberName);
 
 			voList.add(vo);
 
@@ -624,6 +643,43 @@ public class LetterDao {
 
 		return memberList;
 
+	}
+
+	public LetterVo selectTrashOneByNo(String bno, Connection conn) throws Exception {
+		String sql = "SELECT LETTER_TITLE, LETTER_CONTENT, TO_CHAR(ENROLL_DATE,'YYYY-MM-DD HH24\"시\"') ENROLL_DATE, (SELECT MEMBER_NICK FROM MEMBER M JOIN LETTER L ON M.MEMBER_NO = L.SEND_MEMBER_NO WHERE LETTER_NO = ?) AS SENDER, (SELECT MEMBER_ID FROM MEMBER M JOIN LETTER L ON M.MEMBER_NO = L.SEND_MEMBER_NO WHERE LETTER_NO = ?) AS SENDER_ID,  (SELECT MEMBER_NICK FROM MEMBER M JOIN LETTER L ON M.MEMBER_NO = L.RECEIVE_MEMBER_NO WHERE LETTER_NO = ?) AS RECEIVER,   (SELECT MEMBER_ID FROM MEMBER M JOIN LETTER L ON M.MEMBER_NO = L.RECEIVE_MEMBER_NO WHERE LETTER_NO = ?) AS RECEIVER_ID FROM LETTER L JOIN MEMBER M ON MEMBER_NO = SEND_MEMBER_NO WHERE LETTER_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, bno);
+		pstmt.setString(2, bno);
+		pstmt.setString(3, bno);
+		pstmt.setString(4, bno);
+		pstmt.setString(5, bno);
+		ResultSet rs = pstmt.executeQuery();
+
+		LetterVo vo = null;
+
+		if (rs.next()) {
+			String title = rs.getString("LETTER_TITLE");
+			String content = rs.getString("LETTER_CONTENT");
+			String enrollDate = rs.getString("ENROLL_DATE");
+			String sender = rs.getString("SENDER");
+			String senderId = rs.getString("SENDER_ID");
+			String receiver = rs.getString("RECEIVER");
+			String receiverId = rs.getString("RECEIVER_ID");
+
+			vo = new LetterVo();
+			vo.setLetterTitle(title);
+			vo.setSendMemberName(sender);
+			vo.setSendMemberId(senderId);
+			vo.setLetterContent(content);
+			vo.setEnrollDate(enrollDate);
+			vo.setReceiveMemberName(receiver);
+			vo.setReceiveMemberId(receiverId);
+		}
+
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+
+		return vo;
 	}
 
 }
