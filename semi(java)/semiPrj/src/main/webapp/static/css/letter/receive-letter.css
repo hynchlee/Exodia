@@ -73,11 +73,11 @@ main {
     align-items: center;
 }
 
-#deleteTd{
+#letterTable #deleteTd{
     text-align: right;
 }
 
-#deleteButton{
+#letterTable #deleteButton{
     text-align: center;
     width: 100px;
     height: 40px;
@@ -94,7 +94,7 @@ main {
     color: white;
 }
 
-table {
+#letterTable {
     width: 70%;
 
     font-family: 'Spoqa Han Sans Neo';
@@ -114,7 +114,7 @@ select:nth-child(1){
     box-sizing: border-box;
 }
 
-input[type=text]{
+#letterTable input[type=text]{
     width: 77%;
     height: 40px;
     font-size: 16px;
@@ -123,7 +123,7 @@ input[type=text]{
     box-sizing: border-box;
 }
 
-thead input[type=submit]{
+#letterTable thead input[type=submit]{
     width: 9%;
     height: 40px;
     font-size: 16px;
@@ -146,13 +146,13 @@ select{
 }
 
 
-table tbody tr:hover{
+#letterTable table tbody tr:hover{
     background-color: #F0F0F0;
 }
 
 
-td,
-th {
+#letterTable td,
+#letterTable th {
     padding: 20px;
 }
 
@@ -168,15 +168,15 @@ th {
     width: 30%;
 }
 
-tbody tr {
+#letterTable tbody tr {
     border-bottom: 0.5px solid #B8B8B8;
 }
 
-tfoot td{
+#letterTable tfoot td{
     text-align: center;
 }
 
-tfoot button{
+#letterTable tfoot button{
     display: inline-block;
     font-weight: bold;
     font-size: 18px;
@@ -187,6 +187,6 @@ tfoot button{
     background-color: #F0F0F0;
 }
 
-tfoot button:hover{
+#letterTable tfoot button:hover{
     background-color: #ddd;
 }

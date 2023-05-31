@@ -74,7 +74,7 @@ main {
 	width: 100%;
 }
 
-table input, textarea{
+#letterTable input, textarea{
     font-family: 'Spoqa Han Sans Neo';
     font-style: normal;
     font-weight: 500;
@@ -95,31 +95,31 @@ textarea{
     box-sizing: border-box;
 }
 
-table {
+#letterTable {
     border-collapse: collapse;
     border-spacing: 0;
 	width: 90%;
 	height: 90%;
 }
 
-th, td {
+#letterTable th, #letterTable td {
     padding: 10px;
 }
 
-thead th:not(#title){
+#letterTable thead th:not(#title){
     text-align: left;
 }
 
-thead #title{
+#letterTable thead #title{
 	text-align: left;
     width: 10%;
 }
 
-input[name=title]{
+#letterTable input[name=title]{
 	width: 90%;
 }
 
-input[type=text], textarea{
+#letterTable input[type=text], textarea{
 	text-align: left;
 }
 
@@ -127,11 +127,11 @@ input[type=text], textarea{
 	width: 80%;
 }
 
-tfoot td{
+#letterTable tfoot td{
 	text-align: right;
 }
 
-tfoot input{
+#letterTable tfoot input{
 	width: 80px;
 	height: 40px;
 	background-color: #F0F0F0;
@@ -140,7 +140,7 @@ tfoot input{
     border: none;
 }
 
-tfoot input:hover {
+#letterTable tfoot input:hover {
     background-color: #4998D1;
     color: white;
 }

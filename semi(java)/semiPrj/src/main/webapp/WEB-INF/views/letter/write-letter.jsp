@@ -54,7 +54,7 @@
 		<div id="writeDiv">			
 			<form action="/semi/letter/write" id="writeTable" method="post"
 				onsubmit="return showErrorOnSubmit();">
-				<table>
+				<table id="letterTable">
 					<thead>
 						<tr>
 							<th id="title">받는 사람</th>

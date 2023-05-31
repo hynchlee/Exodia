@@ -110,14 +110,15 @@ textarea{
     text-align: left;
 }
 
-table {
+#letterTable {
     border-collapse: collapse;
     border-spacing: 0;
 	width: 90%;
 	height: 90%;
 }
 
-th, td {
+#letterTable th,
+#letterTable td {
     padding: 10px;
     text-align: left;
 }
@@ -127,11 +128,11 @@ th, td {
     font-size: 20px;
 }
 
-input[name=title]{
+#letterTable input[name=title]{
 	width: 90%;
 }
 
-input[type=text], textarea{
+#letterTable input[type=text], textarea{
 	text-align: left;
 }
 
@@ -139,11 +140,11 @@ input[type=text], textarea{
 	width: 80%;
 }
 
-tfoot th{
+#letterTable tfoot th{
 	text-align: right;
 }
 
-tfoot button{
+#letterTable tfoot button{
     width: 80px;
     height: 40px;
     background-color: #F0F0F0;

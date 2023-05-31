@@ -48,7 +48,7 @@
 					</div>
 					<div id="writeDiv">
 						<div id="writeTable">
-							<table>
+							<table id="letterTable">
 								<thead>
 									<tr>
 										<th id="title" style="width: 100px;">받는 사람</th>
