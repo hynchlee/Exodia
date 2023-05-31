@@ -134,4 +134,22 @@ public class NoticeService {
 		return result;
 	}
 
+	//게시글 상단 고정
+	public int setPinBoard(String nno, String isChecked) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.setPinBoard(conn, nno, isChecked);
+		
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
 }

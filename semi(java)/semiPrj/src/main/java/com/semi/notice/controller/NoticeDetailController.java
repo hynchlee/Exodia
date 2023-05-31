@@ -43,4 +43,28 @@ public class NoticeDetailController extends HttpServlet{
 		}
 
 	}
+	
+	//상단고정 체크 처리
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		try {
+			String nno = req.getParameter("nno");
+			String isChecked = req.getParameter("isChecked");
+			
+			NoticeService ns = new NoticeService();
+			int result = ns.setPinBoard(nno, isChecked);
+			
+			if (result <= 0) {
+		        throw new IllegalStateException();
+		    }
+		    
+		    resp.getWriter().write("success");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			resp.getWriter().write("fail");
+		}
+		
+	}
 }

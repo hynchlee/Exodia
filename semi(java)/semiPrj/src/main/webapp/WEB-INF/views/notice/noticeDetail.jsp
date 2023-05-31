@@ -30,11 +30,11 @@
             <form action="${root}/notice/detail" method="post" enctype="multipart/form-data">
 
                 <!-- 관리자에게만 보이는 체크박스 -->
-                <!-- <c:if test="${not empty loginAdmin }">
+                <c:if test="${not empty loginAdmin }">
 	                <div class="checked">
-	                    <input type="checkbox" name="" id="" value="${nvNo.noticeNo}"><span>상단고정</span>
+	                    <input type="checkbox" name="pin" id="" value="${nvNo.noticeNo}"><span>상단고정</span>
 	                </div>
-                </c:if> -->
+                </c:if>
     
                 <table class="board_view">
                     <colgroup>
@@ -126,5 +126,29 @@
     //         $("noneDiv").hide();
     //     })
     // })
+
+    $(document).ready(function() {
+    $("input[name='pin']").change(function() {
+        var noticeNo = '${nvo.noticeNo}'; // 게시글 번호 가져오기
+        var isChecked = $(this).is(":checked"); // 체크 여부 확인
+        
+        // Ajax 요청
+        $.ajax({
+        url: "${root}/notice/detail",
+        type: "POST",
+        data: { 
+            nno: noticeNo, 
+            isChecked: isChecked 
+        },
+        success: function(data) {
+            console.log(data);
+        },
+        error: function(error) {
+            console.log(error);
+        }
+        });
+    });
+    });
+
 
 </script>

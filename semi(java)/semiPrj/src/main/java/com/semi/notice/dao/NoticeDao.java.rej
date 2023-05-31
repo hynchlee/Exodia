@@ -1,0 +1,10 @@
+diff a/semi(java)/semiPrj/src/main/java/com/semi/notice/dao/NoticeDao.java b/semi(java)/semiPrj/src/main/java/com/semi/notice/dao/NoticeDao.java	(rejected hunks)
+@@ -42,7 +42,7 @@
+ 	//목록 조회
+ 	public List<NoticeVo> getNoticeList(Connection conn, PageVo pv) throws Exception {
+ 		
+-		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT N.NOTICE_NO ,N.ADMIN_NO ,N.NOTICE_TITLE ,N.NOTICE_CONTENT ,TO_CHAR(N.ENROLL_DATE, 'YYYY.MM.DD') AS ENROLL_DATE ,TO_CHAR(N.MODIFY_DATE, 'YYYY.MM.DD') AS MODIFY_DATE ,N.HIT ,N.STATUS ,A.ADMIN_NICK FROM NOTICE N JOIN ADMIN A ON(N.ADMIN_NO = A.ADMIN_NO) WHERE N.STATUS='O' ORDER BY NOTICE_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
++		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT N.NOTICE_NO, N.ADMIN_NO, N.NOTICE_TITLE, N.NOTICE_CONTENT, TO_CHAR(N.ENROLL_DATE, 'YYYY.MM.DD') AS ENROLL_DATE, TO_CHAR(N.MODIFY_DATE, 'YYYY.MM.DD') AS MODIFY_DATE, N.HIT, N.STATUS, N.PIN, A.ADMIN_NICK FROM NOTICE N JOIN ADMIN A ON (N.ADMIN_NO = A.ADMIN_NO) WHERE N.STATUS = 'O' ORDER BY PIN DESC, NOTICE_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
+ 		PreparedStatement pstmt = conn.prepareStatement(sql);
+ 		pstmt.setInt(1, pv.getBeginRow());
+ 		pstmt.setInt(2, pv.getLastRow());

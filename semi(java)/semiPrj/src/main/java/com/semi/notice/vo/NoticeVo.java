@@ -11,7 +11,6 @@ public class NoticeVo {
 	private String hit;
 	private String status;
 	private String adminNick;
-	private String pin;
 	public String getNoticeNo() {
 		return noticeNo;
 	}
@@ -66,20 +65,14 @@ public class NoticeVo {
 	public void setAdminNick(String adminNick) {
 		this.adminNick = adminNick;
 	}
-	public String getPin() {
-		return pin;
-	}
-	public void setPin(String pin) {
-		this.pin = pin;
-	}
 	@Override
 	public String toString() {
 		return "NoticeVo [noticeNo=" + noticeNo + ", adminNo=" + adminNo + ", noticeTitle=" + noticeTitle
 				+ ", noticeContent=" + noticeContent + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate
-				+ ", hit=" + hit + ", status=" + status + ", adminNick=" + adminNick + ", pin=" + pin + "]";
+				+ ", hit=" + hit + ", status=" + status + ", adminNick=" + adminNick + "]";
 	}
 	public NoticeVo(String noticeNo, String adminNo, String noticeTitle, String noticeContent, String enrollDate,
-			String modifyDate, String hit, String status, String adminNick, String pin) {
+			String modifyDate, String hit, String status, String adminNick) {
 		super();
 		this.noticeNo = noticeNo;
 		this.adminNo = adminNo;
@@ -90,15 +83,12 @@ public class NoticeVo {
 		this.hit = hit;
 		this.status = status;
 		this.adminNick = adminNick;
-		this.pin = pin;
 	}
 	public NoticeVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
+
 	
 	
 }

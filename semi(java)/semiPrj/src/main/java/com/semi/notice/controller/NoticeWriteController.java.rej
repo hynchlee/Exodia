@@ -1,0 +1,16 @@
+diff a/semi(java)/semiPrj/src/main/java/com/semi/notice/controller/NoticeWriteController.java b/semi(java)/semiPrj/src/main/java/com/semi/notice/controller/NoticeWriteController.java	(rejected hunks)
+@@ -48,12 +48,14 @@
+ 			String boardTitle = req.getParameter("boardTitle");
+             String boardContent = req.getParameter("boardContent");
+             String boardWriterNo = loginAdmin.getAdminNo();
++            String pin = req.getParameter("pin");
+ 			
+ 			//데뭉
+             NoticeVo nvo = new NoticeVo();
+             nvo.setNoticeTitle(boardTitle);
+             nvo.setNoticeContent(boardContent);
+             nvo.setAdminNo(boardWriterNo);
++            nvo.setPin(pin);
+             
+             NoticeService ns = new NoticeService();
+             int result = ns.noticeWrite(nvo);
