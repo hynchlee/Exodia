@@ -50,7 +50,7 @@
 			</div>
 		</div>
 		<div id="letter-list">
-			<table>
+			<table id="letterTable">
 				<form action="${root}/letter/trash" method="post">
 					<thead>
 						<tr>
