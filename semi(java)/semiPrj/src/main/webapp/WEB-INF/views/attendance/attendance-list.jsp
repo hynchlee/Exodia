@@ -61,15 +61,15 @@
             </c:forEach>
 			<div id="pageDiv">
 				<td id="pageTd" colspan="4">
-                    <c:if test="${pageVo.currentPage > 1 }">
-					    <button onclick="pageMove('${pageVo.startPage}');"><<</button> 
+                    <c:if test="${pv.currentPage > 1 }">
+					    <button onclick="pageMove('${pv.startPage}');"><<</button> 
                     </c:if>
                     <c:forEach
-						begin="${pageVo.startPage}" end="${pageVo.endPage}" var="i">
+						begin="${pv.startPage}" end="${pv.endPage}" var="i">
 						<button class="pageBtn" onclick="pageMove('${i}');">${i}</button>
 					</c:forEach>
-                    <c:if test="${pageVo.currentPage < pageVo.maxPage }">
-					    <button onclick="pageMove('${pageVo.endPage}');">>></button>
+                    <c:if test="${pv.currentPage < pv.maxPage }">
+					    <button onclick="pageMove('${pv.endPage}');">>></button>
                     </c:if>
 				</td>
 			</div>
@@ -88,11 +88,11 @@
             const pageBtn = document.querySelectorAll('.pageBtn');
 
 			function pageMove(i) {
-				location.href = "${root}/attendance/manage?page=" + i;
+				location.href = "${root}/attendance/list?page=" + i;
 			}
 
 			for (let btn of pageBtn) {
-				if (btn.innerHTML == '${pageVo.currentPage}') {
+				if (btn.innerHTML == '${pv.currentPage}') {
 					btn.style.backgroundColor = '#4998D1';
 					btn.style.color = 'white';
 				}

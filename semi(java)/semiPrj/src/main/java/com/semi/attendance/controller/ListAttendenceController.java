@@ -45,7 +45,7 @@ public class ListAttendenceController extends HttpServlet {
 			int currentPage = Integer.parseInt(page);
 //			int currentPage = 1;
 			int pageLimit = 5;
-			int boardLimit = 5;
+			int boardLimit = 10;
 			PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 
 			// 서비스
