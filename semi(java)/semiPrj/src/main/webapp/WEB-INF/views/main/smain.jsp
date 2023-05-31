@@ -189,7 +189,14 @@
           <div class="v69_16">
           	<div class="innerprofile">
           		<div class="logout"><a href="${root}/member/logout">로그아웃</a></div>
-				<div class="photo01"></div>
+				<div class="photo01">
+					<c:if test="${empty loginMember.profile}">
+					<img id="profile-img" src="${root}/static/img/header/defaultProfile.png" alt="프사" id="profile_img_1" class="profile_img">
+					</c:if>
+					<c:if test="${not empty loginMember.profile}">
+					<img id="profile-img" src="${root}/static/img/profile/${loginMember.profile}" alt="프사" id="profile_img_1" class="profile_img">
+					</c:if>
+				</div>
 				<div class="identity"><a href="${root}/mypage">${loginMember.memberNick}님 (수강생)</a></div>
 				<div class="class01"><a href="${root}/lecture/apply"></a></div>
 				<div class="change"><a href="${root}/member/edit">내 정보 수정</a></div>
