@@ -45,7 +45,7 @@ public class MypageController extends HttpServlet{
 			List<NoticeVo> snotList = ms.showNotice02();
 			String letterCount = ms.countLetter01(memberNo);
 			String countMyWrite = ms.countMyWrite(memberNo);
-			List<TeamVo> teamList = ms.teamList();
+			List<TeamVo> teamList = ms.teamList(memberNo);
 			List<VacationVo> restList= ms.restList(memberNo);
 			List<AttendanceVo> avoList = ms.AttendanceList(memberNo);
 			String lectureStart = ms.lecturestart(memberNo);

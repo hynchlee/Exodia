@@ -31,8 +31,20 @@ public class PressCheckOut extends HttpServlet{
 			String memberNo = loginMember.getMemberNo();
 			
 			MypageService ms = new MypageService();
-		 	int result =  ms.checkout(memberNo);
-		
+		 	int inTimes = ms.inTimes(memberNo);
+		 	
+		 	int result = 0;
+		 	
+		 	if(inTimes < 30000) {
+		 		result = ms.notCome(memberNo);
+		 	}
+		 	else if(inTimes < 60000) {
+		 		result = ms.late(memberNo);
+		 	}
+		 	else {
+		 		result = ms.checkout(memberNo);		 		
+		 	}
+		 	
 		 	if(result == 1) {
 				String root = req.getContextPath();
 				resp.sendRedirect(root + "/mypage");

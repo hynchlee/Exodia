@@ -151,23 +151,22 @@ public class MypageDao {
 	
 	}
 
-	public List<TeamVo> teamList(Connection conn) throws Exception {
+	public List<TeamVo> teamList(Connection conn, String memberNo) throws Exception {
 
-		String sql = "SELECT M.MEMBER_NICK, T.TEAM_NAME, TR.ROLE, TR.PROJECT_DIVISION, TR.STATUS FROM TEAM T JOIN STUDENT S ON(S.TEAM_NO = T.TEAM_NO) JOIN TEAM_ROLE TR ON (TR.STUDENT_MEMBER_NO = S.STUDENT_MEMBER_NO) JOIN MEMBER M ON (M.MEMBER_NO = S.STUDENT_MEMBER_NO) WHERE M.IDENTITY = 'S' AND TR.STATUS = 'O' ";
+		String sql = "SELECT * FROM TEAM_ROLE TR JOIN MEMBER M ON (M.MEMBER_NO = TR.STUDENT_MEMBER_NO) WHERE TEAM_NO = (SELECT TEAM_NO FROM TEAM_ROLE WHERE STUDENT_MEMBER_NO = ? AND STATUS = 'O') ";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
 		ResultSet rs = pstmt.executeQuery();
 		
 		List<TeamVo> teamList = new ArrayList<>();
 		while (rs.next()) {
 			
 			String memberNick = rs.getString("MEMBER_NICK");
-			String teamName = rs.getString("TEAM_NAME");
 			String role = rs.getString("ROLE");
 			String projectDivision = rs.getString("PROJECT_DIVISION");
 			
 			TeamVo tv = new TeamVo();
 			tv.setMemberNick(memberNick);
-			tv.setTeamName(teamName);
 			tv.setRole(role);
 			tv.setProjectDivision(projectDivision);
 			
@@ -699,6 +698,65 @@ public class MypageDao {
 		JDBCTemplate.close(pstmt);
 		
 		return leftVacation;
+	
+	}
+
+	public int inTimes(Connection conn, String memberNo) throws Exception {
+		
+		String sql = " SELECT TO_NUMBER(TO_CHAR(TO_DATE('1970-01-01 00:00:00', 'YYYY-MM-DD HH24:MI:SS')+(CHECK_OUT_TIME - CHECK_IN_TIME),'HH24MISS')) AS IN_TIME from ATTENDANCE_LIST WHERE ATTENDANCE_DATE = TO_CHAR(SYSDATE, 'YY/MM/DD') AND STUDENT_MEMBER_NO = ? ORDER BY ATTENDANCE_DATE DESC ";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		int inTimes = 0;
+		while(rs.next()) {
+			inTimes = rs.getInt("IN_TIME");			
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return inTimes;
+		
+	}
+
+	public int notCome(Connection conn, String memberNo) throws Exception {
+
+		String sql = "UPDATE ATTENDANCE_LIST SET CHECK_OUT_TIME = SYSDATE, STATUS = 'X' WHERE ATTENDANCE_DATE = TO_CHAR(SYSDATE, 'YY/MM/DD') AND STUDENT_MEMBER_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		int result = pstmt.executeUpdate();
+	
+		if(result == 1) {
+			JDBCTemplate.commit(conn);
+		}
+		else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	
+	}
+
+	public int late(Connection conn, String memberNo) throws Exception {
+
+		String sql = "UPDATE ATTENDANCE_LIST SET CHECK_OUT_TIME = SYSDATE, STATUS = 'L' WHERE ATTENDANCE_DATE = TO_CHAR(SYSDATE, 'YY/MM/DD') AND STUDENT_MEMBER_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		int result = pstmt.executeUpdate();
+	
+		if(result == 1) {
+			JDBCTemplate.commit(conn);
+		}
+		else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
 	
 	}
 		
