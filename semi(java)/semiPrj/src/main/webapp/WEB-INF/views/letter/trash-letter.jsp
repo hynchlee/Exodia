@@ -55,8 +55,8 @@
 					<thead>
 						<tr>
 							<td colspan="5"><select name="searchType">
-									<option value="sender">보낸 사람</option>
 									<option value="receiver">받은 사람</option>
+									<option value="sender">보낸 사람</option>
 									<option value="title">제목</option>
 							</select> <input type="text" name="searchValue" class="searchValueElem"
 								value="${searchVo.searchValue}" placeholder="검색할내용"> <input
