@@ -194,9 +194,6 @@
     location.reload();
     }
 
-    const tr = document.querySelector('.board tbody tr');
-    if('${nvoList.pin == 1}'){
-        tr.style.backgroundColor = "#F0F0F0";
-    }
+   
 
 </script>
