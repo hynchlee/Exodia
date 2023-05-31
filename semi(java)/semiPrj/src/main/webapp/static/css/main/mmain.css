@@ -911,3 +911,6 @@ body {
 .awhite {
 	color: white;
 }
+.video01{
+	object-fit:cover;
+}

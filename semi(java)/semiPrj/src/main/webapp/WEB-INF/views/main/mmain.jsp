@@ -42,46 +42,49 @@
             <div class="interview">
               <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="/semi/static/img/main/v10_01.png" id="blank" class="d-block w-100" alt="...">
-                    <div class="v75_54">
-                      <img
-                        src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png"
-                        class="d-block w-100" alt="...">
-                    </div>
-                    <div class="v75_55">
-                      <img
-                        src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png"
-                        class="d-block w-100" alt="...">
-                    </div>
+                 <div class="carousel-item active">
+							<img src="/semi/static/img/main/v10_01.png" id="blank"
+								class="d-block w-100" alt="...">
+							<div class="v75_54">
+								<img
+									src="/semi/static/img/main/interview01.png"
+									class="d-block w-100" alt="...">
+							</div>
+							<div class="v75_55">
+								<img
+									src="/semi/static/img/main/interview02.jpg"
+									class="d-block w-100" alt="...">
+							</div>
 
-                  </div>
-                  <div class="carousel-item">
-                    <img src="/semi/static/img/main/v10_01.png" id="blank" class="d-block w-100" alt="...">
-                    <div class="v75_54">
-                      <img
-                        src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png"
-                        class="d-block w-100" alt="...">
-                    </div>
-                    <div class="v75_55">
-                      <img
-                        src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png"
-                        class="d-block w-100" alt="...">
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <img src="/semi/static/img/main/v10_01.png" id="blank" class="d-block w-100" alt="...">
-                    <div class="v75_54">
-                      <img
-                        src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png"
-                        class="d-block w-100" alt="...">
-                    </div>
-                    <div class="v75_55">
-                      <img
-                        src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png"
-                        class="d-block w-100" alt="...">
-                    </div>
-                  </div>
+						</div>
+						<div class="carousel-item">
+							<img src="/semi/static/img/main/v10_01.png" id="blank"
+								class="d-block w-100" alt="...">
+							<div class="v75_54">
+								<img
+									src="/semi/static/img/main/interview03.png"
+									class="d-block w-100" alt="...">
+							</div>
+							<div class="v75_55">
+								<img
+									src="/semi/static/img/main/interview04.png"
+									class="d-block w-100" alt="...">
+							</div>
+						</div>
+						<div class="carousel-item">
+							<img src="/semi/static/img/main/v10_01.png" id="blank"
+								class="d-block w-100" alt="...">
+							<div class="v75_54">
+								<img
+									src="/semi/static/img/main/interview05.png"
+									class="d-block w-100" alt="...">
+							</div>
+							<div class="v75_55">
+								<img
+									src="/semi/static/img/main/interview06.png"
+									class="d-block w-100" alt="...">
+							</div>
+						</div>
                 </div>
                 <button class="carousel-control-prev" id="interviewBtn01" type="button"
                   data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -110,64 +113,48 @@
                   <div class="carousel-item active">
                     <img src="/semi/static/img/main/v10_01.png" class="d-block w-100" alt="...">
                     <div class="v76_71">
-                      <img
-                        src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png"
-                        class="d-block w-100" alt="...">
-                    </div>
-                    <span class="v76_72">KH project</span>
-                    <span class="v76_73">kh 정보교육원 홈페이지를 이용하면서 많은
-                      불편함과 아쉬운
-                      점을 경험하였다. 특히, 수강신청의 난해함 및 수강생들간의
-                      교류가 장려가 되지 않았던 점 등이 그러했다.
-                      따라서 kh 정보교육원 홈페이지를 재구성하고자 하였다.
-
-                      본 프로젝트에서는 재구성 방향성을 대학 홈페이지로 잡았다.
-                      kh 정보교육원은 IT 교육기관으로 일종의 대학 기능을 수행하기에
-                      기존의 홈페이지와 대학 홈페이지의 구성을 결합하는 것이 새로운
-                      브랜드 이미지 형성으로 긍정적인 영향을 줄 수 있다고 보았다.
-                    </span><span class="v76_86">(자바개발자)자바 기반 임베디드</span>
-                  </div>
-                  <div class="carousel-item">
-                    <img src="/semi/static/img/main/v10_01.png" class="d-block w-100" alt="...">
-                    <div class="v76_71">
-                      <img
-                        src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png"
-                        class="d-block w-100" alt="...">
-                    </div>
-                    <span class="v76_72">KH project</span>
-                    <span class="v76_73">kh 정보교육원 홈페이지를 이용하면서 많은
-                      불편함과 아쉬운
-                      점을 경험하였다. 특히, 수강신청의 난해함 및 수강생들간의
-                      교류가 장려가 되지 않았던 점 등이 그러했다.
-                      따라서 kh 정보교육원 홈페이지를 재구성하고자 하였다.
-
-                      본 프로젝트에서는 재구성 방향성을 대학 홈페이지로 잡았다.
-                      kh 정보교육원은 IT 교육기관으로 일종의 대학 기능을 수행하기에
-                      기존의 홈페이지와 대학 홈페이지의 구성을 결합하는 것이 새로운
-                      브랜드 이미지 형성으로 긍정적인 영향을 줄 수 있다고 보았다.
-                    </span><span class="v76_86">(자바개발자)자바 기반 임베디드</span>
-                  </div>
-                  <div class="carousel-item">
-                    <img src="/semi/static/img/main/v10_01.png" class="d-block w-100" alt="...">
-                    <div class="v76_71">
-                      <img
-                        src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png"
-                        class="d-block w-100" alt="...">
-                    </div>
-                    <span class="v76_72">KH project</span>
-                    <span class="v76_73">kh 정보교육원 홈페이지를 이용하면서 많은
-                      불편함과 아쉬운
-                      점을 경험하였다. 특히, 수강신청의 난해함 및 수강생들간의
-                      교류가 장려가 되지 않았던 점 등이 그러했다.
-                      따라서 kh 정보교육원 홈페이지를 재구성하고자 하였다.
-
-                      본 프로젝트에서는 재구성 방향성을 대학 홈페이지로 잡았다.
-                      kh 정보교육원은 IT 교육기관으로 일종의 대학 기능을 수행하기에
-                      기존의 홈페이지와 대학 홈페이지의 구성을 결합하는 것이 새로운
-                      브랜드 이미지 형성으로 긍정적인 영향을 줄 수 있다고 보았다.
-                    </span><span class="v76_86">(자바개발자)자바 기반 임베디드</span>
-                  </div>
-                </div>
+								<img
+									src="/semi/static/img/main/project01.jpg"
+									class="d-block w-100 img01" alt="...">
+							</div>
+							<span class="v76_72">KH project</span> <span class="v76_73">kh
+								정보교육원 홈페이지를 이용하면서 많은 불편함과 아쉬운 점을 경험하였다. 특히, 수강신청의 난해함 및 수강생들간의
+								교류가 장려가 되지 않았던 점 등이 그러했다. 따라서 kh 정보교육원 홈페이지를 재구성하고자 하였다. 본
+								프로젝트에서는 재구성 방향성을 대학 홈페이지로 잡았다. kh 정보교육원은 IT 교육기관으로 일종의 대학 기능을
+								수행하기에 기존의 홈페이지와 대학 홈페이지의 구성을 결합하는 것이 새로운 브랜드 이미지 형성으로 긍정적인 영향을 줄
+								수 있다고 보았다. </span><span class="v76_86">(자바개발자)자바 기반 임베디드</span>
+						</div>
+						<div class="carousel-item">
+							<img src="/semi/static/img/main/v10_01.png" class="d-block w-100"
+								alt="...">
+							<div class="v76_71">
+								<img
+									src="/semi/static/img/main/project04.jpg"
+									class="d-block w-100 img02" alt="...">
+							</div>
+							<span class="v76_72">KH project</span> <span class="v76_73">kh
+								정보교육원 홈페이지를 이용하면서 많은 불편함과 아쉬운 점을 경험하였다. 특히, 수강신청의 난해함 및 수강생들간의
+								교류가 장려가 되지 않았던 점 등이 그러했다. 따라서 kh 정보교육원 홈페이지를 재구성하고자 하였다. 본
+								프로젝트에서는 재구성 방향성을 대학 홈페이지로 잡았다. kh 정보교육원은 IT 교육기관으로 일종의 대학 기능을
+								수행하기에 기존의 홈페이지와 대학 홈페이지의 구성을 결합하는 것이 새로운 브랜드 이미지 형성으로 긍정적인 영향을 줄
+								수 있다고 보았다. </span><span class="v76_86">(자바개발자)자바 기반 임베디드</span>
+						</div>
+						<div class="carousel-item">
+							<img src="/semi/static/img/main/v10_01.png" class="d-block w-100"
+								alt="...">
+							<div class="v76_71">
+								<img
+									src="/semi/static/img/main/project03.jpg"
+									class="d-block w-100 img03" alt="...">
+							</div>
+							<span class="v76_72">KH project</span> <span class="v76_73">kh
+								정보교육원 홈페이지를 이용하면서 많은 불편함과 아쉬운 점을 경험하였다. 특히, 수강신청의 난해함 및 수강생들간의
+								교류가 장려가 되지 않았던 점 등이 그러했다. 따라서 kh 정보교육원 홈페이지를 재구성하고자 하였다. 본
+								프로젝트에서는 재구성 방향성을 대학 홈페이지로 잡았다. kh 정보교육원은 IT 교육기관으로 일종의 대학 기능을
+								수행하기에 기존의 홈페이지와 대학 홈페이지의 구성을 결합하는 것이 새로운 브랜드 이미지 형성으로 긍정적인 영향을 줄
+								수 있다고 보았다. </span><span class="v76_86">(자바개발자)자바 기반 임베디드</span>
+						</div>
+					</div>
               </div>
               <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                 data-bs-slide="prev">
@@ -182,7 +169,7 @@
             </div>
           </div>
           <div class="v67_3">
-            <video src="/semi/static/img/main/main.mp4" autoplay loop muted></video>
+            <video class="video01" src="/semi/static/img/main/testvid01.mp4" autoplay loop muted width="100%" height="550px;"></video>
           </div>
 
           <div class="v69_16">

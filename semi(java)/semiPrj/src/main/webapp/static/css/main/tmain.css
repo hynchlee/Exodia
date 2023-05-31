@@ -891,3 +891,6 @@ html{
 .a01{
 	color: white;
 }
+.video01{
+	object-fit:cover;
+}
