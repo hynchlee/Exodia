@@ -116,7 +116,7 @@ public class LectureDao {
 		} else if ("lectureCategoryName".equals(searchType)) {
 			sql += "AND LECTURE_NAME LIKE '%" + searchValue + "%'";
 		} else if ("lectureStartTime".equals(searchType)) {
-			sql += "AND LECTURE_START_TIME LIKE '%" + searchValue + "%'";
+			sql += "AND (LECTURE_START_TIME LIKE '%" + searchValue + "%' OR LECTURE_FINISH_TIME LIKE '%" + searchValue + "%')";
 		}
 
 		PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -357,21 +357,27 @@ public class LectureDao {
 		String sql = "SELECT COUNT(*) FROM LECTURE WHERE STATUS = 'O' AND LECTURE_OPEN_DATE >= ?";
 
 		if ("lectureOpenDate".equals(searchType)) {
-			sql = "SELECT COUNT(*) FROM LECTURE WHERE STATUS = 'O' AND LECTURE_OPEN_DATE LIKE '%" + searchValue + "%'";
+			sql = "SELECT COUNT(*) FROM LECTURE WHERE STATUS = 'O' AND LECTURE_OPEN_DATE LIKE '%" + searchValue + "%' AND LECTURE_OPEN_DATE >= ?";
 		} else if ("teacher".equals(searchType)) {
 			sql = "SELECT COUNT(*) FROM LECTURE L JOIN MEMBER M ON M.MEMBER_NO = L.TEACHER_MEMBER_NO WHERE L.STATUS = 'O' AND L.TEACHER_MEMBER_NO IN (SELECT MEMBER_NO FROM MEMBER WHERE MEMBER_NICK LIKE '%"
-					+ searchValue + "%')";
+					+ searchValue + "%') AND LECTURE_OPEN_DATE >= ?";
 		} else if ("lectureCategoryName".equals(searchType)) {
 			sql = "SELECT COUNT(*) FROM LECTURE L JOIN LECTURE_CATEGORY LC ON LC.LECTURE_CATEGORY_NO = L.LECTURE_CATEGORY_NO WHERE L.STATUS = 'O' AND LECTURE_NAME LIKE '%"
-					+ searchValue + "%'";
+					+ searchValue + "%' AND LECTURE_OPEN_DATE >= ?";
 		} else if ("lectureStartTime".equals(searchType)) {
-			sql = "SELECT COUNT(*) FROM LECTURE WHERE STATUS = 'O' AND lectureStartTime LIKE '%" + searchValue + "%'";
+			sql = "SELECT COUNT(*) FROM LECTURE WHERE STATUS = 'O' AND (LECTURE_START_TIME LIKE '%" + searchValue + "%' OR LECTURE_FINISH_TIME LIKE '%'" + searchValue + "%') AND LECTURE_OPEN_DATE >= ?";
 		}
 
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, currentDate);
 		ResultSet rs = pstmt.executeQuery();
 
+		
+		System.out.println(currentDate);
+		System.out.println(searchType);
+		System.out.println(searchValue);
+		
+		
 		int cnt = 0;
 		if (rs.next()) {
 			cnt = rs.getInt(1);
