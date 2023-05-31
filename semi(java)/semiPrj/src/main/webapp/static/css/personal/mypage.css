@@ -118,6 +118,14 @@
     top: 25px; 
     left: 50px;
 }
+#profile-img {
+	width: 125px;
+	height: 125px;
+	border-top-left-radius: 360px;
+	border-top-right-radius: 360px;
+	border-bottom-left-radius: 360px;
+	border-bottom-right-radius: 360px;
+}
 .identity{
 	font-size: 25px;
 	font-weight: bold;

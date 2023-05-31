@@ -762,6 +762,14 @@ html{
     left: 25px;
     top: 25px;
 }
+#profile-img {
+	width: 100px;
+	height: 100px;
+	border-top-left-radius: 360px;
+	border-top-right-radius: 360px;
+	border-bottom-left-radius: 360px;
+	border-bottom-right-radius: 360px;
+}
 .identity{
 	font-size: 25px;
 	font-weight: bold;
