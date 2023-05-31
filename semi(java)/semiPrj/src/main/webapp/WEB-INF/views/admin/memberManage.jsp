@@ -16,16 +16,18 @@
 	<main>
 
 		<div class="search-area">
-			<form action="${root}/admin/member/manage" method="get">
-				<input type="hidden" name="page" value="1">
-				<select name="searchType">
-					<option value="all">전체</option>
-					<option value="student">학생</option>
-					<option value="teacher">강사</option>
-				</select>
-				<input type="text" class="searchValueElem" name="searchValue" value="${searchVo.searchValue}" placeholder="회원이름을 검색하세요">
-				<input type="submit" value="검색" class="searchBtn">
-			</form>
+			<div id="search-box">
+				<form action="${root}/admin/member/manage" method="get">
+					<input type="hidden" name="page" value="1">
+					<select name="searchType">
+						<option value="all">전체</option>
+						<option value="student">학생</option>
+						<option value="teacher">강사</option>
+					</select>
+					<input type="text" class="searchValueElem" name="searchValue" value="${searchVo.searchValue}" placeholder="회원이름을 검색하세요">
+					<input type="submit" value="검색" class="searchBtn">
+				</form>
+			</div>
 		</div>
 
 		<c:forEach items="${memberList}" var="member">
@@ -33,7 +35,7 @@
 				<div id="check-area">
 					<input type="checkbox" name="manageMember" value="${member.memberNo}">
 				</div>
-				<div>
+				<div id="profile-area">
 					<img id="profile-img" src="${root}/static/img/profile/${member.profile}" alt="프사" id="profile_img_1" class="profile_img">
 				</div>
 				<div id="info">
@@ -108,9 +110,12 @@
 
 
 		<div class="btn-area">
-			<button id="mileage-btn" onclick="minusMileage();">마일리지 차감</button>
-			<button id="stop-btn" onclick="stopMember();">계정정지</button>
-			<button id="quit-btn" onclick="quitMember();">탈퇴처리</button>
+			<div id="btn-box">
+				<button id="mileage-btn" onclick="minusMileage();">마일리지 차감</button>
+				<button id="stop-btn" onclick="restoreMember();">계정복구</button>
+				<button id="stop-btn" onclick="stopMember();">계정정지</button>
+				<button id="quit-btn" onclick="quitMember();">탈퇴처리</button>
+			</div>
 		</div>
 
 		<div class="page-area">
@@ -159,6 +164,29 @@
 				}
 			}
 			return noArr;
+		};
+
+		//회원 복구
+		function restoreMember() {
+			const noArr = getCheckedBox();
+
+			const result = confirm("선택한 회원을 복구하시겠습니까?");
+			if(result) {
+				$.ajax({
+					url : '/semi/admin/member/restore',
+					type : 'post',
+					data : {
+						noArr : JSON.stringify(noArr)
+					},
+					success : function(data){
+						alert("회원 복구 완료");
+						location.reload();
+					},
+					error : function(error) {
+						console.log(error);
+					},
+				})
+			}
 		};
 
 		//회원 정지

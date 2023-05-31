@@ -165,6 +165,37 @@ public class AdminDao {
 		return memberList;
 	
 	}
+	
+	//마일리지 차감
+	public int minusMileage(Connection conn, String[] noArr) throws Exception {
+		
+		String str = String.join("," , noArr);
+
+		//sql
+		String sql = "UPDATE STUDENT SET MILEAGE = MILEAGE-10 WHERE STUDENT_MEMBER_NO IN (" + str + ")";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	}
+
+	//회원 복구
+	public int restoreMember(Connection conn, String[] noArr) throws Exception {
+		
+		String str = String.join("," , noArr);
+		
+		//sql
+		String sql = "UPDATE MEMBER SET STATUS = 'O' WHERE MEMBER_NO IN (" + str + ")";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+		
+	}
 
 	//회원 제재
 	public int stopMember(Connection conn, String[] noArr) throws Exception {
@@ -195,21 +226,7 @@ public class AdminDao {
 		JDBCTemplate.close(pstmt);
 		
 		return result;
-	}
-
-	//마일리지 차감
-	public int minusMileage(Connection conn, String[] noArr) throws Exception {
 		
-		String str = String.join("," , noArr);
-
-		//sql
-		String sql = "UPDATE STUDENT SET MILEAGE = MILEAGE-10 WHERE STUDENT_MEMBER_NO IN (" + str + ")";
-		PreparedStatement pstmt = conn.prepareStatement(sql);
-		int result = pstmt.executeUpdate();
-		
-		JDBCTemplate.close(pstmt);
-		
-		return result;
 	}
 
 }
