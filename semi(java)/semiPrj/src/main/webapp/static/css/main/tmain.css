@@ -755,7 +755,6 @@ html{
 .photo01{
 	display: flex;
     position: relative;
-    background-color: gray;
     border-radius: 100%;
     width: 100px;
     height: 100px;

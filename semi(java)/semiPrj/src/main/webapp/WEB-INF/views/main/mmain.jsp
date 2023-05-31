@@ -187,7 +187,14 @@
 
           <div class="v69_16">
           	<div class="logout"><a href="${root}/member/logout">로그아웃</a></div>
-			<div class="photo01"></div>
+			<div class="photo01">
+				<c:if test="${empty loginMember.profile}">
+				<img id="profile-img" src="${root}/static/img/header/defaultProfile.png" alt="프사" id="profile_img_1" class="profile_img">
+				</c:if>
+				<c:if test="${not empty loginMember.profile}">
+				<img id="profile-img" src="${root}/static/img/profile/${loginMember.profile}" alt="프사" id="profile_img_1" class="profile_img">
+				</c:if>
+			</div>
 			<div class="identity">${loginAdmin.adminNick}님 (관리자)</div>
 			<div class="class01"></div>
 			<div class="managermenu"><a href="${root}/admin/menu" class="awhite">관리자 메뉴</a></div>
