@@ -39,12 +39,20 @@
 
 		<c:forEach items="${memberList}" var="member">
 			<div class="member-info" data-member-identity="${member.identity}">
+
 				<div id="check-area">
 					<input type="checkbox" name="manageMember" value="${member.memberNo}">
 				</div>
+
 				<div id="profile-area">
-					<img id="profile-img" src="${root}/static/img/profile/${member.profile}" alt="프사" id="profile_img_1" class="profile_img">
+					<c:if test="${empty member.profile}">
+						<img id="profile-img" src="${root}/static/img/header/defaultProfile.png" alt="프사" id="profile_img_1" class="profile_img">
+					</c:if>
+					<c:if test="${not empty member.profile}">
+						<img id="profile-img" src="${root}/static/img/profile/${member.profile}" alt="프사" id="profile_img_1" class="profile_img">
+					</c:if>
 				</div>
+
 				<div id="info">
 					<table>
 						<tr>
@@ -112,6 +120,7 @@
 						</tr>
 					</table>
 				</div>
+
 			</div>
 		</c:forEach>
 
