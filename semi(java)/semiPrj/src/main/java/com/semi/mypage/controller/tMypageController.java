@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.semi.board.service.BoardService;
 import com.semi.board.vo.BoardVo;
 import com.semi.calender.vo.CalenderVo;
@@ -31,6 +32,7 @@ import com.semi.vacation.vo.VacationVo;
 @WebServlet(urlPatterns = "/tmypage")
 public class tMypageController extends HttpServlet {
 	private static TeamCalendarService fcs = new TeamCalendarService();
+	private static LectureService ls = new LectureService();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -39,15 +41,15 @@ public class tMypageController extends HttpServlet {
 			HttpSession session = req.getSession();
 			MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
 			LectureVo lectureVo = (LectureVo) session.getAttribute("lectureVo");
-
-			if (loginMember == null) {
-				throw new IllegalSelectorException();
+			if(loginMember == null || !loginMember.getIdentity().equals("T")) {
+				req.getSession().setAttribute("alertMsg", "로그인이 필요한 기능입니다");
+				resp.sendRedirect("/semi/member/login");
+				return;
 			}
 
 			String memberNo = loginMember.getMemberNo();
 
 			MypageService ms = new MypageService();
-			LectureService ls = new LectureService();
 			List<LectureVo> tvolist = ms.teacherLecture(memberNo);
 
 			if(lectureVo == null) {
@@ -56,7 +58,6 @@ public class tMypageController extends HttpServlet {
 			}
 			
 			List<MemberVo> volist = ls.getMemberList(lectureVo.getLectureNo());
-			
 			List<NoticeVo> notList = ms.showNotice();
 			String letterCount = ms.countLetter01(memberNo);
 			String countMyWrite = ms.countMyWrite(memberNo);
@@ -88,17 +89,25 @@ public class tMypageController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			String lectureNo = req.getParameter("lectureNo");
-			LectureService ls = new LectureService();
-			LectureVo lectureVo = ls.getLectureOne(lectureNo);
+			Gson gson = new Gson();
+			String params = req.getParameter("params");
 			
+			if(params != null) {
+				String[] paramsArr = gson.fromJson(params, String[].class);
+				
+				int result = ls.updateTeamRole(paramsArr);
+				if(result == 0) {
+					throw new Exception();
+				}
+				return;
+			}
+			
+			String lectureNo = req.getParameter("lectureNo");
+			LectureVo lectureVo = ls.getLectureOne(lectureNo);
 			req.getSession().setAttribute("lectureVo", lectureVo);
 		} catch (Exception e) {
-			System.out.println("tmypage 게시판 조회 중 발생");
 			e.printStackTrace();
-			
-			req.setAttribute("errorMsg", "마이페이지 조회중 에러발생");
-			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+			resp.sendRedirect("/semi/main");
 		}
 	}
 
