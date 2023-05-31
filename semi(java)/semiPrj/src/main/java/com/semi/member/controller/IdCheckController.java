@@ -32,8 +32,8 @@ public class IdCheckController extends HttpServlet{
 			System.out.println("[ERROR] id check fail ...");
 			e.printStackTrace();
 			
-			req.setAttribute("errorMsg", "아이디 중복검사 실패 ...");
-			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+			req.setAttribute("alertMsg", "아이디 중복검사 실패 ...");
+			req.getRequestDispatcher("/WEB-INF/views/main/main.jsp").forward(req, resp);
 		}
 		
 	}

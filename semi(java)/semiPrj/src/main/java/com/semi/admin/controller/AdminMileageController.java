@@ -40,8 +40,8 @@ public class AdminMileageController extends HttpServlet{
 			System.out.println("[ERROR] minus mileage fail ...");
 			e.printStackTrace();
 			
-			req.setAttribute("errorMsg", "마일리지 차감 실패 ...");
-			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+			req.setAttribute("alertMsg", "마일리지 차감 실패 ...");
+			req.getRequestDispatcher("/WEB-INF/views/admin/adminMenu.jsp").forward(req, resp);
 		}
 		
 	}

@@ -91,8 +91,8 @@ public class AdminMemberController extends HttpServlet{
 			System.out.println("[ERROR] get member list fail ...");
 			e.printStackTrace();
 			
-			req.setAttribute("errorMsg", "회원목록 조회 실패 ...");
-			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+			req.setAttribute("alertMsg", "회원목록 조회 실패 ...");
+			req.getRequestDispatcher("/WEB-INF/views/admin/adminMenu.jsp").forward(req, resp);
 		}
 	
 	}

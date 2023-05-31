@@ -39,8 +39,8 @@ public class AdminMemberQuitController extends HttpServlet{
 			System.out.println("[ERROR] quit member fail ...");
 			e.printStackTrace();
 			
-			req.setAttribute("errorMsg", "회원 탈퇴처리 실패 ...");
-			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+			req.setAttribute("alertMsg", "회원 탈퇴처리 실패 ...");
+			req.getRequestDispatcher("/WEB-INF/views/admin/adminMenu.jsp").forward(req, resp);
 		}
 		
 	}

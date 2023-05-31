@@ -86,8 +86,8 @@ public class MemberEditController extends HttpServlet{
 			System.out.println("[ERROR] edit fail ...");
 			e.printStackTrace();
 			
-			req.setAttribute("errorMsg", "회원정보수정 실패 ...");
-			req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+			req.setAttribute("alertMsg", "회원정보수정 실패 ...");
+			req.getRequestDispatcher("/WEB-INF/views/member/edit.jsp").forward(req, resp);
 		}
 	
 	}
