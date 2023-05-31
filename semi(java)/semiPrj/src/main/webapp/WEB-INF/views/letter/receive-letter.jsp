@@ -23,7 +23,7 @@
 						</form>
 						<form action="${root}/letter/sent" method="get">
 							<div id="select-button" class="send-letter">
-								<img src="${root}/static/img/letter/보낸 쪽지.png">
+								<img src="${root}/static/img/letter/보낸 쪽지.png" id="send-letter-img">
 								<input type="submit" value="보낸 쪽지" id="sent-letter">
 							</div>
 						</form>
@@ -70,7 +70,7 @@
 										<td style="width: 50px;">
 											<input type="checkbox" class="checkbox" value="${vo.letterNo}" style="width: 20px; height: 20px;">
 										</td>
-										<td style="width: 150px;">${vo.sendMemberName}</td>
+										<td style="width: 150px;">${vo.sendMemberName}(${vo.sendMemberId})</td>
 										<td>${vo.letterTitle}</td>
 										<td>${vo.enrollDate}</td>
 									</tr>
@@ -129,6 +129,14 @@
 					btn.style.backgroundColor = '#4998D1';
 					btn.style.color = 'white';
 				}
+			}
+
+			const inputBtn = document.querySelector("input[type='submit']");
+			const isDisabled = inputBtn.getAttribute("disabled");
+
+			if(isDisabled) {
+			inputBtn.style.backgroundColor = "#8cbfe3";
+			inputBtn.style.color = "white";
 			}
 
 			function delButton() {

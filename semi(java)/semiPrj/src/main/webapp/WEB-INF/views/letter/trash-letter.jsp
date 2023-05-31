@@ -51,11 +51,12 @@
 		</div>
 		<div id="letter-list">
 			<table>
-				<form action="${root}/letter/trash" method="get">
+				<form action="${root}/letter/trash" method="post">
 					<thead>
 						<tr>
 							<td colspan="5"><select name="searchType">
-									<option value="writer">작성자</option>
+									<option value="sender">보낸 사람</option>
+									<option value="receiver">받은 사람</option>
 									<option value="title">제목</option>
 							</select> <input type="text" name="searchValue" class="searchValueElem"
 								value="${searchVo.searchValue}" placeholder="검색할내용"> <input
@@ -72,7 +73,8 @@
 				</form>
 				<tbody>
 					<c:forEach items="${voList}" var="vo">
-						<tr>
+						<tr onclick="detail();">
+							<td id="letterNo" hidden>${vo.letterNo}</td>
 							<td><input type="checkbox" class="checkbox" value="${vo.letterNo}"> </td>
 							<td><c:choose>
 									<c:when test="${vo.sendMemberName == loginMember.memberNick}">
@@ -206,5 +208,11 @@
 		}
 
 		setSearchValueTag();
+
+		function detail() {
+			const bno = event.target.parentElement.querySelector("#letterNo").innerText;
+			location.href = "${root}/letter/trash/detail?bno=" + bno;
+
+		};
 
 	</script>

@@ -8,7 +8,7 @@
 			<c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 			<meta charset="UTF-8">
 			<title>Insert title here</title>
-			<link href="${root}/static/css/letter/receive-letter.css" rel="stylesheet">
+			<link href="${root}/static/css/letter/send-letter.css" rel="stylesheet">
 
 		</head>
 
@@ -79,7 +79,7 @@
 											<td style="width: 50px;">
 												<input type="checkbox" class="checkbox" value="${vo.letterNo}">
 											</td>
-											<td style="width: 150px;">${vo.receiveMemberName}</td>
+											<td style="width: 150px;">${vo.receiveMemberName}(${vo.receiveMemberId})</td>
 											<td>${vo.letterTitle}</td>
 											<td>${vo.enrollDate}</td>
 										</tr>

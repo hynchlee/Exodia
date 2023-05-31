@@ -257,4 +257,15 @@ public class LetterService {
 
 	}
 
+	public LetterVo selectTrashOneByNo(String bno) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		LetterVo vo = dao.selectTrashOneByNo(bno, conn);
+		
+		JDBCTemplate.close(conn);
+		
+		return vo;
+	}
+
 }

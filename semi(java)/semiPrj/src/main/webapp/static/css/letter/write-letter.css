@@ -5,58 +5,58 @@ main {
 }
 
 #side-bar {
-    background-color: #F0F0F0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;    
+    background-color: #f0f0f0;
     width: 80%;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 16px;
+    border-radius: 8px;
+    box-sizing: border-box;
 }
 
-#side-bar div{
-    display: flex;
+#side-bar form {
     width: 100%;
-    height: 100px;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
 }
 
-#side-bar form{
-    width: 100%;
+#side-bar div {
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
+}
+
+#side-bar img {
+    margin-right: 8px;
+    width: 48px;
 }
 
 #side-bar input {
     border: none;
-    background-color: #F0F0F0; /* 버튼 색상 변경 */
-    margin-top: 10px;
-    height: 80px;
-    width: 40%;
-    cursor: pointer; /* 마우스 커서가 버튼 위에 올라왔을 때 변경 */
-
-    font-family: 'Spoqa Han Sans Neo';
-    font-style: normal;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Spoqa Han Sans Neo', sans-serif;
     font-weight: 500;
     font-size: 18px;
-    line-height: 25px;
-    text-align: center;
+    line-height: 1.5;
+    color: #3c3c3c;
+    border-radius: 8px;
+    transition: background-color 0.2s ease-in-out;
 }
 
-#side-bar img {
-    display: inline-block;
-    vertical-align: middle;
-    width: 60px;
-    height: 60px;
-    margin-right: 8px;
+#side-bar input:hover {
+    background-color: #8cbfe3;
+    color: white;
 }
 
-#select-button {
-    height: 60px;
-    cursor: pointer; /* 마우스 커서가 버튼 위에 올라왔을 때 변경 */
+#side-bar input[disabled] {
+    background-color: #8cbfe3;
+    color: white;
+    cursor: auto;
 }
 
 #writeDiv {
