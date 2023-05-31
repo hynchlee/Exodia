@@ -51,7 +51,7 @@
 							<div class="logout"><a href="${root}/member/logout">로그아웃</a></div>
 							<div class="photo01"></div>
 							<div class="identity"><a href="${root}/mypage">${loginMember.memberNick}님 (수강생)</a></div>
-							<div class="class01"><a href="${root}/lecture/apply">반응형 UX/UI 웹컨텐츠 개발자 양성과정 A9</a></div>
+							<div class="class01"><a href="${root}/lecture/apply"></a></div>
 							<div class="change"><a href="${root}/member/edit">내 정보 수정</a></div>
 							<div class="letter"><a href="${root}/letter/receive">쪽지 ${letterCount}</a></div>
 							<div class="mywrite"><a href="${root}/my/list?page=1">내가 쓴 글 ${countMyWrite}</a></div>
