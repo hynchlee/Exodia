@@ -372,10 +372,23 @@ public class MypageService {
 
 	public int late(String memberNo) throws Exception {
 		
-Connection conn = JDBCTemplate.getConnection();
+		Connection conn = JDBCTemplate.getConnection();
 		
 		MypageDao mdao = new MypageDao();
 		int result = mdao.late(conn, memberNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+		
+	}
+
+	public int firstcheck(String memberNo) throws Exception {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		int result = mdao.firstcheck(conn, memberNo);
 		
 		JDBCTemplate.close(conn);
 		

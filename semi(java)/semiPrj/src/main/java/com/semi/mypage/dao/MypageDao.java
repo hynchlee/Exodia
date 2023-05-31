@@ -709,7 +709,7 @@ public class MypageDao {
 		ResultSet rs = pstmt.executeQuery();
 		
 		int inTimes = 0;
-		while(rs.next()) {
+		if(rs.next()) {
 			inTimes = rs.getInt("IN_TIME");			
 		}
 		
@@ -758,6 +758,26 @@ public class MypageDao {
 		
 		return result;
 	
+	}
+
+	public int firstcheck(Connection conn, String memberNo) throws Exception {
+		
+		String sql = "UPDATE ATTENDANCE_LIST SET CHECK_OUT_TIME = SYSDATE WHERE ATTENDANCE_DATE = TO_CHAR(SYSDATE, 'YY/MM/DD') AND STUDENT_MEMBER_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		int result = pstmt.executeUpdate();
+	
+		if(result == 1) {
+			JDBCTemplate.commit(conn);
+		}
+		else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+		
 	}
 		
 	
