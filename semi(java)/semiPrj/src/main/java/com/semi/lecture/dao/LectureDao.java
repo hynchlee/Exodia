@@ -355,7 +355,7 @@ public class LectureDao {
 	
 	public int getLectureListCnt(Connection conn, String searchType, String searchValue, String currentDate) throws SQLException {
 		String sql = "SELECT COUNT(*) FROM LECTURE WHERE STATUS = 'O' AND LECTURE_OPEN_DATE >= ?";
-
+		
 		if ("lectureOpenDate".equals(searchType)) {
 			sql = "SELECT COUNT(*) FROM LECTURE WHERE STATUS = 'O' AND LECTURE_OPEN_DATE LIKE '%" + searchValue + "%' AND LECTURE_OPEN_DATE >= ?";
 		} else if ("teacher".equals(searchType)) {
@@ -365,18 +365,12 @@ public class LectureDao {
 			sql = "SELECT COUNT(*) FROM LECTURE L JOIN LECTURE_CATEGORY LC ON LC.LECTURE_CATEGORY_NO = L.LECTURE_CATEGORY_NO WHERE L.STATUS = 'O' AND LECTURE_NAME LIKE '%"
 					+ searchValue + "%' AND LECTURE_OPEN_DATE >= ?";
 		} else if ("lectureStartTime".equals(searchType)) {
-			sql = "SELECT COUNT(*) FROM LECTURE WHERE STATUS = 'O' AND (LECTURE_START_TIME LIKE '%" + searchValue + "%' OR LECTURE_FINISH_TIME LIKE '%'" + searchValue + "%') AND LECTURE_OPEN_DATE >= ?";
+			sql = "SELECT COUNT(*) FROM LECTURE WHERE STATUS = 'O' AND (LECTURE_START_TIME LIKE '%" + searchValue + "%' OR LECTURE_FINISH_TIME LIKE '%" + searchValue + "%') AND LECTURE_OPEN_DATE >= ?";
 		}
 
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, currentDate);
 		ResultSet rs = pstmt.executeQuery();
-
-		
-		System.out.println(currentDate);
-		System.out.println(searchType);
-		System.out.println(searchValue);
-		
 		
 		int cnt = 0;
 		if (rs.next()) {
@@ -541,17 +535,43 @@ public class LectureDao {
 	}
 
 	public List<MemberVo> getMemberList(Connection conn, String lectureNo) throws SQLException {
-		String sql = "SELECT * FROM MEMBER M JOIN STUDENT S ON M.MEMBER_NO = S.STUDENT_MEMBER_NO WHERE LECTURE_NO = ?";
+		String sql = "SELECT * FROM MEMBER M JOIN STUDENT S ON M.MEMBER_NO = S.STUDENT_MEMBER_NO JOIN TEAM_ROLE TR ON TR.STUDENT_MEMBER_NO = M.MEMBER_NO WHERE LECTURE_NO = ? AND TR.STATUS = 'O'";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, lectureNo);
 		ResultSet rs = pstmt.executeQuery();
 
 		List<MemberVo> memberList = new ArrayList<>();
 		while (rs.next()) {
+			String memberNo = rs.getString("MEMBER_NO");
+			String memberId = rs.getString("MEMBER_ID");
+			String memberPwd = rs.getString("MEMBER_PWD");
+			String memberNick = rs.getString("MEMBER_NICK");
+			String birthNum = rs.getString("BIRTH_NUM");
+			String status = rs.getString("STATUS");
+			String phoneNo = rs.getString("PHONE_NO");
+			String signDate = rs.getString("SIGN_DATE");
+			String profile = rs.getString("PROFILE");
+			String identity = rs.getString("IDENTITY");
+			String leftVacation = rs.getString("LEFT_VACATION");
+			String role = rs.getString("ROLE");
+			String projectDivision = rs.getString("PROJECT_DIVISION");
+			String teamNo = rs.getString("TEAM_NO");
+			
 			MemberVo vo = new MemberVo();
-			vo.setMemberNo(rs.getString("MEMBER_NO"));
-			vo.setMemberId(rs.getString("MEMBER_ID"));
-			vo.setMemberNick(rs.getString("MEMBER_NICK"));
+			vo.setMemberNo(memberNo);
+			vo.setMemberId(memberId);
+			vo.setMemberPwd(memberPwd);
+			vo.setMemberNick(memberNick);
+			vo.setBirthNum(birthNum);
+			vo.setStatus(status);
+			vo.setPhoneNo(phoneNo);
+			vo.setSignDate(signDate);
+			vo.setProfile(profile);
+			vo.setIdentity(identity);
+			vo.setLeftVacation(leftVacation);
+			vo.setRole(role);
+			vo.setProjectDivision(projectDivision);
+			vo.setTeamNo(teamNo);
 			memberList.add(vo);
 		}
 
@@ -924,5 +944,18 @@ public class LectureDao {
 		JDBCTemplate.close(pstmt);
 
 		return teacherList;
+	}
+
+	public int updateTeamRole(Connection conn, String[] paramsArr) throws SQLException {
+		String sql = "UPDATE TEAM_ROLE SET TEAM_NO = ?, PROJECT_DIVISION = ?, ROLE = ? WHERE STATUS = 'O' AND STUDENT_MEMBER_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, paramsArr[1]);
+		pstmt.setString(2, paramsArr[2]);
+		pstmt.setString(3, paramsArr[3]);
+		pstmt.setString(4, paramsArr[0]);
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		return result;
 	}
 }

@@ -471,4 +471,18 @@ public class LectureService {
 
 		return teacherList;
 	}
+
+	public int updateTeamRole(String[] paramsArr) throws SQLException {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.updateTeamRole(conn, paramsArr);
+		if(result != 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
 }

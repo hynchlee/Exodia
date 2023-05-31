@@ -24,7 +24,7 @@
 									<option value="lectureStartTime">수업시간</option>
 								</select>
 								<input type="text" class="searchValueElem e112_902" name="searchValue"
-									value="${searchVo.searchValue}" placeholder="검색할내용">
+									value="" placeholder="검색할내용">
 								<input type="submit" id="searchButton" class="e112_909" value="검색하기">
 							</div>
 						</div>
