@@ -1,8 +1,16 @@
 .search-area {
 	margin-top: 10px;
 	margin-bottom: 70px;
-	text-align: right;
-	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#search-box {
+	display: flex;
+	justify-content: right;
+	align-items: center;
+	width: 1100px;
 }
 
 select {
@@ -29,7 +37,6 @@ input[type=submit]{
     font-size: 16px;
     font-family: 'Spoqa Han Sans Neo';
     box-sizing: border-box;
-	margin-right: 200px;
 }
 
 .member-info {
@@ -39,9 +46,7 @@ input[type=submit]{
     align-content: start;
 }
 
-#check-area {
-	margin-right: 20px;
-}
+#check-area { margin-right: 20px; }
 
 #profile-img {
 	width: 130px;
@@ -65,7 +70,7 @@ input[type=submit]{
 #info {
 	color: rgba(0, 0, 0, 1);
 	height: 130px;
-	width: 700px;
+	width: 850px;
 	font-family: Noto Sans KR;
 	/* text-align: center; */
 	justify-content: space-around;
@@ -83,13 +88,29 @@ input[type=submit]{
 	grid-template-columns: 1fr 1fr;
 }
 
-.btn-area {
-	margin-top: 10px;
-	margin-right: 300px;
-	text-align: right;
+#info td {
+	width: 225px;
 }
 
-.btn-area > button {
+.btn-area {
+	/* margin-top: 10px;
+	margin-right: 300px;
+	text-align: right; */
+
+	margin-top: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#btn-box {
+	display: flex;
+	justify-content: right;
+	align-items: center;
+	width: 1100px;
+}
+
+#btn-box > button {
 	width: 80px;
 	height: 40px;
 	background-color: #F0F0F0;
@@ -100,17 +121,22 @@ input[type=submit]{
 	margin-right: 7px;
 }
 
-.btn-area > button:first-child:hover {
+#btn-box > button:first-child:hover {
 	background-color: #ced113;
     color: white;
 }
 
-.btn-area > button:nth-child(2):hover {
+#btn-box > button:nth-child(2):hover {
+	background-color: #4998D1;
+    color: white;
+}
+
+#btn-box > button:nth-child(3):hover {
 	background-color: #fd7200;
     color: white;
 }
 
-.btn-area > button:last-child:hover {
+#btn-box > button:last-child:hover {
 	background-color: #B53232;
     color: white;
 }
@@ -130,23 +156,6 @@ input[type=submit]{
     cursor: pointer;
     background-color: #F0F0F0;
 }
-
-
-
-/* 예진양식
-.page-area button{
-    margin-right: 8px;
-    text-align: center;
-    font-family: 'Spoqa Han Sans Neo';
-    display: inline-block;
-    font-weight: bold;
-    font-size: 13px;
-    border-radius: 5px;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    background-color: #F0F0F0;
-} */
 
 .page-area button:hover{
     background-color: #ddd;

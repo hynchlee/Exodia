@@ -52,6 +52,46 @@ public class AdminService {
 		
 		return memberList;
 	}
+	
+	//마일리지 차감
+	public int minusMileage(String[] noArr) throws Exception {
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		//sql
+		int result = dao.minusMileage(conn, noArr);
+		
+		//tx||rs
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		//close
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+	
+	//회원 복구
+	public int restoreMember(String[] noArr) throws Exception {
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		//sql
+		int result = dao.restoreMember(conn, noArr);
+		
+		//tx||rs
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		//close
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
 
 	//회원 제재
 	public int stopMember(String[] noArr) throws Exception {
@@ -92,25 +132,5 @@ public class AdminService {
 		
 		return result;
 	}
-
-	//마일리지 차감
-	public int minusMileage(String[] noArr) throws Exception {
-		//conn
-		Connection conn = JDBCTemplate.getConnection();
-		//sql
-		int result = dao.minusMileage(conn, noArr);
-		
-		//tx||rs
-		if(result > 0) {
-			JDBCTemplate.commit(conn);
-		}else {
-			JDBCTemplate.rollback(conn);
-		}
-		
-		//close
-		JDBCTemplate.close(conn);
-		
-		return result;
-	}
-
+	
 }

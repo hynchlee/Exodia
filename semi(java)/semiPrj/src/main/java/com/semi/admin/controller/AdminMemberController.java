@@ -26,15 +26,14 @@ public class AdminMemberController extends HttpServlet{
 
 		try {
 			
-//			req.getRequestDispatcher("/WEB-INF/views/admin/memberManage.jsp").forward(req, resp);
-//			AdminVo loginAdmin = (AdminVo) req.getSession().getAttribute("loginAdmin");
-//			
-//			if(loginAdmin != null) {
-//				req.getRequestDispatcher("/WEB-INF/views/admin/memberManage.jsp").forward(req, resp);
-//			}else {
-//				req.getSession().setAttribute("alertMsg", "관리자 권한 필요");
-//				resp.sendRedirect(req.getContextPath() + "/main");
-//			}
+			AdminVo loginAdmin = (AdminVo) req.getSession().getAttribute("loginAdmin");
+			
+			if(loginAdmin != null) {
+				req.getRequestDispatcher("/WEB-INF/views/admin/memberManage.jsp").forward(req, resp);
+			}else {
+				req.getSession().setAttribute("alertMsg", "관리자 권한 필요");
+				resp.sendRedirect(req.getContextPath() + "/main");
+			}
 			
 			String searchType = req.getParameter("searchType");
 			String searchValue = req.getParameter("searchValue");
