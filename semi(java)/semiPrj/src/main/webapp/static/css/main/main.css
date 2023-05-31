@@ -743,3 +743,21 @@ body {
 	bottom: 325px;
 	text-align: center;
 }
+.img01{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.img02{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.img03{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.video01{
+	object-fit:cover;
+}

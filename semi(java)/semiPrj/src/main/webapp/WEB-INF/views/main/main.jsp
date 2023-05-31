@@ -56,12 +56,12 @@ a {
 								class="d-block w-100" alt="...">
 							<div class="v75_54">
 								<img
-									src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png"
+									src="/semi/static/img/main/interview01.png"
 									class="d-block w-100" alt="...">
 							</div>
 							<div class="v75_55">
 								<img
-									src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png"
+									src="/semi/static/img/main/interview02.jpg"
 									class="d-block w-100" alt="...">
 							</div>
 
@@ -71,12 +71,12 @@ a {
 								class="d-block w-100" alt="...">
 							<div class="v75_54">
 								<img
-									src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png"
+									src="/semi/static/img/main/interview03.png"
 									class="d-block w-100" alt="...">
 							</div>
 							<div class="v75_55">
 								<img
-									src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png"
+									src="/semi/static/img/main/interview04.png"
 									class="d-block w-100" alt="...">
 							</div>
 						</div>
@@ -85,12 +85,12 @@ a {
 								class="d-block w-100" alt="...">
 							<div class="v75_54">
 								<img
-									src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png"
+									src="/semi/static/img/main/interview05.png"
 									class="d-block w-100" alt="...">
 							</div>
 							<div class="v75_55">
 								<img
-									src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png"
+									src="/semi/static/img/main/interview06.png"
 									class="d-block w-100" alt="...">
 							</div>
 						</div>
@@ -128,8 +128,8 @@ a {
 								alt="...">
 							<div class="v76_71">
 								<img
-									src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png"
-									class="d-block w-100" alt="...">
+									src="/semi/static/img/main/project01.jpg"
+									class="d-block w-100 img01" alt="...">
 							</div>
 							<span class="v76_72">KH project</span> <span class="v76_73">kh
 								정보교육원 홈페이지를 이용하면서 많은 불편함과 아쉬운 점을 경험하였다. 특히, 수강신청의 난해함 및 수강생들간의
@@ -143,8 +143,8 @@ a {
 								alt="...">
 							<div class="v76_71">
 								<img
-									src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png"
-									class="d-block w-100" alt="...">
+									src="/semi/static/img/main/project04.jpg"
+									class="d-block w-100 img02" alt="...">
 							</div>
 							<span class="v76_72">KH project</span> <span class="v76_73">kh
 								정보교육원 홈페이지를 이용하면서 많은 불편함과 아쉬운 점을 경험하였다. 특히, 수강신청의 난해함 및 수강생들간의
@@ -158,8 +158,8 @@ a {
 								alt="...">
 							<div class="v76_71">
 								<img
-									src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png"
-									class="d-block w-100" alt="...">
+									src="/semi/static/img/main/project03.jpg"
+									class="d-block w-100 img03" alt="...">
 							</div>
 							<span class="v76_72">KH project</span> <span class="v76_73">kh
 								정보교육원 홈페이지를 이용하면서 많은 불편함과 아쉬운 점을 경험하였다. 특히, 수강신청의 난해함 및 수강생들간의
@@ -183,7 +183,7 @@ a {
 			</div>
 		</div>
 		<div class="v67_3">
-			<video src="/semi/static/img/main/main.mp4" autoplay loop muted></video>
+			<video class="video01" src="/semi/static/img/main/testvid01.mp4" autoplay loop muted width="100%" height="550px;"></video>
 		</div>
 
 		<div class="v69_16"></div>
