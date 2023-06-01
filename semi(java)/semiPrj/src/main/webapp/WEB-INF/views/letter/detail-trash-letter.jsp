@@ -14,7 +14,7 @@
 				<main>
 					<div id="side-bar">
 						<div>
-							<form action="${root}/letter/write" method="post">
+							<form action="${root}/letter/write" method="get">
 								<div id="select-button">
 									<img src="${root}/static/img/letter/쪽지 쓰기.png">
 									<input type="submit" value="쪽지 쓰기" id="write-letter">
@@ -22,7 +22,7 @@
 							</form>
 						</div>
 						<div>
-							<form action="${root}/letter/sent" method="post">
+							<form action="${root}/letter/sent" method="get">
 								<div id="select-button">
 									<img src="${root}/static/img/letter/보낸 쪽지.png">
 									<input type="submit" value="보낸 쪽지" id="sent-letter">
@@ -30,7 +30,7 @@
 							</form>
 						</div>
 						<div>
-							<form action="${root}/letter/receive" method="post">
+							<form action="${root}/letter/receive" method="get">
 								<div id="select-button">
 									<img src="${root}/static/img/letter/받은 쪽지.png">
 									<input type="submit" value="받은 쪽지" id="receive-letter">
@@ -38,7 +38,7 @@
 							</form>
 						</div>
 						<div>
-							<form action="${root}/letter/trash" method="post">
+							<form action="${root}/letter/trash" method="get">
 								<div id="select-button">
 									<img src="${root}/static/img/letter/휴지통.png">
 									<input type="submit" value="휴지통" id="trash-can">
