@@ -38,8 +38,8 @@
                             <div>${vo.attendanceDate}</div>
                             <div>${vo.checkInTime}</div>
                             <div>${vo.checkOutTime}</div>
-                            <div>${vo.inLectureMinutes}</div>
                             <div>${vo.totalLectureMinutes}</div>
+                            <div>${vo.inLectureMinutes}</div>
                             <div>${vo.status }</div>
                         </div>
                         </c:forEach>
