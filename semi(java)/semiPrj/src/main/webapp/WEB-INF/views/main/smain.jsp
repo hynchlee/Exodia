@@ -112,7 +112,7 @@
                 <div class="carousel-inner">
                   <div class="carousel-item active">
                     <img src="/semi/static/img/main/v10_01.png" class="d-block w-100" alt="...">
-                   <div class="v76_71">
+                  <div class="v76_71">
 								<img
 									src="/semi/static/img/main/project01.jpg"
 									class="d-block w-100 img01" alt="...">
@@ -132,12 +132,12 @@
 									src="/semi/static/img/main/project04.jpg"
 									class="d-block w-100 img02" alt="...">
 							</div>
-							<span class="v76_72">KH project</span> <span class="v76_73">kh
-								정보교육원 홈페이지를 이용하면서 많은 불편함과 아쉬운 점을 경험하였다. 특히, 수강신청의 난해함 및 수강생들간의
-								교류가 장려가 되지 않았던 점 등이 그러했다. 따라서 kh 정보교육원 홈페이지를 재구성하고자 하였다. 본
-								프로젝트에서는 재구성 방향성을 대학 홈페이지로 잡았다. kh 정보교육원은 IT 교육기관으로 일종의 대학 기능을
-								수행하기에 기존의 홈페이지와 대학 홈페이지의 구성을 결합하는 것이 새로운 브랜드 이미지 형성으로 긍정적인 영향을 줄
-								수 있다고 보았다. </span><span class="v76_86">(자바개발자)자바 기반 임베디드</span>
+							<span class="v76_72">KH project</span> <span class="v76_73">사용하지 않는 집이나, 노후 되었으나 수익성이 충분히 있는 집이나 
+							공간을 리모델링 하여 수익성을 높일 수 있도록 하고,
+							리모델링시 쉐어하우스 라는 사업 모델을 함께하여 새로운 수익 모델을 창출
+							예전 '하숙집' 이라는 이름의 값싼 하급 여관집 느낌을 버리고 '쉐어하우스'로 탈바꿈
+							그 외에도 세입자를 필요로 하는 집주인들을 위한 '입주자 모집 게시판'을 운영하고 추후에 수수료를 받는 형식으로 변경하였다.
+								 </span><span class="v76_86">(자바개발자)자바 기반 임베디드</span>
 						</div>
 						<div class="carousel-item">
 							<img src="/semi/static/img/main/v10_01.png" class="d-block w-100"
@@ -147,12 +147,13 @@
 									src="/semi/static/img/main/project03.jpg"
 									class="d-block w-100 img03" alt="...">
 							</div>
-							<span class="v76_72">KH project</span> <span class="v76_73">kh
-								정보교육원 홈페이지를 이용하면서 많은 불편함과 아쉬운 점을 경험하였다. 특히, 수강신청의 난해함 및 수강생들간의
-								교류가 장려가 되지 않았던 점 등이 그러했다. 따라서 kh 정보교육원 홈페이지를 재구성하고자 하였다. 본
-								프로젝트에서는 재구성 방향성을 대학 홈페이지로 잡았다. kh 정보교육원은 IT 교육기관으로 일종의 대학 기능을
-								수행하기에 기존의 홈페이지와 대학 홈페이지의 구성을 결합하는 것이 새로운 브랜드 이미지 형성으로 긍정적인 영향을 줄
-								수 있다고 보았다. </span><span class="v76_86">(자바개발자)자바 기반 임베디드</span>
+							<span class="v76_72">KH project</span> <span class="v76_73">
+								한류열풍으로 인해 전 세계적으로 한국에 관심이 커진 현재, 한국어 능력 시험인 TOPIK 시험이
+								 큰 인기를 끌고 있습니다. 교육부 국립국제교육원의 직원들에게 악의적인 URL이 담긴 메일이 
+								 수신되어 직원들의 개인정보가 유출되는 보안사고가 발생하였습니다. 이에 따라 국립국제교육원에서
+								  개인정보 및 자료유출, 금전적 피해 등을 입을 수 있는 만큼, 이러한 피해를 방지하기 위하여 
+								  팀 끝나고 보조에게 모의해킹 및 보안솔루션 제안을 요청하였습니다. 
+								  </span><span class="v76_86">(정보시스템구축)보안엔지니어링 기반 정보보안 전문가 양성</span>
 						</div>
 					</div>
               </div>
