@@ -30,10 +30,13 @@ public class MainController extends HttpServlet {
 				String countMyWrite = ms.countMyWrite(memberNo);
 				List<LectureVo> lvoList = ms.showLecture();
 				List<LectureVo> secuList = ms.showSecuLecture();
+				String mileage = ms.mileage(memberNo);
+				
 				req.setAttribute("letterCount", letterCount);
 				req.setAttribute("countMyWrite", countMyWrite);
 				req.setAttribute("lvoList", lvoList);
 				req.setAttribute("secuList", secuList);
+				req.setAttribute("mileage", mileage);
 				
 				if (loginMember.getIdentity().equals("S")) {
 					req.getRequestDispatcher("/WEB-INF/views/main/smain.jsp").forward(req, resp);

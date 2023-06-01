@@ -396,4 +396,17 @@ public class MypageService {
 		
 	}
 
+	public String mileage(String memberNo) throws Exception {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MypageDao mdao = new MypageDao();
+		String mileage = mdao.mileage(conn, memberNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return mileage;
+		
+	}
+
 }

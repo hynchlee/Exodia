@@ -779,6 +779,27 @@ public class MypageDao {
 		return result;
 		
 	}
+
+	public String mileage(Connection conn, String memberNo) throws Exception {
+		
+		String sql = " SELECT MILEAGE FROM STUDENT WHERE STUDENT_MEMBER_NO = ? ";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		String mileage = null;
+		if(rs.next()) {
+			mileage = rs.getString("MILEAGE");			
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return mileage;
+	
+	}
+		
+	
 		
 	
 
