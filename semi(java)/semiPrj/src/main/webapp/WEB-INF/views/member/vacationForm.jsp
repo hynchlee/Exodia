@@ -110,14 +110,14 @@
 
     //제약조건
     function validate() {
+        const vacDay = document.querySelector('#vac-days');
         let reason = document.querySelector('input[name=reason]').value;
-
         //잔여기간 보다 길면 제출 불가
-        if ("${loginMember.leftVacation}" < vacDays.value) {
+
+        if (parseInt("${loginMember.leftVacation}") < vacDay.value) {
             alert("선택하신 기간이 잔여휴가보다 많습니다. 날짜를 다시 지정해주세요.");
             return false;
         }
-
         //사유 빈칸이면 제출 불가
         if (reason.trim().length === 0) {
             alert("사유를 입력해주세요.");
