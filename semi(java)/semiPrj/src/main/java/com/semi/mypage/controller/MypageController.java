@@ -59,6 +59,7 @@ public class MypageController extends HttpServlet{
 			int percentage = 156 * Integer.parseInt(checkDate) / 100;
 			List<TeamCalendarVo> todoList = ms.todoList(memberNo);
 			List<TeamCalendarVo> voList = fcs.getFullCalendar(loginMember.getMemberNo());
+			String mileage = ms.mileage(memberNo);
 			
 			req.setAttribute("voList", voList);
 			req.setAttribute("snotList", snotList);
@@ -77,6 +78,7 @@ public class MypageController extends HttpServlet{
 			req.setAttribute("percentage", percentage);			
 			req.setAttribute("todoList", todoList);			
 			req.setAttribute("leftVacation", leftVacation);			
+			req.setAttribute("mileage", mileage);			
 			req.getRequestDispatcher("/WEB-INF/views/personal/mypage.jsp").forward(req, resp);
 			
 			} catch (Exception e) {
