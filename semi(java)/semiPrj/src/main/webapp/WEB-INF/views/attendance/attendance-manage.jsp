@@ -39,8 +39,24 @@
                             <div>${vo.checkInTime}</div>
                             <div>${vo.checkOutTime}</div>
                             <div>${vo.totalLectureMinutes}</div>
-                            <div>${vo.inLectureMinutes}</div>
-                            <div>${vo.status }</div>
+                            <div>
+                                <c:choose>
+                                    <c:when test="${vo.inLectureMinutes == null}">
+                                        ----
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:choose>
+                                            <c:when test="${vo.inLectureMinutes > vo.totalLectureMinutes}">
+                                                ${vo.totalLectureMinutes}
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${vo.inLectureMinutes}
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                            <div>${vo.status}</div>
                         </div>
                         </c:forEach>
                         <div id="pageDiv">
