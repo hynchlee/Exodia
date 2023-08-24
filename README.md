@@ -18,8 +18,8 @@
 ![erd](https://github.com/hynchlee/Exodia/assets/93501719/31919734-0664-4520-9317-40f890d3f34c)
 
 ### UI &nbsp; 
-![1](https://github.com/hynchlee/Exodia/assets/93501719/107ed620-ae6e-4024-a4cc-79ba9171d34c)
-![2](https://github.com/hynchlee/Exodia/assets/93501719/b069af8d-62c8-4d77-b00f-195ecee8d777)
+![1](https://github.com/hynchlee/Exodia/assets/93501719/a0ccb885-46d0-4807-b734-6f245deb050c)
+![2](https://github.com/hynchlee/Exodia/assets/93501719/b7fbe522-8ab4-4d2b-8bc4-3fa01954fffd)
 <br>
 <br>
 
