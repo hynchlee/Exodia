@@ -3,7 +3,7 @@
 </div>
 
 ## 프로젝트 소개
-![logo](https://github.com/hynchlee/Exodia/assets/93501719/7e687839-bd7c-4e33-86f2-40469744c7a3)
+![ALLISWELLLOGO](https://github.com/gtwins2/ALL_IS_WELL/assets/122279853/0e230839-e595-496a-8445-e07e51d2c569)
 
 
 ## 📅 프로젝트 기간
