@@ -1,7 +1,3 @@
-<div align=center>
-	<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=header&text=KH_UNIV&fontSize=90" />	
-</div>
-
 ## 프로젝트 소개
 ![ALLISWELLLOGO](https://github.com/gtwins2/ALL_IS_WELL/assets/122279853/0e230839-e595-496a-8445-e07e51d2c569)
 
